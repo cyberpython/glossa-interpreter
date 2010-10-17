@@ -10,6 +10,29 @@
 <project name="Glossa" default="default" basedir=".">
     <description>Builds, tests, and runs the project Glossa.</description>
     <import file="nbproject/build-impl.xml"/>
+
+    <target name="-pre-compile">
+        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+            <arg value="${src.dir}/glossa/interpreter/grammars/Glossa.g"/>
+            <classpath>
+                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </java>
+        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+            <arg value="${src.dir}/glossa/interpreter/grammars/GlossaFirstPassWalker.g"/>
+            <classpath>
+                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </java>
+        <move todir="${src.dir}/glossa/interpreter">
+            <fileset dir="${src.dir}/glossa/interpreter/grammars">
+                <include name="**/*.java"/>
+                <exclude name="**/*.g"/>
+            </fileset>
+        </move>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 

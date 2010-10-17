@@ -6,8 +6,7 @@
 package glossa.interpreter;
 
 import glossa.interpreter.symboltable.MainProgramSymbolTable;
-import glossasimple.intrepreter.GlossaLexer;
-import glossasimple.intrepreter.GlossaParser;
+
 import java.io.File;
 import java.io.FileInputStream;
 import org.antlr.runtime.ANTLRInputStream;
@@ -22,7 +21,7 @@ import org.antlr.runtime.tree.CommonTree;
 public class Interpreter {
     public void run(String[] args) throws Exception {
         // Create an input character stream from standard in
-        FileInputStream is = new FileInputStream(new File(Interpreter.class.getResource("/glossasimple/interpreter/tests/HelloWorld.gls").toURI()));
+        FileInputStream is = new FileInputStream(new File(Interpreter.class.getResource("/glossa/interpreter/tests/HelloWorld.gls").toURI()));
         ANTLRInputStream input = new ANTLRInputStream(is);
         // Create an ExprLexer that feeds from that stream
         GlossaLexer lexer = new GlossaLexer(input);
