@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  * @author cyberpython
  */
-public class Symbol {
+public class Symbol implements Comparable<Symbol>{
 
     private String name;
     private Type type;
@@ -20,7 +20,7 @@ public class Symbol {
     private int pos;
     private int absolutePosition;
 
-    public Symbol(String name, Type type, int line, int pos, int absolutePosition) {
+    public Symbol(String name, Type type, int line, int pos, int absolutePosition){
         this.name = name;
         this.type = type;
         this.line = line;
@@ -111,7 +111,14 @@ public class Symbol {
         return this.line+","+(this.pos+1);
     }
 
-    
+    @Override
+    public String toString() {
+        return "name: "+this.getName()+", type: "+this.type.toString()+" declared at: "+this.getPositionAsString();
+    }
+
+    public int compareTo(Symbol o) {
+        return this.name.compareTo(o.getName());
+    }
 
 
 }

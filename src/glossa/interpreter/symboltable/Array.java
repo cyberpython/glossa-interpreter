@@ -7,6 +7,7 @@ package glossa.interpreter.symboltable;
 /*import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;*/
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,11 +22,27 @@ public class Array extends Symbol {
     public Array(String name, Type type, int line, int pos, int absolutePosition, List<Integer> dimensions) {
         super(name, type, line, pos, absolutePosition);
         this.dimensions = dimensions;
-        //this.values = new HashMap<String, Object>();
-        //initValues(dimensions);
     }
 
-    /*private void initValues(List<Integer> dimensions) {
+    public Array(String name,int line, int pos, int absolutePosition, List<Integer> dimensions) {
+        super(name, Type.INTEGER, line, pos, absolutePosition);
+        this.dimensions = dimensions;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder dim = new StringBuilder();
+        for (Iterator<Integer> it = dimensions.iterator(); it.hasNext();) {
+            Integer integer = it.next();
+            dim.append(String.valueOf(integer));
+            if(it.hasNext()){
+                    dim.append("x");
+            }
+        }
+        return "Array ["+dim.toString()+"] "+super.toString();
+    }
+
+    /*public void initValues(List<Integer> dimensions, Object initialValue) {
 
         int numberOfDimensions = dimensions.size();
         List<List<String>> tmp = new ArrayList<List<String>>();
@@ -64,7 +81,7 @@ public class Array extends Symbol {
         
         for (Iterator<String> it1 = result.iterator(); it1.hasNext();) {
             String key = it1.next();
-            this.values.put(key, null);
+            this.values.put(key, initialValue);
         }
     }
 

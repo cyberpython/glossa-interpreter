@@ -15,4 +15,9 @@ public class Constant extends SimpleSymbol{
         super(name, type, line, pos, absolutePosition, value);
     }
 
+    @Override
+    public String toString() {
+        return "Constant "+super.toString();
+    }
+
 }

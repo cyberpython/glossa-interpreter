@@ -15,6 +15,15 @@ public class Variable extends SimpleSymbol{
         super(name, type, line, pos, absolutePosition, value);
     }
 
+    public Variable(String name, int line, int pos, int absolutePosition, Object value) {
+        super(name, Type.INTEGER, line, pos, absolutePosition, value);
+    }
+
+    @Override
+    public String toString() {
+        return "Variable "+super.toString();
+    }
+
 
 
 }

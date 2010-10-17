@@ -6,9 +6,16 @@
 package glossa.interpreter;
 
 import glossa.interpreter.symboltable.MainProgramSymbolTable;
+import glossa.interpreter.symboltable.Symbol;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.BufferedTreeNodeStream;
@@ -42,7 +49,19 @@ public class Interpreter {
 
         is.close();
 
-        MainProgramSymbolTable mpst = walker.mainSymbolTable;
+        MainProgramSymbolTable mpst = (MainProgramSymbolTable) walker.symbolTable;
         System.out.println(mpst.getProgramName());
+
+        System.out.println();
+        System.out.println("////////// SYMBOLS /////////////");
+
+        HashMap<String, Symbol> symbols = mpst.getSymbols();
+        Collection<Symbol> values= symbols.values();
+        List<Symbol> list = new ArrayList<Symbol>(values);
+        Collections.sort(list);
+        for (Iterator<Symbol> it = list.iterator(); it.hasNext();) {
+            Symbol s = it.next();
+            System.out.println((Symbol)s);
+        }
     }
 }

@@ -9,13 +9,15 @@ options{
 @header{
 package glossa.interpreter;
 
-import glossa.interpreter.symboltable.MainProgramSymbolTable;
+import glossa.interpreter.symboltable.*;
 import glossa.interpreter.utils.ErrorUtils;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Point;
 }
 
 @members{
-	MainProgramSymbolTable mainSymbolTable = new MainProgramSymbolTable();
+	SymbolTable symbolTable = new MainProgramSymbolTable();
 }
 
 
@@ -29,7 +31,7 @@ unit	:	program;
 
 program	:	^(PROGRAM
 		id1=ID	{
-				mainSymbolTable.setProgramName($id1.text);
+				((MainProgramSymbolTable)symbolTable).setProgramName($id1.text);
 			}
 		declarations
 		block 
@@ -46,11 +48,11 @@ declarations
 		
 constDecl
 	:	^(CONSTANTS	{
-					if(mainSymbolTable.isConstantsDeclared()){
-						ErrorUtils.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), mainSymbolTable.getConstantsDeclarationPoint());
+					if(symbolTable.isConstantsDeclared()){
+						ErrorUtils.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), symbolTable.getConstantsDeclarationPoint());
 					}else{
-						mainSymbolTable.setConstantsDeclared(true);
-						mainSymbolTable.setConstantsDeclarationPoint(new Point($CONSTANTS.line, $CONSTANTS.pos));
+						symbolTable.setConstantsDeclared(true);
+						symbolTable.setConstantsDeclarationPoint(new Point($CONSTANTS.line, $CONSTANTS.pos));
 					}
 				}
 		constAssign*);
@@ -63,31 +65,53 @@ constAssign
 	
 	
 varDecl	:	^(VARIABLES	{
-					if(mainSymbolTable.isVariablesDeclared()){
-						ErrorUtils.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), mainSymbolTable.getVariablesDeclarationPoint());
+					if(symbolTable.isVariablesDeclared()){
+						ErrorUtils.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), symbolTable.getVariablesDeclarationPoint());
 					}else{
-						mainSymbolTable.setVariablesDeclared(true);
-						mainSymbolTable.setVariablesDeclarationPoint(new Point($VARIABLES.line, $VARIABLES.pos));
+						symbolTable.setVariablesDeclared(true);
+						symbolTable.setVariablesDeclarationPoint(new Point($VARIABLES.line, $VARIABLES.pos));
 					}
 				}
 		varsDecl*);
 		
 		
-	
+
 varsDecl
-	:	^(varType varDeclItem+);
+	:	^(
+                    varType
+                    (varDeclItem     {
+                                        Symbol s = $varDeclItem.variable;
+                                        s.setType($varType.result);
+                                        symbolTable.defineSymbol(s.getName(), s);
+                                    }
+                    )+
+                );
 
-varDeclItem
-	:	ID 
-	| 	^(ARRAY ID arrayDimension);
+varDeclItem returns [Symbol variable]
+	:	ID                          {
+                                                $variable = new Variable($ID.text, $ID.line, $ID.pos, $ID.getTokenStartIndex(), null);
+                                            }
+	| 	^(ARRAY ID arrayDimension)  {
+                                                $variable = new Array($ID.text, $ID.line, $ID.pos, $ID.getTokenStartIndex(), $arrayDimension.dimensions);
+                                            }
+        ;
 
-arrayDimension
-	:	^(ARRAY_DIMENSION expr+);
+arrayDimension returns [List<Integer> dimensions]
+	:	^(
+                    ARRAY_DIMENSION {
+                                        $dimensions = new ArrayList<Integer>();
+                                    }
+                    (expr           {
+                                        $dimensions.add(new Integer(1)); //TODO get value from expr - expr value msut be integer > 0
+                                    }
+                     )+
+                 );
 	
-varType	:	BOOLEANS
-	|	STRINGS
-	|	INTEGERS
-	|	REALS;
+varType	returns [Type result]
+        :	BOOLEANS {$result = Type.BOOLEAN;}
+	|	STRINGS {$result = Type.STRING;}
+	|	INTEGERS {$result = Type.INTEGER;}
+	|	REALS {$result = Type.REAL;};
 		
 block	:	^(BLOCK stm*);
 

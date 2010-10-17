@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package glossa.interpreter.symboltable;
 
 import glossa.interpreter.utils.ErrorUtils;
@@ -14,24 +13,35 @@ import java.util.HashMap;
  * @author cyberpython
  */
 public class SymbolTable {
+
     private HashMap<String, Symbol> symbols;
     private boolean constantsDeclared;
     private boolean variablesDeclared;
     private Point constantsDeclarationPoint;
     private Point variablesDeclarationPoint;
 
-    public SymbolTable(){
+    public SymbolTable() {
         this.symbols = new HashMap<String, Symbol>();
         this.constantsDeclared = false;
         this.variablesDeclared = false;
     }
 
-    public void defineSymbol(String key, Symbol s){
-        Symbol existingSymbol = symbols.get(key);
-        if(existingSymbol!=null){
-           ErrorUtils.symbolRedefinitionError(s, existingSymbol);
-        }else{
-            this.symbols.put(key, s);
+    public void defineSymbol(String key, Symbol s) {
+        Symbol existingSymbol = getSymbols().get(key);
+        if (existingSymbol != null) {
+            ErrorUtils.symbolRedefinitionError(s, existingSymbol);
+        } else {
+            this.getSymbols().put(key, s);
+        }
+    }
+
+    public Symbol referenceSymbol(String symbolName, Point referencePosition) {
+        Symbol symbol = this.getSymbols().get(symbolName);
+        if (symbol == null) {
+            ErrorUtils.symbolUndefinedError(symbolName, referencePosition);
+            return null;
+        } else {
+            return symbol;
         }
     }
 
@@ -91,7 +101,17 @@ public class SymbolTable {
         this.variablesDeclarationPoint = variablesDeclarationPoint;
     }
 
-    
+    /**
+     * @return the symbols
+     */
+    public HashMap<String, Symbol> getSymbols() {
+        return symbols;
+    }
 
-
+    /**
+     * @param symbols the symbols to set
+     */
+    public void setSymbols(HashMap<String, Symbol> symbols) {
+        this.symbols = symbols;
+    }
 }
