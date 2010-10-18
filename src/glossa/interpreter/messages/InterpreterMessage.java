@@ -22,61 +22,58 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.messages;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author cyberpython
  */
-public class MainProgramSymbolTable extends SymbolTable{
+public class InterpreterMessage {
 
-    private String programName;
+    private Point point;
+    private String msg;
 
-    public MainProgramSymbolTable() {
-        super();
-        this.programName = "";
+    public InterpreterMessage() {
+        this(new Point(0, 0), "");
     }
+
+    public InterpreterMessage(Point point, String msg) {
+        this.point = point;
+        this.msg = msg;
+    }
+
+
+
 
 
     /**
-     * @return the programName
+     * @return the point
      */
-    public String getProgramName() {
-        return programName;
+    public Point getPoint() {
+        return point;
     }
 
     /**
-     * @param programName the programName to set
+     * @param point the point to set
      */
-    public void setProgramName(String programName) {
-        this.programName = programName;
+    public void setPoint(Point point) {
+        this.point = point;
     }
 
-
-    public static void main(String[] args) {
-        MainProgramSymbolTable mpst = new MainProgramSymbolTable();
-        mpst.setProgramName("TestProgram");
-
-        Variable x = new Variable("x", Type.INTEGER, 3, 12, 40, new Integer(0));
-        mpst.defineSymbol("x", x);
-        System.out.println(x);
-
-
-        List<Integer> dimensions = new ArrayList<Integer>();
-        dimensions.add(2);
-        dimensions.add(5);
-        mpst.defineSymbol("arr", new Array("arr", Type.REAL, 4, 32, 129, dimensions) );
-
-        mpst.defineSymbol("arr", new Variable("arr", Type.INTEGER, 5, 212, 40, new Integer(0)));
-        Symbol s = mpst.referenceSymbol("x", new Point(12,2));
-        System.out.println(s);
-        s = mpst.referenceSymbol("adsa", new Point(14,27));
+    /**
+     * @return the msg
+     */
+    public String getMsg() {
+        return msg;
     }
 
-
+    /**
+     * @param msg the msg to set
+     */
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
 }

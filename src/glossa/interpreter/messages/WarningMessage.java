@@ -22,23 +22,18 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.messages;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import java.awt.Point;
 
 /**
  *
  * @author cyberpython
  */
-public class Constant extends SimpleSymbol{
+public class WarningMessage extends InterpreterMessage{
 
-    public Constant(String name, Type type, int line, int pos, int absolutePosition, Object value) {
-        super(name, type, line, pos, absolutePosition, value);
-    }
-
-    @Override
-    public String toString() {
-        return ReportingAndMessagingUtils.CONSTS_STR_CONSTANT+" "+super.toString();
+    public WarningMessage(Point point, String msg) {
+        super(point, msg);
     }
 
 }
