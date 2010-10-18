@@ -32,7 +32,7 @@ import java.util.HashMap;
  *
  * @author cyberpython
  */
-public class SymbolTable {
+public class Scope {
 
     private HashMap<String, Symbol> symbols;
     private boolean constantsDeclared;
@@ -40,7 +40,7 @@ public class SymbolTable {
     private Point constantsDeclarationPoint;
     private Point variablesDeclarationPoint;
 
-    public SymbolTable() {
+    public Scope() {
         this.symbols = new HashMap<String, Symbol>();
         this.constantsDeclared = false;
         this.variablesDeclared = false;

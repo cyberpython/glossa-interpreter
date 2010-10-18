@@ -24,7 +24,7 @@
 
 package glossa.interpreter;
 
-import glossa.interpreter.symboltable.MainProgramSymbolTable;
+import glossa.interpreter.symboltable.MainProgramScope;
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
 import glossa.interpreter.symboltable.Symbol;
 import glossa.interpreter.messages.ErrorMessage;
@@ -73,7 +73,7 @@ public class Interpreter {
         walker.unit();                 // launch at start rule prog
 
 
-        MainProgramSymbolTable mpst = (MainProgramSymbolTable) walker.symbolTable;
+        MainProgramScope mpst = (MainProgramScope) walker.currentScope;
 
 
         List<InterpreterMessage> msgs = ReportingAndMessagingUtils.getMessages();

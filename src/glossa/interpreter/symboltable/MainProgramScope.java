@@ -32,11 +32,11 @@ import java.util.List;
  *
  * @author cyberpython
  */
-public class MainProgramSymbolTable extends SymbolTable{
+public class MainProgramScope extends Scope{
 
     private String programName;
 
-    public MainProgramSymbolTable() {
+    public MainProgramScope() {
         super();
         this.programName = "";
     }
@@ -58,7 +58,7 @@ public class MainProgramSymbolTable extends SymbolTable{
 
 
     public static void main(String[] args) {
-        MainProgramSymbolTable mpst = new MainProgramSymbolTable();
+        MainProgramScope mpst = new MainProgramScope();
         mpst.setProgramName("TestProgram");
 
         Variable x = new Variable("x", Type.INTEGER, 3, 12, 40, new Integer(0));
