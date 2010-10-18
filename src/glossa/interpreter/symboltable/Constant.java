@@ -17,7 +17,7 @@ public class Constant extends SimpleSymbol{
 
     @Override
     public String toString() {
-        return "Constant "+super.toString();
+        return ReportingAndMessagingUtils.CONSTS_STR_CONSTANT+" "+super.toString();
     }
 
 }

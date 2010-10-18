@@ -39,7 +39,7 @@ public class Array extends Symbol {
                     dim.append("x");
             }
         }
-        return "Array ["+dim.toString()+"] "+super.toString();
+        return ReportingAndMessagingUtils.CONSTS_STR_ARRAY+" ["+dim.toString()+"] "+super.toString();
     }
 
     /*public void initValues(List<Integer> dimensions, Object initialValue) {

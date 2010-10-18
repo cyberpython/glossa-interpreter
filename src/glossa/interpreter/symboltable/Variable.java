@@ -21,7 +21,7 @@ public class Variable extends SimpleSymbol{
 
     @Override
     public String toString() {
-        return "Variable "+super.toString();
+        return ReportingAndMessagingUtils.CONSTS_STR_VARIABLE+" "+super.toString();
     }
 
 

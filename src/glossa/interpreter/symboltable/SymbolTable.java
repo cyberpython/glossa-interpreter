@@ -4,7 +4,6 @@
  */
 package glossa.interpreter.symboltable;
 
-import glossa.interpreter.utils.ErrorUtils;
 import java.awt.Point;
 import java.util.HashMap;
 
@@ -29,7 +28,7 @@ public class SymbolTable {
     public void defineSymbol(String key, Symbol s) {
         Symbol existingSymbol = getSymbols().get(key);
         if (existingSymbol != null) {
-            ErrorUtils.symbolRedefinitionError(s, existingSymbol);
+            ReportingAndMessagingUtils.symbolRedefinitionError(s, existingSymbol);
         } else {
             this.getSymbols().put(key, s);
         }
@@ -38,7 +37,7 @@ public class SymbolTable {
     public Symbol referenceSymbol(String symbolName, Point referencePosition) {
         Symbol symbol = this.getSymbols().get(symbolName);
         if (symbol == null) {
-            ErrorUtils.symbolUndefinedError(symbolName, referencePosition);
+            ReportingAndMessagingUtils.symbolUndefinedError(symbolName, referencePosition);
             return null;
         } else {
             return symbol;

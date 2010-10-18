@@ -113,7 +113,7 @@ public class Symbol implements Comparable<Symbol>{
 
     @Override
     public String toString() {
-        return "name: "+this.getName()+", type: "+this.type.toString()+" declared at: "+this.getPositionAsString();
+        return ReportingAndMessagingUtils.CONSTS_STR_NAME+": "+this.getName()+", "+ReportingAndMessagingUtils.CONSTS_STR_TYPE+": "+this.type.toString()+"\t - "+ReportingAndMessagingUtils.CONSTS_STR_DECLARED_AT+": "+this.getPositionAsString();
     }
 
     public int compareTo(Symbol o) {

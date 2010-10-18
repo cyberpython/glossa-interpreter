@@ -10,7 +10,6 @@ options{
 package glossa.interpreter;
 
 import glossa.interpreter.symboltable.*;
-import glossa.interpreter.utils.ErrorUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Point;
@@ -37,7 +36,7 @@ program	:	^(PROGRAM
 		block 
 		(id2=ID {
 				if($id1.text.equals($id2.text)==false){
-					ErrorUtils.programNameMismatchError(new Point($id2.line, $id2.pos), $id2.text);
+					ReportingAndMessagingUtils.programNameMismatchWarning(new Point($id2.line, $id2.pos), $id2.text);
 				}
 			}
 		)?
@@ -49,7 +48,7 @@ declarations
 constDecl
 	:	^(CONSTANTS	{
 					if(symbolTable.isConstantsDeclared()){
-						ErrorUtils.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), symbolTable.getConstantsDeclarationPoint());
+						ReportingAndMessagingUtils.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), symbolTable.getConstantsDeclarationPoint());
 					}else{
 						symbolTable.setConstantsDeclared(true);
 						symbolTable.setConstantsDeclarationPoint(new Point($CONSTANTS.line, $CONSTANTS.pos));
@@ -66,7 +65,7 @@ constAssign
 	
 varDecl	:	^(VARIABLES	{
 					if(symbolTable.isVariablesDeclared()){
-						ErrorUtils.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), symbolTable.getVariablesDeclarationPoint());
+						ReportingAndMessagingUtils.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), symbolTable.getVariablesDeclarationPoint());
 					}else{
 						symbolTable.setVariablesDeclared(true);
 						symbolTable.setVariablesDeclarationPoint(new Point($VARIABLES.line, $VARIABLES.pos));
