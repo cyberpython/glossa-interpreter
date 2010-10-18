@@ -22,9 +22,10 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.scopes;
 
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.symboltable.symbols.Symbol;
 import java.awt.Point;
 import java.util.HashMap;
 

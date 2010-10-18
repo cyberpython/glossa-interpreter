@@ -22,9 +22,10 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.symbols;
 
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.symboltable.types.Type;
 import java.awt.Point;
 
 /**
@@ -133,7 +134,7 @@ public class Symbol implements Comparable<Symbol>{
 
     @Override
     public String toString() {
-        return ReportingAndMessagingUtils.CONSTS_STR_NAME+": "+this.getName()+", "+ReportingAndMessagingUtils.CONSTS_STR_TYPE+": "+this.type.toString()+"\t - "+ReportingAndMessagingUtils.CONSTS_STR_DECLARED_AT+": "+this.getPositionAsString();
+        return ReportingAndMessagingUtils.CONSTS_STR_NAME+": "+this.getName()+", "+ReportingAndMessagingUtils.CONSTS_STR_TYPE+": "+this.type.toString()+", "+ReportingAndMessagingUtils.CONSTS_STR_DECLARED_AT+": ("+this.getPositionAsString()+")";
     }
 
     public int compareTo(Symbol o) {

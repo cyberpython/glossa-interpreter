@@ -22,12 +22,12 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.symbols;
 
-/*import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;*/
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.symboltable.types.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class Array extends Symbol {
 
-    ///private HashMap<String, Object> values;
+    private HashMap<String, Object> values;
     private List<Integer> dimensions;
 
     public Array(String name, Type type, int line, int pos, int absolutePosition, List<Integer> dimensions) {
@@ -52,18 +52,18 @@ public class Array extends Symbol {
 
     @Override
     public String toString() {
-        StringBuilder dim = new StringBuilder();
+        /*StringBuilder dim = new StringBuilder();
         for (Iterator<Integer> it = dimensions.iterator(); it.hasNext();) {
             Integer integer = it.next();
             dim.append(String.valueOf(integer));
             if(it.hasNext()){
                     dim.append("x");
             }
-        }
-        return ReportingAndMessagingUtils.CONSTS_STR_ARRAY+" ["+dim.toString()+"] "+super.toString();
+        }*/
+        return ReportingAndMessagingUtils.CONSTS_STR_ARRAY+" - "+ReportingAndMessagingUtils.CONSTS_STR_DIMENSIONS+": "+getDimensions().size()+"\t"+super.toString();
     }
 
-    /*public void initValues(List<Integer> dimensions, Object initialValue) {
+    public void initValues(List<Integer> dimensions, Object initialValue) {
 
         int numberOfDimensions = dimensions.size();
         List<List<String>> tmp = new ArrayList<List<String>>();
@@ -113,5 +113,26 @@ public class Array extends Symbol {
 
     public void setValue(String index, Object value){
         this.values.put(index, value);
-    }*/
+    }
+
+    /**
+     * @return the dimensions
+     */
+    public List<Integer> getDimensions() {
+        return dimensions;
+    }
+
+    /**
+     * @param dimensions the dimensions to set
+     */
+    public void setDimensions(List<Integer> dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    /**
+     * @return the number of dimensions
+     */
+    public int getNumberOfDimensions() {
+        return dimensions.size();
+    }
 }

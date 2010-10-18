@@ -24,12 +24,13 @@
 
 package glossa.interpreter;
 
-import glossa.interpreter.symboltable.MainProgramScope;
+import glossa.interpreter.symboltable.scopes.MainProgramScope;
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
-import glossa.interpreter.symboltable.Symbol;
+import glossa.interpreter.symboltable.symbols.Symbol;
 import glossa.interpreter.messages.ErrorMessage;
 import glossa.interpreter.messages.InterpreterMessage;
 import glossa.interpreter.messages.WarningMessage;
+import glossa.interpreter.symboltable.SymbolTable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,15 +66,18 @@ public class Interpreter {
         // Begin parsing at rule prog
         GlossaParser.unit_return r = parser.unit();
 
+
+        SymbolTable symbolTable = new SymbolTable();
+
         // WALK RESULTING TREE
         CommonTree t = (CommonTree) r.getTree(); // get tree from parser
         // Create a tree node stream from resulting tree
         BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
         GlossaFirstPassWalker walker = new GlossaFirstPassWalker(nodes); // create a tree parser
+        walker.setSymbolTable(symbolTable);
         walker.unit();                 // launch at start rule prog
 
-
-        MainProgramScope mpst = (MainProgramScope) walker.currentScope;
+        MainProgramScope mpst = symbolTable.getMainProgramScope();
 
 
         List<InterpreterMessage> msgs = ReportingAndMessagingUtils.getMessages();
@@ -92,6 +96,8 @@ public class Interpreter {
         }
 
         if (errors == 0) {
+            System.out.println();
+            System.out.println();
 
             System.out.println("Πρόγραμμα: " + mpst.getProgramName());
 

@@ -113,7 +113,7 @@ program	:	PROGRAM^ id1=ID (NEWLINE!)+
 		END_PROGRAM! (id2=ID)? (NEWLINE!)+;
 		
 declarations
-	:	(constDecl | varDecl)*;
+	:	constDecl? varDecl?;
 		
 constDecl
 	:	CONSTANTS^ (NEWLINE!)+ constAssign*;
@@ -146,7 +146,9 @@ stm	:	printStm
 printStm	:	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
 	
 assingmentStm
-	:	ID ASSIGN^ expr (NEWLINE!)+;
+	:	varId=ID ASSIGN^ varValue=expr (NEWLINE!)+
+        //|       arrId=ID arraySubscript ASSIGN^ arrItemValue=expr (NEWLINE!)+ //TODO: array assignment
+        ;
 	
 expr	:	eqExpr (AND^ eqExpr | OR^ eqExpr)*;
 

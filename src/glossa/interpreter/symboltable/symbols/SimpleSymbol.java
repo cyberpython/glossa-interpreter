@@ -22,61 +22,35 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.symbols;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+import glossa.interpreter.symboltable.types.Type;
 
 /**
  *
  * @author cyberpython
  */
-public class MainProgramScope extends Scope{
+public class SimpleSymbol extends Symbol{
 
-    private String programName;
+    private Object value;
 
-    public MainProgramScope() {
-        super();
-        this.programName = "";
-    }
-
-
-    /**
-     * @return the programName
-     */
-    public String getProgramName() {
-        return programName;
+    public SimpleSymbol(String name, Type type, int line, int pos, int absolutePosition, Object value) {
+        super(name, type, line, pos, absolutePosition);
+        this.value = value;
     }
 
     /**
-     * @param programName the programName to set
+     * @return the value
      */
-    public void setProgramName(String programName) {
-        this.programName = programName;
+    public Object getValue() {
+        return value;
     }
 
-
-    public static void main(String[] args) {
-        MainProgramScope mpst = new MainProgramScope();
-        mpst.setProgramName("TestProgram");
-
-        Variable x = new Variable("x", Type.INTEGER, 3, 12, 40, new Integer(0));
-        mpst.defineSymbol("x", x);
-        System.out.println(x);
-
-
-        List<Integer> dimensions = new ArrayList<Integer>();
-        dimensions.add(2);
-        dimensions.add(5);
-        mpst.defineSymbol("arr", new Array("arr", Type.REAL, 4, 32, 129, dimensions) );
-
-        mpst.defineSymbol("arr", new Variable("arr", Type.INTEGER, 5, 212, 40, new Integer(0)));
-        Symbol s = mpst.referenceSymbol("x", new Point(12,2));
-        System.out.println(s);
-        s = mpst.referenceSymbol("adsa", new Point(14,27));
+    /**
+     * @param value the value to set
+     */
+    public void setValue(Object value) {
+        this.value = value;
     }
-
-
 
 }

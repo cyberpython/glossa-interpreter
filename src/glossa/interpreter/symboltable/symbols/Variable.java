@@ -22,28 +22,30 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.symbols;
 
 import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.symboltable.types.Type;
 
 /**
  *
  * @author cyberpython
  */
-public enum Type {
-    INTEGER, REAL, BOOLEAN, STRING;
+public class Variable extends SimpleSymbol{
+
+    public Variable(String name, Type type, int line, int pos, int absolutePosition, Object value) {
+        super(name, type, line, pos, absolutePosition, value);
+    }
+
+    public Variable(String name, int line, int pos, int absolutePosition, Object value) {
+        super(name, Type.INTEGER, line, pos, absolutePosition, value);
+    }
 
     @Override
     public String toString() {
-        if(this.equals(Type.INTEGER)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_INTEGER;
-        }else if(this.equals(Type.REAL)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_REAL;
-        }else if(this.equals(Type.BOOLEAN)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_BOOLEAN;
-        }else{
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_STRING;
-        }
+        return ReportingAndMessagingUtils.CONSTS_STR_VARIABLE+" "+super.toString();
     }
+
+
 
 }

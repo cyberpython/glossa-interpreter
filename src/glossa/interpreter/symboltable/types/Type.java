@@ -22,33 +22,30 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable;
+package glossa.interpreter.symboltable.types;
+
+import glossa.interpreter.messages.ReportingAndMessagingUtils;
 
 /**
  *
  * @author cyberpython
  */
-public class SimpleSymbol extends Symbol{
+public enum Type {
+    INTEGER, REAL, BOOLEAN, STRING;
 
-    private Object value;
-
-    public SimpleSymbol(String name, Type type, int line, int pos, int absolutePosition, Object value) {
-        super(name, type, line, pos, absolutePosition);
-        this.value = value;
-    }
-
-    /**
-     * @return the value
-     */
-    public Object getValue() {
-        return value;
-    }
-
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Object value) {
-        this.value = value;
+    @Override
+    public String toString() {
+        if(this.equals(Type.INTEGER)){
+            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_INTEGER;
+        }else if(this.equals(Type.REAL)){
+            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_REAL;
+        }else if(this.equals(Type.BOOLEAN)){
+            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_BOOLEAN;
+        }else if(this.equals(Type.STRING)){
+            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_STRING;
+        }else{
+            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_UNKNOWN;
+        }
     }
 
 }
