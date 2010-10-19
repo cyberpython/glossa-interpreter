@@ -11,7 +11,16 @@
     <description>Builds, tests, and runs the project Glossa.</description>
     <import file="nbproject/build-impl.xml"/>
 
-    <target name="-pre-compile">
+    <target name="check-antlr">
+        <available file="lib/antlr-3.2.jar" property="antlr.present"/>
+    </target>
+    
+    <target name="download-antlr" depends="check-antlr" unless="antlr.present">
+        <mkdir dir="lib"/>
+        <get src="http://www.antlr.org/download/antlr-3.2.jar" dest="lib/antlr-3.2.jar"/>
+    </target>
+
+    <target name="-pre-compile" depends="download-antlr" if="antlr.present">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/interpreter/grammars/Glossa.g"/>
             <classpath>
