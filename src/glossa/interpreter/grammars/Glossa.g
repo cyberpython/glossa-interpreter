@@ -67,6 +67,83 @@ tokens
  */
 
 package glossa.interpreter;
+import glossa.interpreter.messages.*;
+import java.awt.Point;
+}
+
+
+@lexer::members {
+
+
+    public Token nextToken() {
+		while (true) {
+			state.token = null;
+			state.channel = Token.DEFAULT_CHANNEL;
+			state.tokenStartCharIndex = input.index();
+			state.tokenStartCharPositionInLine = input.getCharPositionInLine();
+			state.tokenStartLine = input.getLine();
+			state.text = null;
+			if ( input.LA(1)==CharStream.EOF ) {
+				return Token.EOF_TOKEN;
+			}
+			try {
+				mTokens();
+				if ( state.token==null ) {
+					emit();
+				}
+				else if ( state.token==Token.SKIP_TOKEN ) {
+					continue;
+				}
+				return state.token;
+			}
+			catch (RecognitionException re) {
+				reportError(re);
+				throw new RuntimeException("");
+			}
+		}
+	}
+
+        public void displayRecognitionError(String[] tokenNames,
+                RecognitionException e) {
+                String msg = getErrorMessage(e, tokenNames);
+                ReportingAndMessagingUtils.lexerError(new Point(e.line, e.charPositionInLine), msg);
+        }
+
+
+
+	public String getErrorMessage(RecognitionException e, String[] tokenNames) {
+                String msg = null;
+		if ( e instanceof MismatchedTokenException ) {
+			MismatchedTokenException mte = (MismatchedTokenException)e;
+			msg = "mismatched character "+getCharErrorDisplay(e.c)+" expecting "+getCharErrorDisplay(mte.expecting);
+		}
+		else if ( e instanceof NoViableAltException ) {
+			msg = LexerMessages.STR_ERROR_UNKNOWN_SYMBOL+": "+getCharErrorDisplay(e.c);
+		}
+		else if ( e instanceof EarlyExitException ) {
+			EarlyExitException eee = (EarlyExitException)e;
+			// for development, can add "(decision="+eee.decisionNumber+")"
+			msg = "required (...)+ loop did not match anything at character "+getCharErrorDisplay(e.c);
+		}
+		else if ( e instanceof MismatchedNotSetException ) {
+			MismatchedNotSetException mse = (MismatchedNotSetException)e;
+			msg = "mismatched character "+getCharErrorDisplay(e.c)+" expecting set "+mse.expecting;
+		}
+		else if ( e instanceof MismatchedSetException ) {
+			MismatchedSetException mse = (MismatchedSetException)e;
+			msg = "mismatched character "+getCharErrorDisplay(e.c)+" expecting set "+mse.expecting;
+		}
+		else if ( e instanceof MismatchedRangeException ) {
+			MismatchedRangeException mre = (MismatchedRangeException)e;
+			msg = "mismatched character "+getCharErrorDisplay(e.c)+" expecting set "+
+				  getCharErrorDisplay(mre.a)+".."+getCharErrorDisplay(mre.b);
+		}
+		else {
+			msg = super.getErrorMessage(e, tokenNames);
+		}
+		return msg;
+	}
+
 }
 
 @header{
@@ -95,8 +172,103 @@ package glossa.interpreter;
  */
 
 package glossa.interpreter;
+import glossa.interpreter.messages.*;
+import java.awt.Point;
 }
 
+
+@members{
+
+        public void displayRecognitionError(String[] tokenNames,
+            RecognitionException e) {
+            String msg = getErrorMessage(e, tokenNames);
+            ReportingAndMessagingUtils.parserError(new Point(e.line, e.charPositionInLine), msg);
+        }
+
+
+        public String getErrorMessage(RecognitionException e, String[] tokenNames) {
+		String msg = e.getMessage();
+		if ( e instanceof UnwantedTokenException ) {
+			UnwantedTokenException ute = (UnwantedTokenException)e;
+			String tokenName="<unknown>";
+			if ( ute.expecting== Token.EOF ) {
+				tokenName = "EOF";
+			}
+			else {
+				tokenName = tokenNames[ute.expecting];
+			}
+			msg = "extraneous input "+getTokenErrorDisplay(ute.getUnexpectedToken())+
+				" expecting "+tokenName;
+		}
+		else if ( e instanceof MissingTokenException ) {
+			MissingTokenException mte = (MissingTokenException)e;
+			String tokenName="<unknown>";
+			if ( mte.expecting== Token.EOF ) {
+				tokenName = "EOF";
+			}
+			else {
+				tokenName = tokenNames[mte.expecting];
+                                if(tokenName=="EQ"){
+                                    tokenName="'='";
+                                }
+			}
+			msg = String.format(ParserMessages.STR_ERROR_PARSER_MISSING_TOKEN_BEFORE_THIS, tokenName, getTokenErrorDisplay(e.token));
+		}
+		else if ( e instanceof MismatchedTokenException ) {
+			MismatchedTokenException mte = (MismatchedTokenException)e;
+			String tokenName="<unknown>";
+			if ( mte.expecting== Token.EOF ) {
+				tokenName = "EOF";
+			}
+			else {
+				tokenName = tokenNames[mte.expecting];
+			}
+			msg = "mismatched input "+getTokenErrorDisplay(e.token)+
+				" expecting "+tokenName;
+		}
+		else if ( e instanceof MismatchedTreeNodeException ) {
+			MismatchedTreeNodeException mtne = (MismatchedTreeNodeException)e;
+			String tokenName="<unknown>";
+			if ( mtne.expecting==Token.EOF ) {
+				tokenName = "EOF";
+			}
+			else {
+				tokenName = tokenNames[mtne.expecting];
+			}
+			msg = "mismatched tree node: "+mtne.node+
+				" expecting "+tokenName;
+		}
+		else if ( e instanceof NoViableAltException ) {
+			//NoViableAltException nvae = (NoViableAltException)e;
+			// for development, can add "decision=<<"+nvae.grammarDecisionDescription+">>"
+			// and "(decision="+nvae.decisionNumber+") and
+			// "state "+nvae.stateNumber
+			msg = String.format(ParserMessages.STR_ERROR_PARSER_PROBLEM_NEAR, getTokenErrorDisplay(e.token));
+		}
+		else if ( e instanceof EarlyExitException ) {
+			//EarlyExitException eee = (EarlyExitException)e;
+			// for development, can add "(decision="+eee.decisionNumber+")"
+			msg = "required (...)+ loop did not match anything at input "+
+				getTokenErrorDisplay(e.token);
+		}
+		else if ( e instanceof MismatchedSetException ) {
+			MismatchedSetException mse = (MismatchedSetException)e;
+			msg = "mismatched input "+getTokenErrorDisplay(e.token)+
+				" expecting set "+mse.expecting;
+		}
+		else if ( e instanceof MismatchedNotSetException ) {
+			MismatchedNotSetException mse = (MismatchedNotSetException)e;
+			msg = "mismatched input "+getTokenErrorDisplay(e.token)+
+				" expecting set "+mse.expecting;
+		}
+		else if ( e instanceof FailedPredicateException ) {
+			FailedPredicateException fpe = (FailedPredicateException)e;
+			msg = "rule "+fpe.ruleName+" failed predicate: {"+
+				fpe.predicateText+"}?";
+		}
+		return msg;
+	}
+}
 
 /*
 **************************

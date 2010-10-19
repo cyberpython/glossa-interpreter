@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package glossa.interpreter;
 
 import glossa.interpreter.symboltable.scopes.MainProgramScope;
@@ -53,35 +52,28 @@ public class Interpreter {
 
         ReportingAndMessagingUtils.clearMessages();
 
-        // Create an input character stream from standard in
-        /*InputStream is = Interpreter.class.getResourceAsStream("/glossa/interpreter/tests/HelloWorld.gls");
-        ANTLRInputStream input = new ANTLRInputStream(is);*/
-        ANTLRFileStream input = new ANTLRFileStream(args[0]);
-        // Create an ExprLexer that feeds from that stream
-        GlossaLexer lexer = new GlossaLexer(input);
-        // Create a stream of tokens fed by the lexer
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        // Create a parser that feeds off the token stream
-        GlossaParser parser = new GlossaParser(tokens);
-        // Begin parsing at rule prog
-        GlossaParser.unit_return r = parser.unit();
-
-
-        SymbolTable symbolTable = new SymbolTable();
-
-        // WALK RESULTING TREE
-        CommonTree t = (CommonTree) r.getTree(); // get tree from parser
-        // Create a tree node stream from resulting tree
-        BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-        GlossaFirstPassWalker walker = new GlossaFirstPassWalker(nodes); // create a tree parser
-        walker.setSymbolTable(symbolTable);
-        walker.unit();                 // launch at start rule prog
-
-        MainProgramScope mpst = symbolTable.getMainProgramScope();
-
-
         List<InterpreterMessage> msgs = ReportingAndMessagingUtils.getMessages();
-        
+
+        GlossaParser.unit_return r = null;
+
+        try {
+            // Create an input character stream
+            ANTLRFileStream input = new ANTLRFileStream(args[0]);
+
+            // Create an ExprLexer that feeds from that stream
+            GlossaLexer lexer = new GlossaLexer(input);
+
+            // Create a stream of tokens fed by the lexer
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+            // Create a parser that feeds off the token stream
+            GlossaParser parser = new GlossaParser(tokens);
+
+            // Begin parsing at rule prog
+            r = parser.unit();
+        } catch (RuntimeException re) {
+        }
+
         int errors = 0;
 
         for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
@@ -95,22 +87,51 @@ public class Interpreter {
             }
         }
 
+
         if (errors == 0) {
-            System.out.println();
-            System.out.println();
 
-            System.out.println("Πρόγραμμα: " + mpst.getProgramName());
+            SymbolTable symbolTable = new SymbolTable();
 
-            System.out.println();
-            System.out.println("////////// Σύμβολα Κύριου Προγράμματος: /////////////");
+            // WALK RESULTING TREE
+            CommonTree t = (CommonTree) r.getTree(); // get tree from parser
+            // Create a tree node stream from resulting tree
+            BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
+            GlossaFirstPassWalker walker = new GlossaFirstPassWalker(nodes); // create a tree parser
+            walker.setSymbolTable(symbolTable);
+            walker.unit();                 // launch at start rule prog
 
-            HashMap<String, Symbol> symbols = mpst.getSymbols();
-            Collection<Symbol> values = symbols.values();
-            List<Symbol> list = new ArrayList<Symbol>(values);
-            Collections.sort(list);
-            for (Iterator<Symbol> it = list.iterator(); it.hasNext();) {
-                Symbol s = it.next();
-                System.out.println((Symbol) s);
+            MainProgramScope mpst = symbolTable.getMainProgramScope();
+
+            errors = 0;
+
+            for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
+                InterpreterMessage interpreterMessage = it.next();
+                if (interpreterMessage instanceof ErrorMessage) {
+                    ReportingAndMessagingUtils.printError((ErrorMessage) interpreterMessage);
+                    errors++;
+
+                } else if (interpreterMessage instanceof WarningMessage) {
+                    ReportingAndMessagingUtils.printWarning((WarningMessage) interpreterMessage);
+                }
+            }
+
+            if (errors == 0) {
+                System.out.println();
+                System.out.println();
+
+                System.out.println("Πρόγραμμα: " + mpst.getProgramName());
+
+                System.out.println();
+                System.out.println("////////// Σύμβολα Κύριου Προγράμματος: /////////////");
+
+                HashMap<String, Symbol> symbols = mpst.getSymbols();
+                Collection<Symbol> values = symbols.values();
+                List<Symbol> list = new ArrayList<Symbol>(values);
+                Collections.sort(list);
+                for (Iterator<Symbol> it = list.iterator(); it.hasNext();) {
+                    Symbol s = it.next();
+                    System.out.println((Symbol) s);
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/GlossaFirstPassWalker.g 2010-10-18 22:29:19
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/GlossaFirstPassWalker.g 2010-10-19 17:18:29
 
 
 /*
@@ -447,8 +447,8 @@ public class GlossaFirstPassWalker extends TreeParser {
     // $ANTLR start "constAssign"
     // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:140:1: constAssign : ^( EQ ID expr ) ;
     public final void constAssign() throws RecognitionException {
-        CommonTree ID2=null;
-        GlossaFirstPassWalker.expr_return expr3 = null;
+        CommonTree ID3=null;
+        GlossaFirstPassWalker.expr_return expr2 = null;
 
 
         try {
@@ -458,17 +458,19 @@ public class GlossaFirstPassWalker extends TreeParser {
             match(input,EQ,FOLLOW_EQ_in_constAssign183); 
 
             match(input, Token.DOWN, null); 
-            ID2=(CommonTree)match(input,ID,FOLLOW_ID_in_constAssign185); 
+            ID3=(CommonTree)match(input,ID,FOLLOW_ID_in_constAssign185); 
             pushFollow(FOLLOW_expr_in_constAssign187);
-            expr3=expr();
+            expr2=expr();
 
             state._fsp--;
 
 
             match(input, Token.UP, null); 
 
-                                                Constant s = new Constant((ID2!=null?ID2.getText():null), (expr3!=null?expr3.expressionType:null), (ID2!=null?ID2.getLine():0), (ID2!=null?ID2.getCharPositionInLine():0), ID2.getTokenStartIndex(), null);
-                                                currentScope.defineSymbol(s.getName(), s);
+                                                if((expr2!=null?expr2.expressionType:null) != null){
+                                                    Constant s = new Constant((ID3!=null?ID3.getText():null), (expr2!=null?expr2.expressionType:null), (ID3!=null?ID3.getLine():0), (ID3!=null?ID3.getCharPositionInLine():0), ID3.getTokenStartIndex(), null);
+                                                    currentScope.defineSymbol(s.getName(), s);
+                                                }
                                             
 
             }
@@ -486,13 +488,13 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "varDecl"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:151:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:153:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
     public final void varDecl() throws RecognitionException {
         CommonTree VARIABLES4=null;
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:151:9: ( ^( VARIABLES ( varsDecl )* ) )
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:151:11: ^( VARIABLES ( varsDecl )* )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:153:9: ( ^( VARIABLES ( varsDecl )* ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:153:11: ^( VARIABLES ( varsDecl )* )
             {
             VARIABLES4=(CommonTree)match(input,VARIABLES,FOLLOW_VARIABLES_in_varDecl218); 
 
@@ -508,7 +510,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:160:3: ( varsDecl )*
+                // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:162:3: ( varsDecl )*
                 loop5:
                 do {
                     int alt5=2;
@@ -521,7 +523,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                     switch (alt5) {
                 	case 1 :
-                	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:160:3: varsDecl
+                	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:162:3: varsDecl
                 	    {
                 	    pushFollow(FOLLOW_varsDecl_in_varDecl224);
                 	    varsDecl();
@@ -559,7 +561,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "varsDecl"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:167:1: varsDecl : ^( varType ( varDeclItem )+ ) ;
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:169:1: varsDecl : ^( varType ( varDeclItem )+ ) ;
     public final void varsDecl() throws RecognitionException {
         Symbol varDeclItem5 = null;
 
@@ -567,8 +569,8 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:168:2: ( ^( varType ( varDeclItem )+ ) )
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:168:4: ^( varType ( varDeclItem )+ )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:170:2: ( ^( varType ( varDeclItem )+ ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:170:4: ^( varType ( varDeclItem )+ )
             {
             pushFollow(FOLLOW_varType_in_varsDecl279);
             varType6=varType();
@@ -577,7 +579,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:170:21: ( varDeclItem )+
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:172:21: ( varDeclItem )+
             int cnt6=0;
             loop6:
             do {
@@ -591,7 +593,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:170:22: varDeclItem
+            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:172:22: varDeclItem
             	    {
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl302);
             	    varDeclItem5=varDeclItem();
@@ -634,7 +636,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:178:1: varDeclItem returns [Symbol variable] : ( ID | ^( ARRAY ID arrayDimension ) );
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:180:1: varDeclItem returns [Symbol variable] : ( ID | ^( ARRAY ID arrayDimension ) );
     public final Symbol varDeclItem() throws RecognitionException {
         Symbol variable = null;
 
@@ -644,7 +646,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:179:2: ( ID | ^( ARRAY ID arrayDimension ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:181:2: ( ID | ^( ARRAY ID arrayDimension ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -662,7 +664,7 @@ public class GlossaFirstPassWalker extends TreeParser {
             }
             switch (alt7) {
                 case 1 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:179:4: ID
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:181:4: ID
                     {
                     ID7=(CommonTree)match(input,ID,FOLLOW_ID_in_varDeclItem362); 
 
@@ -672,7 +674,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:182:5: ^( ARRAY ID arrayDimension )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:184:5: ^( ARRAY ID arrayDimension )
                     {
                     match(input,ARRAY,FOLLOW_ARRAY_in_varDeclItem396); 
 
@@ -706,7 +708,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:189:1: arrayDimension returns [List<Integer> dimensions] : ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:191:1: arrayDimension returns [List<Integer> dimensions] : ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final List<Integer> arrayDimension() throws RecognitionException {
         List<Integer> dimensions = null;
 
@@ -714,8 +716,8 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:190:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:190:4: ^( ARRAY_DIMENSION ( expr )+ )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:192:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:192:4: ^( ARRAY_DIMENSION ( expr )+ )
             {
             match(input,ARRAY_DIMENSION,FOLLOW_ARRAY_DIMENSION_in_arrayDimension450); 
 
@@ -724,7 +726,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:194:21: ( expr )+
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:196:21: ( expr )+
             int cnt8=0;
             loop8:
             do {
@@ -738,7 +740,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:194:22: expr
+            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:196:22: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arrayDimension475);
             	    expr10=expr();
@@ -747,14 +749,10 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
             	                                            Type type = (expr10!=null?expr10.expressionType:null);
-            	                                            if(type!=null){
-            	                                                if(!type.equals(Type.INTEGER)){
-            	                                                    ReportingAndMessagingUtils.arrayDimensionDeclarationsNotIntegerError(new Point((expr10!=null?((CommonTree)expr10.start):null).getLine(), (expr10!=null?((CommonTree)expr10.start):null).getCharPositionInLine()));
-            	                                                }
-            	                                            }else{
+            	                                            dimensions.add(new Integer(1));
+            	                                            if(   (type==null)     ||   ( !type.equals(Type.INTEGER) )   ){
             	                                                ReportingAndMessagingUtils.arrayDimensionDeclarationsNotIntegerError(new Point((expr10!=null?((CommonTree)expr10.start):null).getLine(), (expr10!=null?((CommonTree)expr10.start):null).getCharPositionInLine()));
             	                                            }
-            	                                            dimensions.add(new Integer(1));
             	                                        
 
             	    }
@@ -787,12 +785,12 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "varType"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:210:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:208:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final Type varType() throws RecognitionException {
         Type result = null;
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:211:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:209:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
             int alt9=4;
             switch ( input.LA(1) ) {
             case BOOLEANS:
@@ -824,7 +822,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
             switch (alt9) {
                 case 1 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:211:11: BOOLEANS
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:209:11: BOOLEANS
                     {
                     match(input,BOOLEANS,FOLLOW_BOOLEANS_in_varType552); 
                     result = Type.BOOLEAN;
@@ -832,7 +830,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:212:4: STRINGS
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:210:4: STRINGS
                     {
                     match(input,STRINGS,FOLLOW_STRINGS_in_varType559); 
                     result = Type.STRING;
@@ -840,7 +838,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:213:4: INTEGERS
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:211:4: INTEGERS
                     {
                     match(input,INTEGERS,FOLLOW_INTEGERS_in_varType566); 
                     result = Type.INTEGER;
@@ -848,7 +846,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:4: REALS
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:212:4: REALS
                     {
                     match(input,REALS,FOLLOW_REALS_in_varType573); 
                     result = Type.REAL;
@@ -870,17 +868,17 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "block"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:216:1: block : ^( BLOCK ( stm )* ) ;
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:1: block : ^( BLOCK ( stm )* ) ;
     public final void block() throws RecognitionException {
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:216:7: ( ^( BLOCK ( stm )* ) )
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:216:9: ^( BLOCK ( stm )* )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:7: ( ^( BLOCK ( stm )* ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:9: ^( BLOCK ( stm )* )
             {
             match(input,BLOCK,FOLLOW_BLOCK_in_block586); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:216:17: ( stm )*
+                // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:17: ( stm )*
                 loop10:
                 do {
                     int alt10=2;
@@ -893,7 +891,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                     switch (alt10) {
                 	case 1 :
-                	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:216:17: stm
+                	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:214:17: stm
                 	    {
                 	    pushFollow(FOLLOW_stm_in_block588);
                 	    stm();
@@ -928,7 +926,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
     // $ANTLR start "stm"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:221:1: stm : ( ^( PRINT ( expr )+ ) | ^( ASSIGN ID expr ) );
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:219:1: stm : ( ^( PRINT ( expr )+ ) | ^( ASSIGN ID expr ) );
     public final void stm() throws RecognitionException {
         CommonTree ID11=null;
         CommonTree ASSIGN13=null;
@@ -936,7 +934,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:221:5: ( ^( PRINT ( expr )+ ) | ^( ASSIGN ID expr ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:219:5: ( ^( PRINT ( expr )+ ) | ^( ASSIGN ID expr ) )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -954,12 +952,12 @@ public class GlossaFirstPassWalker extends TreeParser {
             }
             switch (alt12) {
                 case 1 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:221:7: ^( PRINT ( expr )+ )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:219:7: ^( PRINT ( expr )+ )
                     {
                     match(input,PRINT,FOLLOW_PRINT_in_stm602); 
 
                     match(input, Token.DOWN, null); 
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:221:15: ( expr )+
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:219:15: ( expr )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -973,7 +971,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:221:15: expr
+                    	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:219:15: expr
                     	    {
                     	    pushFollow(FOLLOW_expr_in_stm604);
                     	    expr();
@@ -999,7 +997,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:222:4: ^( ASSIGN ID expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:220:4: ^( ASSIGN ID expr )
                     {
                     ASSIGN13=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm612); 
 
@@ -1047,7 +1045,7 @@ public class GlossaFirstPassWalker extends TreeParser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:242:1: expr returns [Type expressionType] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) );
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:240:1: expr returns [Type expressionType] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) );
     public final GlossaFirstPassWalker.expr_return expr() throws RecognitionException {
         GlossaFirstPassWalker.expr_return retval = new GlossaFirstPassWalker.expr_return();
         retval.start = input.LT(1);
@@ -1077,7 +1075,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:243:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:241:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) )
             int alt13=24;
             switch ( input.LA(1) ) {
             case AND:
@@ -1209,7 +1207,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
             switch (alt13) {
                 case 1 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:243:4: ^( AND a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:241:4: ^( AND a= expr b= expr )
                     {
                     AND14=(CommonTree)match(input,AND,FOLLOW_AND_in_expr664); 
 
@@ -1240,7 +1238,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:253:4: ^( OR a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:251:4: ^( OR a= expr b= expr )
                     {
                     OR15=(CommonTree)match(input,OR,FOLLOW_OR_in_expr685); 
 
@@ -1271,7 +1269,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:263:4: ^( EQ a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:261:4: ^( EQ a= expr b= expr )
                     {
                     EQ16=(CommonTree)match(input,EQ,FOLLOW_EQ_in_expr706); 
 
@@ -1302,7 +1300,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:273:4: ^( NEQ a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:271:4: ^( NEQ a= expr b= expr )
                     {
                     NEQ17=(CommonTree)match(input,NEQ,FOLLOW_NEQ_in_expr727); 
 
@@ -1333,7 +1331,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:283:4: ^( LT a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:281:4: ^( LT a= expr b= expr )
                     {
                     LT18=(CommonTree)match(input,LT,FOLLOW_LT_in_expr748); 
 
@@ -1364,7 +1362,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:293:4: ^( LE a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:291:4: ^( LE a= expr b= expr )
                     {
                     LE19=(CommonTree)match(input,LE,FOLLOW_LE_in_expr769); 
 
@@ -1395,7 +1393,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:303:4: ^( GT a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:301:4: ^( GT a= expr b= expr )
                     {
                     GT20=(CommonTree)match(input,GT,FOLLOW_GT_in_expr790); 
 
@@ -1426,7 +1424,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:313:4: ^( GE a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:311:4: ^( GE a= expr b= expr )
                     {
                     GE21=(CommonTree)match(input,GE,FOLLOW_GE_in_expr811); 
 
@@ -1457,7 +1455,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:323:4: ^( PLUS a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:321:4: ^( PLUS a= expr b= expr )
                     {
                     PLUS22=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expr832); 
 
@@ -1481,14 +1479,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((PLUS22!=null?PLUS22.getLine():0), (PLUS22!=null?PLUS22.getCharPositionInLine():0)), (PLUS22!=null?PLUS22.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
+                                                                                                                              );
                                                                     }
                                                                 
 
                     }
                     break;
                 case 10 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:333:4: ^( MINUS a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:331:4: ^( MINUS a= expr b= expr )
                     {
                     MINUS23=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expr853); 
 
@@ -1512,14 +1510,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((MINUS23!=null?MINUS23.getLine():0), (MINUS23!=null?MINUS23.getCharPositionInLine():0)), (MINUS23!=null?MINUS23.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
+                                                                                                                              );
                                                                     }
                                                                 
 
                     }
                     break;
                 case 11 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:343:4: ^( TIMES a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:341:4: ^( TIMES a= expr b= expr )
                     {
                     TIMES24=(CommonTree)match(input,TIMES,FOLLOW_TIMES_in_expr874); 
 
@@ -1543,14 +1541,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((TIMES24!=null?TIMES24.getLine():0), (TIMES24!=null?TIMES24.getCharPositionInLine():0)), (TIMES24!=null?TIMES24.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
+                                                                                                                              );
                                                                     }
                                                                 
 
                     }
                     break;
                 case 12 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:353:4: ^( DIA a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:351:4: ^( DIA a= expr b= expr )
                     {
                     DIA25=(CommonTree)match(input,DIA,FOLLOW_DIA_in_expr895); 
 
@@ -1574,15 +1572,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((DIA25!=null?DIA25.getLine():0), (DIA25!=null?DIA25.getCharPositionInLine():0)), (DIA25!=null?DIA25.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
-                                                                                                                                //TODO which types are valid?
+                                                                                                                              );//TODO which types are valid?
                                                                     }
                                                                 
 
                     }
                     break;
                 case 13 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:364:4: ^( DIV a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:361:4: ^( DIV a= expr b= expr )
                     {
                     DIV26=(CommonTree)match(input,DIV,FOLLOW_DIV_in_expr916); 
 
@@ -1606,15 +1603,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((DIV26!=null?DIV26.getLine():0), (DIV26!=null?DIV26.getCharPositionInLine():0)), (DIV26!=null?DIV26.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
-                                                                                                                                //TODO which types are valid?
+                                                                                                                              );//TODO which types are valid?
                                                                     }
                                                                 
 
                     }
                     break;
                 case 14 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:375:4: ^( MOD a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:371:4: ^( MOD a= expr b= expr )
                     {
                     MOD27=(CommonTree)match(input,MOD,FOLLOW_MOD_in_expr937); 
 
@@ -1638,15 +1634,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((MOD27!=null?MOD27.getLine():0), (MOD27!=null?MOD27.getCharPositionInLine():0)), (MOD27!=null?MOD27.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
-                                                                                                                                //TODO which types are valid?
+                                                                                                                              );//TODO which types are valid?
                                                                     }
                                                                 
 
                     }
                     break;
                 case 15 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:386:4: ^( POW a= expr b= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:381:4: ^( POW a= expr b= expr )
                     {
                     POW28=(CommonTree)match(input,POW,FOLLOW_POW_in_expr958); 
 
@@ -1670,14 +1665,14 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                                         ReportingAndMessagingUtils.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
                                                                                                                                 new Point((POW28!=null?POW28.getLine():0), (POW28!=null?POW28.getCharPositionInLine():0)), (POW28!=null?POW28.getText():null)
-                                                                                                                              );//TODO change this to print incompatible types for operation x
+                                                                                                                              );
                                                                     }
                                                                 
 
                     }
                     break;
                 case 16 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:396:4: ^( NEG a= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:391:4: ^( NEG a= expr )
                     {
                     match(input,NEG,FOLLOW_NEG_in_expr979); 
 
@@ -1702,7 +1697,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:405:4: ^( NOT a= expr )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:400:4: ^( NOT a= expr )
                     {
                     match(input,NOT,FOLLOW_NOT_in_expr1004); 
 
@@ -1727,7 +1722,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:414:4: CONST_TRUE
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:409:4: CONST_TRUE
                     {
                     match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr1028); 
                     retval.expressionType = Type.BOOLEAN;
@@ -1735,7 +1730,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 19 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:415:4: CONST_FALSE
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:410:4: CONST_FALSE
                     {
                     match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr1035); 
                     retval.expressionType = Type.BOOLEAN;
@@ -1743,7 +1738,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 20 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:416:4: CONST_STR
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:411:4: CONST_STR
                     {
                     match(input,CONST_STR,FOLLOW_CONST_STR_in_expr1042); 
                     retval.expressionType = Type.STRING;
@@ -1751,7 +1746,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 21 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:417:4: CONST_INT
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:412:4: CONST_INT
                     {
                     match(input,CONST_INT,FOLLOW_CONST_INT_in_expr1049); 
                     retval.expressionType = Type.INTEGER;
@@ -1759,7 +1754,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 22 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:418:4: CONST_REAL
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:413:4: CONST_REAL
                     {
                     match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr1056); 
                     retval.expressionType = Type.REAL;
@@ -1767,13 +1762,13 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 23 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:419:4: ID
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:414:4: ID
                     {
                     ID29=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1063); 
 
                                             Symbol s = currentScope.referenceSymbol((ID29!=null?ID29.getText():null), new Point((ID29!=null?ID29.getLine():0), (ID29!=null?ID29.getCharPositionInLine():0)));
                                             if(s != null){
-                                                if(s instanceof Variable && (inConstantDeclaration || inVariableDeclaration) ){
+                                                if( (s instanceof Constant == false)  &&  (inConstantDeclaration || inVariableDeclaration) ){
                                                     ReportingAndMessagingUtils.variableReferencesInDeclarationsNotAllowedError(s, new Point((ID29!=null?ID29.getLine():0), (ID29!=null?ID29.getCharPositionInLine():0)));
                                                 }else{
                                                     retval.expressionType = s.getType();
@@ -1784,7 +1779,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                     }
                     break;
                 case 24 :
-                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:429:4: ^( ARRAY_ITEM ID arraySubscript )
+                    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:424:4: ^( ARRAY_ITEM ID arraySubscript )
                     {
                     match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr1072); 
 
@@ -1838,7 +1833,7 @@ public class GlossaFirstPassWalker extends TreeParser {
     };
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:451:1: arraySubscript returns [List<Integer> indices] : ^( ARRAY_INDEX ( expr )+ ) ;
+    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:446:1: arraySubscript returns [List<Integer> indices] : ^( ARRAY_INDEX ( expr )+ ) ;
     public final GlossaFirstPassWalker.arraySubscript_return arraySubscript() throws RecognitionException {
         GlossaFirstPassWalker.arraySubscript_return retval = new GlossaFirstPassWalker.arraySubscript_return();
         retval.start = input.LT(1);
@@ -1847,8 +1842,8 @@ public class GlossaFirstPassWalker extends TreeParser {
 
 
         try {
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:452:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:452:4: ^( ARRAY_INDEX ( expr )+ )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:447:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:447:4: ^( ARRAY_INDEX ( expr )+ )
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript1107); 
 
@@ -1857,7 +1852,7 @@ public class GlossaFirstPassWalker extends TreeParser {
                                                 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:455:19: ( expr )+
+            // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:450:19: ( expr )+
             int cnt14=0;
             loop14:
             do {
@@ -1871,7 +1866,7 @@ public class GlossaFirstPassWalker extends TreeParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:455:20: expr
+            	    // src/glossa/interpreter/grammars/GlossaFirstPassWalker.g:450:20: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arraySubscript1136);
             	    expr32=expr();

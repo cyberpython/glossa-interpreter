@@ -139,8 +139,10 @@ constDecl
 
 constAssign
 	:	 ^(EQ ID expr)  {
-                                    Constant s = new Constant($ID.text, $expr.expressionType, $ID.line, $ID.pos, $ID.getTokenStartIndex(), null);
-                                    currentScope.defineSymbol(s.getName(), s);
+                                    if($expr.expressionType != null){
+                                        Constant s = new Constant($ID.text, $expr.expressionType, $ID.line, $ID.pos, $ID.getTokenStartIndex(), null);
+                                        currentScope.defineSymbol(s.getName(), s);
+                                    }
                                 }
         ;
 	
@@ -193,14 +195,10 @@ arrayDimension returns [List<Integer> dimensions]
                                     }
                     (expr           {
                                         Type type = $expr.expressionType;
-                                        if(type!=null){
-                                            if(!type.equals(Type.INTEGER)){
-                                                ReportingAndMessagingUtils.arrayDimensionDeclarationsNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
-                                            }
-                                        }else{
+                                        $dimensions.add(new Integer(1));
+                                        if(   (type==null)     ||   ( !type.equals(Type.INTEGER) )   ){
                                             ReportingAndMessagingUtils.arrayDimensionDeclarationsNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
                                         }
-                                        $dimensions.add(new Integer(1));
                                     }
                      )+
                  );
@@ -327,7 +325,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($PLUS.line, $PLUS.pos), $PLUS.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
+                                                                                                          );
                                                 }
                                             }
 	|	^(MINUS	a=expr	  b=expr)   {
@@ -337,7 +335,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($MINUS.line, $MINUS.pos), $MINUS.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
+                                                                                                          );
                                                 }
                                             }
 	|	^(TIMES	a=expr	  b=expr)   {
@@ -347,7 +345,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($TIMES.line, $TIMES.pos), $TIMES.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
+                                                                                                          );
                                                 }
                                             }
 	|	^(DIA	a=expr	  b=expr)   {
@@ -357,8 +355,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($DIA.line, $DIA.pos), $DIA.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
-                                                                                                            //TODO which types are valid?
+                                                                                                          );//TODO which types are valid?
                                                 }
                                             }
 	|	^(DIV	a=expr	  b=expr)   {
@@ -368,8 +365,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($DIV.line, $DIV.pos), $DIV.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
-                                                                                                            //TODO which types are valid?
+                                                                                                          );//TODO which types are valid?
                                                 }
                                             }
 	|	^(MOD	a=expr	  b=expr)   {
@@ -379,8 +375,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($MOD.line, $MOD.pos), $MOD.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
-                                                                                                            //TODO which types are valid?
+                                                                                                          );//TODO which types are valid?
                                                 }
                                             }
 	|	^(POW	a=expr	  b=expr)   {
@@ -390,7 +385,7 @@ expr	returns [Type expressionType]
                                                     ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($POW.line, $POW.pos), $POW.text
-                                                                                                          );//TODO change this to print incompatible types for operation x
+                                                                                                          );
                                                 }
                                             }
 	|	^(NEG	a=expr)             {
@@ -419,7 +414,7 @@ expr	returns [Type expressionType]
 	|	ID  {
                         Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                         if(s != null){
-                            if(s instanceof Variable && (inConstantDeclaration || inVariableDeclaration) ){
+                            if( (s instanceof Constant == false)  &&  (inConstantDeclaration || inVariableDeclaration) ){
                                 ReportingAndMessagingUtils.variableReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
                             }else{
                                 $expressionType = s.getType();
