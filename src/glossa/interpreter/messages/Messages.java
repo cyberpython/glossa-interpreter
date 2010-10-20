@@ -64,22 +64,22 @@ public class Messages {
     public final static String CONSTS_STR_TYPE_BOOLEAN_Μ = "Λογικός";
     public final static String CONSTS_STR_TYPE_STRING_Μ = "Χαρακτήρες";
     public final static String CONSTS_STR_TYPE_UNKNOWN_Μ = "Άγνωστος_Τύπος";
-    public final static String STR_WARNING_PROG_NAME_MISMATCH = "Το αναγνωριστικό \"%1$s\" είναι διαφορετικό από το όνομα του προγράμματος";
-    public final static String STR_ERROR_CONSTANTS_ALREADY_DEFINED = "Οι σταθερές έχουν ήδη δηλωθεί στο %1$s";
-    public final static String STR_ERROR_VARIABLES_ALREADY_DEFINED = "Οι μεταβλητές έχουν ήδη δηλωθεί στο %1$s";
-    public final static String STR_ERROR_SYMBOL_ALREADY_DEFINED = "%1$s \"%2$s\" έχει ήδη δηλωθεί στο %3$s";
-    public final static String STR_ERROR_SYMBOL_UNDEFINED = "Το αναγνωριστικό \"%1$s\" δεν έχει δηλωθεί ως σταθερά, μεταβλητή, συνάρτηση ή διαδικασία";
-    public final static String STR_ERROR_SYMBOL_NOT_VARIABLE = "Το σύμβολο \"%1$s\" είναι δηλωμένο ως πίνακας/σταθερά και όχι ως μεταβλητή";
-    public final static String STR_ERROR_SYMBOL_NOT_ARRAY = "Το σύμβολο \"%1$s\" είναι δηλωμένο ως μεταβλητή/σταθερά και όχι ως πίνακας";
-    public final static String STR_ERROR_ARR_DIMENSION_DECLARATION_NOT_INTEGER = "Το μέγεθος της διάστασης του πίνακα πρέπει να είναι τιμή ή έκφραση ακέραιου τύπου";
-    public final static String STR_ERROR_INCOMPATIBLE_TYPE = "Ασύμβατος τύπος δεδομένων: Βρέθηκε %1$s ενώ αναμενόταν %2$s";
-    public final static String STR_ERROR_INCOMPATIBLE_TYPES = "Ασύμβατοι τύποι δεδομένων για χρήση με τον τελεστή \"%5$s\": %1$s στο (%2$s) και %3$s στο (%4$s)";
-    public final static String STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY = "Το σύμβολο %1$s χρησιμοποιείται ως πίνακας ενώ είναι %2$s !";
-    public final static String STR_ERROR_VAR_AND_ARR_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση μεταβλητών και πινάκων στη δήλωση σταθερών και μεταβλητών";
-    public final static String STR_ERROR_ARR_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση πινάκων στη δήλωση σταθερών και μεταβλητών";
-    public final static String STR_ERROR_ARR_INDEX_NOT_INTEGER = "Ο δείκτης πρέπει να είναι μεταβλητή, σταθερά ή έκφραση ακέραιου τύπου";
-    public final static String STR_ERROR_ARR_INDICES_AND_DIMENSIONS_MISMATCH = "Το πλήθος των δεικτών (%1$d) δε συμφωνεί με τις διαστάσεις του πίνακα \"%2$s\" (%3$d)";
-    public final static String STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM = "Στο αριστερό μέρος της ανάθεσης τιμής πρέπει να βρίσκεται μεταβλητή ή στοιχείο πίνακα";
+    public final static String STR_WARNING_PROG_NAME_MISMATCH = "Το αναγνωριστικό \"%1$s\" είναι διαφορετικό από το όνομα του προγράμματος.";
+    public final static String STR_ERROR_CONSTANTS_ALREADY_DEFINED = "Οι σταθερές έχουν ήδη δηλωθεί στο %1$s.";
+    public final static String STR_ERROR_VARIABLES_ALREADY_DEFINED = "Οι μεταβλητές έχουν ήδη δηλωθεί στο %1$s.";
+    public final static String STR_ERROR_SYMBOL_ALREADY_DEFINED = "%1$s \"%2$s\" έχει ήδη δηλωθεί στο %3$s.";
+    public final static String STR_ERROR_SYMBOL_UNDEFINED = "Το αναγνωριστικό \"%1$s\" δεν έχει δηλωθεί ως σταθερά, μεταβλητή, συνάρτηση ή διαδικασία.";
+    public final static String STR_ERROR_ARR_DIMENSION_DECLARATION_NOT_INTEGER = "Το μέγεθος της διάστασης του πίνακα πρέπει να είναι τιμή ή έκφραση ακέραιου τύπου.";
+    public final static String STR_ERROR_INCOMPATIBLE_TYPE = "Ασύμβατος τύπος δεδομένων: Βρέθηκε %1$s ενώ αναμενόταν %2$s.";
+    public final static String STR_ERROR_INCOMPATIBLE_TYPES = "Ασύμβατοι τύποι δεδομένων για χρήση με τον τελεστή \"%5$s\": %1$s στο (%2$s) και %3$s στο (%4$s).";
+    public final static String STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως πίνακας ενώ είναι %2$s.";
+    public final static String STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως μεταβλητή ενώ είναι %2$s.";
+    public final static String STR_ERROR_VAR_AND_ARR_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση μεταβλητών και πινάκων στη δήλωση σταθερών και μεταβλητών.";
+    public final static String STR_ERROR_ARR_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση πινάκων στη δήλωση σταθερών και μεταβλητών.";
+    public final static String STR_ERROR_ARR_INDEX_NOT_INTEGER = "Ο δείκτης πρέπει να είναι μεταβλητή, σταθερά ή έκφραση ακέραιου τύπου.";
+    public final static String STR_ERROR_ARR_INDICES_AND_DIMENSIONS_MISMATCH = "Το πλήθος των δεικτών (%1$d) δε συμφωνεί με τις διαστάσεις του πίνακα \"%2$s\" (%3$d).";
+    public final static String STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM = "Στο αριστερό μέρος της ανάθεσης τιμής πρέπει να βρίσκεται μεταβλητή ή στοιχείο πίνακα.";
+    public final static String STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN = "Η έκφραση στις εντολές ΑΝ/ΑΛΛΙΩΣ_ΑΝ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
     private final static PrintStream err;
     private final static PrintStream warn;
     private static List<InterpreterMessage> messages;
@@ -190,8 +190,13 @@ public class Messages {
         error(errorPoint, msg);
     }
 
-    public static void nonArraySymbolReferencedAsSuch(Symbol s, Point errorPoint) {
+    public static void nonArraySymbolReferencedAsSuchError(Symbol s, Point errorPoint) {
         String msg = String.format(STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY, s.getName(), symbolTypeToString(s).toLowerCase());
+        error(errorPoint, msg);
+    }
+
+    public static void nonVariableSymbolReferencedAsSuchError(Point errorPoint, Symbol s) {
+        String msg = String.format(STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE, s.getName(), symbolTypeToString(s).toLowerCase());
         error(errorPoint, msg);
     }
 
@@ -225,23 +230,8 @@ public class Messages {
         error(errorPoint, msg);
     }
 
-    /*public static void variableNotDeclaredError(Point errorPoint, String varName) {
-        String msg = String.format(STR_ERROR_VARIABLE_UNDEFINED, varName);
-        error(errorPoint, msg);
-    }*/
-
-    public static void notVariableError(Point errorPoint, String varName) {
-        String msg = String.format(STR_ERROR_SYMBOL_NOT_VARIABLE, varName);
-        error(errorPoint, msg);
-    }
-
-    /*public static void arrayNotDeclaredError(Point errorPoint, String arrayName) {
-        String msg = String.format(STR_ERROR_ARRAY_UNDEFINED, arrayName);
-        error(errorPoint, msg);
-    }*/
-
-    public static void notArrayError(Point errorPoint, String arrayName) {
-        String msg = String.format(STR_ERROR_SYMBOL_NOT_ARRAY, arrayName);
+    public static void ifExpressionMustBeBoolean(Point errorPoint, Type invalidType) {
+        String msg = String.format(STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN, typeToStringM(invalidType));
         error(errorPoint, msg);
     }
 

@@ -35,6 +35,7 @@ tokens
   BLOCK;
   NEG;
   VARSDECL;
+  IFNODE;
   ARRAY;
   ARRAY_ITEM;
   ARRAY_INDEX;
@@ -314,7 +315,9 @@ block	:	stm*  -> ^(BLOCK stm*);
 
 stm	:	printStm
         |       readStm
-	|	assingmentStm;
+	|	assingmentStm
+        |       ifStm
+        ;
 	
 printStm
         :	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
@@ -328,6 +331,16 @@ assingmentStm
 	:	varId=ID ASSIGN^ varValue=expr (NEWLINE!)+
         |       arrId=ID arraySubscript ASSIGN^ arrItemValue=expr (NEWLINE!)+
         ;
+
+ifStm	:	ifBlock elseIfBlock* elseBlock? END_IF (NEWLINE)+ -> ^(IFNODE ifBlock elseIfBlock* elseBlock?);
+
+ifBlock	:	IF^ expr THEN! (NEWLINE!)+ block;
+
+elseBlock
+	:	ELSE^ (NEWLINE!)+ block;
+
+elseIfBlock
+	:	ELSE_IF^ expr THEN! (NEWLINE!)+ block;
 	
 expr	:	eqExpr (AND^ eqExpr | OR^ eqExpr)*;
 

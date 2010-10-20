@@ -223,7 +223,7 @@ stm	:	^(PRINT expr+)              {
                                                 Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                                 if(s != null){
                                                     if(!(s instanceof Variable)){
-                                                        Messages.notVariableError(new Point($ID.line, $ID.pos), $ID.text);
+                                                        Messages.nonVariableSymbolReferencedAsSuchError(new Point($ID.line, $ID.pos), s);
                                                     }
                                                 }
                                             }
@@ -237,7 +237,7 @@ stm	:	^(PRINT expr+)              {
                                                             Messages.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
                                                         }
                                                     }else{
-                                                        Messages.notArrayError(new Point($ID.line, $ID.pos), $ID.text);
+                                                        Messages.nonArraySymbolReferencedAsSuchError(s, new Point($ID.line, $ID.pos));
                                                     }
                                                 }
                                             }
@@ -256,7 +256,7 @@ stm	:	^(PRINT expr+)              {
                                                                                                           );
                                                         }
                                                     }else{
-                                                        Messages.notVariableError(new Point($ID.line, $ID.pos), $ID.text);
+                                                        Messages.nonVariableSymbolReferencedAsSuchError(new Point($ID.line, $ID.pos), s);
                                                     }
                                                 }
                                             }
@@ -282,8 +282,38 @@ stm	:	^(PRINT expr+)              {
                                                                                                           );
                                                         }
                                                     }else{
-                                                            Messages.notArrayError(new Point($ID.line, $ID.pos), $ID.text);
+                                                            Messages.nonArraySymbolReferencedAsSuchError(s, new Point($ID.line, $ID.pos));
                                                     }
+                                                }
+                                            }
+        |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
+        ;
+
+
+
+ifBlock	:       ^(IF expr block)            {
+                                                if($expr.expressionType!=null){
+                                                    if(!$expr.expressionType.equals(Type.BOOLEAN)){
+                                                        Messages.ifExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
+                                                    }
+                                                }else{
+                                                    Messages.ifExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
+                                                }
+                                            }
+        ;
+
+elseBlock
+	:	^(ELSE block)
+        ;
+
+elseIfBlock
+	:	^(ELSE_IF expr block)       {
+                                                if($expr.expressionType!=null){
+                                                    if(!$expr.expressionType.equals(Type.BOOLEAN)){
+                                                        Messages.ifExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
+                                                    }
+                                                }else{
+                                                    Messages.ifExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
                                                 }
                                             }
         ;
@@ -345,8 +375,14 @@ expr	returns [Type expressionType]
                                                                                                                new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
                                                         }
                                                     }else{
-                                                        $expressionType = Type.BOOLEAN;
-
+                                                        if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
+                                                            $expressionType = Type.BOOLEAN;
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                                                                                    $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
+                                                                                                                    new Point($LT.line, $LT.pos), $LT.text
+                                                                                                                  );
+                                                        }
                                                     }
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
@@ -368,8 +404,14 @@ expr	returns [Type expressionType]
                                                                                                                new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
                                                         }
                                                     }else{
-                                                        $expressionType = Type.BOOLEAN;
-
+                                                        if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
+                                                            $expressionType = Type.BOOLEAN;
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                                                                                    $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
+                                                                                                                    new Point($LE.line, $LE.pos), $LE.text
+                                                                                                                  );
+                                                        }
                                                     }
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
@@ -391,8 +433,14 @@ expr	returns [Type expressionType]
                                                                                                                new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
                                                         }
                                                     }else{
-                                                        $expressionType = Type.BOOLEAN;
-
+                                                        if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
+                                                            $expressionType = Type.BOOLEAN;
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                                                                                    $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
+                                                                                                                    new Point($GT.line, $GT.pos), $GT.text
+                                                                                                                  );
+                                                        }
                                                     }
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
@@ -414,8 +462,14 @@ expr	returns [Type expressionType]
                                                                                                                new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
                                                         }
                                                     }else{
-                                                        $expressionType = Type.BOOLEAN;
-
+                                                        if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
+                                                            $expressionType = Type.BOOLEAN;
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                                                                                    $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
+                                                                                                                    new Point($GE.line, $GE.pos), $GE.text
+                                                                                                                  );
+                                                        }
                                                     }
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
@@ -548,7 +602,11 @@ expr	returns [Type expressionType]
                             if( (s instanceof Constant == false)  &&  (inConstantDeclaration || inVariableDeclaration) ){
                                 Messages.variableReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
                             }else{
-                                $expressionType = s.getType();
+                                if(s instanceof Array){
+                                    Messages.nonVariableSymbolReferencedAsSuchError(new Point($ID.line, $ID.pos), s);
+                                }else{
+                                    $expressionType = s.getType();
+                                }
                             }
                         }
                     }
@@ -568,7 +626,7 @@ expr	returns [Type expressionType]
                                                                     }
                                                                 }
                                                             }else{
-                                                                Messages.nonArraySymbolReferencedAsSuch(s, new Point($ID.line, $ID.pos));
+                                                                Messages.nonArraySymbolReferencedAsSuchError(s, new Point($ID.line, $ID.pos));
                                                             }
                                                         }
                                                     }
