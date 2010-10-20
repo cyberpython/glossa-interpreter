@@ -27,6 +27,7 @@ grammar Glossa;
 options{
 	output = AST;
 	ASTLabelType = CommonTree;
+        //backtrack = true;
 }
 
 
@@ -323,8 +324,12 @@ printStm
         :	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
 
 readStm :
-                READ^ varId=ID (NEWLINE!)+
-        |       READ^ arrId=ID arraySubscript (NEWLINE!)+
+                READ^ readItem (COMMA! readItem)* (NEWLINE!)+
+        ;
+
+readItem:
+                arrId=ID arraySubscript
+        |       varId=ID
         ;
 	
 assingmentStm

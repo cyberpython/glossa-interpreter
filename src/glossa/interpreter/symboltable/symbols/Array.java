@@ -183,7 +183,7 @@ public class Array extends Symbol {
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_ARRAY + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size() + "\t" + super.toString();
+        return Messages.CONSTS_STR_ARRAY + " " + super.toString()+ " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size();
     }
 
     public static void main(String[] args) {
