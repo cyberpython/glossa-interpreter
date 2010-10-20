@@ -24,7 +24,7 @@
 
 package glossa.interpreter.symboltable.types;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 
 /**
  *
@@ -36,15 +36,15 @@ public enum Type {
     @Override
     public String toString() {
         if(this.equals(Type.INTEGER)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_INTEGER;
+            return Messages.CONSTS_STR_TYPE_INTEGER;
         }else if(this.equals(Type.REAL)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_REAL;
+            return Messages.CONSTS_STR_TYPE_REAL;
         }else if(this.equals(Type.BOOLEAN)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_BOOLEAN;
+            return Messages.CONSTS_STR_TYPE_BOOLEAN;
         }else if(this.equals(Type.STRING)){
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_STRING;
+            return Messages.CONSTS_STR_TYPE_STRING;
         }else{
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_UNKNOWN;
+            return Messages.CONSTS_STR_TYPE_UNKNOWN;
         }
     }
 

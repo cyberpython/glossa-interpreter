@@ -21,13 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package glossa.interpreter.symboltable.symbols;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 import glossa.interpreter.symboltable.types.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,82 +37,126 @@ import java.util.List;
  */
 public class Array extends Symbol {
 
-    private HashMap<String, Object> values;
+    //private HashMap<String, Object> values;
     private List<Integer> dimensions;
+    private int[] colSizes;
+    private Object[] values;
 
     public Array(String name, Type type, int line, int pos, int absolutePosition, List<Integer> dimensions) {
         super(name, type, line, pos, absolutePosition);
         this.dimensions = dimensions;
+        this.initialize();
     }
 
-    public Array(String name,int line, int pos, int absolutePosition, List<Integer> dimensions) {
-        super(name, Type.INTEGER, line, pos, absolutePosition);
+    public Array(String name, int line, int pos, int absolutePosition, List<Integer> dimensions) {
+        super(name, null, line, pos, absolutePosition);
         this.dimensions = dimensions;
+        this.initColSizes();
+    }
+
+    private void initialize(){
+        this.initColSizes();
+        Object defaultVaule;
+        if(this.getType().equals(Type.INTEGER)){
+            defaultVaule = new BigInteger("0");
+        }else if(this.getType().equals(Type.REAL)){
+            defaultVaule = new BigDecimal("0.0");
+        }else if(this.getType().equals(Type.BOOLEAN)){
+            defaultVaule = Boolean.valueOf(false);
+        }else if(this.getType().equals(Type.STRING)){
+            defaultVaule = "";
+        }else{
+            defaultVaule = null;
+        }
+        this.initValues(defaultVaule);
+    }
+
+    private void initColSizes() {
+        this.colSizes = new int[dimensions.size()];
+        colSizes[colSizes.length-1] = 1;
+        int product = 1;
+        for (int i = colSizes.length - 1; i > 0; i--) {
+            colSizes[i-1] = dimensions.get(i) * product;
+            product = product * dimensions.get(i);
+        }
+        //TODO: Remove:
+        /*for (int i = 0; i < colSizes.length; i++) {
+            System.out.println("colSize[" + i + "]: " + colSizes[i]);
+        }*/
+    }
+
+    public String arrayIndexToString(List<Integer> indices) {
+        StringBuilder dim = new StringBuilder();
+        for (Iterator<Integer> it = indices.iterator(); it.hasNext();) {
+            Integer integer = it.next();
+            dim.append("[");
+            dim.append(String.valueOf(integer));
+            dim.append("]");
+            /*if (it.hasNext()) {
+                dim.append("x");
+            }*/
+        }
+        return dim.toString();
+    }
+
+    public void initValues(Object initialValue) {
+        int totalSize = 1;
+        for (Iterator<Integer> it = dimensions.iterator(); it.hasNext();) {
+            Integer integer = it.next();
+            totalSize *= integer;
+        }
+        this.values = new Object[totalSize];
+        for (int i = 0; i < values.length; i++) {
+            values[i] = initialValue;
+        }
+    }
+
+    private int resolveIndex(List<Integer> indices){
+        int result = -1;
+        int dimensionsCount = dimensions.size();
+        if(indices.size() == dimensionsCount){
+            result = 0;
+            int index = -1;
+            int d = 1;
+            int j = 0;
+            for (int i = 0; i < dimensionsCount; i++) {
+                index = indices.get(i);
+                if(index<1 || index > dimensions.get(i)){
+                    throw new RuntimeException(String.valueOf(index)+" at "+arrayIndexToString(indices));//TODO: Proper runtime error report
+                }else{
+                    d = colSizes[i];
+                    j = index;
+                    result = result + (j-1)*d;
+                }
+            }
+        }else{
+            throw new RuntimeException(arrayIndexToString(indices));//TODO: Proper runtime error report
+        }
+        return result;
+    }
+
+    public Object get(List<Integer> indices){
+        return this.values[resolveIndex(indices)];
+    }
+
+    public void set(List<Integer> indices, Object value){
+        if( (value instanceof BigInteger) && this.getType().equals(Type.INTEGER)){
+            this.values[resolveIndex(indices)] = value;
+        }else if( (value instanceof BigDecimal) && this.getType().equals(Type.REAL)){
+            this.values[resolveIndex(indices)] = value;
+        }else if( (value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)){
+            this.values[resolveIndex(indices)] = value;
+        }else if( (value instanceof String) && this.getType().equals(Type.STRING)){
+            this.values[resolveIndex(indices)] = value;
+        }else{
+            throw new RuntimeException("Invalid type in array assignment");//TODO: Proper runtime error report
+        }
     }
 
     @Override
-    public String toString() {
-        /*StringBuilder dim = new StringBuilder();
-        for (Iterator<Integer> it = dimensions.iterator(); it.hasNext();) {
-            Integer integer = it.next();
-            dim.append(String.valueOf(integer));
-            if(it.hasNext()){
-                    dim.append("x");
-            }
-        }*/
-        return ReportingAndMessagingUtils.CONSTS_STR_ARRAY+" - "+ReportingAndMessagingUtils.CONSTS_STR_DIMENSIONS+": "+getDimensions().size()+"\t"+super.toString();
-    }
-
-    public void initValues(List<Integer> dimensions, Object initialValue) {
-
-        int numberOfDimensions = dimensions.size();
-        List<List<String>> tmp = new ArrayList<List<String>>();
-
-        for (int i = 0; i < numberOfDimensions; i++) {
-            ArrayList<String> dim = new ArrayList<String>();
-            for (int j = 0; j < dimensions.get(i); j++) {
-                dim.add(String.valueOf(j));
-            }
-            tmp.add(dim);
-        }
-
-        List<String> result = new ArrayList<String>();
-        Iterator<List<String>> it = tmp.iterator();
-
-        List<String> firstDimension = it.next();
-        for (Iterator<String> it1 = firstDimension.iterator(); it1.hasNext();) {
-            String str = it1.next();
-            result.add(str);
-        }
-
-
-        while (it.hasNext()) {
-            List<String> dimension = it.next();
-            List<String> newResult = new ArrayList<String>();
-            for (Iterator<String> it1 = result.iterator(); it1.hasNext();) {
-                String value = it1.next();
-                for (Iterator<String> it2 = dimension.iterator(); it2.hasNext();) {
-                    String str = it2.next();
-                    newResult.add(value + "," + str);
-                }
-            }
-            result = newResult;
-
-        }
-        
-        for (Iterator<String> it1 = result.iterator(); it1.hasNext();) {
-            String key = it1.next();
-            this.values.put(key, initialValue);
-        }
-    }
-
-
-    public Object getValue(String index){
-        return this.values.get(index);
-    }
-
-    public void setValue(String index, Object value){
-        this.values.put(index, value);
+    public void setType(Type type) {
+        super.setType(type);
+        this.initialize();
     }
 
     /**
@@ -127,6 +171,7 @@ public class Array extends Symbol {
      */
     public void setDimensions(List<Integer> dimensions) {
         this.dimensions = dimensions;
+        this.initialize();
     }
 
     /**
@@ -134,5 +179,27 @@ public class Array extends Symbol {
      */
     public int getNumberOfDimensions() {
         return dimensions.size();
+    }
+
+    @Override
+    public String toString() {
+        return Messages.CONSTS_STR_ARRAY + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size() + "\t" + super.toString();
+    }
+
+    public static void main(String[] args) {
+        List<Integer> dim = new ArrayList<Integer>();
+        dim.add(3);
+        dim.add(2);
+        dim.add(4);
+        Array arr = new Array("arr", Type.INTEGER, 1, 1, 1, dim);
+        
+        List<Integer> index = new ArrayList<Integer>();
+        index.add(2);
+        index.add(1);
+        index.add(3);
+        //System.out.println("\tarr[2,1,3]: "+arr.resolveIndex(index));
+
+        System.out.println("\tarr[2,1,3]: "+arr.get(index));
+
     }
 }

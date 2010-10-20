@@ -24,7 +24,7 @@
 
 package glossa.interpreter.symboltable.scopes;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 import glossa.interpreter.symboltable.symbols.Symbol;
 import java.awt.Point;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public class Scope {
     public void defineSymbol(String key, Symbol s) {
         Symbol existingSymbol = getSymbols().get(key);
         if (existingSymbol != null) {
-            ReportingAndMessagingUtils.symbolRedefinitionError(s, existingSymbol);
+            Messages.symbolRedefinitionError(s, existingSymbol);
         } else {
             this.getSymbols().put(key, s);
         }
@@ -59,7 +59,7 @@ public class Scope {
     public Symbol referenceSymbol(String symbolName, Point referencePosition) {
         Symbol symbol = this.getSymbols().get(symbolName);
         if (symbol == null) {
-            ReportingAndMessagingUtils.symbolUndefinedError(symbolName, referencePosition);
+            Messages.symbolUndefinedError(symbolName, referencePosition);
             return null;
         } else {
             return symbol;

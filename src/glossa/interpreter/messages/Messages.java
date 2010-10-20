@@ -37,7 +37,7 @@ import java.util.List;
  *
  * @author cyberpython
  */
-public class ReportingAndMessagingUtils {
+public class Messages {
 
     public final static String CONSTS_STR_ERROR = "Σφάλμα";
     public final static String CONSTS_STR_WARNING = "Προειδοποίηση";
@@ -69,6 +69,8 @@ public class ReportingAndMessagingUtils {
     public final static String STR_ERROR_VARIABLES_ALREADY_DEFINED = "Οι μεταβλητές έχουν ήδη δηλωθεί στο %1$s";
     public final static String STR_ERROR_SYMBOL_ALREADY_DEFINED = "%1$s \"%2$s\" έχει ήδη δηλωθεί στο %3$s";
     public final static String STR_ERROR_SYMBOL_UNDEFINED = "Το αναγνωριστικό \"%1$s\" δεν έχει δηλωθεί ως σταθερά, μεταβλητή, συνάρτηση ή διαδικασία";
+    public final static String STR_ERROR_SYMBOL_NOT_VARIABLE = "Το σύμβολο \"%1$s\" είναι δηλωμένο ως πίνακας/σταθερά και όχι ως μεταβλητή";
+    public final static String STR_ERROR_SYMBOL_NOT_ARRAY = "Το σύμβολο \"%1$s\" είναι δηλωμένο ως μεταβλητή/σταθερά και όχι ως πίνακας";
     public final static String STR_ERROR_ARR_DIMENSION_DECLARATION_NOT_INTEGER = "Το μέγεθος της διάστασης του πίνακα πρέπει να είναι τιμή ή έκφραση ακέραιου τύπου";
     public final static String STR_ERROR_INCOMPATIBLE_TYPE = "Ασύμβατος τύπος δεδομένων: Βρέθηκε %1$s ενώ αναμενόταν %2$s";
     public final static String STR_ERROR_INCOMPATIBLE_TYPES = "Ασύμβατοι τύποι δεδομένων για χρήση με τον τελεστή \"%5$s\": %1$s στο (%2$s) και %3$s στο (%4$s)";
@@ -223,45 +225,68 @@ public class ReportingAndMessagingUtils {
         error(errorPoint, msg);
     }
 
+    /*public static void variableNotDeclaredError(Point errorPoint, String varName) {
+        String msg = String.format(STR_ERROR_VARIABLE_UNDEFINED, varName);
+        error(errorPoint, msg);
+    }*/
+
+    public static void notVariableError(Point errorPoint, String varName) {
+        String msg = String.format(STR_ERROR_SYMBOL_NOT_VARIABLE, varName);
+        error(errorPoint, msg);
+    }
+
+    /*public static void arrayNotDeclaredError(Point errorPoint, String arrayName) {
+        String msg = String.format(STR_ERROR_ARRAY_UNDEFINED, arrayName);
+        error(errorPoint, msg);
+    }*/
+
+    public static void notArrayError(Point errorPoint, String arrayName) {
+        String msg = String.format(STR_ERROR_SYMBOL_NOT_ARRAY, arrayName);
+        error(errorPoint, msg);
+    }
+
     public static String pointToString(Point p) {
         return ((int) p.getX()) + "," + ((int) p.getY() + 1);
     }
 
     public static String typeToStringM(Type t) {
+        if(t==null){
+            return Messages.CONSTS_STR_TYPE_UNKNOWN_Μ;
+        }
         if (t.equals(Type.INTEGER)) {
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_INTEGER_Μ;
+            return Messages.CONSTS_STR_TYPE_INTEGER_Μ;
         } else if (t.equals(Type.REAL)) {
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_REAL_Μ;
+            return Messages.CONSTS_STR_TYPE_REAL_Μ;
         } else if (t.equals(Type.BOOLEAN)) {
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_BOOLEAN_Μ;
+            return Messages.CONSTS_STR_TYPE_BOOLEAN_Μ;
         } else if (t.equals(Type.STRING)) {
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_STRING_Μ;
+            return Messages.CONSTS_STR_TYPE_STRING_Μ;
         } else {
-            return ReportingAndMessagingUtils.CONSTS_STR_TYPE_UNKNOWN_Μ;
+            return Messages.CONSTS_STR_TYPE_UNKNOWN_Μ;
         }
     }
 
     public static String symbolTypeToTheString(Symbol s) {
         if (s instanceof Variable) {
-            return ReportingAndMessagingUtils.CONSTS_STR_THE_VARIABLE;
+            return Messages.CONSTS_STR_THE_VARIABLE;
         } else if (s instanceof Constant) {
-            return ReportingAndMessagingUtils.CONSTS_STR_THE_CONSTANT;
+            return Messages.CONSTS_STR_THE_CONSTANT;
         } else if (s instanceof Array) {
-            return ReportingAndMessagingUtils.CONSTS_STR_THE_ARRAY;
+            return Messages.CONSTS_STR_THE_ARRAY;
         } else {
-            return ReportingAndMessagingUtils.CONSTS_STR_THE_SYMBOL;
+            return Messages.CONSTS_STR_THE_SYMBOL;
         }
     }
 
     public static String symbolTypeToString(Symbol s) {
         if (s instanceof Variable) {
-            return ReportingAndMessagingUtils.CONSTS_STR_VARIABLE;
+            return Messages.CONSTS_STR_VARIABLE;
         } else if (s instanceof Constant) {
-            return ReportingAndMessagingUtils.CONSTS_STR_CONSTANT;
+            return Messages.CONSTS_STR_CONSTANT;
         } else if (s instanceof Array) {
-            return ReportingAndMessagingUtils.CONSTS_STR_ARRAY;
+            return Messages.CONSTS_STR_ARRAY;
         } else {
-            return ReportingAndMessagingUtils.CONSTS_STR_SYMBOL;
+            return Messages.CONSTS_STR_SYMBOL;
         }
     }
 }

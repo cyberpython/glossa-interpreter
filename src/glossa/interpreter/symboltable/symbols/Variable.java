@@ -24,7 +24,7 @@
 
 package glossa.interpreter.symboltable.symbols;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 import glossa.interpreter.symboltable.types.Type;
 
 /**
@@ -43,7 +43,7 @@ public class Variable extends SimpleSymbol{
 
     @Override
     public String toString() {
-        return ReportingAndMessagingUtils.CONSTS_STR_VARIABLE+" "+super.toString();
+        return Messages.CONSTS_STR_VARIABLE+" "+super.toString();
     }
 
 

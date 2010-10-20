@@ -24,7 +24,7 @@
 
 package glossa.interpreter.symboltable.symbols;
 
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 import glossa.interpreter.symboltable.types.Type;
 import java.awt.Point;
 
@@ -41,12 +41,15 @@ public class Symbol implements Comparable<Symbol>{
     private int pos;
     private int absolutePosition;
 
+    private boolean initialized;
+
     public Symbol(String name, Type type, int line, int pos, int absolutePosition){
         this.name = name;
         this.type = type;
         this.line = line;
         this.pos = pos;
         this.absolutePosition = absolutePosition;
+        this.initialized = false;
     }
 
 
@@ -134,11 +137,25 @@ public class Symbol implements Comparable<Symbol>{
 
     @Override
     public String toString() {
-        return ReportingAndMessagingUtils.CONSTS_STR_NAME+": "+this.getName()+", "+ReportingAndMessagingUtils.CONSTS_STR_TYPE+": "+this.type.toString()+", "+ReportingAndMessagingUtils.CONSTS_STR_DECLARED_AT+": ("+this.getPositionAsString()+")";
+        return Messages.CONSTS_STR_NAME+": "+this.getName()+", "+Messages.CONSTS_STR_TYPE+": "+this.type.toString()+", "+Messages.CONSTS_STR_DECLARED_AT+": ("+this.getPositionAsString()+")";
     }
 
     public int compareTo(Symbol o) {
         return this.name.compareTo(o.getName());
+    }
+
+    /**
+     * @return if the symbol has been initialized
+     */
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    /**
+     * @param initialized boolean value to set if the symbol has been initialized
+     */
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
     }
 
 

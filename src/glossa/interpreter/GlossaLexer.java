@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-19 17:18:28
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-20 17:28:50
 
 /*
  *  The MIT License
@@ -189,7 +189,7 @@ public class GlossaLexer extends Lexer {
             public void displayRecognitionError(String[] tokenNames,
                     RecognitionException e) {
                     String msg = getErrorMessage(e, tokenNames);
-                    ReportingAndMessagingUtils.lexerError(new Point(e.line, e.charPositionInLine), msg);
+                    Messages.lexerError(new Point(e.line, e.charPositionInLine), msg);
             }
 
 

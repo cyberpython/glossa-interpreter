@@ -24,7 +24,7 @@
 package glossa.interpreter;
 
 import glossa.interpreter.symboltable.scopes.MainProgramScope;
-import glossa.interpreter.messages.ReportingAndMessagingUtils;
+import glossa.interpreter.messages.Messages;
 import glossa.interpreter.symboltable.symbols.Symbol;
 import glossa.interpreter.messages.ErrorMessage;
 import glossa.interpreter.messages.InterpreterMessage;
@@ -50,9 +50,9 @@ public class Interpreter {
 
     public void run(String[] args) throws Exception {
 
-        ReportingAndMessagingUtils.clearMessages();
+        Messages.clearMessages();
 
-        List<InterpreterMessage> msgs = ReportingAndMessagingUtils.getMessages();
+        List<InterpreterMessage> msgs = Messages.getMessages();
 
         GlossaParser.unit_return r = null;
 
@@ -79,11 +79,11 @@ public class Interpreter {
         for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
             InterpreterMessage interpreterMessage = it.next();
             if (interpreterMessage instanceof ErrorMessage) {
-                ReportingAndMessagingUtils.printError((ErrorMessage) interpreterMessage);
+                Messages.printError((ErrorMessage) interpreterMessage);
                 errors++;
 
             } else if (interpreterMessage instanceof WarningMessage) {
-                ReportingAndMessagingUtils.printWarning((WarningMessage) interpreterMessage);
+                Messages.printWarning((WarningMessage) interpreterMessage);
             }
         }
 
@@ -96,9 +96,14 @@ public class Interpreter {
             CommonTree t = (CommonTree) r.getTree(); // get tree from parser
             // Create a tree node stream from resulting tree
             BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-            GlossaFirstPassWalker walker = new GlossaFirstPassWalker(nodes); // create a tree parser
-            walker.setSymbolTable(symbolTable);
-            walker.unit();                 // launch at start rule prog
+            StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
+
+            try{
+                staticTypeAnalyzer.setSymbolTable(symbolTable);
+                staticTypeAnalyzer.unit();                 // launch at start rule prog
+            }catch(NullPointerException npe){
+                npe.printStackTrace();
+            }
 
             MainProgramScope mpst = symbolTable.getMainProgramScope();
 
@@ -107,11 +112,11 @@ public class Interpreter {
             for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
                 InterpreterMessage interpreterMessage = it.next();
                 if (interpreterMessage instanceof ErrorMessage) {
-                    ReportingAndMessagingUtils.printError((ErrorMessage) interpreterMessage);
+                    Messages.printError((ErrorMessage) interpreterMessage);
                     errors++;
 
                 } else if (interpreterMessage instanceof WarningMessage) {
-                    ReportingAndMessagingUtils.printWarning((WarningMessage) interpreterMessage);
+                    Messages.printWarning((WarningMessage) interpreterMessage);
                 }
             }
 

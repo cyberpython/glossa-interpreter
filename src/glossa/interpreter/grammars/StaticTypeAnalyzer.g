@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-tree grammar GlossaFirstPassWalker;
+tree grammar StaticTypeAnalyzer;
 
 options{
 	tokenVocab = Glossa; //read token types from Expr.tokens file
@@ -112,7 +112,7 @@ program	:	^(PROGRAM
 		block 
 		(id2=ID {
 				if($id1.text.equals($id2.text)==false){
-					ReportingAndMessagingUtils.programNameMismatchWarning(new Point($id2.line, $id2.pos), $id2.text);
+					Messages.programNameMismatchWarning(new Point($id2.line, $id2.pos), $id2.text);
 				}
 			}
 		)?
@@ -125,7 +125,7 @@ constDecl
 	:	^(CONSTANTS	{
                                         inConstantDeclaration=true;
 					if(currentScope.isConstantsDeclared()){
-						ReportingAndMessagingUtils.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), currentScope.getConstantsDeclarationPoint());
+						Messages.constantsRedeclarationError(new Point($CONSTANTS.line, $CONSTANTS.pos), currentScope.getConstantsDeclarationPoint());
 					}else{
 						currentScope.setConstantsDeclared(true);
 						currentScope.setConstantsDeclarationPoint(new Point($CONSTANTS.line, $CONSTANTS.pos));
@@ -139,10 +139,8 @@ constDecl
 
 constAssign
 	:	 ^(EQ ID expr)  {
-                                    if($expr.expressionType != null){
-                                        Constant s = new Constant($ID.text, $expr.expressionType, $ID.line, $ID.pos, $ID.getTokenStartIndex(), null);
-                                        currentScope.defineSymbol(s.getName(), s);
-                                    }
+                                    Constant s = new Constant($ID.text, $expr.expressionType, $ID.line, $ID.pos, $ID.getTokenStartIndex(), null);
+                                    currentScope.defineSymbol(s.getName(), s);
                                 }
         ;
 	
@@ -153,7 +151,7 @@ constAssign
 varDecl	:	^(VARIABLES	{
                                         inVariableDeclaration=true;
 					if(currentScope.isVariablesDeclared()){
-						ReportingAndMessagingUtils.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), currentScope.getVariablesDeclarationPoint());
+						Messages.variablesRedeclarationError(new Point($VARIABLES.line, $VARIABLES.pos), currentScope.getVariablesDeclarationPoint());
 					}else{
 						currentScope.setVariablesDeclared(true);
 						currentScope.setVariablesDeclarationPoint(new Point($VARIABLES.line, $VARIABLES.pos));
@@ -197,7 +195,7 @@ arrayDimension returns [List<Integer> dimensions]
                                         Type type = $expr.expressionType;
                                         $dimensions.add(new Integer(1));
                                         if(   (type==null)     ||   ( !type.equals(Type.INTEGER) )   ){
-                                            ReportingAndMessagingUtils.arrayDimensionDeclarationsNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
+                                            Messages.arrayDimensionDeclarationsNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
                                         }
                                     }
                      )+
@@ -223,15 +221,45 @@ stm	:	^(PRINT expr+)
                                                     if(s instanceof Variable){
                                                         if($expr.expressionType!=null){
                                                             if(TypeUtils.areTypesCompatibleForAssignment(s.getType(), $expr.expressionType)<0){
-                                                                ReportingAndMessagingUtils.incompatibleTypesFoundError(s.getType(), new Point($ID.line, $ID.pos), $expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) ,new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text);
+                                                                Messages.incompatibleTypesFoundError(s.getType(), new Point($ID.line, $ID.pos), $expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) ,new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text);
                                                             }
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( s.getType(), new Point($ID.line, $ID.pos),
+                                                                                                            null, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()),
+                                                                                                            new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text
+                                                                                                          );
                                                         }
                                                     }else{
-                                                        ReportingAndMessagingUtils.leftSideOfAssignmentMustBeVarOrArrayError(new Point($ID.line, $ID.pos));
+                                                        Messages.notVariableError(new Point($ID.line, $ID.pos), $ID.text);
                                                     }
                                                 }
                                             }
-        //|       ^(ASSIGN ID arraySubscript expr) //TODO: array item assignment and check (again) number of indices
+        |       ^(ASSIGN ID arraySubscript expr)
+                                            {
+                                                Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                                if(s != null){
+                                                    if(s instanceof Array){
+                                                        if($expr.expressionType!=null){
+                                                            if(TypeUtils.areTypesCompatibleForAssignment(s.getType(), $expr.expressionType)<0){
+                                                                Messages.incompatibleTypesFoundError(s.getType(), new Point($ID.line, $ID.pos), $expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) ,new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text);
+                                                            }else{
+                                                                Array arr = (Array)s;
+                                                                int indicesCount = $arraySubscript.indices.size();
+                                                                if(arr.getNumberOfDimensions() != indicesCount){
+                                                                    Messages.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
+                                                                }
+                                                            }
+                                                        }else{
+                                                            Messages.incompatibleTypesFoundError( s.getType(), new Point($ID.line, $ID.pos),
+                                                                                                            null, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()),
+                                                                                                            new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text
+                                                                                                          );
+                                                        }
+                                                    }else{
+                                                            Messages.notArrayError(new Point($ID.line, $ID.pos), $ID.text);
+                                                    }
+                                                }
+                                            }
         ;
 
 
@@ -242,7 +270,7 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForBooleanExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($AND.line, $AND.pos), $AND.text
                                                                                                           );
@@ -252,67 +280,119 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForBooleanExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($OR.line, $OR.pos), $OR.text
                                                                                                           );
                                                 }
                                             }
 	|	^(EQ	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
+                                                if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($EQ.line, $EQ.pos), $EQ.text
                                                                                                           );
                                                 }
                                             }
 	|	^(NEQ	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
+                                                if(TypeUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($NEQ.line, $NEQ.pos), $NEQ.text
                                                                                                           );
                                                 }
                                             }
 	|	^(LT	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = Type.BOOLEAN;
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.BOOLEAN) || $b.expressionType.equals(Type.BOOLEAN)){
+                                                        Type[] requiredTypes = {Type.INTEGER, Type.REAL, Type.STRING};
+                                                        if($a.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                        }
+                                                        if($b.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $b.expressionType, requiredTypes,
+                                                                                                               new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
+                                                        }
+                                                    }else{
+                                                        $expressionType = Type.BOOLEAN;
+
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($LT.line, $LT.pos), $LT.text
                                                                                                           );
                                                 }
                                             }
 	|	^(LE	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = Type.BOOLEAN;
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.BOOLEAN) || $b.expressionType.equals(Type.BOOLEAN)){
+                                                        Type[] requiredTypes = {Type.INTEGER, Type.REAL, Type.STRING};
+                                                        if($a.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                        }
+                                                        if($b.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $b.expressionType, requiredTypes,
+                                                                                                               new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
+                                                        }
+                                                    }else{
+                                                        $expressionType = Type.BOOLEAN;
+
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($LE.line, $LE.pos), $LE.text
                                                                                                           );
                                                 }
                                             }
 	|	^(GT	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = Type.BOOLEAN;
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.BOOLEAN) || $b.expressionType.equals(Type.BOOLEAN)){
+                                                        Type[] requiredTypes = {Type.INTEGER, Type.REAL, Type.STRING};
+                                                        if($a.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                        }
+                                                        if($b.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $b.expressionType, requiredTypes,
+                                                                                                               new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
+                                                        }
+                                                    }else{
+                                                        $expressionType = Type.BOOLEAN;
+
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($GT.line, $GT.pos), $GT.text
                                                                                                           );
                                                 }
                                             }
 	|	^(GE	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = Type.BOOLEAN;
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.BOOLEAN) || $b.expressionType.equals(Type.BOOLEAN)){
+                                                        Type[] requiredTypes = {Type.INTEGER, Type.REAL, Type.STRING};
+                                                        if($a.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                        }
+                                                        if($b.expressionType.equals(Type.BOOLEAN)){
+                                                            Messages.incompatibleTypeFoundError( $b.expressionType, requiredTypes,
+                                                                                                               new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
+                                                        }
+                                                    }else{
+                                                        $expressionType = Type.BOOLEAN;
+
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($GE.line, $GE.pos), $GE.text
                                                                                                           );
@@ -322,7 +402,7 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($PLUS.line, $PLUS.pos), $PLUS.text
                                                                                                           );
@@ -332,7 +412,7 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($MINUS.line, $MINUS.pos), $MINUS.text
                                                                                                           );
@@ -342,7 +422,7 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($TIMES.line, $TIMES.pos), $TIMES.text
                                                                                                           );
@@ -352,37 +432,56 @@ expr	returns [Type expressionType]
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($DIA.line, $DIA.pos), $DIA.text
-                                                                                                          );//TODO which types are valid?
+                                                                                                          );
                                                 }
                                             }
 	|	^(DIV	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.INTEGER) && $b.expressionType.equals(Type.INTEGER)){
+                                                        $expressionType = Type.INTEGER;
+                                                    }else{
+                                                        Type[] requiredTypes = {Type.INTEGER};
+                                                        if(!$a.expressionType.equals(Type.INTEGER)){
+                                                            Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                        }
+                                                        if(!$b.expressionType.equals(Type.INTEGER)){
+                                                            Messages.incompatibleTypeFoundError( $b.expressionType, requiredTypes,
+                                                                                                               new Point($b.start.getLine(), $b.start.getCharPositionInLine()));
+                                                        }
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($DIV.line, $DIV.pos), $DIV.text
-                                                                                                          );//TODO which types are valid?
+                                                                                                          );
                                                 }
                                             }
 	|	^(MOD	a=expr	  b=expr)   {
-                                                if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
+                                                if($a.expressionType!=null && $b.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.INTEGER) && $b.expressionType.equals(Type.INTEGER)){
+                                                        $expressionType = Type.INTEGER;
+                                                    }else{
+                                                        Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                                                                                $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
+                                                                                                                new Point($MOD.line, $MOD.pos), $MOD.text
+                                                                                                              );
+                                                    }
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($MOD.line, $MOD.pos), $MOD.text
-                                                                                                          );//TODO which types are valid?
+                                                                                                          );
                                                 }
                                             }
 	|	^(POW	a=expr	  b=expr)   {
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
-                                                    ReportingAndMessagingUtils.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
+                                                    Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
                                                                                                             new Point($POW.line, $POW.pos), $POW.text
                                                                                                           );
@@ -393,16 +492,22 @@ expr	returns [Type expressionType]
                                                     $expressionType = $a.expressionType;
                                                 }else{
                                                     Type[] requiredTypes = {Type.INTEGER, Type.REAL};
-                                                    ReportingAndMessagingUtils.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                    Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
                                                                                                            new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
                                                 }
                                             }
 	|	^(NOT	a=expr)             {
-                                                if($a.expressionType.equals(Type.BOOLEAN)){
-                                                    $expressionType = Type.BOOLEAN;
+                                                if($a.expressionType!=null){
+                                                    if($a.expressionType.equals(Type.BOOLEAN)){
+                                                        $expressionType = Type.BOOLEAN;
+                                                    }else{
+                                                        Type[] requiredTypes = {Type.BOOLEAN};
+                                                        Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                                                                               new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
+                                                    }
                                                 }else{
                                                     Type[] requiredTypes = {Type.BOOLEAN};
-                                                    ReportingAndMessagingUtils.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
+                                                    Messages.incompatibleTypeFoundError( $a.expressionType, requiredTypes,
                                                                                                            new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
                                                 }
                                             }
@@ -415,7 +520,7 @@ expr	returns [Type expressionType]
                         Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                         if(s != null){
                             if( (s instanceof Constant == false)  &&  (inConstantDeclaration || inVariableDeclaration) ){
-                                ReportingAndMessagingUtils.variableReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
+                                Messages.variableReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
                             }else{
                                 $expressionType = s.getType();
                             }
@@ -426,18 +531,18 @@ expr	returns [Type expressionType]
                                                         if(s != null){
                                                             if(s instanceof Array){
                                                                 if(inConstantDeclaration || inVariableDeclaration){
-                                                                    ReportingAndMessagingUtils.arrayReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
+                                                                    Messages.arrayReferencesInDeclarationsNotAllowedError(s, new Point($ID.line, $ID.pos));
                                                                 }
                                                                 else{
                                                                     $expressionType = s.getType();
                                                                     Array arr = (Array)s;
                                                                     int indicesCount = $arraySubscript.indices.size();
                                                                     if(arr.getNumberOfDimensions() != indicesCount){
-                                                                        ReportingAndMessagingUtils.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
+                                                                        Messages.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
                                                                     }
                                                                 }
                                                             }else{
-                                                                ReportingAndMessagingUtils.nonArraySymbolReferencedAsSuch(s, new Point($ID.line, $ID.pos));
+                                                                Messages.nonArraySymbolReferencedAsSuch(s, new Point($ID.line, $ID.pos));
                                                             }
                                                         }
                                                     }
@@ -451,10 +556,10 @@ arraySubscript  returns [List<Integer> indices]
                                         Type type = $expr.expressionType;
                                         if(type!=null){
                                             if(!type.equals(Type.INTEGER)){
-                                                ReportingAndMessagingUtils.arrayIndexNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
+                                                Messages.arrayIndexNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
                                             }
                                         }else{
-                                            ReportingAndMessagingUtils.arrayIndexNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
+                                            Messages.arrayIndexNotIntegerError(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()));
                                         }
                                         $indices.add(new Integer(1));
                                     }

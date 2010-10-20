@@ -29,7 +29,7 @@
             </classpath>
         </java>
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
-            <arg value="${src.dir}/glossa/interpreter/grammars/GlossaFirstPassWalker.g"/>
+            <arg value="${src.dir}/glossa/interpreter/grammars/StaticTypeAnalyzer.g"/>
             <classpath>
                 <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
                 <pathelement path="${java.class.path}"/>

@@ -91,7 +91,7 @@ public class TypeUtils {
         return false;
     }
 
-    public static boolean checkTypesForComparisonExpression(Type type1, Type type2) {
+    public static boolean checkTypesForEqualityExpression(Type type1, Type type2) {
         if(type1==null || type2==null){return false;}
         if (type1.equals(type2)) {
             return true;

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-19 17:18:27
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-20 17:28:49
 
 /*
  *  The MIT License
@@ -191,7 +191,7 @@ public class GlossaParser extends Parser {
             public void displayRecognitionError(String[] tokenNames,
                 RecognitionException e) {
                 String msg = getErrorMessage(e, tokenNames);
-                ReportingAndMessagingUtils.parserError(new Point(e.line, e.charPositionInLine), msg);
+                Messages.parserError(new Point(e.line, e.charPositionInLine), msg);
             }
 
 
@@ -1139,7 +1139,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayDimension, ID
+                    // elements: ID, arrayDimension
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1685,7 +1685,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "assingmentStm"
-    // src/glossa/interpreter/grammars/Glossa.g:320:1: assingmentStm : varId= ID ASSIGN varValue= expr ( NEWLINE )+ ;
+    // src/glossa/interpreter/grammars/Glossa.g:320:1: assingmentStm : (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ );
     public final GlossaParser.assingmentStm_return assingmentStm() throws RecognitionException {
         GlossaParser.assingmentStm_return retval = new GlossaParser.assingmentStm_return();
         retval.start = input.LT(1);
@@ -1693,68 +1693,165 @@ public class GlossaParser extends Parser {
         CommonTree root_0 = null;
 
         Token varId=null;
+        Token arrId=null;
         Token ASSIGN42=null;
         Token NEWLINE43=null;
+        Token ASSIGN45=null;
+        Token NEWLINE46=null;
         GlossaParser.expr_return varValue = null;
+
+        GlossaParser.expr_return arrItemValue = null;
+
+        GlossaParser.arraySubscript_return arraySubscript44 = null;
 
 
         CommonTree varId_tree=null;
+        CommonTree arrId_tree=null;
         CommonTree ASSIGN42_tree=null;
         CommonTree NEWLINE43_tree=null;
+        CommonTree ASSIGN45_tree=null;
+        CommonTree NEWLINE46_tree=null;
 
         try {
-            // src/glossa/interpreter/grammars/Glossa.g:321:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ )
-            // src/glossa/interpreter/grammars/Glossa.g:321:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
-            {
-            root_0 = (CommonTree)adaptor.nil();
+            // src/glossa/interpreter/grammars/Glossa.g:321:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            varId=(Token)match(input,ID,FOLLOW_ID_in_assingmentStm423); 
-            varId_tree = (CommonTree)adaptor.create(varId);
-            adaptor.addChild(root_0, varId_tree);
+            if ( (LA22_0==ID) ) {
+                int LA22_1 = input.LA(2);
 
-            ASSIGN42=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_assingmentStm425); 
-            ASSIGN42_tree = (CommonTree)adaptor.create(ASSIGN42);
-            root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN42_tree, root_0);
-
-            pushFollow(FOLLOW_expr_in_assingmentStm430);
-            varValue=expr();
-
-            state._fsp--;
-
-            adaptor.addChild(root_0, varValue.getTree());
-            // src/glossa/interpreter/grammars/Glossa.g:321:35: ( NEWLINE )+
-            int cnt20=0;
-            loop20:
-            do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
-
-                if ( (LA20_0==NEWLINE) ) {
-                    alt20=1;
+                if ( (LA22_1==ASSIGN) ) {
+                    alt22=1;
                 }
-
-
-                switch (alt20) {
-            	case 1 :
-            	    // src/glossa/interpreter/grammars/Glossa.g:321:36: NEWLINE
-            	    {
-            	    NEWLINE43=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm433); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt20 >= 1 ) break loop20;
-                        EarlyExitException eee =
-                            new EarlyExitException(20, input);
-                        throw eee;
+                else if ( (LA22_1==LBRACKET) ) {
+                    alt22=2;
                 }
-                cnt20++;
-            } while (true);
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 22, 1, input);
 
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 22, 0, input);
+
+                throw nvae;
+            }
+            switch (alt22) {
+                case 1 :
+                    // src/glossa/interpreter/grammars/Glossa.g:321:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    varId=(Token)match(input,ID,FOLLOW_ID_in_assingmentStm423); 
+                    varId_tree = (CommonTree)adaptor.create(varId);
+                    adaptor.addChild(root_0, varId_tree);
+
+                    ASSIGN42=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_assingmentStm425); 
+                    ASSIGN42_tree = (CommonTree)adaptor.create(ASSIGN42);
+                    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN42_tree, root_0);
+
+                    pushFollow(FOLLOW_expr_in_assingmentStm430);
+                    varValue=expr();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, varValue.getTree());
+                    // src/glossa/interpreter/grammars/Glossa.g:321:35: ( NEWLINE )+
+                    int cnt20=0;
+                    loop20:
+                    do {
+                        int alt20=2;
+                        int LA20_0 = input.LA(1);
+
+                        if ( (LA20_0==NEWLINE) ) {
+                            alt20=1;
+                        }
+
+
+                        switch (alt20) {
+                    	case 1 :
+                    	    // src/glossa/interpreter/grammars/Glossa.g:321:36: NEWLINE
+                    	    {
+                    	    NEWLINE43=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm433); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt20 >= 1 ) break loop20;
+                                EarlyExitException eee =
+                                    new EarlyExitException(20, input);
+                                throw eee;
+                        }
+                        cnt20++;
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // src/glossa/interpreter/grammars/Glossa.g:322:17: arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    arrId=(Token)match(input,ID,FOLLOW_ID_in_assingmentStm456); 
+                    arrId_tree = (CommonTree)adaptor.create(arrId);
+                    adaptor.addChild(root_0, arrId_tree);
+
+                    pushFollow(FOLLOW_arraySubscript_in_assingmentStm458);
+                    arraySubscript44=arraySubscript();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, arraySubscript44.getTree());
+                    ASSIGN45=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_assingmentStm460); 
+                    ASSIGN45_tree = (CommonTree)adaptor.create(ASSIGN45);
+                    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN45_tree, root_0);
+
+                    pushFollow(FOLLOW_expr_in_assingmentStm465);
+                    arrItemValue=expr();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, arrItemValue.getTree());
+                    // src/glossa/interpreter/grammars/Glossa.g:322:67: ( NEWLINE )+
+                    int cnt21=0;
+                    loop21:
+                    do {
+                        int alt21=2;
+                        int LA21_0 = input.LA(1);
+
+                        if ( (LA21_0==NEWLINE) ) {
+                            alt21=1;
+                        }
+
+
+                        switch (alt21) {
+                    	case 1 :
+                    	    // src/glossa/interpreter/grammars/Glossa.g:322:68: NEWLINE
+                    	    {
+                    	    NEWLINE46=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm468); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt21 >= 1 ) break loop21;
+                                EarlyExitException eee =
+                                    new EarlyExitException(21, input);
+                                throw eee;
+                        }
+                        cnt21++;
+                    } while (true);
+
+
+                    }
+                    break;
 
             }
-
             retval.stop = input.LT(-1);
 
             retval.tree = (CommonTree)adaptor.rulePostProcessing(root_0);
@@ -1786,17 +1883,17 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token AND45=null;
-        Token OR47=null;
-        GlossaParser.eqExpr_return eqExpr44 = null;
+        Token AND48=null;
+        Token OR50=null;
+        GlossaParser.eqExpr_return eqExpr47 = null;
 
-        GlossaParser.eqExpr_return eqExpr46 = null;
+        GlossaParser.eqExpr_return eqExpr49 = null;
 
-        GlossaParser.eqExpr_return eqExpr48 = null;
+        GlossaParser.eqExpr_return eqExpr51 = null;
 
 
-        CommonTree AND45_tree=null;
-        CommonTree OR47_tree=null;
+        CommonTree AND48_tree=null;
+        CommonTree OR50_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:325:6: ( eqExpr ( AND eqExpr | OR eqExpr )* )
@@ -1804,62 +1901,62 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_eqExpr_in_expr463);
-            eqExpr44=eqExpr();
+            pushFollow(FOLLOW_eqExpr_in_expr489);
+            eqExpr47=eqExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, eqExpr44.getTree());
+            adaptor.addChild(root_0, eqExpr47.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:325:15: ( AND eqExpr | OR eqExpr )*
-            loop21:
+            loop23:
             do {
-                int alt21=3;
-                int LA21_0 = input.LA(1);
+                int alt23=3;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA21_0==AND) ) {
-                    alt21=1;
+                if ( (LA23_0==AND) ) {
+                    alt23=1;
                 }
-                else if ( (LA21_0==OR) ) {
-                    alt21=2;
+                else if ( (LA23_0==OR) ) {
+                    alt23=2;
                 }
 
 
-                switch (alt21) {
+                switch (alt23) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:325:16: AND eqExpr
             	    {
-            	    AND45=(Token)match(input,AND,FOLLOW_AND_in_expr466); 
-            	    AND45_tree = (CommonTree)adaptor.create(AND45);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(AND45_tree, root_0);
+            	    AND48=(Token)match(input,AND,FOLLOW_AND_in_expr492); 
+            	    AND48_tree = (CommonTree)adaptor.create(AND48);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(AND48_tree, root_0);
 
-            	    pushFollow(FOLLOW_eqExpr_in_expr469);
-            	    eqExpr46=eqExpr();
+            	    pushFollow(FOLLOW_eqExpr_in_expr495);
+            	    eqExpr49=eqExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, eqExpr46.getTree());
+            	    adaptor.addChild(root_0, eqExpr49.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // src/glossa/interpreter/grammars/Glossa.g:325:30: OR eqExpr
             	    {
-            	    OR47=(Token)match(input,OR,FOLLOW_OR_in_expr473); 
-            	    OR47_tree = (CommonTree)adaptor.create(OR47);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(OR47_tree, root_0);
+            	    OR50=(Token)match(input,OR,FOLLOW_OR_in_expr499); 
+            	    OR50_tree = (CommonTree)adaptor.create(OR50);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(OR50_tree, root_0);
 
-            	    pushFollow(FOLLOW_eqExpr_in_expr476);
-            	    eqExpr48=eqExpr();
+            	    pushFollow(FOLLOW_eqExpr_in_expr502);
+            	    eqExpr51=eqExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, eqExpr48.getTree());
+            	    adaptor.addChild(root_0, eqExpr51.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop23;
                 }
             } while (true);
 
@@ -1897,17 +1994,17 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token EQ50=null;
-        Token NEQ52=null;
-        GlossaParser.compExpr_return compExpr49 = null;
+        Token EQ53=null;
+        Token NEQ55=null;
+        GlossaParser.compExpr_return compExpr52 = null;
 
-        GlossaParser.compExpr_return compExpr51 = null;
+        GlossaParser.compExpr_return compExpr54 = null;
 
-        GlossaParser.compExpr_return compExpr53 = null;
+        GlossaParser.compExpr_return compExpr56 = null;
 
 
-        CommonTree EQ50_tree=null;
-        CommonTree NEQ52_tree=null;
+        CommonTree EQ53_tree=null;
+        CommonTree NEQ55_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:327:8: ( compExpr ( EQ compExpr | NEQ compExpr )* )
@@ -1915,62 +2012,62 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_compExpr_in_eqExpr486);
-            compExpr49=compExpr();
+            pushFollow(FOLLOW_compExpr_in_eqExpr512);
+            compExpr52=compExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, compExpr49.getTree());
+            adaptor.addChild(root_0, compExpr52.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:327:19: ( EQ compExpr | NEQ compExpr )*
-            loop22:
+            loop24:
             do {
-                int alt22=3;
-                int LA22_0 = input.LA(1);
+                int alt24=3;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA22_0==EQ) ) {
-                    alt22=1;
+                if ( (LA24_0==EQ) ) {
+                    alt24=1;
                 }
-                else if ( (LA22_0==NEQ) ) {
-                    alt22=2;
+                else if ( (LA24_0==NEQ) ) {
+                    alt24=2;
                 }
 
 
-                switch (alt22) {
+                switch (alt24) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:327:20: EQ compExpr
             	    {
-            	    EQ50=(Token)match(input,EQ,FOLLOW_EQ_in_eqExpr489); 
-            	    EQ50_tree = (CommonTree)adaptor.create(EQ50);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(EQ50_tree, root_0);
+            	    EQ53=(Token)match(input,EQ,FOLLOW_EQ_in_eqExpr515); 
+            	    EQ53_tree = (CommonTree)adaptor.create(EQ53);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(EQ53_tree, root_0);
 
-            	    pushFollow(FOLLOW_compExpr_in_eqExpr492);
-            	    compExpr51=compExpr();
+            	    pushFollow(FOLLOW_compExpr_in_eqExpr518);
+            	    compExpr54=compExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, compExpr51.getTree());
+            	    adaptor.addChild(root_0, compExpr54.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // src/glossa/interpreter/grammars/Glossa.g:327:35: NEQ compExpr
             	    {
-            	    NEQ52=(Token)match(input,NEQ,FOLLOW_NEQ_in_eqExpr496); 
-            	    NEQ52_tree = (CommonTree)adaptor.create(NEQ52);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(NEQ52_tree, root_0);
+            	    NEQ55=(Token)match(input,NEQ,FOLLOW_NEQ_in_eqExpr522); 
+            	    NEQ55_tree = (CommonTree)adaptor.create(NEQ55);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(NEQ55_tree, root_0);
 
-            	    pushFollow(FOLLOW_compExpr_in_eqExpr499);
-            	    compExpr53=compExpr();
+            	    pushFollow(FOLLOW_compExpr_in_eqExpr525);
+            	    compExpr56=compExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, compExpr53.getTree());
+            	    adaptor.addChild(root_0, compExpr56.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop24;
                 }
             } while (true);
 
@@ -2008,25 +2105,25 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token LT55=null;
-        Token LE57=null;
-        Token GT59=null;
-        Token GE61=null;
-        GlossaParser.addExpr_return addExpr54 = null;
+        Token LT58=null;
+        Token LE60=null;
+        Token GT62=null;
+        Token GE64=null;
+        GlossaParser.addExpr_return addExpr57 = null;
 
-        GlossaParser.addExpr_return addExpr56 = null;
+        GlossaParser.addExpr_return addExpr59 = null;
 
-        GlossaParser.addExpr_return addExpr58 = null;
+        GlossaParser.addExpr_return addExpr61 = null;
 
-        GlossaParser.addExpr_return addExpr60 = null;
+        GlossaParser.addExpr_return addExpr63 = null;
 
-        GlossaParser.addExpr_return addExpr62 = null;
+        GlossaParser.addExpr_return addExpr65 = null;
 
 
-        CommonTree LT55_tree=null;
-        CommonTree LE57_tree=null;
-        CommonTree GT59_tree=null;
-        CommonTree GE61_tree=null;
+        CommonTree LT58_tree=null;
+        CommonTree LE60_tree=null;
+        CommonTree GT62_tree=null;
+        CommonTree GE64_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:329:9: ( addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* )
@@ -2034,108 +2131,108 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_addExpr_in_compExpr510);
-            addExpr54=addExpr();
+            pushFollow(FOLLOW_addExpr_in_compExpr536);
+            addExpr57=addExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, addExpr54.getTree());
+            adaptor.addChild(root_0, addExpr57.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:329:19: ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
-            loop23:
+            loop25:
             do {
-                int alt23=5;
+                int alt25=5;
                 switch ( input.LA(1) ) {
                 case LT:
                     {
-                    alt23=1;
+                    alt25=1;
                     }
                     break;
                 case LE:
                     {
-                    alt23=2;
+                    alt25=2;
                     }
                     break;
                 case GT:
                     {
-                    alt23=3;
+                    alt25=3;
                     }
                     break;
                 case GE:
                     {
-                    alt23=4;
+                    alt25=4;
                     }
                     break;
 
                 }
 
-                switch (alt23) {
+                switch (alt25) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:329:20: LT addExpr
             	    {
-            	    LT55=(Token)match(input,LT,FOLLOW_LT_in_compExpr513); 
-            	    LT55_tree = (CommonTree)adaptor.create(LT55);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(LT55_tree, root_0);
+            	    LT58=(Token)match(input,LT,FOLLOW_LT_in_compExpr539); 
+            	    LT58_tree = (CommonTree)adaptor.create(LT58);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(LT58_tree, root_0);
 
-            	    pushFollow(FOLLOW_addExpr_in_compExpr516);
-            	    addExpr56=addExpr();
+            	    pushFollow(FOLLOW_addExpr_in_compExpr542);
+            	    addExpr59=addExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, addExpr56.getTree());
+            	    adaptor.addChild(root_0, addExpr59.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // src/glossa/interpreter/grammars/Glossa.g:329:34: LE addExpr
             	    {
-            	    LE57=(Token)match(input,LE,FOLLOW_LE_in_compExpr520); 
-            	    LE57_tree = (CommonTree)adaptor.create(LE57);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(LE57_tree, root_0);
+            	    LE60=(Token)match(input,LE,FOLLOW_LE_in_compExpr546); 
+            	    LE60_tree = (CommonTree)adaptor.create(LE60);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(LE60_tree, root_0);
 
-            	    pushFollow(FOLLOW_addExpr_in_compExpr523);
-            	    addExpr58=addExpr();
+            	    pushFollow(FOLLOW_addExpr_in_compExpr549);
+            	    addExpr61=addExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, addExpr58.getTree());
+            	    adaptor.addChild(root_0, addExpr61.getTree());
 
             	    }
             	    break;
             	case 3 :
             	    // src/glossa/interpreter/grammars/Glossa.g:329:48: GT addExpr
             	    {
-            	    GT59=(Token)match(input,GT,FOLLOW_GT_in_compExpr527); 
-            	    GT59_tree = (CommonTree)adaptor.create(GT59);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(GT59_tree, root_0);
+            	    GT62=(Token)match(input,GT,FOLLOW_GT_in_compExpr553); 
+            	    GT62_tree = (CommonTree)adaptor.create(GT62);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(GT62_tree, root_0);
 
-            	    pushFollow(FOLLOW_addExpr_in_compExpr530);
-            	    addExpr60=addExpr();
+            	    pushFollow(FOLLOW_addExpr_in_compExpr556);
+            	    addExpr63=addExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, addExpr60.getTree());
+            	    adaptor.addChild(root_0, addExpr63.getTree());
 
             	    }
             	    break;
             	case 4 :
             	    // src/glossa/interpreter/grammars/Glossa.g:329:62: GE addExpr
             	    {
-            	    GE61=(Token)match(input,GE,FOLLOW_GE_in_compExpr534); 
-            	    GE61_tree = (CommonTree)adaptor.create(GE61);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(GE61_tree, root_0);
+            	    GE64=(Token)match(input,GE,FOLLOW_GE_in_compExpr560); 
+            	    GE64_tree = (CommonTree)adaptor.create(GE64);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(GE64_tree, root_0);
 
-            	    pushFollow(FOLLOW_addExpr_in_compExpr537);
-            	    addExpr62=addExpr();
+            	    pushFollow(FOLLOW_addExpr_in_compExpr563);
+            	    addExpr65=addExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, addExpr62.getTree());
+            	    adaptor.addChild(root_0, addExpr65.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop25;
                 }
             } while (true);
 
@@ -2173,17 +2270,17 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token PLUS64=null;
-        Token MINUS66=null;
-        GlossaParser.multExpr_return multExpr63 = null;
+        Token PLUS67=null;
+        Token MINUS69=null;
+        GlossaParser.multExpr_return multExpr66 = null;
 
-        GlossaParser.multExpr_return multExpr65 = null;
+        GlossaParser.multExpr_return multExpr68 = null;
 
-        GlossaParser.multExpr_return multExpr67 = null;
+        GlossaParser.multExpr_return multExpr70 = null;
 
 
-        CommonTree PLUS64_tree=null;
-        CommonTree MINUS66_tree=null;
+        CommonTree PLUS67_tree=null;
+        CommonTree MINUS69_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:331:9: ( multExpr ( PLUS multExpr | MINUS multExpr )* )
@@ -2191,62 +2288,62 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_multExpr_in_addExpr550);
-            multExpr63=multExpr();
+            pushFollow(FOLLOW_multExpr_in_addExpr576);
+            multExpr66=multExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, multExpr63.getTree());
+            adaptor.addChild(root_0, multExpr66.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:331:20: ( PLUS multExpr | MINUS multExpr )*
-            loop24:
+            loop26:
             do {
-                int alt24=3;
-                int LA24_0 = input.LA(1);
+                int alt26=3;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA24_0==PLUS) ) {
-                    alt24=1;
+                if ( (LA26_0==PLUS) ) {
+                    alt26=1;
                 }
-                else if ( (LA24_0==MINUS) ) {
-                    alt24=2;
+                else if ( (LA26_0==MINUS) ) {
+                    alt26=2;
                 }
 
 
-                switch (alt24) {
+                switch (alt26) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:331:21: PLUS multExpr
             	    {
-            	    PLUS64=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr553); 
-            	    PLUS64_tree = (CommonTree)adaptor.create(PLUS64);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(PLUS64_tree, root_0);
+            	    PLUS67=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr579); 
+            	    PLUS67_tree = (CommonTree)adaptor.create(PLUS67);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(PLUS67_tree, root_0);
 
-            	    pushFollow(FOLLOW_multExpr_in_addExpr556);
-            	    multExpr65=multExpr();
+            	    pushFollow(FOLLOW_multExpr_in_addExpr582);
+            	    multExpr68=multExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, multExpr65.getTree());
+            	    adaptor.addChild(root_0, multExpr68.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // src/glossa/interpreter/grammars/Glossa.g:331:38: MINUS multExpr
             	    {
-            	    MINUS66=(Token)match(input,MINUS,FOLLOW_MINUS_in_addExpr560); 
-            	    MINUS66_tree = (CommonTree)adaptor.create(MINUS66);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(MINUS66_tree, root_0);
+            	    MINUS69=(Token)match(input,MINUS,FOLLOW_MINUS_in_addExpr586); 
+            	    MINUS69_tree = (CommonTree)adaptor.create(MINUS69);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(MINUS69_tree, root_0);
 
-            	    pushFollow(FOLLOW_multExpr_in_addExpr563);
-            	    multExpr67=multExpr();
+            	    pushFollow(FOLLOW_multExpr_in_addExpr589);
+            	    multExpr70=multExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, multExpr67.getTree());
+            	    adaptor.addChild(root_0, multExpr70.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop24;
+            	    break loop26;
                 }
             } while (true);
 
@@ -2284,25 +2381,25 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token TIMES69=null;
-        Token DIA71=null;
-        Token DIV73=null;
-        Token MOD75=null;
-        GlossaParser.powExpr_return powExpr68 = null;
+        Token TIMES72=null;
+        Token DIA74=null;
+        Token DIV76=null;
+        Token MOD78=null;
+        GlossaParser.powExpr_return powExpr71 = null;
 
-        GlossaParser.powExpr_return powExpr70 = null;
+        GlossaParser.powExpr_return powExpr73 = null;
 
-        GlossaParser.powExpr_return powExpr72 = null;
+        GlossaParser.powExpr_return powExpr75 = null;
 
-        GlossaParser.powExpr_return powExpr74 = null;
+        GlossaParser.powExpr_return powExpr77 = null;
 
-        GlossaParser.powExpr_return powExpr76 = null;
+        GlossaParser.powExpr_return powExpr79 = null;
 
 
-        CommonTree TIMES69_tree=null;
-        CommonTree DIA71_tree=null;
-        CommonTree DIV73_tree=null;
-        CommonTree MOD75_tree=null;
+        CommonTree TIMES72_tree=null;
+        CommonTree DIA74_tree=null;
+        CommonTree DIV76_tree=null;
+        CommonTree MOD78_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:333:10: ( powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* )
@@ -2310,108 +2407,108 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_powExpr_in_multExpr575);
-            powExpr68=powExpr();
+            pushFollow(FOLLOW_powExpr_in_multExpr601);
+            powExpr71=powExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, powExpr68.getTree());
+            adaptor.addChild(root_0, powExpr71.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:333:20: ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
-            loop25:
+            loop27:
             do {
-                int alt25=5;
+                int alt27=5;
                 switch ( input.LA(1) ) {
                 case TIMES:
                     {
-                    alt25=1;
+                    alt27=1;
                     }
                     break;
                 case DIA:
                     {
-                    alt25=2;
+                    alt27=2;
                     }
                     break;
                 case DIV:
                     {
-                    alt25=3;
+                    alt27=3;
                     }
                     break;
                 case MOD:
                     {
-                    alt25=4;
+                    alt27=4;
                     }
                     break;
 
                 }
 
-                switch (alt25) {
+                switch (alt27) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:333:21: TIMES powExpr
             	    {
-            	    TIMES69=(Token)match(input,TIMES,FOLLOW_TIMES_in_multExpr578); 
-            	    TIMES69_tree = (CommonTree)adaptor.create(TIMES69);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(TIMES69_tree, root_0);
+            	    TIMES72=(Token)match(input,TIMES,FOLLOW_TIMES_in_multExpr604); 
+            	    TIMES72_tree = (CommonTree)adaptor.create(TIMES72);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(TIMES72_tree, root_0);
 
-            	    pushFollow(FOLLOW_powExpr_in_multExpr581);
-            	    powExpr70=powExpr();
+            	    pushFollow(FOLLOW_powExpr_in_multExpr607);
+            	    powExpr73=powExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, powExpr70.getTree());
+            	    adaptor.addChild(root_0, powExpr73.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // src/glossa/interpreter/grammars/Glossa.g:333:38: DIA powExpr
             	    {
-            	    DIA71=(Token)match(input,DIA,FOLLOW_DIA_in_multExpr585); 
-            	    DIA71_tree = (CommonTree)adaptor.create(DIA71);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(DIA71_tree, root_0);
+            	    DIA74=(Token)match(input,DIA,FOLLOW_DIA_in_multExpr611); 
+            	    DIA74_tree = (CommonTree)adaptor.create(DIA74);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(DIA74_tree, root_0);
 
-            	    pushFollow(FOLLOW_powExpr_in_multExpr588);
-            	    powExpr72=powExpr();
+            	    pushFollow(FOLLOW_powExpr_in_multExpr614);
+            	    powExpr75=powExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, powExpr72.getTree());
+            	    adaptor.addChild(root_0, powExpr75.getTree());
 
             	    }
             	    break;
             	case 3 :
             	    // src/glossa/interpreter/grammars/Glossa.g:333:53: DIV powExpr
             	    {
-            	    DIV73=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr592); 
-            	    DIV73_tree = (CommonTree)adaptor.create(DIV73);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(DIV73_tree, root_0);
+            	    DIV76=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr618); 
+            	    DIV76_tree = (CommonTree)adaptor.create(DIV76);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(DIV76_tree, root_0);
 
-            	    pushFollow(FOLLOW_powExpr_in_multExpr595);
-            	    powExpr74=powExpr();
+            	    pushFollow(FOLLOW_powExpr_in_multExpr621);
+            	    powExpr77=powExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, powExpr74.getTree());
+            	    adaptor.addChild(root_0, powExpr77.getTree());
 
             	    }
             	    break;
             	case 4 :
             	    // src/glossa/interpreter/grammars/Glossa.g:333:68: MOD powExpr
             	    {
-            	    MOD75=(Token)match(input,MOD,FOLLOW_MOD_in_multExpr599); 
-            	    MOD75_tree = (CommonTree)adaptor.create(MOD75);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(MOD75_tree, root_0);
+            	    MOD78=(Token)match(input,MOD,FOLLOW_MOD_in_multExpr625); 
+            	    MOD78_tree = (CommonTree)adaptor.create(MOD78);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(MOD78_tree, root_0);
 
-            	    pushFollow(FOLLOW_powExpr_in_multExpr602);
-            	    powExpr76=powExpr();
+            	    pushFollow(FOLLOW_powExpr_in_multExpr628);
+            	    powExpr79=powExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, powExpr76.getTree());
+            	    adaptor.addChild(root_0, powExpr79.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop27;
                 }
             } while (true);
 
@@ -2449,13 +2546,13 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token POW78=null;
-        GlossaParser.unaryExpr_return unaryExpr77 = null;
+        Token POW81=null;
+        GlossaParser.unaryExpr_return unaryExpr80 = null;
 
-        GlossaParser.unaryExpr_return unaryExpr79 = null;
+        GlossaParser.unaryExpr_return unaryExpr82 = null;
 
 
-        CommonTree POW78_tree=null;
+        CommonTree POW81_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:335:9: ( unaryExpr ( POW unaryExpr )* )
@@ -2463,43 +2560,43 @@ public class GlossaParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_unaryExpr_in_powExpr614);
-            unaryExpr77=unaryExpr();
+            pushFollow(FOLLOW_unaryExpr_in_powExpr640);
+            unaryExpr80=unaryExpr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, unaryExpr77.getTree());
+            adaptor.addChild(root_0, unaryExpr80.getTree());
             // src/glossa/interpreter/grammars/Glossa.g:335:21: ( POW unaryExpr )*
-            loop26:
+            loop28:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA26_0==POW) ) {
-                    alt26=1;
+                if ( (LA28_0==POW) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt28) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:335:22: POW unaryExpr
             	    {
-            	    POW78=(Token)match(input,POW,FOLLOW_POW_in_powExpr617); 
-            	    POW78_tree = (CommonTree)adaptor.create(POW78);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(POW78_tree, root_0);
+            	    POW81=(Token)match(input,POW,FOLLOW_POW_in_powExpr643); 
+            	    POW81_tree = (CommonTree)adaptor.create(POW81);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(POW81_tree, root_0);
 
-            	    pushFollow(FOLLOW_unaryExpr_in_powExpr620);
-            	    unaryExpr79=unaryExpr();
+            	    pushFollow(FOLLOW_unaryExpr_in_powExpr646);
+            	    unaryExpr82=unaryExpr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, unaryExpr79.getTree());
+            	    adaptor.addChild(root_0, unaryExpr82.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop28;
                 }
             } while (true);
 
@@ -2537,41 +2634,41 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token PLUS80=null;
-        Token MINUS82=null;
-        Token NOT84=null;
-        GlossaParser.atom_return atom81 = null;
-
-        GlossaParser.atom_return atom83 = null;
-
-        GlossaParser.atom_return atom85 = null;
+        Token PLUS83=null;
+        Token MINUS85=null;
+        Token NOT87=null;
+        GlossaParser.atom_return atom84 = null;
 
         GlossaParser.atom_return atom86 = null;
 
+        GlossaParser.atom_return atom88 = null;
 
-        CommonTree PLUS80_tree=null;
-        CommonTree MINUS82_tree=null;
-        CommonTree NOT84_tree=null;
+        GlossaParser.atom_return atom89 = null;
+
+
+        CommonTree PLUS83_tree=null;
+        CommonTree MINUS85_tree=null;
+        CommonTree NOT87_tree=null;
         RewriteRuleTokenStream stream_NOT=new RewriteRuleTokenStream(adaptor,"token NOT");
         RewriteRuleTokenStream stream_MINUS=new RewriteRuleTokenStream(adaptor,"token MINUS");
         RewriteRuleSubtreeStream stream_atom=new RewriteRuleSubtreeStream(adaptor,"rule atom");
         try {
             // src/glossa/interpreter/grammars/Glossa.g:338:2: ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom )
-            int alt27=4;
+            int alt29=4;
             switch ( input.LA(1) ) {
             case PLUS:
                 {
-                alt27=1;
+                alt29=1;
                 }
                 break;
             case MINUS:
                 {
-                alt27=2;
+                alt29=2;
                 }
                 break;
             case NOT:
                 {
-                alt27=3;
+                alt29=3;
                 }
                 break;
             case ID:
@@ -2582,44 +2679,44 @@ public class GlossaParser extends Parser {
             case CONST_REAL:
             case LPAR:
                 {
-                alt27=4;
+                alt29=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt27) {
+            switch (alt29) {
                 case 1 :
                     // src/glossa/interpreter/grammars/Glossa.g:338:4: PLUS atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    PLUS80=(Token)match(input,PLUS,FOLLOW_PLUS_in_unaryExpr631); 
-                    pushFollow(FOLLOW_atom_in_unaryExpr634);
-                    atom81=atom();
+                    PLUS83=(Token)match(input,PLUS,FOLLOW_PLUS_in_unaryExpr657); 
+                    pushFollow(FOLLOW_atom_in_unaryExpr660);
+                    atom84=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom81.getTree());
+                    adaptor.addChild(root_0, atom84.getTree());
 
                     }
                     break;
                 case 2 :
                     // src/glossa/interpreter/grammars/Glossa.g:339:4: MINUS atom
                     {
-                    MINUS82=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpr639);  
-                    stream_MINUS.add(MINUS82);
+                    MINUS85=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpr665);  
+                    stream_MINUS.add(MINUS85);
 
-                    pushFollow(FOLLOW_atom_in_unaryExpr641);
-                    atom83=atom();
+                    pushFollow(FOLLOW_atom_in_unaryExpr667);
+                    atom86=atom();
 
                     state._fsp--;
 
-                    stream_atom.add(atom83.getTree());
+                    stream_atom.add(atom86.getTree());
 
 
                     // AST REWRITE
@@ -2653,15 +2750,15 @@ public class GlossaParser extends Parser {
                 case 3 :
                     // src/glossa/interpreter/grammars/Glossa.g:340:4: NOT atom
                     {
-                    NOT84=(Token)match(input,NOT,FOLLOW_NOT_in_unaryExpr654);  
-                    stream_NOT.add(NOT84);
+                    NOT87=(Token)match(input,NOT,FOLLOW_NOT_in_unaryExpr680);  
+                    stream_NOT.add(NOT87);
 
-                    pushFollow(FOLLOW_atom_in_unaryExpr656);
-                    atom85=atom();
+                    pushFollow(FOLLOW_atom_in_unaryExpr682);
+                    atom88=atom();
 
                     state._fsp--;
 
-                    stream_atom.add(atom85.getTree());
+                    stream_atom.add(atom88.getTree());
 
 
                     // AST REWRITE
@@ -2697,12 +2794,12 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_atom_in_unaryExpr669);
-                    atom86=atom();
+                    pushFollow(FOLLOW_atom_in_unaryExpr695);
+                    atom89=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom86.getTree());
+                    adaptor.addChild(root_0, atom89.getTree());
 
                     }
                     break;
@@ -2739,41 +2836,41 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token CONST_TRUE87=null;
-        Token CONST_FALSE88=null;
-        Token CONST_STR89=null;
-        Token CONST_INT90=null;
-        Token CONST_REAL91=null;
-        Token ID93=null;
-        Token char_literal94=null;
-        Token char_literal96=null;
-        GlossaParser.arrayItem_return arrayItem92 = null;
+        Token CONST_TRUE90=null;
+        Token CONST_FALSE91=null;
+        Token CONST_STR92=null;
+        Token CONST_INT93=null;
+        Token CONST_REAL94=null;
+        Token ID96=null;
+        Token char_literal97=null;
+        Token char_literal99=null;
+        GlossaParser.arrayItem_return arrayItem95 = null;
 
-        GlossaParser.expr_return expr95 = null;
+        GlossaParser.expr_return expr98 = null;
 
 
-        CommonTree CONST_TRUE87_tree=null;
-        CommonTree CONST_FALSE88_tree=null;
-        CommonTree CONST_STR89_tree=null;
-        CommonTree CONST_INT90_tree=null;
-        CommonTree CONST_REAL91_tree=null;
-        CommonTree ID93_tree=null;
-        CommonTree char_literal94_tree=null;
-        CommonTree char_literal96_tree=null;
+        CommonTree CONST_TRUE90_tree=null;
+        CommonTree CONST_FALSE91_tree=null;
+        CommonTree CONST_STR92_tree=null;
+        CommonTree CONST_INT93_tree=null;
+        CommonTree CONST_REAL94_tree=null;
+        CommonTree ID96_tree=null;
+        CommonTree char_literal97_tree=null;
+        CommonTree char_literal99_tree=null;
 
         try {
             // src/glossa/interpreter/grammars/Glossa.g:344:6: ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' )
-            int alt28=8;
-            alt28 = dfa28.predict(input);
-            switch (alt28) {
+            int alt30=8;
+            alt30 = dfa30.predict(input);
+            switch (alt30) {
                 case 1 :
                     // src/glossa/interpreter/grammars/Glossa.g:344:8: CONST_TRUE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CONST_TRUE87=(Token)match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_atom678); 
-                    CONST_TRUE87_tree = (CommonTree)adaptor.create(CONST_TRUE87);
-                    adaptor.addChild(root_0, CONST_TRUE87_tree);
+                    CONST_TRUE90=(Token)match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_atom704); 
+                    CONST_TRUE90_tree = (CommonTree)adaptor.create(CONST_TRUE90);
+                    adaptor.addChild(root_0, CONST_TRUE90_tree);
 
 
                     }
@@ -2783,9 +2880,9 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CONST_FALSE88=(Token)match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_atom683); 
-                    CONST_FALSE88_tree = (CommonTree)adaptor.create(CONST_FALSE88);
-                    adaptor.addChild(root_0, CONST_FALSE88_tree);
+                    CONST_FALSE91=(Token)match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_atom709); 
+                    CONST_FALSE91_tree = (CommonTree)adaptor.create(CONST_FALSE91);
+                    adaptor.addChild(root_0, CONST_FALSE91_tree);
 
 
                     }
@@ -2795,9 +2892,9 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CONST_STR89=(Token)match(input,CONST_STR,FOLLOW_CONST_STR_in_atom688); 
-                    CONST_STR89_tree = (CommonTree)adaptor.create(CONST_STR89);
-                    adaptor.addChild(root_0, CONST_STR89_tree);
+                    CONST_STR92=(Token)match(input,CONST_STR,FOLLOW_CONST_STR_in_atom714); 
+                    CONST_STR92_tree = (CommonTree)adaptor.create(CONST_STR92);
+                    adaptor.addChild(root_0, CONST_STR92_tree);
 
 
                     }
@@ -2807,9 +2904,9 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CONST_INT90=(Token)match(input,CONST_INT,FOLLOW_CONST_INT_in_atom693); 
-                    CONST_INT90_tree = (CommonTree)adaptor.create(CONST_INT90);
-                    adaptor.addChild(root_0, CONST_INT90_tree);
+                    CONST_INT93=(Token)match(input,CONST_INT,FOLLOW_CONST_INT_in_atom719); 
+                    CONST_INT93_tree = (CommonTree)adaptor.create(CONST_INT93);
+                    adaptor.addChild(root_0, CONST_INT93_tree);
 
 
                     }
@@ -2819,9 +2916,9 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CONST_REAL91=(Token)match(input,CONST_REAL,FOLLOW_CONST_REAL_in_atom698); 
-                    CONST_REAL91_tree = (CommonTree)adaptor.create(CONST_REAL91);
-                    adaptor.addChild(root_0, CONST_REAL91_tree);
+                    CONST_REAL94=(Token)match(input,CONST_REAL,FOLLOW_CONST_REAL_in_atom724); 
+                    CONST_REAL94_tree = (CommonTree)adaptor.create(CONST_REAL94);
+                    adaptor.addChild(root_0, CONST_REAL94_tree);
 
 
                     }
@@ -2831,12 +2928,12 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_arrayItem_in_atom703);
-                    arrayItem92=arrayItem();
+                    pushFollow(FOLLOW_arrayItem_in_atom729);
+                    arrayItem95=arrayItem();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, arrayItem92.getTree());
+                    adaptor.addChild(root_0, arrayItem95.getTree());
 
                     }
                     break;
@@ -2845,9 +2942,9 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    ID93=(Token)match(input,ID,FOLLOW_ID_in_atom708); 
-                    ID93_tree = (CommonTree)adaptor.create(ID93);
-                    adaptor.addChild(root_0, ID93_tree);
+                    ID96=(Token)match(input,ID,FOLLOW_ID_in_atom734); 
+                    ID96_tree = (CommonTree)adaptor.create(ID96);
+                    adaptor.addChild(root_0, ID96_tree);
 
 
                     }
@@ -2857,14 +2954,14 @@ public class GlossaParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal94=(Token)match(input,LPAR,FOLLOW_LPAR_in_atom713); 
-                    pushFollow(FOLLOW_expr_in_atom716);
-                    expr95=expr();
+                    char_literal97=(Token)match(input,LPAR,FOLLOW_LPAR_in_atom739); 
+                    pushFollow(FOLLOW_expr_in_atom742);
+                    expr98=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr95.getTree());
-                    char_literal96=(Token)match(input,RPAR,FOLLOW_RPAR_in_atom718); 
+                    adaptor.addChild(root_0, expr98.getTree());
+                    char_literal99=(Token)match(input,RPAR,FOLLOW_RPAR_in_atom744); 
 
                     }
                     break;
@@ -2901,26 +2998,26 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token ID97=null;
-        GlossaParser.arraySubscript_return arraySubscript98 = null;
+        Token ID100=null;
+        GlossaParser.arraySubscript_return arraySubscript101 = null;
 
 
-        CommonTree ID97_tree=null;
+        CommonTree ID100_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_arraySubscript=new RewriteRuleSubtreeStream(adaptor,"rule arraySubscript");
         try {
             // src/glossa/interpreter/grammars/Glossa.g:355:2: ( ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) )
             // src/glossa/interpreter/grammars/Glossa.g:355:4: ID arraySubscript
             {
-            ID97=(Token)match(input,ID,FOLLOW_ID_in_arrayItem731);  
-            stream_ID.add(ID97);
+            ID100=(Token)match(input,ID,FOLLOW_ID_in_arrayItem757);  
+            stream_ID.add(ID100);
 
-            pushFollow(FOLLOW_arraySubscript_in_arrayItem733);
-            arraySubscript98=arraySubscript();
+            pushFollow(FOLLOW_arraySubscript_in_arrayItem759);
+            arraySubscript101=arraySubscript();
 
             state._fsp--;
 
-            stream_arraySubscript.add(arraySubscript98.getTree());
+            stream_arraySubscript.add(arraySubscript101.getTree());
 
 
             // AST REWRITE
@@ -2983,13 +3080,13 @@ public class GlossaParser extends Parser {
 
         CommonTree root_0 = null;
 
-        Token LBRACKET99=null;
-        Token RBRACKET101=null;
-        GlossaParser.expr_return expr100 = null;
+        Token LBRACKET102=null;
+        Token RBRACKET104=null;
+        GlossaParser.expr_return expr103 = null;
 
 
-        CommonTree LBRACKET99_tree=null;
-        CommonTree RBRACKET101_tree=null;
+        CommonTree LBRACKET102_tree=null;
+        CommonTree RBRACKET104_tree=null;
         RewriteRuleTokenStream stream_LBRACKET=new RewriteRuleTokenStream(adaptor,"token LBRACKET");
         RewriteRuleTokenStream stream_RBRACKET=new RewriteRuleTokenStream(adaptor,"token RBRACKET");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
@@ -2998,44 +3095,44 @@ public class GlossaParser extends Parser {
             // src/glossa/interpreter/grammars/Glossa.g:358:4: ( LBRACKET expr RBRACKET )+
             {
             // src/glossa/interpreter/grammars/Glossa.g:358:4: ( LBRACKET expr RBRACKET )+
-            int cnt29=0;
-            loop29:
+            int cnt31=0;
+            loop31:
             do {
-                int alt29=2;
-                int LA29_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA29_0==LBRACKET) ) {
-                    alt29=1;
+                if ( (LA31_0==LBRACKET) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt29) {
+                switch (alt31) {
             	case 1 :
             	    // src/glossa/interpreter/grammars/Glossa.g:358:5: LBRACKET expr RBRACKET
             	    {
-            	    LBRACKET99=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arraySubscript754);  
-            	    stream_LBRACKET.add(LBRACKET99);
+            	    LBRACKET102=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arraySubscript780);  
+            	    stream_LBRACKET.add(LBRACKET102);
 
-            	    pushFollow(FOLLOW_expr_in_arraySubscript756);
-            	    expr100=expr();
+            	    pushFollow(FOLLOW_expr_in_arraySubscript782);
+            	    expr103=expr();
 
             	    state._fsp--;
 
-            	    stream_expr.add(expr100.getTree());
-            	    RBRACKET101=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_arraySubscript758);  
-            	    stream_RBRACKET.add(RBRACKET101);
+            	    stream_expr.add(expr103.getTree());
+            	    RBRACKET104=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_arraySubscript784);  
+            	    stream_RBRACKET.add(RBRACKET104);
 
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt29 >= 1 ) break loop29;
+            	    if ( cnt31 >= 1 ) break loop31;
                         EarlyExitException eee =
-                            new EarlyExitException(29, input);
+                            new EarlyExitException(31, input);
                         throw eee;
                 }
-                cnt29++;
+                cnt31++;
             } while (true);
 
 
@@ -3096,61 +3193,61 @@ public class GlossaParser extends Parser {
     // Delegated rules
 
 
-    protected DFA28 dfa28 = new DFA28(this);
-    static final String DFA28_eotS =
+    protected DFA30 dfa30 = new DFA30(this);
+    static final String DFA30_eotS =
         "\12\uffff";
-    static final String DFA28_eofS =
+    static final String DFA30_eofS =
         "\12\uffff";
-    static final String DFA28_minS =
+    static final String DFA30_minS =
         "\1\14\5\uffff\1\15\3\uffff";
-    static final String DFA28_maxS =
+    static final String DFA30_maxS =
         "\1\62\5\uffff\1\63\3\uffff";
-    static final String DFA28_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\10\1\6\1\7";
-    static final String DFA28_specialS =
+    static final String DFA30_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\10\1\7\1\6";
+    static final String DFA30_specialS =
         "\12\uffff}>";
-    static final String[] DFA28_transitionS = {
+    static final String[] DFA30_transitionS = {
             "\1\6\37\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\7",
             "",
             "",
             "",
             "",
             "",
-            "\1\11\3\uffff\1\11\2\uffff\1\11\1\10\1\11\6\uffff\16\11\10"+
-            "\uffff\1\11",
+            "\1\10\3\uffff\1\10\2\uffff\1\10\1\11\1\10\6\uffff\16\10\10"+
+            "\uffff\1\10",
             "",
             "",
             ""
     };
 
-    static final short[] DFA28_eot = DFA.unpackEncodedString(DFA28_eotS);
-    static final short[] DFA28_eof = DFA.unpackEncodedString(DFA28_eofS);
-    static final char[] DFA28_min = DFA.unpackEncodedStringToUnsignedChars(DFA28_minS);
-    static final char[] DFA28_max = DFA.unpackEncodedStringToUnsignedChars(DFA28_maxS);
-    static final short[] DFA28_accept = DFA.unpackEncodedString(DFA28_acceptS);
-    static final short[] DFA28_special = DFA.unpackEncodedString(DFA28_specialS);
-    static final short[][] DFA28_transition;
+    static final short[] DFA30_eot = DFA.unpackEncodedString(DFA30_eotS);
+    static final short[] DFA30_eof = DFA.unpackEncodedString(DFA30_eofS);
+    static final char[] DFA30_min = DFA.unpackEncodedStringToUnsignedChars(DFA30_minS);
+    static final char[] DFA30_max = DFA.unpackEncodedStringToUnsignedChars(DFA30_maxS);
+    static final short[] DFA30_accept = DFA.unpackEncodedString(DFA30_acceptS);
+    static final short[] DFA30_special = DFA.unpackEncodedString(DFA30_specialS);
+    static final short[][] DFA30_transition;
 
     static {
-        int numStates = DFA28_transitionS.length;
-        DFA28_transition = new short[numStates][];
+        int numStates = DFA30_transitionS.length;
+        DFA30_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA28_transition[i] = DFA.unpackEncodedString(DFA28_transitionS[i]);
+            DFA30_transition[i] = DFA.unpackEncodedString(DFA30_transitionS[i]);
         }
     }
 
-    class DFA28 extends DFA {
+    class DFA30 extends DFA {
 
-        public DFA28(BaseRecognizer recognizer) {
+        public DFA30(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 28;
-            this.eot = DFA28_eot;
-            this.eof = DFA28_eof;
-            this.min = DFA28_min;
-            this.max = DFA28_max;
-            this.accept = DFA28_accept;
-            this.special = DFA28_special;
-            this.transition = DFA28_transition;
+            this.decisionNumber = 30;
+            this.eot = DFA30_eot;
+            this.eof = DFA30_eof;
+            this.min = DFA30_min;
+            this.max = DFA30_max;
+            this.accept = DFA30_accept;
+            this.special = DFA30_special;
+            this.transition = DFA30_transition;
         }
         public String getDescription() {
             return "344:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' );";
@@ -3206,63 +3303,68 @@ public class GlossaParser extends Parser {
     public static final BitSet FOLLOW_ASSIGN_in_assingmentStm425 = new BitSet(new long[]{0x0005F83000001000L});
     public static final BitSet FOLLOW_expr_in_assingmentStm430 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_NEWLINE_in_assingmentStm433 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_eqExpr_in_expr463 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_AND_in_expr466 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_eqExpr_in_expr469 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_OR_in_expr473 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_eqExpr_in_expr476 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_compExpr_in_eqExpr486 = new BitSet(new long[]{0x0000000080020002L});
-    public static final BitSet FOLLOW_EQ_in_eqExpr489 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_compExpr_in_eqExpr492 = new BitSet(new long[]{0x0000000080020002L});
-    public static final BitSet FOLLOW_NEQ_in_eqExpr496 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_compExpr_in_eqExpr499 = new BitSet(new long[]{0x0000000080020002L});
-    public static final BitSet FOLLOW_addExpr_in_compExpr510 = new BitSet(new long[]{0x0000000F00000002L});
-    public static final BitSet FOLLOW_LT_in_compExpr513 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_addExpr_in_compExpr516 = new BitSet(new long[]{0x0000000F00000002L});
-    public static final BitSet FOLLOW_LE_in_compExpr520 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_addExpr_in_compExpr523 = new BitSet(new long[]{0x0000000F00000002L});
-    public static final BitSet FOLLOW_GT_in_compExpr527 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_addExpr_in_compExpr530 = new BitSet(new long[]{0x0000000F00000002L});
-    public static final BitSet FOLLOW_GE_in_compExpr534 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_addExpr_in_compExpr537 = new BitSet(new long[]{0x0000000F00000002L});
-    public static final BitSet FOLLOW_multExpr_in_addExpr550 = new BitSet(new long[]{0x0000003000000002L});
-    public static final BitSet FOLLOW_PLUS_in_addExpr553 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_multExpr_in_addExpr556 = new BitSet(new long[]{0x0000003000000002L});
-    public static final BitSet FOLLOW_MINUS_in_addExpr560 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_multExpr_in_addExpr563 = new BitSet(new long[]{0x0000003000000002L});
-    public static final BitSet FOLLOW_powExpr_in_multExpr575 = new BitSet(new long[]{0x000003C000000002L});
-    public static final BitSet FOLLOW_TIMES_in_multExpr578 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_powExpr_in_multExpr581 = new BitSet(new long[]{0x000003C000000002L});
-    public static final BitSet FOLLOW_DIA_in_multExpr585 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_powExpr_in_multExpr588 = new BitSet(new long[]{0x000003C000000002L});
-    public static final BitSet FOLLOW_DIV_in_multExpr592 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_powExpr_in_multExpr595 = new BitSet(new long[]{0x000003C000000002L});
-    public static final BitSet FOLLOW_MOD_in_multExpr599 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_powExpr_in_multExpr602 = new BitSet(new long[]{0x000003C000000002L});
-    public static final BitSet FOLLOW_unaryExpr_in_powExpr614 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_POW_in_powExpr617 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_unaryExpr_in_powExpr620 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_PLUS_in_unaryExpr631 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_atom_in_unaryExpr634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_unaryExpr639 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_atom_in_unaryExpr641 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOT_in_unaryExpr654 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_atom_in_unaryExpr656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_unaryExpr669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_TRUE_in_atom678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_FALSE_in_atom683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_STR_in_atom688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_INT_in_atom693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_REAL_in_atom698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arrayItem_in_atom703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_atom708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAR_in_atom713 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_expr_in_atom716 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_RPAR_in_atom718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_arrayItem731 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_arraySubscript_in_arrayItem733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_arraySubscript754 = new BitSet(new long[]{0x0005F83000001000L});
-    public static final BitSet FOLLOW_expr_in_arraySubscript756 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_RBRACKET_in_arraySubscript758 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_ID_in_assingmentStm456 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_arraySubscript_in_assingmentStm458 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_ASSIGN_in_assingmentStm460 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_expr_in_assingmentStm465 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_NEWLINE_in_assingmentStm468 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_eqExpr_in_expr489 = new BitSet(new long[]{0x0000000060000002L});
+    public static final BitSet FOLLOW_AND_in_expr492 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_eqExpr_in_expr495 = new BitSet(new long[]{0x0000000060000002L});
+    public static final BitSet FOLLOW_OR_in_expr499 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_eqExpr_in_expr502 = new BitSet(new long[]{0x0000000060000002L});
+    public static final BitSet FOLLOW_compExpr_in_eqExpr512 = new BitSet(new long[]{0x0000000080020002L});
+    public static final BitSet FOLLOW_EQ_in_eqExpr515 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_compExpr_in_eqExpr518 = new BitSet(new long[]{0x0000000080020002L});
+    public static final BitSet FOLLOW_NEQ_in_eqExpr522 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_compExpr_in_eqExpr525 = new BitSet(new long[]{0x0000000080020002L});
+    public static final BitSet FOLLOW_addExpr_in_compExpr536 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_LT_in_compExpr539 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_addExpr_in_compExpr542 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_LE_in_compExpr546 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_addExpr_in_compExpr549 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_GT_in_compExpr553 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_addExpr_in_compExpr556 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_GE_in_compExpr560 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_addExpr_in_compExpr563 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_multExpr_in_addExpr576 = new BitSet(new long[]{0x0000003000000002L});
+    public static final BitSet FOLLOW_PLUS_in_addExpr579 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_multExpr_in_addExpr582 = new BitSet(new long[]{0x0000003000000002L});
+    public static final BitSet FOLLOW_MINUS_in_addExpr586 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_multExpr_in_addExpr589 = new BitSet(new long[]{0x0000003000000002L});
+    public static final BitSet FOLLOW_powExpr_in_multExpr601 = new BitSet(new long[]{0x000003C000000002L});
+    public static final BitSet FOLLOW_TIMES_in_multExpr604 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_powExpr_in_multExpr607 = new BitSet(new long[]{0x000003C000000002L});
+    public static final BitSet FOLLOW_DIA_in_multExpr611 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_powExpr_in_multExpr614 = new BitSet(new long[]{0x000003C000000002L});
+    public static final BitSet FOLLOW_DIV_in_multExpr618 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_powExpr_in_multExpr621 = new BitSet(new long[]{0x000003C000000002L});
+    public static final BitSet FOLLOW_MOD_in_multExpr625 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_powExpr_in_multExpr628 = new BitSet(new long[]{0x000003C000000002L});
+    public static final BitSet FOLLOW_unaryExpr_in_powExpr640 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_POW_in_powExpr643 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_unaryExpr_in_powExpr646 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_PLUS_in_unaryExpr657 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_atom_in_unaryExpr660 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_unaryExpr665 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_atom_in_unaryExpr667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOT_in_unaryExpr680 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_atom_in_unaryExpr682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_unaryExpr695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_TRUE_in_atom704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_FALSE_in_atom709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_STR_in_atom714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_INT_in_atom719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_REAL_in_atom724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arrayItem_in_atom729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_atom734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAR_in_atom739 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_expr_in_atom742 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_RPAR_in_atom744 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_arrayItem757 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_arraySubscript_in_arrayItem759 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_arraySubscript780 = new BitSet(new long[]{0x0005F83000001000L});
+    public static final BitSet FOLLOW_expr_in_arraySubscript782 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_RBRACKET_in_arraySubscript784 = new BitSet(new long[]{0x0000000000200002L});
 
 }

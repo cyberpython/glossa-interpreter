@@ -106,7 +106,7 @@ import java.awt.Point;
         public void displayRecognitionError(String[] tokenNames,
                 RecognitionException e) {
                 String msg = getErrorMessage(e, tokenNames);
-                ReportingAndMessagingUtils.lexerError(new Point(e.line, e.charPositionInLine), msg);
+                Messages.lexerError(new Point(e.line, e.charPositionInLine), msg);
         }
 
 
@@ -182,7 +182,7 @@ import java.awt.Point;
         public void displayRecognitionError(String[] tokenNames,
             RecognitionException e) {
             String msg = getErrorMessage(e, tokenNames);
-            ReportingAndMessagingUtils.parserError(new Point(e.line, e.charPositionInLine), msg);
+            Messages.parserError(new Point(e.line, e.charPositionInLine), msg);
         }
 
 
@@ -319,7 +319,7 @@ printStm	:	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
 	
 assingmentStm
 	:	varId=ID ASSIGN^ varValue=expr (NEWLINE!)+
-        //|       arrId=ID arraySubscript ASSIGN^ arrItemValue=expr (NEWLINE!)+ //TODO: array assignment
+        |       arrId=ID arraySubscript ASSIGN^ arrItemValue=expr (NEWLINE!)+
         ;
 	
 expr	:	eqExpr (AND^ eqExpr | OR^ eqExpr)*;

@@ -43,7 +43,11 @@ public class SimpleSymbol extends Symbol{
      * @return the value
      */
     public Object getValue() {
-        return value;
+        if(!this.isInitialized()){
+            throw new RuntimeException("Symbol.getValue(): "+this.getName()+" has not been initialized.");//TODO: proper runtime error report
+        }else{
+            return value;
+        }
     }
 
     /**
@@ -51,6 +55,7 @@ public class SimpleSymbol extends Symbol{
      */
     public void setValue(Object value) {
         this.value = value;
+        this.setInitialized(true);
     }
 
 }
