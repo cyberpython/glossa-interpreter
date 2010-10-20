@@ -313,9 +313,16 @@ varType	:	BOOLEANS
 block	:	stm*  -> ^(BLOCK stm*);
 
 stm	:	printStm
+        |       readStm
 	|	assingmentStm;
 	
-printStm	:	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
+printStm
+        :	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
+
+readStm :
+                READ^ varId=ID (NEWLINE!)+
+        |       READ^ arrId=ID arraySubscript (NEWLINE!)+
+        ;
 	
 assingmentStm
 	:	varId=ID ASSIGN^ varValue=expr (NEWLINE!)+
