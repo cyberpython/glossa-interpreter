@@ -324,7 +324,7 @@ stm	:	printStm
         ;
 	
 printStm
-        :	PRINT^ expr ( ','! expr )* (NEWLINE!)+	;
+        :	PRINT^ (expr ( ','! expr )*)? (NEWLINE!)+	;
 
 readStm :
                 READ^ readItem (COMMA! readItem)* (NEWLINE!)+
@@ -401,7 +401,7 @@ arraySubscript
 */
 
 ASSIGN
-	:	'<-';
+	:	'<-' | '\u2190';
 	
 COMMA	:	',';
 
@@ -432,17 +432,17 @@ DIV	:	('D'|'d')('I'|'i')('V'|'v');
 
 MOD	:	('M'|'m')('O'|'o')('D'|'d');
 
-LE	:	'<=';
+LE	:	'<=' | '\u2264';
 
 LT	:	'<';
 
-GE	:	'>=';
+GE	:	'>=' | '\u2265';
 
 GT	:	'>';
 
 EQ	:	'=';
 
-NEQ	:	'<>';
+NEQ	:	'<>' | '\u2260';
 
 
 AND	:	KAPPA ALPHA IOTA;

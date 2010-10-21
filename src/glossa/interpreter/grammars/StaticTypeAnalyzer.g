@@ -215,11 +215,13 @@ block	:	^(BLOCK stm*);
 
 
 
-stm	:	^(PRINT expr+)              {
-                                               if($expr.expressionType==null){
+stm	:	^(PRINT (expr1=expr         {
+                                               if($expr1.expressionType==null){
                                                    //TODO :report error - print cannot print null type
                                                }
                                             }
+                        )*
+                 )
         |       ^(READ readItem+)
 	|	^(ASSIGN ID expr)           {
                                                 Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -335,11 +337,16 @@ readItem:       arrId=ID arraySubscript   {
                                                 if(s != null){
                                                     if(s instanceof Array){
                                                         Array arr = (Array)s;
-                                                        int indicesCount = $arraySubscript.indices.size();
-                                                        if(arr.getNumberOfDimensions() != indicesCount){
-                                                            Messages.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
+                                                        Type t = arr.getType();
+                                                        if( (t==null) || (t.equals(Type.BOOLEAN)) ){
+                                                            Messages.readItemMustBeIntRealOrStringError(new Point($ID.line, $ID.pos), t);
                                                         }else{
-                                                            s.setInitialized(true);
+                                                            int indicesCount = $arraySubscript.indices.size();
+                                                            if(arr.getNumberOfDimensions() != indicesCount){
+                                                                Messages.arrayIndicesAndDimensionsMismatchError(new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
+                                                            }else{
+                                                                s.setInitialized(true);
+                                                            }
                                                         }
                                                     }else{
                                                         Messages.nonArraySymbolReferencedAsSuchError(s, new Point($ID.line, $ID.pos));
@@ -352,7 +359,12 @@ readItem:       arrId=ID arraySubscript   {
                                                     if(!(s instanceof Variable)){
                                                         Messages.nonVariableSymbolReferencedAsSuchError(new Point($ID.line, $ID.pos), s);
                                                     }else{
-                                                        s.setInitialized(true);
+                                                        Type t = s.getType();
+                                                        if( (t==null) || (t.equals(Type.BOOLEAN)) ){
+                                                            Messages.readItemMustBeIntRealOrStringError(new Point($ID.line, $ID.pos), t);
+                                                        }else{
+                                                            s.setInitialized(true);
+                                                        }
                                                     }
                                                 }
                                             }

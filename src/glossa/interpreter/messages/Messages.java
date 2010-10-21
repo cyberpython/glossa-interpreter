@@ -93,6 +93,7 @@ public class Messages {
     public final static String STR_ERROR_ARRAY_ΙΤΕΜ_REFERENCED_BUT_NOT_INITIALIZED = "Το στοιχείο %2$s του πίνακα \"%1$s\" χρησιμοποιείται χωρίς να έχει πάρει αρχική τιμή.";
 
     public final static String STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM = "Στο αριστερό μέρος της ανάθεσης τιμής πρέπει να βρίσκεται μεταβλητή ή στοιχείο πίνακα.";
+    public final static String STR_ERROR_READ_STM_ITEM_MUST_BE_INT_REAL_OR_STR = "Οι μεταβλητές και οι πίνακες που χρησιμοποιούνται στην εντολή \"ΔΙΑΒΑΣΕ\" πρέπει να είναι δηλωμένες ως ακέραιες, πραγματικές ή χαρακτήρες - βρέθηκε %1$s.";
     public final static String STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN = "Η έκφραση στις δομές ΑΝ/ΑΛΛΙΩΣ_ΑΝ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
     public final static String STR_ERROR_WHILE_EXPRESSION_MUST_BE_BOOLEAN = "Η έκφραση στις δομές ΌΣΟ..ΕΠΑΝΑΛΑΒΕ/ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ..ΜΕΧΡΙΣ_ΌΤΟΥ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
     public final static String STR_ERROR_FOR_COUNTER_MUST_BE_NUMERIC = "Η μεταβλητή-μετρητής στη δομή ΓΙΑ..ΑΠΟ..ΜΕΧΡΙ..(ΜΕ_ΒΗΜΑ..) πρέπει να είναι ακέραιου ή πραγματικού τύπου - βρέθηκε %1$s.";
@@ -254,6 +255,11 @@ public class Messages {
 
     public static void leftSideOfAssignmentMustBeVarOrArrayError(Point errorPoint) {
         String msg = String.format(STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM);
+        error(errorPoint, msg);
+    }
+
+    public static void readItemMustBeIntRealOrStringError(Point errorPoint, Type invalidType) {
+        String msg = String.format(STR_ERROR_READ_STM_ITEM_MUST_BE_INT_REAL_OR_STR, typeToStringM(invalidType));
         error(errorPoint, msg);
     }
 
