@@ -51,37 +51,30 @@ public class Array extends Symbol {
     public Array(String name, int line, int pos, int absolutePosition, List<Integer> dimensions) {
         super(name, null, line, pos, absolutePosition);
         this.dimensions = dimensions;
-        this.initColSizes();
     }
 
-    private void initialize(){
+    private void initialize() {
         this.initColSizes();
-        Object defaultVaule;
-        if(this.getType().equals(Type.INTEGER)){
-            defaultVaule = new BigInteger("0");
-        }else if(this.getType().equals(Type.REAL)){
-            defaultVaule = new BigDecimal("0.0");
-        }else if(this.getType().equals(Type.BOOLEAN)){
-            defaultVaule = Boolean.valueOf(false);
-        }else if(this.getType().equals(Type.STRING)){
-            defaultVaule = "";
-        }else{
-            defaultVaule = null;
+        Object defaultVaule = null;
+        Type t = this.getType();
+        if (t != null) {
+            defaultVaule = t.getInitializationValue();
         }
         this.initValues(defaultVaule);
+        this.setInitialized(true);
     }
 
     private void initColSizes() {
         this.colSizes = new int[dimensions.size()];
-        colSizes[colSizes.length-1] = 1;
+        colSizes[colSizes.length - 1] = 1;
         int product = 1;
         for (int i = colSizes.length - 1; i > 0; i--) {
-            colSizes[i-1] = dimensions.get(i) * product;
+            colSizes[i - 1] = dimensions.get(i) * product;
             product = product * dimensions.get(i);
         }
         //TODO: Remove:
         /*for (int i = 0; i < colSizes.length; i++) {
-            System.out.println("colSize[" + i + "]: " + colSizes[i]);
+        System.out.println("colSize[" + i + "]: " + colSizes[i]);
         }*/
     }
 
@@ -93,7 +86,7 @@ public class Array extends Symbol {
             dim.append(String.valueOf(integer));
             dim.append("]");
             /*if (it.hasNext()) {
-                dim.append("x");
+            dim.append("x");
             }*/
         }
         return dim.toString();
@@ -111,44 +104,44 @@ public class Array extends Symbol {
         }
     }
 
-    private int resolveIndex(List<Integer> indices){
+    private int resolveIndex(List<Integer> indices) {
         int result = -1;
         int dimensionsCount = dimensions.size();
-        if(indices.size() == dimensionsCount){
+        if (indices.size() == dimensionsCount) {
             result = 0;
             int index = -1;
             int d = 1;
             int j = 0;
             for (int i = 0; i < dimensionsCount; i++) {
-                index = indices.get(i);
-                if(index<1 || index > dimensions.get(i)){
-                    throw new RuntimeException(String.valueOf(index)+" at "+arrayIndexToString(indices));//TODO: Proper runtime error report
-                }else{
+                index = indices.get(i).intValue();
+                if (index < 1 || index > dimensions.get(i).intValue()) {
+                    throw new RuntimeException(String.valueOf(index) + " at " + arrayIndexToString(indices));//TODO: Proper runtime error report
+                } else {
                     d = colSizes[i];
                     j = index;
-                    result = result + (j-1)*d;
+                    result = result + (j - 1) * d;
                 }
             }
-        }else{
+        } else {
             throw new RuntimeException(arrayIndexToString(indices));//TODO: Proper runtime error report
         }
         return result;
     }
 
-    public Object get(List<Integer> indices){
+    public Object get(List<Integer> indices) {
         return this.values[resolveIndex(indices)];
     }
 
-    public void set(List<Integer> indices, Object value){
-        if( (value instanceof BigInteger) && this.getType().equals(Type.INTEGER)){
+    public void set(List<Integer> indices, Object value) {
+        if ((value instanceof BigInteger) && this.getType().equals(Type.INTEGER)) {
             this.values[resolveIndex(indices)] = value;
-        }else if( (value instanceof BigDecimal) && this.getType().equals(Type.REAL)){
+        } else if ((value instanceof BigDecimal) && this.getType().equals(Type.REAL)) {
             this.values[resolveIndex(indices)] = value;
-        }else if( (value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)){
+        } else if ((value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)) {
             this.values[resolveIndex(indices)] = value;
-        }else if( (value instanceof String) && this.getType().equals(Type.STRING)){
+        } else if ((value instanceof String) && this.getType().equals(Type.STRING)) {
             this.values[resolveIndex(indices)] = value;
-        }else{
+        } else {
             throw new RuntimeException("Invalid type in array assignment");//TODO: Proper runtime error report
         }
     }
@@ -183,7 +176,7 @@ public class Array extends Symbol {
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_ARRAY + " " + super.toString()+ " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size();
+        return Messages.CONSTS_STR_ARRAY + " " + super.toString() + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size();
     }
 
     public static void main(String[] args) {
@@ -192,14 +185,14 @@ public class Array extends Symbol {
         dim.add(2);
         dim.add(4);
         Array arr = new Array("arr", Type.INTEGER, 1, 1, 1, dim);
-        
+
         List<Integer> index = new ArrayList<Integer>();
         index.add(2);
         index.add(1);
         index.add(3);
         //System.out.println("\tarr[2,1,3]: "+arr.resolveIndex(index));
 
-        System.out.println("\tarr[2,1,3]: "+arr.get(index));
+        System.out.println("\tarr[2,1,3]: " + arr.get(index));
 
     }
 }

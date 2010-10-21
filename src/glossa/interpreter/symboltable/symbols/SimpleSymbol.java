@@ -39,11 +39,22 @@ public class SimpleSymbol extends Symbol{
         this.value = value;
     }
 
+    @Override
+    public void setType(Type type) {
+        super.setType(type);
+        if(type!=null){
+            this.setValue(type.getInitializationValue());
+        }
+        this.setInitialized(false);
+    }
+
+
+
     /**
      * @return the value
      */
     public Object getValue() {
-        if(!this.isInitialized()){
+        if( ! this.isInitialized() ){
             throw new RuntimeException("Symbol.getValue(): "+this.getName()+" has not been initialized.");//TODO: proper runtime error report
         }else{
             return value;

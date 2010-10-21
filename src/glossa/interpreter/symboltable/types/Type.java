@@ -25,6 +25,8 @@
 package glossa.interpreter.symboltable.types;
 
 import glossa.interpreter.messages.Messages;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  *
@@ -32,6 +34,18 @@ import glossa.interpreter.messages.Messages;
  */
 public enum Type {
     INTEGER, REAL, BOOLEAN, STRING;
+
+    private static BigInteger integerInitValue;
+    private static BigDecimal realInitValue;
+    private static Boolean booleanInitValue;
+    private static String stringInitValue;
+
+    static{
+        integerInitValue = new BigInteger("0");
+        realInitValue = new BigDecimal("0.0");
+        booleanInitValue = Boolean.valueOf(false);
+        stringInitValue = "";
+    }
 
     @Override
     public String toString() {
@@ -45,6 +59,20 @@ public enum Type {
             return Messages.CONSTS_STR_TYPE_STRING;
         }else{
             return Messages.CONSTS_STR_TYPE_UNKNOWN;
+        }
+    }
+
+    public Object getInitializationValue(){
+        if(this.equals(Type.INTEGER)){
+            return integerInitValue;
+        }else if(this.equals(Type.REAL)){
+            return realInitValue;
+        }else if(this.equals(Type.BOOLEAN)){
+            return booleanInitValue;
+        }else if(this.equals(Type.STRING)){
+            return stringInitValue;
+        }else{
+            return null;
         }
     }
 
