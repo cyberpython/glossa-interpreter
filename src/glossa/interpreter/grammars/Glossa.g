@@ -318,6 +318,9 @@ stm	:	printStm
         |       readStm
 	|	assingmentStm
         |       ifStm
+        |       forStm
+        |       whileStm
+        |       repeatStm
         ;
 	
 printStm
@@ -346,6 +349,14 @@ elseBlock
 
 elseIfBlock
 	:	ELSE_IF^ expr THEN! (NEWLINE!)+ block;
+
+forStm	:	FOR^ ID FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
+
+whileStm
+        :	WHILE^ expr LOOP! (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
+
+repeatStm
+	:	REPEAT^ (NEWLINE!)+ block UNTIL! expr (NEWLINE!)+;
 	
 expr	:	eqExpr (AND^ eqExpr | OR^ eqExpr)*;
 

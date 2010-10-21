@@ -271,6 +271,63 @@ stm	:	^(PRINT expr+)              {
                                                 }
                                             }
         |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
+        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
+                                            {
+                                                Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                                if(s != null){
+                                                     if(s instanceof Variable){
+                                                        if(TypeUtils.isNumericType(s.getType())){
+                                                            if(TypeUtils.isNumericType($expr1.expressionType) && TypeUtils.isNumericType($expr2.expressionType) ){
+                                                                if(s.getType().equals(Type.INTEGER)){
+                                                                    if(!$expr1.expressionType.equals(Type.INTEGER)){
+                                                                        Messages.forFromStepExpressionsMustBeInteger(new Point($expr1.start.getLine(), $expr1.start.getCharPositionInLine()), $expr1.expressionType);
+                                                                    }
+                                                                    if(expr3!=null){
+                                                                        if(  ($expr3.expressionType==null) || (!$expr3.expressionType.equals(Type.INTEGER))  ){
+                                                                            Messages.forFromStepExpressionsMustBeInteger(new Point($expr3.start.getLine(), $expr3.start.getCharPositionInLine()), $expr3.expressionType);
+                                                                        }
+                                                                    }
+                                                                }else{
+                                                                    if(expr3!=null){
+                                                                        if(!TypeUtils.isNumericType($expr3.expressionType)){
+                                                                            Messages.forFromToStepExpressionsMustBeOfNumericType(new Point($expr3.start.getLine(), $expr3.start.getCharPositionInLine()), $expr3.expressionType);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }else{
+                                                                if(!TypeUtils.isNumericType($expr1.expressionType)){
+                                                                    Messages.forFromToStepExpressionsMustBeOfNumericType(new Point($expr1.start.getLine(), $expr1.start.getCharPositionInLine()), $expr1.expressionType);
+                                                                }
+                                                                if(!TypeUtils.isNumericType($expr2.expressionType)){
+                                                                    Messages.forFromToStepExpressionsMustBeOfNumericType(new Point($expr2.start.getLine(), $expr2.start.getCharPositionInLine()), $expr2.expressionType);
+                                                                }
+                                                            }
+                                                        }else{
+                                                            Messages.forCounterMustBeOfNumericType(new Point($ID.line, $ID.pos), s.getType());
+                                                        }
+                                                    }else{
+                                                        Messages.nonVariableSymbolReferencedAsSuchError(new Point($ID.line, $ID.pos), s);
+                                                    }
+                                                }
+                                            }
+        |       ^(WHILE expr block)         {
+                                                if($expr.expressionType!=null){
+                                                    if(!$expr.expressionType.equals(Type.BOOLEAN)){
+                                                        Messages.whileExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
+                                                    }
+                                                }else{
+                                                    Messages.whileExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
+                                                }
+                                            }
+	|	^(REPEAT block expr)        {
+                                                if($expr.expressionType!=null){
+                                                    if(!$expr.expressionType.equals(Type.BOOLEAN)){
+                                                        Messages.whileExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
+                                                    }
+                                                }else{
+                                                    Messages.whileExpressionMustBeBoolean(new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
+                                                }
+                                            }
         ;
 
 readItem:       arrId=ID arraySubscript   {
