@@ -1,0 +1,12 @@
+The interpreter for ΓΛΩΣΣΑ
+It is developed using Antlr 3.2 and Java.
+
+To build the project’s code you will need :
+– JDK (6.x+) (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+– Apache Ant (http://ant.apache.org/)
+It is built-in in Netbeans.
+– Antlr 3.2 (http://www.antlr.org/download/antlr-3.2.jar)
+You have to place antlr-3.2.jar in glossa/lib/antlr-3.2.jar
+(If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build.)
+
+The project is developed using Netbeans 6.9 but you can use your editor/IDE of choice.
