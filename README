@@ -9,4 +9,10 @@ It is built-in in Netbeans.
 You have to place antlr-3.2.jar in glossa/lib/antlr-3.2.jar
 (If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build.)
 
+Then, open a terminal, go to the project's directory (e.g. glossa-interpreter) and give:
+ant jar
+
+To run the interpreter:
+java -jar dist/glossa-interpreter.jar <input_file>
+
 The project is developed using Netbeans 6.9 but you can use your editor/IDE of choice.
