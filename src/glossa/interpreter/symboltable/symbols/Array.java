@@ -80,15 +80,15 @@ public class Array extends Symbol {
 
     public String arrayIndexToString(List<Integer> indices) {
         StringBuilder dim = new StringBuilder();
+        dim.append("[");
         for (Iterator<Integer> it = indices.iterator(); it.hasNext();) {
             Integer integer = it.next();
-            dim.append("[");
             dim.append(String.valueOf(integer));
-            dim.append("]");
-            /*if (it.hasNext()) {
-            dim.append("x");
-            }*/
+            if (it.hasNext()) {
+                dim.append(",");
+            }
         }
+        dim.append("]");
         return dim.toString();
     }
 
@@ -190,9 +190,8 @@ public class Array extends Symbol {
         index.add(2);
         index.add(1);
         index.add(3);
-        //System.out.println("\tarr[2,1,3]: "+arr.resolveIndex(index));
 
-        System.out.println("\tarr[2,1,3]: " + arr.get(index));
+        System.out.println("\t"+arr.getName()+arr.arrayIndexToString(index)+": " + arr.get(index));
 
     }
 }

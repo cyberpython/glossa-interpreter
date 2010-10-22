@@ -305,7 +305,7 @@ varDeclItem
 	| 	ID arrayDimension -> ^(ARRAY ID arrayDimension);
 
 arrayDimension
-	:	(LBRACKET dimension+=expr RBRACKET)+ -> ^(ARRAY_DIMENSION expr+);
+	:	LBRACKET (dimension+=expr) (COMMA dimension+=expr)* RBRACKET -> ^(ARRAY_DIMENSION expr+);
 	
 varType	:	BOOLEANS
 	|	STRINGS
@@ -391,7 +391,7 @@ arrayItem
 	:	ID arraySubscript -> ^(ARRAY_ITEM ID arraySubscript);
 	
 arraySubscript
-	:	(LBRACKET expr RBRACKET)+ -> ^(ARRAY_INDEX expr+);
+	:	LBRACKET (dimension+=expr) (COMMA dimension+=expr)* RBRACKET -> ^(ARRAY_INDEX expr+);
 
 
 /*
@@ -556,7 +556,7 @@ CONST_FALSE
 	:	PSI EPSILON UPSILON DELTA (ETA|ETA_TONOS) SIGMA_TELIKO;
 	
 CONST_STR
-	:	'\'' .* '\'';
+	:	'\'' .* '\'' | '"' .* '"' ;
 
 CONST_INT
 	:	DIGIT+;

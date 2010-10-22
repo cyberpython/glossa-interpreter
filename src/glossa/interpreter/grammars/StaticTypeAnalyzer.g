@@ -569,7 +569,7 @@ expr	returns [Type expressionType]
                                             }
 	|	^(DIA	a=expr	  b=expr)   {
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
+                                                    $expressionType = Type.REAL;
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
@@ -613,7 +613,7 @@ expr	returns [Type expressionType]
                                             }
 	|	^(POW	a=expr	  b=expr)   {
                                                 if(TypeUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = TypeUtils.getWiderType($a.expressionType, $b.expressionType);
+                                                    $expressionType = Type.REAL;//TODO: If a == int && b == int && b>0 =>  expressionType = Type.INTEGER
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),
