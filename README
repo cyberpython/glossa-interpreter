@@ -15,4 +15,10 @@ ant jar
 To run the interpreter:
 java -jar dist/glossa-interpreter.jar <input_file>
 
+e.g.:
+java -jar dist/glossa-interpreter.jar src/glossa/interpreter/tests/VariablesDeclaration.gls
+
+There are some example input files in src/glossa/interpreter/tests/ .
+
 The project is developed using Netbeans 6.9 but you can use your editor/IDE of choice.
+

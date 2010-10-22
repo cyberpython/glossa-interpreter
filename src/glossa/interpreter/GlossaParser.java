@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-22 15:05:48
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/Glossa.g 2010-10-22 18:40:24
 
 /*
  *  The MIT License
@@ -2365,7 +2365,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: elseIfBlock, elseBlock, ifBlock
+            // elements: ifBlock, elseBlock, elseIfBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
