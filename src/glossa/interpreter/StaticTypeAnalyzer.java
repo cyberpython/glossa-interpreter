@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/StaticTypeAnalyzer.g 2010-10-22 14:46:13
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/StaticTypeAnalyzer.g 2010-10-22 15:05:50
 
 
 /*
@@ -45,7 +45,7 @@ import java.util.ArrayList;
 
 public class StaticTypeAnalyzer extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "PROGRAM", "ID", "NEWLINE", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "AND", "OR", "NEQ", "LT", "LE", "GT", "GE", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "DOUBLE_DOT", "LPAR", "RPAR", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "PROCEDURE", "END_PROCEDURE", "UPSILON", "NU", "FUNCTION", "END_FUNCTION", "CALL", "OMEGA", "OMEGA_TONOS", "XI", "SWITCH", "CASE", "END_SWITCH", "INTEGER", "REAL", "STRING", "BOOLEAN", "DIGIT", "LETTER", "NOT_EOL", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "PROGRAM", "ID", "NEWLINE", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "OR", "AND", "NEQ", "LT", "LE", "GT", "GE", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "DOUBLE_DOT", "LPAR", "RPAR", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "PROCEDURE", "END_PROCEDURE", "UPSILON", "NU", "FUNCTION", "END_FUNCTION", "CALL", "OMEGA", "OMEGA_TONOS", "XI", "SWITCH", "CASE", "END_SWITCH", "INTEGER", "REAL", "STRING", "BOOLEAN", "DIGIT", "LETTER", "NOT_EOL", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS"
     };
     public static final int FUNCTION=96;
     public static final int LT=48;
@@ -100,7 +100,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int READ=29;
     public static final int OMEGA=99;
     public static final int UNTIL=44;
-    public static final int OR=46;
+    public static final int OR=45;
     public static final int GT=50;
     public static final int ALPHA_TONOS=84;
     public static final int REPEAT=43;
@@ -115,7 +115,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int ETA_TONOS=71;
     public static final int CONSTANTS=17;
     public static final int ID=13;
-    public static final int AND=45;
+    public static final int AND=46;
     public static final int ARRAY_DIMENSION=11;
     public static final int IF=32;
     public static final int OMEGA_TONOS=100;
@@ -733,7 +733,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==NEG||LA8_0==ARRAY_ITEM||LA8_0==ID||LA8_0==EQ||(LA8_0>=AND && LA8_0<=CONST_REAL)) ) {
+                if ( (LA8_0==NEG||LA8_0==ARRAY_ITEM||LA8_0==ID||LA8_0==EQ||(LA8_0>=OR && LA8_0<=CONST_REAL)) ) {
                     alt8=1;
                 }
 
@@ -968,7 +968,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                             int alt11=2;
                             int LA11_0 = input.LA(1);
 
-                            if ( (LA11_0==NEG||LA11_0==ARRAY_ITEM||LA11_0==ID||LA11_0==EQ||(LA11_0>=AND && LA11_0<=CONST_REAL)) ) {
+                            if ( (LA11_0==NEG||LA11_0==ARRAY_ITEM||LA11_0==ID||LA11_0==EQ||(LA11_0>=OR && LA11_0<=CONST_REAL)) ) {
                                 alt11=1;
                             }
 
@@ -1222,7 +1222,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
-                    if ( (LA15_0==NEG||LA15_0==ARRAY_ITEM||LA15_0==ID||LA15_0==EQ||(LA15_0>=AND && LA15_0<=CONST_REAL)) ) {
+                    if ( (LA15_0==NEG||LA15_0==ARRAY_ITEM||LA15_0==ID||LA15_0==EQ||(LA15_0>=OR && LA15_0<=CONST_REAL)) ) {
                         alt15=1;
                     }
                     switch (alt15) {
@@ -2502,7 +2502,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 int alt19=2;
                 int LA19_0 = input.LA(1);
 
-                if ( (LA19_0==NEG||LA19_0==ARRAY_ITEM||LA19_0==ID||LA19_0==EQ||(LA19_0>=AND && LA19_0<=CONST_REAL)) ) {
+                if ( (LA19_0==NEG||LA19_0==ARRAY_ITEM||LA19_0==ID||LA19_0==EQ||(LA19_0>=OR && LA19_0<=CONST_REAL)) ) {
                     alt19=1;
                 }
 

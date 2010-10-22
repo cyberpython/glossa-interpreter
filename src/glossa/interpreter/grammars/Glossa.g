@@ -358,7 +358,9 @@ whileStm
 repeatStm
 	:	REPEAT^ (NEWLINE!)+ block UNTIL! expr (NEWLINE!)+;
 	
-expr	:	eqExpr (AND^ eqExpr | OR^ eqExpr)*;
+expr	:	andExpr ( OR^ andExpr)*;
+
+andExpr :       eqExpr (AND^ eqExpr)*;
 
 eqExpr	:	compExpr (EQ^ compExpr | NEQ^ compExpr )*	;
 
