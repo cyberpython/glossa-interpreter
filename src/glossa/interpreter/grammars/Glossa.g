@@ -27,7 +27,7 @@ grammar Glossa;
 options{
 	output = AST;
 	ASTLabelType = CommonTree;
-        //backtrack = true;
+        backtrack = true;
 }
 
 
@@ -41,6 +41,9 @@ tokens
   ARRAY_ITEM;
   ARRAY_INDEX;
   ARRAY_DIMENSION;
+  RANGE;
+  INF_RANGE;
+  CASE_ELSE;
 }
 
 @lexer::header{
@@ -318,13 +321,14 @@ stm	:	printStm
         |       readStm
 	|	assingmentStm
         |       ifStm
+        |       caseStm
         |       forStm
         |       whileStm
         |       repeatStm
         ;
 	
 printStm
-        :	PRINT^ (expr ( ','! expr )*)? (NEWLINE!)+	;
+        :	PRINT^ (expr ( ','! expr )*)? (NEWLINE!)+;
 
 readStm :
                 READ^ readItem (COMMA! readItem)* (NEWLINE!)+
@@ -349,6 +353,30 @@ elseBlock
 
 elseIfBlock
 	:	ELSE_IF^ expr THEN! (NEWLINE!)+ block;
+
+caseStm	:	SWITCH^ expr (NEWLINE!)+ caseBlock* caseElseBlock? END_SWITCH! (NEWLINE!)+;
+
+caseBlock
+	:	CASE^ caseExprList (NEWLINE!)+ block;
+
+caseExprList
+	:	caseExprListItem (COMMA! caseExprListItem)*;
+
+caseExprListItem
+	:	 rangeItem | expr | infRangeItem;
+
+rangeItem
+        :       expr1=expr '..' expr2=expr -> ^(RANGE $expr1 $expr2);
+
+infRangeItem
+        :       LT expr -> ^(INF_RANGE LT expr)
+        |       LE expr -> ^(INF_RANGE LE expr)
+        |       GT expr -> ^(INF_RANGE GT expr)
+        |       GE expr -> ^(INF_RANGE GE expr)
+        ;
+
+caseElseBlock
+	:	CASE ELSE NEWLINE+ block -> ^(CASE_ELSE block);
 
 forStm	:	FOR^ ID FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
 

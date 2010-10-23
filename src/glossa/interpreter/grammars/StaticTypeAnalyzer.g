@@ -273,6 +273,7 @@ stm	:	^(PRINT (expr1=expr         {
                                                 }
                                             }
         |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
+        |       ^(SWITCH expr caseBlock* caseElseBlock?)
         |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
                                             {
                                                 Symbol s = currentScope.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -397,6 +398,21 @@ elseIfBlock
                                             }
         ;
 
+
+caseBlock
+	:	^(CASE caseExprListItem+ block);
+
+caseExprListItem
+	:	expr
+	|       ^(RANGE expr expr)
+	|       ^(INF_RANGE LT expr)
+        |       ^(INF_RANGE LE expr)
+        |       ^(INF_RANGE GT expr)
+        |       ^(INF_RANGE GE expr)
+        ;
+
+caseElseBlock
+	:	^(CASE_ELSE block);
 
 
 
