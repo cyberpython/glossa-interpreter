@@ -20,12 +20,11 @@ Currently:
 To build the project’s code you will need :
 
 - [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- [Apache Ant](http://ant.apache.org/)
-It is built-in in Netbeans.
-- [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar)
+- [Apache Ant](http://ant.apache.org/) (built-in in Netbeans)
+- [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (if you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build)
 
-You have to copy antlr-3.2.jar to glossa/lib/antlr-3.2.jar
-(If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build.)
+You have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar
+
 
 Open a terminal, go to the project's directory (e.g. glossa-interpreter) and give:
 
