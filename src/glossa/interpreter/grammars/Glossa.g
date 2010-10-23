@@ -41,7 +41,6 @@ tokens
   ARRAY_ITEM;
   ARRAY_INDEX;
   ARRAY_DIMENSION;
-  RANGE;
   INF_RANGE;
   CASE_ELSE;
 }
@@ -366,7 +365,7 @@ caseExprListItem
 	:	 rangeItem | expr | infRangeItem;
 
 rangeItem
-        :       expr1=expr '..' expr2=expr -> ^(RANGE $expr1 $expr2);
+        :       expr1=expr RANGE expr2=expr -> ^(RANGE $expr1 $expr2);
 
 infRangeItem
         :       LT expr -> ^(INF_RANGE LT expr)
@@ -435,9 +434,6 @@ ASSIGN
 	
 COMMA	:	',';
 
-DOUBLE_DOT
-	:	'..';
-	
 COLON	:	':';
 
 LPAR	:	'(';
@@ -480,6 +476,8 @@ AND	:	KAPPA ALPHA IOTA;
 OR	:	ETA_TONOS;
 
 NOT	:	(OMICRON|OMICRON_TONOS) CHI IOTA;
+
+RANGE   :       '..';
 
 
 PROGRAM :	 PI RHO (OMICRON | OMICRON_TONOS) GAMMA RHO ALPHA MU MU ALPHA;
@@ -531,7 +529,7 @@ SWITCH	:	EPSILON PI (IOTA|IOTA_TONOS) LAMDA EPSILON XI EPSILON;
 CASE	:	PI EPSILON RHO (IOTA|IOTA_TONOS) PI TAU OMEGA SIGMA ETA;
 
 END_SWITCH
-	:	TAU (EPSILON|EPSILON_TONOS) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA OMEGA NU;
+	:	TAU (EPSILON|EPSILON_TONOS) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA (OMEGA|OMEGA_TONOS) NU;
 
 
 

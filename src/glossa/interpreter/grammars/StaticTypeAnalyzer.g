@@ -403,12 +403,12 @@ caseBlock
 	:	^(CASE caseExprListItem+ block);
 
 caseExprListItem
-	:	expr
-	|       ^(RANGE expr expr)
-	|       ^(INF_RANGE LT expr)
-        |       ^(INF_RANGE LE expr)
-        |       ^(INF_RANGE GT expr)
-        |       ^(INF_RANGE GE expr)
+	:	a=expr
+	|       ^(RANGE a=expr b=expr)
+	|       ^(INF_RANGE LT a=expr)
+        |       ^(INF_RANGE LE a=expr)
+        |       ^(INF_RANGE GT a=expr)
+        |       ^(INF_RANGE GE a=expr)
         ;
 
 caseElseBlock

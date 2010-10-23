@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/StaticTypeAnalyzer.g 2010-10-23 18:20:13
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/interpreter/grammars/StaticTypeAnalyzer.g 2010-10-23 19:15:39
 
 
 /*
@@ -45,132 +45,131 @@ import java.util.ArrayList;
 
 public class StaticTypeAnalyzer extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "RANGE", "INF_RANGE", "CASE_ELSE", "PROGRAM", "ID", "NEWLINE", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "SWITCH", "END_SWITCH", "CASE", "LT", "LE", "GT", "GE", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "OR", "AND", "NEQ", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "DOUBLE_DOT", "LPAR", "RPAR", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "PROCEDURE", "END_PROCEDURE", "UPSILON", "NU", "FUNCTION", "END_FUNCTION", "CALL", "OMEGA", "OMEGA_TONOS", "XI", "INTEGER", "REAL", "STRING", "BOOLEAN", "DIGIT", "LETTER", "NOT_EOL", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "INF_RANGE", "CASE_ELSE", "PROGRAM", "ID", "NEWLINE", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "SWITCH", "END_SWITCH", "CASE", "RANGE", "LT", "LE", "GT", "GE", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "OR", "AND", "NEQ", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "LPAR", "RPAR", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "PROCEDURE", "END_PROCEDURE", "UPSILON", "NU", "FUNCTION", "END_FUNCTION", "CALL", "OMEGA", "OMEGA_TONOS", "XI", "INTEGER", "REAL", "STRING", "BOOLEAN", "DIGIT", "LETTER", "NOT_EOL", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS"
     };
-    public static final int FUNCTION=102;
+    public static final int FUNCTION=101;
     public static final int LT=42;
-    public static final int END_PROCEDURE=99;
+    public static final int END_PROCEDURE=98;
     public static final int WHILE=51;
-    public static final int LETTER=113;
+    public static final int LETTER=112;
     public static final int MOD=63;
-    public static final int STRINGS=28;
-    public static final int LAMDA=88;
-    public static final int UPSILON_DIALYTIKA_TONOS=126;
-    public static final int CASE=41;
+    public static final int STRINGS=27;
+    public static final int LAMDA=87;
+    public static final int UPSILON_DIALYTIKA_TONOS=125;
+    public static final int CASE=40;
     public static final int NOT=65;
-    public static final int OMICRON=78;
+    public static final int OMICRON=77;
     public static final int EOF=-1;
-    public static final int DOUBLE_DOT=71;
-    public static final int LBRACKET=25;
-    public static final int MU=84;
-    public static final int TAU=85;
+    public static final int LBRACKET=24;
+    public static final int MU=83;
+    public static final int TAU=84;
     public static final int POW=64;
-    public static final int LPAR=72;
-    public static final int UPSILON_TONOS=122;
-    public static final int CONT_COMMAND=116;
+    public static final int LPAR=71;
+    public static final int UPSILON_TONOS=121;
+    public static final int CONT_COMMAND=115;
     public static final int CONST_INT=69;
     public static final int LOOP=52;
-    public static final int BEGIN=18;
-    public static final int KAPPA=74;
-    public static final int EQ=21;
-    public static final int COMMENT=115;
+    public static final int BEGIN=17;
+    public static final int KAPPA=73;
+    public static final int EQ=20;
+    public static final int COMMENT=114;
     public static final int ARRAY=8;
-    public static final int GREEK_LETTER=119;
+    public static final int GREEK_LETTER=118;
     public static final int END_LOOP=50;
     public static final int GE=45;
-    public static final int END_SWITCH=40;
+    public static final int END_SWITCH=39;
     public static final int CONST_TRUE=66;
-    public static final int NU=101;
-    public static final int XI=107;
-    public static final int SWITCH=39;
-    public static final int ELSE=37;
-    public static final int DELTA=95;
-    public static final int EPSILON=86;
+    public static final int NU=100;
+    public static final int XI=106;
+    public static final int SWITCH=38;
+    public static final int ELSE=36;
+    public static final int DELTA=94;
+    public static final int EPSILON=85;
     public static final int CONST_STR=68;
-    public static final int INTEGERS=29;
-    public static final int ALPHA=75;
-    public static final int SIGMA_TELIKO=89;
-    public static final int REAL=109;
-    public static final int THETA=94;
-    public static final int BOOLEANS=27;
-    public static final int UPSILON_DIALYTIKA=124;
-    public static final int WS=117;
-    public static final int OMICRON_TONOS=79;
-    public static final int EPSILON_TONOS=87;
-    public static final int READ=32;
-    public static final int OMEGA=105;
+    public static final int INTEGERS=28;
+    public static final int ALPHA=74;
+    public static final int SIGMA_TELIKO=88;
+    public static final int REAL=108;
+    public static final int THETA=93;
+    public static final int BOOLEANS=26;
+    public static final int UPSILON_DIALYTIKA=123;
+    public static final int WS=116;
+    public static final int OMICRON_TONOS=78;
+    public static final int EPSILON_TONOS=86;
+    public static final int READ=31;
+    public static final int OMEGA=104;
     public static final int UNTIL=54;
     public static final int OR=55;
     public static final int GT=44;
-    public static final int ALPHA_TONOS=90;
+    public static final int ALPHA_TONOS=89;
     public static final int REPEAT=53;
-    public static final int CALL=104;
-    public static final int PI=81;
+    public static final int CALL=103;
+    public static final int PI=80;
     public static final int FROM=47;
-    public static final int PHI=121;
-    public static final int RHO=82;
-    public static final int UPSILON=100;
+    public static final int PHI=120;
+    public static final int RHO=81;
+    public static final int UPSILON=99;
     public static final int FOR=46;
     public static final int STEP=49;
-    public static final int ETA_TONOS=77;
-    public static final int CONSTANTS=20;
-    public static final int ID=16;
+    public static final int ETA_TONOS=76;
+    public static final int CONSTANTS=19;
+    public static final int ID=15;
     public static final int AND=56;
     public static final int ARRAY_DIMENSION=11;
-    public static final int IF=35;
-    public static final int OMEGA_TONOS=106;
-    public static final int NOT_EOL=114;
-    public static final int BOOLEAN=111;
-    public static final int THEN=36;
-    public static final int END_FUNCTION=103;
-    public static final int COMMA=24;
-    public static final int ETA=92;
+    public static final int IF=34;
+    public static final int OMEGA_TONOS=105;
+    public static final int NOT_EOL=113;
+    public static final int BOOLEAN=110;
+    public static final int THEN=35;
+    public static final int END_FUNCTION=102;
+    public static final int COMMA=23;
+    public static final int ETA=91;
     public static final int ARRAY_INDEX=10;
     public static final int IFNODE=7;
-    public static final int PSI=96;
+    public static final int PSI=95;
     public static final int PLUS=58;
-    public static final int SIGMA=93;
-    public static final int DIGIT=112;
-    public static final int CASE_ELSE=14;
-    public static final int RBRACKET=26;
-    public static final int IOTA_DIALYTIKA_TONOS=125;
-    public static final int ELSE_IF=38;
-    public static final int CONST_REAL=70;
+    public static final int SIGMA=92;
+    public static final int DIGIT=111;
+    public static final int CASE_ELSE=13;
+    public static final int RBRACKET=25;
+    public static final int IOTA_DIALYTIKA_TONOS=124;
+    public static final int ELSE_IF=37;
     public static final int VARSDECL=6;
-    public static final int INTEGER=108;
-    public static final int INF_RANGE=13;
+    public static final int CONST_REAL=70;
+    public static final int INTEGER=107;
+    public static final int INF_RANGE=12;
     public static final int TO=48;
-    public static final int LATIN_LETTER=118;
-    public static final int REALS=30;
-    public static final int RANGE=12;
-    public static final int CHI=80;
+    public static final int LATIN_LETTER=117;
+    public static final int REALS=29;
+    public static final int RANGE=41;
+    public static final int CHI=79;
     public static final int MINUS=59;
     public static final int DIA=61;
-    public static final int BETA=91;
-    public static final int PRINT=31;
-    public static final int PROCEDURE=98;
-    public static final int COLON=23;
+    public static final int BETA=90;
+    public static final int PRINT=30;
+    public static final int PROCEDURE=97;
+    public static final int COLON=22;
     public static final int ARRAY_ITEM=9;
     public static final int NEQ=57;
-    public static final int NEWLINE=17;
-    public static final int END_PROGRAM=19;
-    public static final int ZETA=120;
+    public static final int NEWLINE=16;
+    public static final int END_PROGRAM=18;
+    public static final int ZETA=119;
     public static final int CONST_FALSE=67;
     public static final int BLOCK=4;
     public static final int NEG=5;
-    public static final int VARIABLES=22;
-    public static final int ASSIGN=33;
-    public static final int END_IF=34;
-    public static final int RPAR=73;
-    public static final int PROGRAM=15;
-    public static final int IOTA=76;
+    public static final int VARIABLES=21;
+    public static final int ASSIGN=32;
+    public static final int END_IF=33;
+    public static final int RPAR=72;
+    public static final int PROGRAM=14;
+    public static final int IOTA=75;
     public static final int DIV=62;
-    public static final int GAMMA=83;
+    public static final int GAMMA=82;
     public static final int TIMES=60;
     public static final int LE=43;
-    public static final int IOTA_DIALYTIKA=123;
-    public static final int IOTA_TONOS=97;
-    public static final int STRING=110;
+    public static final int IOTA_DIALYTIKA=122;
+    public static final int IOTA_TONOS=96;
+    public static final int STRING=109;
 
     // delegates
     // delegators
@@ -1684,7 +1683,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 int alt20=2;
                 int LA20_0 = input.LA(1);
 
-                if ( (LA20_0==NEG||LA20_0==ARRAY_ITEM||(LA20_0>=RANGE && LA20_0<=INF_RANGE)||LA20_0==ID||LA20_0==EQ||(LA20_0>=LT && LA20_0<=GE)||(LA20_0>=OR && LA20_0<=CONST_REAL)) ) {
+                if ( (LA20_0==NEG||LA20_0==ARRAY_ITEM||LA20_0==INF_RANGE||LA20_0==ID||LA20_0==EQ||(LA20_0>=RANGE && LA20_0<=GE)||(LA20_0>=OR && LA20_0<=CONST_REAL)) ) {
                     alt20=1;
                 }
 
@@ -1734,10 +1733,15 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:405:1: caseExprListItem : ( expr | ^( RANGE expr expr ) | ^( INF_RANGE LT expr ) | ^( INF_RANGE LE expr ) | ^( INF_RANGE GT expr ) | ^( INF_RANGE GE expr ) );
+    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:405:1: caseExprListItem : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
     public final void caseExprListItem() throws RecognitionException {
+        StaticTypeAnalyzer.expr_return a = null;
+
+        StaticTypeAnalyzer.expr_return b = null;
+
+
         try {
-            // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:406:2: ( expr | ^( RANGE expr expr ) | ^( INF_RANGE LT expr ) | ^( INF_RANGE LE expr ) | ^( INF_RANGE GT expr ) | ^( INF_RANGE GE expr ) )
+            // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:406:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
             int alt21=6;
             switch ( input.LA(1) ) {
             case NEG:
@@ -1824,10 +1828,10 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             switch (alt21) {
                 case 1 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:406:4: expr
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:406:4: a= expr
                     {
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1178);
-                    expr();
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1180);
+                    a=expr();
 
                     state._fsp--;
 
@@ -1835,18 +1839,18 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:407:10: ^( RANGE expr expr )
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:407:10: ^( RANGE a= expr b= expr )
                     {
-                    match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem1190); 
+                    match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem1192); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1192);
-                    expr();
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1196);
+                    a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1194);
-                    expr();
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1200);
+                    b=expr();
 
                     state._fsp--;
 
@@ -1856,14 +1860,14 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:408:10: ^( INF_RANGE LT expr )
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:408:10: ^( INF_RANGE LT a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1207); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1213); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,LT,FOLLOW_LT_in_caseExprListItem1209); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1211);
-                    expr();
+                    match(input,LT,FOLLOW_LT_in_caseExprListItem1215); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1219);
+                    a=expr();
 
                     state._fsp--;
 
@@ -1873,14 +1877,14 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:409:17: ^( INF_RANGE LE expr )
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:409:17: ^( INF_RANGE LE a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1231); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1239); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,LE,FOLLOW_LE_in_caseExprListItem1233); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1235);
-                    expr();
+                    match(input,LE,FOLLOW_LE_in_caseExprListItem1241); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1245);
+                    a=expr();
 
                     state._fsp--;
 
@@ -1890,14 +1894,14 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:410:17: ^( INF_RANGE GT expr )
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:410:17: ^( INF_RANGE GT a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1255); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1265); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,GT,FOLLOW_GT_in_caseExprListItem1257); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1259);
-                    expr();
+                    match(input,GT,FOLLOW_GT_in_caseExprListItem1267); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1271);
+                    a=expr();
 
                     state._fsp--;
 
@@ -1907,14 +1911,14 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:411:17: ^( INF_RANGE GE expr )
+                    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:411:17: ^( INF_RANGE GE a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1279); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1291); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,GE,FOLLOW_GE_in_caseExprListItem1281); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem1283);
-                    expr();
+                    match(input,GE,FOLLOW_GE_in_caseExprListItem1293); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem1297);
+                    a=expr();
 
                     state._fsp--;
 
@@ -1944,10 +1948,10 @@ public class StaticTypeAnalyzer extends TreeParser {
             // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:415:2: ( ^( CASE_ELSE block ) )
             // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:415:4: ^( CASE_ELSE block )
             {
-            match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock1303); 
+            match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock1317); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_block_in_caseElseBlock1305);
+            pushFollow(FOLLOW_block_in_caseElseBlock1319);
             block();
 
             state._fsp--;
@@ -2137,15 +2141,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 1 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:420:4: ^( AND a= expr b= expr )
                     {
-                    AND24=(CommonTree)match(input,AND,FOLLOW_AND_in_expr1322); 
+                    AND24=(CommonTree)match(input,AND,FOLLOW_AND_in_expr1336); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1326);
+                    pushFollow(FOLLOW_expr_in_expr1340);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1332);
+                    pushFollow(FOLLOW_expr_in_expr1346);
                     b=expr();
 
                     state._fsp--;
@@ -2168,15 +2172,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 2 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:430:4: ^( OR a= expr b= expr )
                     {
-                    OR25=(CommonTree)match(input,OR,FOLLOW_OR_in_expr1343); 
+                    OR25=(CommonTree)match(input,OR,FOLLOW_OR_in_expr1357); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1347);
+                    pushFollow(FOLLOW_expr_in_expr1361);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1353);
+                    pushFollow(FOLLOW_expr_in_expr1367);
                     b=expr();
 
                     state._fsp--;
@@ -2199,15 +2203,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 3 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:440:4: ^( EQ a= expr b= expr )
                     {
-                    EQ26=(CommonTree)match(input,EQ,FOLLOW_EQ_in_expr1364); 
+                    EQ26=(CommonTree)match(input,EQ,FOLLOW_EQ_in_expr1378); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1368);
+                    pushFollow(FOLLOW_expr_in_expr1382);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1374);
+                    pushFollow(FOLLOW_expr_in_expr1388);
                     b=expr();
 
                     state._fsp--;
@@ -2230,15 +2234,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 4 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:450:4: ^( NEQ a= expr b= expr )
                     {
-                    NEQ27=(CommonTree)match(input,NEQ,FOLLOW_NEQ_in_expr1385); 
+                    NEQ27=(CommonTree)match(input,NEQ,FOLLOW_NEQ_in_expr1399); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1389);
+                    pushFollow(FOLLOW_expr_in_expr1403);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1395);
+                    pushFollow(FOLLOW_expr_in_expr1409);
                     b=expr();
 
                     state._fsp--;
@@ -2261,15 +2265,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 5 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:460:4: ^( LT a= expr b= expr )
                     {
-                    LT28=(CommonTree)match(input,LT,FOLLOW_LT_in_expr1406); 
+                    LT28=(CommonTree)match(input,LT,FOLLOW_LT_in_expr1420); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1410);
+                    pushFollow(FOLLOW_expr_in_expr1424);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1416);
+                    pushFollow(FOLLOW_expr_in_expr1430);
                     b=expr();
 
                     state._fsp--;
@@ -2306,15 +2310,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 6 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:484:4: ^( LE a= expr b= expr )
                     {
-                    LE29=(CommonTree)match(input,LE,FOLLOW_LE_in_expr1427); 
+                    LE29=(CommonTree)match(input,LE,FOLLOW_LE_in_expr1441); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1431);
+                    pushFollow(FOLLOW_expr_in_expr1445);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1437);
+                    pushFollow(FOLLOW_expr_in_expr1451);
                     b=expr();
 
                     state._fsp--;
@@ -2351,15 +2355,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 7 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:508:4: ^( GT a= expr b= expr )
                     {
-                    GT30=(CommonTree)match(input,GT,FOLLOW_GT_in_expr1448); 
+                    GT30=(CommonTree)match(input,GT,FOLLOW_GT_in_expr1462); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1452);
+                    pushFollow(FOLLOW_expr_in_expr1466);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1458);
+                    pushFollow(FOLLOW_expr_in_expr1472);
                     b=expr();
 
                     state._fsp--;
@@ -2396,15 +2400,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 8 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:532:4: ^( GE a= expr b= expr )
                     {
-                    GE31=(CommonTree)match(input,GE,FOLLOW_GE_in_expr1469); 
+                    GE31=(CommonTree)match(input,GE,FOLLOW_GE_in_expr1483); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1473);
+                    pushFollow(FOLLOW_expr_in_expr1487);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1479);
+                    pushFollow(FOLLOW_expr_in_expr1493);
                     b=expr();
 
                     state._fsp--;
@@ -2441,15 +2445,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 9 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:556:4: ^( PLUS a= expr b= expr )
                     {
-                    PLUS32=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expr1490); 
+                    PLUS32=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expr1504); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1494);
+                    pushFollow(FOLLOW_expr_in_expr1508);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1500);
+                    pushFollow(FOLLOW_expr_in_expr1514);
                     b=expr();
 
                     state._fsp--;
@@ -2472,15 +2476,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 10 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:566:4: ^( MINUS a= expr b= expr )
                     {
-                    MINUS33=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expr1511); 
+                    MINUS33=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expr1525); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1515);
+                    pushFollow(FOLLOW_expr_in_expr1529);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1521);
+                    pushFollow(FOLLOW_expr_in_expr1535);
                     b=expr();
 
                     state._fsp--;
@@ -2503,15 +2507,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 11 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:576:4: ^( TIMES a= expr b= expr )
                     {
-                    TIMES34=(CommonTree)match(input,TIMES,FOLLOW_TIMES_in_expr1532); 
+                    TIMES34=(CommonTree)match(input,TIMES,FOLLOW_TIMES_in_expr1546); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1536);
+                    pushFollow(FOLLOW_expr_in_expr1550);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1542);
+                    pushFollow(FOLLOW_expr_in_expr1556);
                     b=expr();
 
                     state._fsp--;
@@ -2534,15 +2538,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 12 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:586:4: ^( DIA a= expr b= expr )
                     {
-                    DIA35=(CommonTree)match(input,DIA,FOLLOW_DIA_in_expr1553); 
+                    DIA35=(CommonTree)match(input,DIA,FOLLOW_DIA_in_expr1567); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1557);
+                    pushFollow(FOLLOW_expr_in_expr1571);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1563);
+                    pushFollow(FOLLOW_expr_in_expr1577);
                     b=expr();
 
                     state._fsp--;
@@ -2565,15 +2569,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 13 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:596:4: ^( DIV a= expr b= expr )
                     {
-                    DIV36=(CommonTree)match(input,DIV,FOLLOW_DIV_in_expr1574); 
+                    DIV36=(CommonTree)match(input,DIV,FOLLOW_DIV_in_expr1588); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1578);
+                    pushFollow(FOLLOW_expr_in_expr1592);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1584);
+                    pushFollow(FOLLOW_expr_in_expr1598);
                     b=expr();
 
                     state._fsp--;
@@ -2603,15 +2607,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 14 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:613:4: ^( MOD a= expr b= expr )
                     {
-                    MOD37=(CommonTree)match(input,MOD,FOLLOW_MOD_in_expr1595); 
+                    MOD37=(CommonTree)match(input,MOD,FOLLOW_MOD_in_expr1609); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1599);
+                    pushFollow(FOLLOW_expr_in_expr1613);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1605);
+                    pushFollow(FOLLOW_expr_in_expr1619);
                     b=expr();
 
                     state._fsp--;
@@ -2641,15 +2645,15 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 15 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:630:4: ^( POW a= expr b= expr )
                     {
-                    POW38=(CommonTree)match(input,POW,FOLLOW_POW_in_expr1616); 
+                    POW38=(CommonTree)match(input,POW,FOLLOW_POW_in_expr1630); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1620);
+                    pushFollow(FOLLOW_expr_in_expr1634);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr1626);
+                    pushFollow(FOLLOW_expr_in_expr1640);
                     b=expr();
 
                     state._fsp--;
@@ -2672,10 +2676,10 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 16 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:640:4: ^( NEG a= expr )
                     {
-                    match(input,NEG,FOLLOW_NEG_in_expr1637); 
+                    match(input,NEG,FOLLOW_NEG_in_expr1651); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1641);
+                    pushFollow(FOLLOW_expr_in_expr1655);
                     a=expr();
 
                     state._fsp--;
@@ -2697,10 +2701,10 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 17 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:649:4: ^( NOT a= expr )
                     {
-                    match(input,NOT,FOLLOW_NOT_in_expr1662); 
+                    match(input,NOT,FOLLOW_NOT_in_expr1676); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr1666);
+                    pushFollow(FOLLOW_expr_in_expr1680);
                     a=expr();
 
                     state._fsp--;
@@ -2728,7 +2732,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 18 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:664:4: CONST_TRUE
                     {
-                    match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr1686); 
+                    match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr1700); 
                     retval.expressionType = Type.BOOLEAN;
 
                     }
@@ -2736,7 +2740,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 19 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:665:4: CONST_FALSE
                     {
-                    match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr1693); 
+                    match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr1707); 
                     retval.expressionType = Type.BOOLEAN;
 
                     }
@@ -2744,7 +2748,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 20 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:666:4: CONST_STR
                     {
-                    match(input,CONST_STR,FOLLOW_CONST_STR_in_expr1700); 
+                    match(input,CONST_STR,FOLLOW_CONST_STR_in_expr1714); 
                     retval.expressionType = Type.STRING;
 
                     }
@@ -2752,7 +2756,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 21 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:667:4: CONST_INT
                     {
-                    match(input,CONST_INT,FOLLOW_CONST_INT_in_expr1707); 
+                    match(input,CONST_INT,FOLLOW_CONST_INT_in_expr1721); 
                     retval.expressionType = Type.INTEGER;
 
                     }
@@ -2760,7 +2764,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 22 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:668:4: CONST_REAL
                     {
-                    match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr1714); 
+                    match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr1728); 
                     retval.expressionType = Type.REAL;
 
                     }
@@ -2768,7 +2772,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 23 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:669:4: ID
                     {
-                    ID39=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1721); 
+                    ID39=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1735); 
 
                                             Symbol s = currentScope.referenceSymbol((ID39!=null?ID39.getText():null), new Point((ID39!=null?ID39.getLine():0), (ID39!=null?ID39.getCharPositionInLine():0)));
                                             if(s != null){
@@ -2792,11 +2796,11 @@ public class StaticTypeAnalyzer extends TreeParser {
                 case 24 :
                     // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:686:4: ^( ARRAY_ITEM ID arraySubscript )
                     {
-                    match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr1730); 
+                    match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr1744); 
 
                     match(input, Token.DOWN, null); 
-                    ID40=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1732); 
-                    pushFollow(FOLLOW_arraySubscript_in_expr1734);
+                    ID40=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1746); 
+                    pushFollow(FOLLOW_arraySubscript_in_expr1748);
                     arraySubscript41=arraySubscript();
 
                     state._fsp--;
@@ -2860,7 +2864,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:713:2: ( ^( ARRAY_INDEX ( expr )+ ) )
             // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:713:4: ^( ARRAY_INDEX ( expr )+ )
             {
-            match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript1765); 
+            match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript1779); 
 
 
                                                     retval.indices = new ArrayList<Integer>();
@@ -2883,7 +2887,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             	case 1 :
             	    // src/glossa/interpreter/grammars/StaticTypeAnalyzer.g:716:20: expr
             	    {
-            	    pushFollow(FOLLOW_expr_in_arraySubscript1794);
+            	    pushFollow(FOLLOW_expr_in_arraySubscript1808);
             	    expr42=expr();
 
             	    state._fsp--;
@@ -2937,15 +2941,15 @@ public class StaticTypeAnalyzer extends TreeParser {
     static final String DFA18_eofS =
         "\15\uffff";
     static final String DFA18_minS =
-        "\1\7\2\uffff\1\2\5\uffff\1\20\1\5\2\uffff";
+        "\1\7\2\uffff\1\2\5\uffff\1\17\1\5\2\uffff";
     static final String DFA18_maxS =
-        "\1\65\2\uffff\1\2\5\uffff\1\20\1\106\2\uffff";
+        "\1\65\2\uffff\1\2\5\uffff\1\17\1\106\2\uffff";
     static final String DFA18_acceptS =
         "\1\uffff\1\1\1\2\1\uffff\1\5\1\6\1\7\1\10\1\11\2\uffff\1\4\1\3";
     static final String DFA18_specialS =
         "\15\uffff}>";
     static final String[] DFA18_transitionS = {
-            "\1\4\27\uffff\1\1\1\2\1\3\5\uffff\1\5\6\uffff\1\6\4\uffff\1"+
+            "\1\4\26\uffff\1\1\1\2\1\3\5\uffff\1\5\7\uffff\1\6\4\uffff\1"+
             "\7\1\uffff\1\10",
             "",
             "",
@@ -2956,7 +2960,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             "",
             "",
             "\1\12",
-            "\1\14\3\uffff\1\14\1\13\5\uffff\1\14\4\uffff\1\14\24\uffff"+
+            "\1\14\3\uffff\1\14\1\13\4\uffff\1\14\4\uffff\1\14\25\uffff"+
             "\4\14\11\uffff\20\14",
             "",
             ""
@@ -2999,155 +3003,155 @@ public class StaticTypeAnalyzer extends TreeParser {
 
     public static final BitSet FOLLOW_program_in_unit50 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_PROGRAM_in_program59 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_program65 = new BitSet(new long[]{0x0000000000500010L});
-    public static final BitSet FOLLOW_declarations_in_program71 = new BitSet(new long[]{0x0000000000500010L});
-    public static final BitSet FOLLOW_block_in_program75 = new BitSet(new long[]{0x0000000000010008L});
+    public static final BitSet FOLLOW_ID_in_program65 = new BitSet(new long[]{0x0000000000280010L});
+    public static final BitSet FOLLOW_declarations_in_program71 = new BitSet(new long[]{0x0000000000280010L});
+    public static final BitSet FOLLOW_block_in_program75 = new BitSet(new long[]{0x0000000000008008L});
     public static final BitSet FOLLOW_ID_in_program83 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_constDecl_in_declarations105 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_constDecl_in_declarations105 = new BitSet(new long[]{0x0000000000200002L});
     public static final BitSet FOLLOW_varDecl_in_declarations108 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CONSTANTS_in_constDecl121 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_constAssign_in_constDecl127 = new BitSet(new long[]{0x0000000000200008L});
+    public static final BitSet FOLLOW_constAssign_in_constDecl127 = new BitSet(new long[]{0x0000000000100008L});
     public static final BitSet FOLLOW_EQ_in_constAssign183 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_constAssign185 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_ID_in_constAssign185 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
     public static final BitSet FOLLOW_expr_in_constAssign187 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_VARIABLES_in_varDecl218 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_varsDecl_in_varDecl224 = new BitSet(new long[]{0x0000000078000008L});
+    public static final BitSet FOLLOW_varsDecl_in_varDecl224 = new BitSet(new long[]{0x000000003C000008L});
     public static final BitSet FOLLOW_varType_in_varsDecl279 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_varDeclItem_in_varsDecl302 = new BitSet(new long[]{0x0000000000010108L});
+    public static final BitSet FOLLOW_varDeclItem_in_varsDecl302 = new BitSet(new long[]{0x0000000000008108L});
     public static final BitSet FOLLOW_ID_in_varDeclItem362 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ARRAY_in_varDeclItem396 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_varDeclItem398 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_arrayDimension_in_varDeclItem400 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_ARRAY_DIMENSION_in_arrayDimension450 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_arrayDimension475 = new BitSet(new long[]{0xFF803C0000210228L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_arrayDimension475 = new BitSet(new long[]{0xFF803C0000108228L,0x000000000000007FL});
     public static final BitSet FOLLOW_BOOLEANS_in_varType552 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_STRINGS_in_varType559 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_INTEGERS_in_varType566 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_REALS_in_varType573 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_BLOCK_in_block586 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_stm_in_block588 = new BitSet(new long[]{0x0028408380000088L});
+    public static final BitSet FOLLOW_stm_in_block588 = new BitSet(new long[]{0x00284041C0000088L});
     public static final BitSet FOLLOW_PRINT_in_stm602 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_stm607 = new BitSet(new long[]{0xFF803C0000210228L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_stm607 = new BitSet(new long[]{0xFF803C0000108228L,0x000000000000007FL});
     public static final BitSet FOLLOW_READ_in_stm682 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_readItem_in_stm684 = new BitSet(new long[]{0x0000000000010008L});
+    public static final BitSet FOLLOW_readItem_in_stm684 = new BitSet(new long[]{0x0000000000008008L});
     public static final BitSet FOLLOW_ASSIGN_in_stm692 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm694 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_ID_in_stm694 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
     public static final BitSet FOLLOW_expr_in_stm696 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_ASSIGN_in_stm728 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_stm730 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_stm732 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_arraySubscript_in_stm732 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
     public static final BitSet FOLLOW_expr_in_stm734 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_IFNODE_in_stm800 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ifBlock_in_stm802 = new BitSet(new long[]{0x0000006000000008L});
-    public static final BitSet FOLLOW_elseIfBlock_in_stm804 = new BitSet(new long[]{0x0000006000000008L});
+    public static final BitSet FOLLOW_ifBlock_in_stm802 = new BitSet(new long[]{0x0000003000000008L});
+    public static final BitSet FOLLOW_elseIfBlock_in_stm804 = new BitSet(new long[]{0x0000003000000008L});
     public static final BitSet FOLLOW_elseBlock_in_stm807 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_SWITCH_in_stm828 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_stm830 = new BitSet(new long[]{0x0000020000004008L});
-    public static final BitSet FOLLOW_caseBlock_in_stm832 = new BitSet(new long[]{0x0000020000004008L});
+    public static final BitSet FOLLOW_expr_in_stm830 = new BitSet(new long[]{0x0000010000002008L});
+    public static final BitSet FOLLOW_caseBlock_in_stm832 = new BitSet(new long[]{0x0000010000002008L});
     public static final BitSet FOLLOW_caseElseBlock_in_stm835 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_FOR_in_stm856 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm858 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_stm862 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_stm866 = new BitSet(new long[]{0xFF803C0000710230L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_stm871 = new BitSet(new long[]{0x0000000000500010L});
+    public static final BitSet FOLLOW_ID_in_stm858 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_stm862 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_stm866 = new BitSet(new long[]{0xFF803C0000388230L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_stm871 = new BitSet(new long[]{0x0000000000280010L});
     public static final BitSet FOLLOW_block_in_stm875 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_WHILE_in_stm941 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_stm943 = new BitSet(new long[]{0x0000000000500010L});
+    public static final BitSet FOLLOW_expr_in_stm943 = new BitSet(new long[]{0x0000000000280010L});
     public static final BitSet FOLLOW_block_in_stm945 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_REPEAT_in_stm962 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_block_in_stm964 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_block_in_stm964 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
     public static final BitSet FOLLOW_expr_in_stm966 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_ID_in_readItem1000 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_arraySubscript_in_readItem1002 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_readItem1026 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IF_in_ifBlock1071 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_ifBlock1073 = new BitSet(new long[]{0x0000000000500010L});
+    public static final BitSet FOLLOW_expr_in_ifBlock1073 = new BitSet(new long[]{0x0000000000280010L});
     public static final BitSet FOLLOW_block_in_ifBlock1075 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_ELSE_in_elseBlock1108 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_block_in_elseBlock1110 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_ELSE_IF_in_elseIfBlock1130 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_elseIfBlock1132 = new BitSet(new long[]{0x0000000000500010L});
+    public static final BitSet FOLLOW_expr_in_elseIfBlock1132 = new BitSet(new long[]{0x0000000000280010L});
     public static final BitSet FOLLOW_block_in_elseIfBlock1134 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_CASE_in_caseBlock1163 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_caseExprListItem_in_caseBlock1165 = new BitSet(new long[]{0xFF803C0000713230L,0x000000000000007FL});
+    public static final BitSet FOLLOW_caseExprListItem_in_caseBlock1165 = new BitSet(new long[]{0xFF803E0000389230L,0x000000000000007FL});
     public static final BitSet FOLLOW_block_in_caseBlock1168 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RANGE_in_caseExprListItem1190 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1192 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1194 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1207 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LT_in_caseExprListItem1209 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1211 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1231 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LE_in_caseExprListItem1233 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1235 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1255 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_GT_in_caseExprListItem1257 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1259 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1279 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_GE_in_caseExprListItem1281 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem1283 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CASE_ELSE_in_caseElseBlock1303 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_block_in_caseElseBlock1305 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_AND_in_expr1322 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1326 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1332 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_OR_in_expr1343 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1347 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1353 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_EQ_in_expr1364 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1368 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1374 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NEQ_in_expr1385 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1389 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1395 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_LT_in_expr1406 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1410 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1416 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_LE_in_expr1427 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1431 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1437 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_GT_in_expr1448 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1452 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1458 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_GE_in_expr1469 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1473 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1479 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PLUS_in_expr1490 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1494 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1500 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MINUS_in_expr1511 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1515 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1521 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_TIMES_in_expr1532 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1536 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1542 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DIA_in_expr1553 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1557 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1563 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DIV_in_expr1574 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1578 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1584 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MOD_in_expr1595 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1599 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1605 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_POW_in_expr1616 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1620 = new BitSet(new long[]{0xFF803C0000210220L,0x000000000000007FL});
-    public static final BitSet FOLLOW_expr_in_expr1626 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NEG_in_expr1637 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1641 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NOT_in_expr1662 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr1666 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONST_TRUE_in_expr1686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_FALSE_in_expr1693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_STR_in_expr1700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_INT_in_expr1707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_REAL_in_expr1714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_expr1721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAY_ITEM_in_expr1730 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_expr1732 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_expr1734 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ARRAY_INDEX_in_arraySubscript1765 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_arraySubscript1794 = new BitSet(new long[]{0xFF803C0000210228L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RANGE_in_caseExprListItem1192 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1196 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1200 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1213 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LT_in_caseExprListItem1215 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1219 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1239 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LE_in_caseExprListItem1241 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1245 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1265 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_GT_in_caseExprListItem1267 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1271 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem1291 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_GE_in_caseExprListItem1293 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem1297 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CASE_ELSE_in_caseElseBlock1317 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_block_in_caseElseBlock1319 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_AND_in_expr1336 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1340 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1346 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_OR_in_expr1357 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1361 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1367 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_EQ_in_expr1378 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1382 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1388 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NEQ_in_expr1399 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1403 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1409 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_LT_in_expr1420 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1424 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1430 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_LE_in_expr1441 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1445 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1451 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_GT_in_expr1462 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1466 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1472 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_GE_in_expr1483 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1487 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1493 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PLUS_in_expr1504 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1508 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1514 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MINUS_in_expr1525 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1529 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1535 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_TIMES_in_expr1546 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1550 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1556 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DIA_in_expr1567 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1571 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1577 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DIV_in_expr1588 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1592 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1598 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MOD_in_expr1609 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1613 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1619 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_POW_in_expr1630 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1634 = new BitSet(new long[]{0xFF803C0000108220L,0x000000000000007FL});
+    public static final BitSet FOLLOW_expr_in_expr1640 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NEG_in_expr1651 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1655 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NOT_in_expr1676 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr1680 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONST_TRUE_in_expr1700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_FALSE_in_expr1707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_STR_in_expr1714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_INT_in_expr1721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_REAL_in_expr1728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_expr1735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAY_ITEM_in_expr1744 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_expr1746 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_arraySubscript_in_expr1748 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ARRAY_INDEX_in_arraySubscript1779 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_arraySubscript1808 = new BitSet(new long[]{0xFF803C0000108228L,0x000000000000007FL});
 
 }
