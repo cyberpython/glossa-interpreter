@@ -39,18 +39,24 @@ public class Array extends Symbol {
 
     //private HashMap<String, Object> values;
     private List<Integer> dimensions;
+    private int dimensionsCount;
     private int[] colSizes;
     private Object[] values;
 
     public Array(String name, Type type, int line, int pos, int absolutePosition, List<Integer> dimensions) {
         super(name, type, line, pos, absolutePosition);
         this.dimensions = dimensions;
+        this.dimensionsCount = this.dimensions.size();
         this.initialize();
     }
 
-    public Array(String name, int line, int pos, int absolutePosition, List<Integer> dimensions) {
+    public Array(String name, int line, int pos, int absolutePosition, int dimensionsCount) {
         super(name, null, line, pos, absolutePosition);
-        this.dimensions = dimensions;
+        this.dimensionsCount = dimensionsCount;
+        this.dimensions = new ArrayList<Integer>();
+        for (int i = 0; i < dimensionsCount; i++) {
+            dimensions.add(new Integer(1));
+        }
     }
 
     private void initialize() {
@@ -106,13 +112,13 @@ public class Array extends Symbol {
 
     private int resolveIndex(List<Integer> indices) {
         int result = -1;
-        int dimensionsCount = dimensions.size();
-        if (indices.size() == dimensionsCount) {
+        int numberOfDimensions = dimensions.size();
+        if (indices.size() == numberOfDimensions) {
             result = 0;
             int index = -1;
             int d = 1;
             int j = 0;
-            for (int i = 0; i < dimensionsCount; i++) {
+            for (int i = 0; i < numberOfDimensions; i++) {
                 index = indices.get(i).intValue();
                 if (index < 1 || index > dimensions.get(i).intValue()) {
                     throw new RuntimeException(String.valueOf(index) + " at " + arrayIndexToString(indices));//TODO: Proper runtime error report
@@ -164,6 +170,7 @@ public class Array extends Symbol {
      */
     public void setDimensions(List<Integer> dimensions) {
         this.dimensions = dimensions;
+        this.dimensionsCount = this.dimensions.size();
         this.initialize();
     }
 
@@ -171,12 +178,12 @@ public class Array extends Symbol {
      * @return the number of dimensions
      */
     public int getNumberOfDimensions() {
-        return dimensions.size();
+        return this.dimensionsCount;
     }
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_ARRAY + " " + super.toString() + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + getDimensions().size();
+        return Messages.CONSTS_STR_ARRAY + " " + super.toString() + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + this.dimensionsCount;
     }
 
     public static void main(String[] args) {

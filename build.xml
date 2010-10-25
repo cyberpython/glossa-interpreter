@@ -20,7 +20,7 @@
         <get src="http://www.antlr.org/download/antlr-3.2.jar" dest="lib/antlr-3.2.jar"/>
     </target>
 
-    <target name="-pre-compile" depends="download-antlr" if="antlr.present">
+    <target name="-pre-compile" depends="download-antlr">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/interpreter/grammars/Glossa.g"/>
             <classpath>

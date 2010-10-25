@@ -28,7 +28,7 @@ import glossa.interpreter.symboltable.symbols.Array;
 import glossa.interpreter.symboltable.symbols.Symbol;
 import glossa.interpreter.symboltable.types.Type;
 import glossa.interpreter.symboltable.symbols.Variable;
-import glossa.interpreter.symboltable.types.TypeUtils;
+import glossa.interpreter.statictypeanalysis.StaticTypeAnalyzerUtils;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
