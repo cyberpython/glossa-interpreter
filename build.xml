@@ -22,23 +22,28 @@
 
     <target name="-pre-compile" depends="download-antlr">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
-            <arg value="${src.dir}/glossa/interpreter/grammars/Glossa.g"/>
+            <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
             <classpath>
                 <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
-            <arg value="${src.dir}/glossa/interpreter/grammars/StaticTypeAnalyzer.g"/>
+            <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
             <classpath>
                 <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
-        <move todir="${src.dir}/glossa/interpreter">
-            <fileset dir="${src.dir}/glossa/interpreter/grammars">
-                <include name="**/*.java"/>
-                <exclude name="**/*.g"/>
+        <move todir="${src.dir}/glossa/recognizers">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="GlossaLexer.java"/>
+                <include name="GlossaParser.java"/>
+            </fileset>
+        </move>
+        <move todir="${src.dir}/glossa/statictypeanalysis">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="StaticTypeAnalyzer.java"/>
             </fileset>
         </move>
     </target>

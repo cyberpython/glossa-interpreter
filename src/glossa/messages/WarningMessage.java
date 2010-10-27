@@ -22,25 +22,18 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.messages;
 
+import java.awt.Point;
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class WarningMessage extends InterpreterMessage{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    public WarningMessage(Point point, String msg) {
+        super(point, msg);
     }
 
 }

@@ -21,26 +21,48 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+package glossa.statictypeanalysis.scopetable.symbols;
 
-package glossa;
-
+import glossa.messages.Messages;
+import glossa.types.Type;
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class Array extends Symbol {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    private int numberOfDimensions;
+
+    public Array(String name, Type type, int line, int pos, int absolutePosition, int dimensionsCount) {
+        super(name, type, line, pos, absolutePosition);
+        this.numberOfDimensions = dimensionsCount;
+        this.setInitialized(true);
     }
 
+    public Array(String name, int line, int pos, int absolutePosition, int dimensionsCount) {
+        super(name, null, line, pos, absolutePosition);
+        this.numberOfDimensions = dimensionsCount;
+        this.setInitialized(true);
+    }
+
+
+    /**
+     * @return the number of dimensions
+     */
+    public void setNumberOfDimensions(int numberOfDimensions) {
+        this.numberOfDimensions = numberOfDimensions;
+    }
+
+    /**
+     * @return the number of dimensions
+     */
+    public int getNumberOfDimensions() {
+        return this.numberOfDimensions;
+    }
+
+    @Override
+    public String toString() {
+        return Messages.CONSTS_STR_ARRAY + " " + super.toString() + " - " + Messages.CONSTS_STR_DIMENSIONS + ": " + this.numberOfDimensions;
+    }
 }

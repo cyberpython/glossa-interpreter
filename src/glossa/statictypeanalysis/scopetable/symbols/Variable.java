@@ -22,25 +22,32 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.statictypeanalysis.scopetable.symbols;
+
+import glossa.messages.Messages;
+import glossa.types.Type;
+
 
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class Variable extends Symbol{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    public Variable(String name, Type type, int line, int pos, int absolutePosition) {
+        super(name, type, line, pos, absolutePosition);
     }
+
+    public Variable(String name, int line, int pos, int absolutePosition) {
+        super(name, Type.INTEGER, line, pos, absolutePosition);
+    }
+
+    @Override
+    public String toString() {
+        return Messages.CONSTS_STR_VARIABLE+" "+super.toString();
+    }
+
+
 
 }

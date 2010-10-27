@@ -22,25 +22,58 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.messages;
 
+import java.awt.Point;
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class InterpreterMessage {
+
+    private Point point;
+    private String msg;
+
+    public InterpreterMessage() {
+        this(new Point(0, 0), "");
+    }
+
+    public InterpreterMessage(Point point, String msg) {
+        this.point = point;
+        this.msg = msg;
+    }
+
+
+
+
 
     /**
-     * @param args the command line arguments
+     * @return the point
      */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    public Point getPoint() {
+        return point;
+    }
+
+    /**
+     * @param point the point to set
+     */
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
+    /**
+     * @return the msg
+     */
+    public String getMsg() {
+        return msg;
+    }
+
+    /**
+     * @param msg the msg to set
+     */
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
 }

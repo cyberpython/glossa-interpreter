@@ -22,25 +22,27 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.interpreter.symboltable.symbols;
+
+import glossa.messages.Messages;
+import glossa.statictypeanalysis.scopetable.symbols.Variable;
 
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class RuntimeVariable extends RuntimeSimpleSymbol{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    public RuntimeVariable(Variable var) {
+        super(var);
     }
+
+    @Override
+    public String toString() {
+        return Messages.CONSTS_STR_VARIABLE+" "+super.toString();
+    }
+
+
 
 }

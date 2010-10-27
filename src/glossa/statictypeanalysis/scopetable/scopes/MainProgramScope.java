@@ -22,25 +22,61 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.statictypeanalysis.scopetable.scopes;
 
+
+import glossa.statictypeanalysis.scopetable.symbols.Array;
+import glossa.statictypeanalysis.scopetable.symbols.Symbol;
+import glossa.statictypeanalysis.scopetable.symbols.Variable;
+import glossa.types.Type;
+import java.awt.Point;
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public class MainProgramScope extends Scope{
+
+    private String programName;
+
+    public MainProgramScope() {
+        super();
+        this.programName = "";
+    }
+
 
     /**
-     * @param args the command line arguments
+     * @return the programName
      */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
-        }
+    public String getProgramName() {
+        return programName;
     }
+
+    /**
+     * @param programName the programName to set
+     */
+    public void setProgramName(String programName) {
+        this.programName = programName;
+    }
+
+
+    public static void main(String[] args) {
+        MainProgramScope mpst = new MainProgramScope();
+        mpst.setProgramName("TestProgram");
+
+        Variable x = new Variable("x", Type.INTEGER, 3, 12, 40);
+        mpst.defineSymbol("x", x);
+        System.out.println(x);
+
+
+        mpst.defineSymbol("arr", new Array("arr", Type.REAL, 4, 32, 129, 2) );
+
+        mpst.defineSymbol("arr", new Variable("arr", Type.INTEGER, 5, 212, 40));
+        Symbol s = mpst.referenceSymbol("x", new Point(12,2));
+        System.out.println(s);
+        s = mpst.referenceSymbol("adsa", new Point(14,27));
+    }
+
+
 
 }

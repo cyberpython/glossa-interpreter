@@ -22,25 +22,56 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.interpreter.symboltable.symbols;
+
+import glossa.statictypeanalysis.scopetable.symbols.Symbol;
+import glossa.types.Type;
 
 
 /**
  *
  * @author cyberpython
  */
-public class Main {
+public abstract class RuntimeSimpleSymbol extends RuntimeSymbol{
+
+    private Object value;
+
+    public RuntimeSimpleSymbol(Symbol s) {
+        super(s);
+        Type type = super.getType();
+        if(type!=null){
+            this.value = type.getInitializationValue();
+        }
+    }
+
+    @Override
+    public void setType(Type type) {
+        super.setType(type);
+        if(type!=null){
+            this.setValue(type.getInitializationValue());
+        }
+        this.setInitialized(false);
+    }
+
+
 
     /**
-     * @param args the command line arguments
+     * @return the value
      */
-    public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        try{
-            inter.run(args);
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
+    public Object getValue() {
+        if( ! this.isInitialized() ){
+            throw new RuntimeException("Symbol.getValue(): "+this.getName()+" has not been initialized.");//TODO: proper runtime error report
+        }else{
+            return value;
         }
+    }
+
+    /**
+     * @param value the value to set
+     */
+    public void setValue(Object value) {
+        this.value = value;
+        this.setInitialized(true);
     }
 
 }
