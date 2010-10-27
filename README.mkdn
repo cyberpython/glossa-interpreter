@@ -8,12 +8,13 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 ##Status
 
-Currently:
-
-- Only the main program structure is implemented (procedures and functions will be added in the future). (1)
-- The lexer & parser is almost complete (error messages have to be translated).
-- Static type analysis is almost complete ('SWITCH' statements remain to be checked).
-- AST walking for statement execution (i.e. program execution) has not been started.
+- Lexer/Parser: Errors/warnings in Greek ✘
+- Lexer/Parser: Main program structure ✔
+- Lexer/Parser: Functions and procedures ✘
+- Static type analysis: Main program structure ✔
+- Static type analysis: Functions and procedures ✘
+- Statement execution: Main program structure ✘
+- Statement execution: Functions and procedures ✘
 
 ##Build instructions
 
