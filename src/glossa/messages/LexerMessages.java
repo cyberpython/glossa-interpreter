@@ -30,6 +30,11 @@ package glossa.messages;
  */
 public class LexerMessages {
 
+    public final static String STR_CONST_NEW_LINE = "αλλαγή γραμμής";
+    public final static String STR_CONST_EOF = "τέλος αρχείου";
+    public final static String STR_CONST_TAB = "tab(⇆)";
     public final static String STR_ERROR_UNKNOWN_SYMBOL = "Άγνωστο σύμβολο";
+    public final static String STR_ERROR_MISMATCHED_SYMBOL = "Αναμενόταν: %1$s. Βρέθηκε: %2$s.";
+    public final static String STR_ERROR_UNEXPECTED_SYMBOL = "Μη αναμενόμενο σύμβολο: %1$s.";
 
 }

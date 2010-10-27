@@ -8,12 +8,13 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 ##Status
 
-- Lexer/Parser: Errors/warnings in Greek ✘
+- Lexer/Parser: Errors/warnings in Greek ✔
+- Static type analysis: Errors/warnings in Greek ✔
 - Lexer/Parser: Main program structure ✔
-- Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Main program structure ✔
-- Static type analysis: Functions and procedures ✘
 - Statement execution: Main program structure ✘
+- Lexer/Parser: Functions and procedures ✘
+- Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘
 
 ##Build instructions
@@ -39,7 +40,7 @@ To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 
 e.g.:
 
-    java -jar dist/glossa-interpreter.jar src/glossa/interpreter/tests/VariablesDeclaration.gls
+    java -jar dist/glossa-interpreter.jar src/glossa/samples/VariablesDeclaration.gls
 
 There are some example input files in:
 
