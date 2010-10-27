@@ -16,6 +16,7 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 - Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘
+- Static type analysis: Built-in functions ✘
 
 ##Build instructions
 

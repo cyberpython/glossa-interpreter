@@ -35,6 +35,13 @@
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
+        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+            <arg value="${src.dir}/glossa/grammars/ASTInterpreter.g"/>
+            <classpath>
+                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </java>
         <move todir="${src.dir}/glossa/recognizers">
             <fileset dir="${src.dir}/glossa/grammars">
                 <include name="GlossaLexer.java"/>
@@ -44,6 +51,11 @@
         <move todir="${src.dir}/glossa/statictypeanalysis">
             <fileset dir="${src.dir}/glossa/grammars">
                 <include name="StaticTypeAnalyzer.java"/>
+            </fileset>
+        </move>
+        <move todir="${src.dir}/glossa/interpreter">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="ASTInterpreter.java"/>
             </fileset>
         </move>
     </target>

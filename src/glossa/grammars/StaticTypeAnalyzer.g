@@ -576,7 +576,11 @@ expr	returns [Type expressionType]
                                             }
 	|	^(POW	a=expr	  b=expr)   {
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
-                                                    $expressionType = Type.REAL;
+                                                    if(($b.expressionType!=null)&&($b.expressionType.equals(Type.INTEGER))){
+                                                        $expressionType = Type.REAL;
+                                                    }else{
+                                                        Messages.exponentNotIntegerError(new Point($b.start.getLine(), $b.start.getCharPositionInLine()), $b.expressionType);
+                                                    }
                                                 }else{
                                                     Messages.incompatibleTypesFoundError( $a.expressionType, new Point($a.start.getLine(), $a.start.getCharPositionInLine()),
                                                                                                             $b.expressionType, new Point($b.start.getLine(), $b.start.getCharPositionInLine()),

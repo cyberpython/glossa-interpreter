@@ -23,6 +23,8 @@
  */
 package glossa;
 
+import glossa.interpreter.ASTInterpreter;
+import glossa.interpreter.symboltable.SymbolTable;
 import glossa.recognizers.GlossaParser;
 import glossa.recognizers.GlossaLexer;
 import glossa.messages.ErrorMessage;
@@ -33,9 +35,11 @@ import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -59,21 +63,13 @@ public class Interpreter {
         GlossaParser.unit_return r = null;
 
         try {
-            // Create an input character stream
             ANTLRFileStream input = new ANTLRFileStream(args[0]);
-
-            // Create an ExprLexer that feeds from that stream
             GlossaLexer lexer = new GlossaLexer(input);
-
-            // Create a stream of tokens fed by the lexer
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-            // Create a parser that feeds off the token stream
             GlossaParser parser = new GlossaParser(tokens);
-
-            // Begin parsing at rule prog
             r = parser.unit();
         } catch (RuntimeException re) {
+            
         }
 
         int errors = 0;
@@ -99,13 +95,9 @@ public class Interpreter {
             // Create a tree node stream from resulting tree
             BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
             StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
-
-            try{
-                staticTypeAnalyzer.setScopeTable(scopeTable);
-                staticTypeAnalyzer.unit();                 // launch at start rule prog
-            }catch(NullPointerException npe){
-                npe.printStackTrace();
-            }
+            staticTypeAnalyzer.setScopeTable(scopeTable);
+            staticTypeAnalyzer.unit();                 // launch at start rule prog
+            
 
             MainProgramScope mpst = scopeTable.getMainProgramScope();
 
@@ -123,21 +115,16 @@ public class Interpreter {
             }
 
             if (errors == 0) {
-                System.out.println();
-                System.out.println();
-
-                System.out.println("Πρόγραμμα: " + mpst.getProgramName());
-
-                System.out.println();
-                System.out.println("////////// Σύμβολα Κύριου Προγράμματος: /////////////");
-
-                HashMap<String, Symbol> symbols = mpst.getSymbols();
-                Collection<Symbol> values = symbols.values();
-                List<Symbol> list = new ArrayList<Symbol>(values);
-                Collections.sort(list);
-                for (Iterator<Symbol> it = list.iterator(); it.hasNext();) {
-                    Symbol s = it.next();
-                    System.out.println((Symbol) s);
+                try{
+                Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
+                nodes.reset();
+                ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
+                interpreter.setScopeTable(scopeTable);
+                interpreter.setStack(stack);
+                interpreter.unit();                 // launch at start rule prog
+                
+                }catch(RuntimeException re){
+                    System.out.println(re.getMessage());
                 }
             }
         }

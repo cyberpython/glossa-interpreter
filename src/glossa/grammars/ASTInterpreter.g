@@ -59,6 +59,38 @@ options{
 
 package glossa.interpreter;
 
+import glossa.statictypeanalysis.scopetable.*;
+import glossa.interpreter.symboltable.*;
+import glossa.interpreter.symboltable.symbols.*;
+import java.awt.Point;
+import java.math.BigInteger;
+import java.util.Deque;
+import java.util.ArrayList;
+
+}
+
+
+@members{
+        private ScopeTable scopeTable;
+        private Deque<SymbolTable> stack;
+
+        private SymbolTable currentSymbolTable;
+
+        public void setScopeTable(ScopeTable s){
+            this.scopeTable = s;
+        }
+
+        public ScopeTable getScopeTable(){
+            return this.scopeTable;
+        }
+
+        public void setStack(Deque<SymbolTable> stack){
+            this.stack = stack;
+        }
+
+        public Deque<SymbolTable> getStack(){
+            return this.stack;
+        }
 
 }
 
@@ -71,7 +103,17 @@ package glossa.interpreter;
 
 unit	:	program;
 
-program	:	^(PROGRAM id1=ID declarations block (id2=ID)? )
+program	:	^(  PROGRAM         {
+                                        SymbolTable mainProgramSymbolTable = new SymbolTable(this.scopeTable.getMainProgramScope());
+                                        this.stack.push(mainProgramSymbolTable);
+                                        this.currentSymbolTable = mainProgramSymbolTable;
+                                    }
+                    id1=ID
+                    declarations
+                    block
+                    (id2=ID)?
+                )
+                    
         ;
 
 declarations
@@ -101,13 +143,30 @@ varsDecl
 
 varDeclItem
 	:	ID
-	| 	^(ARRAY ID arrayDimension )
+	| 	^(ARRAY ID arrayDimension 
+                                {
+                                    RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                    arr.setDimensions($arrayDimension.value);
+                                }
+                 )
         ;
 
 
 
-arrayDimension
-	:	^(ARRAY_DIMENSION expr+ )
+arrayDimension  returns [List<Integer> value]
+	:	^(ARRAY_DIMENSION
+                                {List<Integer> result = new ArrayList<Integer>();}
+                    (expr
+                                {
+                                    if(InterpreterUtils.isValidArrayDimension($expr.result)){
+                                        result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
+                                    }else{
+                                        throw new RuntimeException("Array dimensions must be of integer type and in the range (0,"+Integer.MAX_VALUE+")"); //TODO: proper runtime error message
+                                    }
+                                }
+                    )+
+                                {$value = result;}
+                )
         ;
 
 
@@ -125,10 +184,27 @@ block	:	^(BLOCK stm*)
 
 
 
-stm	:	^(PRINT (expr1=expr)* )
+stm	:	^(  PRINT
+                    (expr1=expr     {
+                                        Object o = $expr1.result;
+                                        if(o instanceof String){
+                                            o = ((String)o).substring(1, ((String)o).length()-1);
+                                        }
+                                        System.out.print(o.toString());
+                                    }
+                    )*)             {
+                                        System.out.println();
+                                    }
         |       ^(READ readItem+)
-	|	^(ASSIGN ID expr)
+	|	^(ASSIGN ID expr)   {
+                                        RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        var.setValue($expr.result);
+                                    }
         |       ^(ASSIGN ID arraySubscript expr)
+                                    {
+                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        arr.set($arraySubscript.value, $expr.result);
+                                    }
         |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
         |       ^(SWITCH expr caseBlock* caseElseBlock?)
         |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
@@ -172,32 +248,71 @@ caseElseBlock
 
 
 expr	returns [Object result]
-	:	^(AND	a=expr	  b=expr)
-	|	^(OR	a=expr	  b=expr)
-	|	^(EQ	a=expr	  b=expr)
-	|	^(NEQ	a=expr	  b=expr)
-	|	^(LT	a=expr	  b=expr)
-	|	^(LE	a=expr	  b=expr)
-	|	^(GT	a=expr	  b=expr)
-	|	^(GE	a=expr	  b=expr)
-	|	^(PLUS	a=expr	  b=expr)
-	|	^(MINUS	a=expr	  b=expr)
-	|	^(TIMES	a=expr	  b=expr)
-	|	^(DIA	a=expr	  b=expr)
-	|	^(DIV	a=expr	  b=expr)
-	|	^(MOD	a=expr	  b=expr)
-	|	^(POW	a=expr	  b=expr)
-	|	^(NEG	a=expr)
-	|	^(NOT	a=expr)
-	|	CONST_TRUE {$result = Boolean.valueOf(true);}
-	|	CONST_FALSE {$result = Boolean.valueOf(false);}
-	|	CONST_STR {$result = new String($CONST_STR.text);}
-	|	CONST_INT {$result = new BigInteger(CONST_INT.text);}
-	|	CONST_REAL {$result = new BigInteger(CONST_REAL.text);}
-	|	ID 
-	|	^(ARRAY_ITEM ID arraySubscript)
+	:	^(AND	a=expr	  b=expr)   {   $result = InterpreterUtils.and($a.result, $b.result);   }
+	|	^(OR	a=expr	  b=expr)   {   $result = InterpreterUtils.or($a.result, $b.result);    }
+	|	^(EQ	a=expr	  b=expr)   {   $result = InterpreterUtils.equals($a.result, $b.result);    }
+	|	^(NEQ	a=expr	  b=expr)   {   $result = InterpreterUtils.notEquals($a.result, $b.result); }
+	|	^(LT	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThan($a.result, $b.result); }
+	|	^(LE	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThanOrEqual($a.result, $b.result);  }
+	|	^(GT	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThan($a.result, $b.result);   }
+	|	^(GE	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThanOrEqual($a.result, $b.result);    }
+	|	^(PLUS	a=expr	  b=expr)   {   $result = InterpreterUtils.add($a.result, $b.result);   }
+	|	^(MINUS	a=expr	  b=expr)   {   $result = InterpreterUtils.subtract($a.result, $b.result);  }
+	|	^(TIMES	a=expr	  b=expr)   {   $result = InterpreterUtils.multiply($a.result, $b.result);  }
+        |	^(DIA	a=expr	  b=expr)   {   $result = InterpreterUtils.divide($a.result, $b.result);    }
+        |	^(DIV	a=expr	  b=expr)   {   $result = InterpreterUtils.intDivide($a.result, $b.result); }
+	|	^(MOD	a=expr	  b=expr)   {   $result = InterpreterUtils.intMod($a.result, $b.result);    }
+	|	^(POW	a=expr	  b=expr)   {   $result = InterpreterUtils.pow($a.result, $b.result);   }
+	|	^(NEG	a=expr)             {   $result = InterpreterUtils.negate($a.result);   }
+	|	^(NOT	a=expr)             {   $result = InterpreterUtils.not($a.result);  }
+	|	CONST_TRUE                  {   $result = Boolean.valueOf(true);    }
+	|	CONST_FALSE                 {   $result = Boolean.valueOf(false);   }
+	|	CONST_STR                   {   $result = new String($CONST_STR.text);  }
+	|	CONST_INT                   {   $result = new BigInteger($CONST_INT.text);  }
+	|	CONST_REAL                  {   $result = new BigInteger($CONST_REAL.text); }
+	|	ID                          {
+                                                RuntimeSimpleSymbol s = (RuntimeSimpleSymbol)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                                $result = s.getValue();
+                                            }
+	|	^(
+                    ARRAY_ITEM
+                    ID                      {
+                                                RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                                List<Integer> dimensions = arr.getDimensions();
+                                            }
+                    arraySubscript
+                                            {
+                                                List<Integer> indices = $arraySubscript.value;
+                                                if(indices.size()!=dimensions.size()){
+                                                    throw new RuntimeException("Array dimensions and item index mismatch"); //TODO: proper runtime error message
+                                                }else{
+                                                    for(int i=0; i<dimensions.size(); i++){
+                                                        if(indices.get(i).compareTo(dimensions.get(i))>=0){
+                                                            throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
+                                                        }
+                                                    }
+                                                }
+
+                                                $result = arr.get(indices);
+                                            }
+                )
         ;
 
-arraySubscript
-	:	^(ARRAY_INDEX expr+)
+arraySubscript returns [List<Integer> value]
+	:	^(ARRAY_INDEX
+                                {List<Integer> result = new ArrayList<Integer>();}
+                    (expr
+                                {
+                                    if(InterpreterUtils.isValidArrayDimension($expr.result)){
+                                        result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
+                                    }else{
+                                        throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
+                                    }
+                                }
+                    )+
+                                {
+                                    $value = result;
+                                }
+                )
         ;
+

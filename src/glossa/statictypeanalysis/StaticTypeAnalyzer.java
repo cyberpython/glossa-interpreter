@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2010-10-27 18:15:58
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2010-10-27 23:51:59
 
 
 /*
@@ -2637,7 +2637,11 @@ public class StaticTypeAnalyzer extends TreeParser {
                     match(input, Token.UP, null); 
 
                                                                     if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression((a!=null?a.expressionType:null), (b!=null?b.expressionType:null))){
-                                                                        retval.expressionType = Type.REAL;
+                                                                        if(((b!=null?b.expressionType:null)!=null)&&((b!=null?b.expressionType:null).equals(Type.INTEGER))){
+                                                                            retval.expressionType = Type.REAL;
+                                                                        }else{
+                                                                            Messages.exponentNotIntegerError(new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()), (b!=null?b.expressionType:null));
+                                                                        }
                                                                     }else{
                                                                         Messages.incompatibleTypesFoundError( (a!=null?a.expressionType:null), new Point((a!=null?((CommonTree)a.start):null).getLine(), (a!=null?((CommonTree)a.start):null).getCharPositionInLine()),
                                                                                                                                 (b!=null?b.expressionType:null), new Point((b!=null?((CommonTree)b.start):null).getLine(), (b!=null?((CommonTree)b.start):null).getCharPositionInLine()),
@@ -2649,7 +2653,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 16 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:587:4: ^( NEG a= expr )
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:591:4: ^( NEG a= expr )
                     {
                     match(input,NEG,FOLLOW_NEG_in_expr1778); 
 
@@ -2674,7 +2678,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:596:4: ^( NOT a= expr )
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:600:4: ^( NOT a= expr )
                     {
                     match(input,NOT,FOLLOW_NOT_in_expr1803); 
 
@@ -2699,7 +2703,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:605:4: CONST_TRUE
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:609:4: CONST_TRUE
                     {
                     match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr1827); 
                     retval.expressionType = Type.BOOLEAN;
@@ -2707,7 +2711,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 19 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:606:4: CONST_FALSE
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:610:4: CONST_FALSE
                     {
                     match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr1834); 
                     retval.expressionType = Type.BOOLEAN;
@@ -2715,7 +2719,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 20 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:607:4: CONST_STR
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:611:4: CONST_STR
                     {
                     match(input,CONST_STR,FOLLOW_CONST_STR_in_expr1841); 
                     retval.expressionType = Type.STRING;
@@ -2723,7 +2727,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 21 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:608:4: CONST_INT
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:612:4: CONST_INT
                     {
                     match(input,CONST_INT,FOLLOW_CONST_INT_in_expr1848); 
                     retval.expressionType = Type.INTEGER;
@@ -2731,7 +2735,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 22 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:609:4: CONST_REAL
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:613:4: CONST_REAL
                     {
                     match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr1855); 
                     retval.expressionType = Type.REAL;
@@ -2739,7 +2743,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 23 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:610:4: ID
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:614:4: ID
                     {
                     ID43=(CommonTree)match(input,ID,FOLLOW_ID_in_expr1862); 
 
@@ -2763,7 +2767,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 24 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:627:4: ^( ARRAY_ITEM ID arraySubscript )
+                    // src/glossa/grammars/StaticTypeAnalyzer.g:631:4: ^( ARRAY_ITEM ID arraySubscript )
                     {
                     match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr1871); 
 
@@ -2817,7 +2821,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     };
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:649:1: arraySubscript returns [int indicesCount] : ^( ARRAY_INDEX ( expr )+ ) ;
+    // src/glossa/grammars/StaticTypeAnalyzer.g:653:1: arraySubscript returns [int indicesCount] : ^( ARRAY_INDEX ( expr )+ ) ;
     public final StaticTypeAnalyzer.arraySubscript_return arraySubscript() throws RecognitionException {
         StaticTypeAnalyzer.arraySubscript_return retval = new StaticTypeAnalyzer.arraySubscript_return();
         retval.start = input.LT(1);
@@ -2826,8 +2830,8 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:650:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:650:4: ^( ARRAY_INDEX ( expr )+ )
+            // src/glossa/grammars/StaticTypeAnalyzer.g:654:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // src/glossa/grammars/StaticTypeAnalyzer.g:654:4: ^( ARRAY_INDEX ( expr )+ )
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript1906); 
 
@@ -2836,7 +2840,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                                                 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:653:19: ( expr )+
+            // src/glossa/grammars/StaticTypeAnalyzer.g:657:19: ( expr )+
             int cnt23=0;
             loop23:
             do {
@@ -2850,7 +2854,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt23) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:653:20: expr
+            	    // src/glossa/grammars/StaticTypeAnalyzer.g:657:20: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arraySubscript1935);
             	    expr46=expr();

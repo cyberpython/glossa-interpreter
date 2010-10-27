@@ -39,7 +39,7 @@ public class RuntimeConstant extends RuntimeSimpleSymbol{
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_CONSTANT+" "+super.toString();
+        return Messages.CONSTS_STR_CONSTANT+" "+super.toString()+" = "+super.getValue().toString();
     }
 
 }

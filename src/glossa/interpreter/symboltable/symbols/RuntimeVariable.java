@@ -40,7 +40,7 @@ public class RuntimeVariable extends RuntimeSimpleSymbol{
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_VARIABLE+" "+super.toString();
+        return Messages.CONSTS_STR_VARIABLE+" "+super.toString()+" = "+super.getValue().toString();
     }
 
 

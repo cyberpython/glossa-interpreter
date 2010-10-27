@@ -35,6 +35,8 @@ import java.util.HashMap;
 public class ScopeTable {
 
     private final String MAIN_PROGRAM_SCOPE_NAME = "main";
+    private final String FUNCTION_SCOPE_PREFIX = "func_";
+    private final String PROCEDURE_SCOPE_PREFIX = "proc_";
     private HashMap<String, Scope> scopes;
 
     public ScopeTable() {
@@ -47,6 +49,22 @@ public class ScopeTable {
 
     public Scope getScope(String scopename) {
         return this.scopes.get(scopename);
+    }
+
+    public void putFunctionScope(String scopename, Scope s) {
+        this.scopes.put(FUNCTION_SCOPE_PREFIX+scopename, s);
+    }
+
+    public Scope getFunctionScope(String scopename) {
+        return this.scopes.get(FUNCTION_SCOPE_PREFIX+scopename);
+    }
+
+    public void putProcedureScope(String scopename, Scope s) {
+        this.scopes.put(PROCEDURE_SCOPE_PREFIX+scopename, s);
+    }
+
+    public Scope getProcedureScope(String scopename) {
+        return this.scopes.get(PROCEDURE_SCOPE_PREFIX+scopename);
     }
 
     public void setMainProgramScope(MainProgramScope mps){

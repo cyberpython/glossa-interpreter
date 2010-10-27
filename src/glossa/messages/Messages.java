@@ -87,6 +87,7 @@ public class Messages {
 
     public final static String STR_ERROR_INCOMPATIBLE_TYPE = "Ασύμβατος τύπος δεδομένων: Βρέθηκε %1$s ενώ αναμενόταν %2$s.";
     public final static String STR_ERROR_INCOMPATIBLE_TYPES = "Ασύμβατοι τύποι δεδομένων για χρήση με τον τελεστή \"%5$s\": %1$s στο (%2$s) και %3$s στο (%4$s).";
+    public final static String STR_ERROR_EXPONENT_NOT_INTEGER = "Ο εκθέτης πρέπει να είναι ακέραιου τύπου. Βρέθηκε: %2$s";
     public final static String STR_ERROR_ARRAY_DIMENSION_DECLARATION_NOT_INTEGER = "Το μέγεθος της διάστασης του πίνακα πρέπει να είναι τιμή ή έκφραση ακέραιου τύπου.";
     public final static String STR_ERROR_ARRAY_INDEX_NOT_INTEGER = "Ο δείκτης πρέπει να είναι μεταβλητή, σταθερά ή έκφραση ακέραιου τύπου.";
     public final static String STR_ERROR_ARRAY_INDICES_AND_DIMENSIONS_MISMATCH = "Το πλήθος των δεικτών (%1$d) δε συμφωνεί με τις διαστάσεις του πίνακα \"%2$s\" (%3$d).";
@@ -215,6 +216,12 @@ public class Messages {
         String msg = String.format(STR_ERROR_INCOMPATIBLE_TYPES,
                 type1Str, pointToString(type1ReferencePoint),
                 type2Str, pointToString(type2ReferencePoint), operator);
+        error(errorPoint, msg);
+    }
+
+
+    public static void exponentNotIntegerError(Point errorPoint, Type invalidType) {
+        String msg = String.format(STR_ERROR_EXPONENT_NOT_INTEGER, typeToStringM(invalidType));
         error(errorPoint, msg);
     }
 

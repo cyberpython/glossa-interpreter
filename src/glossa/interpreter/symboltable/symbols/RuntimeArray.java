@@ -28,7 +28,6 @@ import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.types.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,10 +45,7 @@ public class RuntimeArray extends RuntimeSymbol {
     public RuntimeArray(Array a) {
         super(a);
         this.dimensionsCount = a.getNumberOfDimensions();
-        this.dimensions = new ArrayList<Integer>();
-        for (int i = 0; i < dimensionsCount; i++) {
-            dimensions.add(new Integer(1));
-        }
+        this.dimensions = null;
     }
 
     public RuntimeArray(Array a, List<Integer> dimensions) {
