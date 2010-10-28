@@ -23,6 +23,7 @@
  */
 package glossa.statictypeanalysis;
 
+import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
@@ -193,38 +194,38 @@ public class StaticTypeAnalyzerUtils {
         return false;
     }
 
-    public static void checkVariableAssignment(Scope currentScope, String idText, int idLine, int idPosition, Type expressionType, int expressionLine, int expressionPosition, String assignmentOperator, int assignmentLine, int assignmentPosition) {
-        Symbol s = currentScope.referenceSymbol(idText, new Point(idLine, idPosition));
+    public static void checkVariableAssignment(MessageLog msgLog, Scope currentScope, String idText, int idLine, int idPosition, Type expressionType, int expressionLine, int expressionPosition, String assignmentOperator, int assignmentLine, int assignmentPosition) {
+        Symbol s = currentScope.referenceSymbol(msgLog, idText, new Point(idLine, idPosition));
         if (s != null) {
             if (s instanceof Variable) {
                 s.setInitialized(true);
                 if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(s.getType(), expressionType) < 0) {
-                    Messages.incompatibleTypesFoundError(s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
+                    Messages.incompatibleTypesFoundError(msgLog, s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
                 }
             } else {
-                Messages.nonVariableSymbolReferencedAsSuchError(new Point(idLine, idPosition), s);
+                Messages.nonVariableSymbolReferencedAsSuchError(msgLog, new Point(idLine, idPosition), s);
             }
         }
     }
 
-    public static void checkArrayAssignment(Scope currentScope, String idText, int idLine, int idPosition,
+    public static void checkArrayAssignment(MessageLog msgLog, Scope currentScope, String idText, int idLine, int idPosition,
             Type expressionType, int expressionLine, int expressionPosition,
             String assignmentOperator, int assignmentLine, int assignmentPosition,
             int indicesCount, int arraySubscriptLine, int arraySubscriptPosition) {
-        Symbol s = currentScope.referenceSymbol(idText, new Point(idLine, idPosition));
+        Symbol s = currentScope.referenceSymbol(msgLog, idText, new Point(idLine, idPosition));
         if (s != null) {
             if (s instanceof Array) {
                 s.setInitialized(true);
                 if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(s.getType(), expressionType) < 0) {
-                    Messages.incompatibleTypesFoundError(s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
+                    Messages.incompatibleTypesFoundError(msgLog, s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
                 } else {
                     Array arr = (Array) s;
                     if (arr.getNumberOfDimensions() != indicesCount) {
-                        Messages.arrayIndicesAndDimensionsMismatchError(new Point(arraySubscriptLine, arraySubscriptPosition), arr, indicesCount);
+                        Messages.arrayIndicesAndDimensionsMismatchError(msgLog,new Point(arraySubscriptLine, arraySubscriptPosition), arr, indicesCount);
                     }
                 }
             } else {
-                Messages.nonArraySymbolReferencedAsSuchError(s, new Point(idLine, idPosition));
+                Messages.nonArraySymbolReferencedAsSuchError(msgLog, s, new Point(idLine, idPosition));
             }
         }
     }

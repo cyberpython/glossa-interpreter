@@ -30,8 +30,6 @@ import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 import glossa.types.Type;
 import java.awt.Point;
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -108,75 +106,33 @@ public class Messages {
 
     public final static String STR_ERROR_ARRAY_INDEX_OUT_OF_BOUNDS = "Ο δείκτης %1$s προς στοιχείο του πίνακα \"%2$s\" είναι εκτός ορίων.";
 
-    private final static PrintStream err;
-    private final static PrintStream warn;
 
-    private static List<InterpreterMessage> messages;
-
-    static {
-        err = System.err;
-        warn = System.out;
-        messages = new ArrayList<InterpreterMessage>();
-    }
-
-    public static List<InterpreterMessage> getMessages() {
-        return messages;
-    }
-
-    public static void clearMessages() {
-        messages.clear();
-    }
-
-    public static void error(Point errorPoint, String msg) {
-        messages.add(new ErrorMessage(errorPoint, msg));
-    }
-
-    public static void warning(Point warningPoint, String msg) {
-        messages.add(new WarningMessage(warningPoint, msg));
-    }
-
-    public static void printError(ErrorMessage msg) {
-        err.println(CONSTS_STR_ERROR + " (" + pointToString(msg.getPoint()) + "): " + msg.getMsg());
-    }
-
-    public static void printWarning(WarningMessage msg) {
-        warn.println(CONSTS_STR_WARNING + " (" + pointToString(msg.getPoint()) + "): " + msg.getMsg());
-    }
-
-    public static void lexerError(Point errorPoint, String msg) {
-        error(errorPoint, msg);
-    }
-
-    public static void parserError(Point errorPoint, String msg) {
-        error(errorPoint, msg);
-    }
-
-    public static void programNameMismatchWarning(Point warningPoint, String falseName) {
+    public static void programNameMismatchWarning(MessageLog msgLog, Point warningPoint, String falseName) {
         String msg = String.format(STR_WARNING_PROG_NAME_MISMATCH, falseName);
-        warning(warningPoint, msg);
+        msgLog.warning(warningPoint, msg);
     }
 
-    public static void constantsRedeclarationError(Point redeclarationPoint, Point firstDeclarationPoint) {
+    public static void constantsRedeclarationError(MessageLog msgLog, Point redeclarationPoint, Point firstDeclarationPoint) {
         String msg = String.format(STR_ERROR_CONSTANTS_ALREADY_DEFINED, pointToString(firstDeclarationPoint));
-        error(redeclarationPoint, msg);
+        msgLog.error(redeclarationPoint, msg);
     }
 
-    public static void variablesRedeclarationError(Point redeclarationPoint, Point firstDeclarationPoint) {
+    public static void variablesRedeclarationError(MessageLog msgLog, Point redeclarationPoint, Point firstDeclarationPoint) {
         String msg = String.format(STR_ERROR_VARIABLES_ALREADY_DEFINED, pointToString(firstDeclarationPoint));
-        error(redeclarationPoint, msg);
+        msgLog.error(redeclarationPoint, msg);
     }
 
-    public static void symbolRedefinitionError(Symbol s, Symbol existingSymbol) {
+    public static void symbolRedefinitionError(MessageLog msgLog, Symbol s, Symbol existingSymbol) {
         String msg = String.format(STR_ERROR_SYMBOL_ALREADY_DEFINED, symbolTypeToTheString(s), s.getName(), existingSymbol.getPositionAsString());
-        error(s.getPosition(), msg);
+        msgLog.error(s.getPosition(), msg);
     }
 
-    public static void symbolUndefinedError(String symbolName, Point errorPoint) {
+    public static void symbolUndefinedError(MessageLog msgLog, String symbolName, Point errorPoint) {
         String msg = String.format(STR_ERROR_SYMBOL_UNDEFINED, symbolName);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void incompatibleTypeFoundError(Type type, Type[] requiredTypes, Point errorPoint) {
+    public static void incompatibleTypeFoundError(MessageLog msgLog, Type type, Type[] requiredTypes, Point errorPoint) {
         StringBuilder builder = new StringBuilder();
 
         int max = requiredTypes.length - 1;
@@ -197,10 +153,10 @@ public class Messages {
         }
 
         String msg = String.format(STR_ERROR_INCOMPATIBLE_TYPE, typeStr, builder.toString());
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void incompatibleTypesFoundError(Type type1, Point type1ReferencePoint, Type type2, Point type2ReferencePoint, Point errorPoint, String operator) {
+    public static void incompatibleTypesFoundError(MessageLog msgLog, Type type1, Point type1ReferencePoint, Type type2, Point type2ReferencePoint, Point errorPoint, String operator) {
         String type1Str;
         String type2Str;
         if (type1 == null) {
@@ -216,102 +172,102 @@ public class Messages {
         String msg = String.format(STR_ERROR_INCOMPATIBLE_TYPES,
                 type1Str, pointToString(type1ReferencePoint),
                 type2Str, pointToString(type2ReferencePoint), operator);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
 
-    public static void exponentNotIntegerError(Point errorPoint, Type invalidType) {
+    public static void exponentNotIntegerError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_EXPONENT_NOT_INTEGER, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void nonArraySymbolReferencedAsSuchError(Symbol s, Point errorPoint) {
+    public static void nonArraySymbolReferencedAsSuchError(MessageLog msgLog, Symbol s, Point errorPoint) {
         String msg = String.format(STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY, s.getName(), symbolTypeToString(s).toLowerCase());
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void nonVariableSymbolReferencedAsSuchError(Point errorPoint, Symbol s) {
+    public static void nonVariableSymbolReferencedAsSuchError(MessageLog msgLog, Point errorPoint, Symbol s) {
         String msg = String.format(STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE, s.getName(), symbolTypeToString(s).toLowerCase());
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void variableReferencesInDeclarationsNotAllowedError(Symbol s, Point errorPoint) {
+    public static void variableReferencesInDeclarationsNotAllowedError(MessageLog msgLog, Symbol s, Point errorPoint) {
         String msg = String.format(STR_ERROR_VAR_AND_ARRAY_REF_IN_DECLARATIONS_NOT_ALLOWED);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void arrayReferencesInDeclarationsNotAllowedError(Symbol s, Point errorPoint) {
+    public static void arrayReferencesInDeclarationsNotAllowedError(MessageLog msgLog, Symbol s, Point errorPoint) {
         String msg = String.format(STR_ERROR_ARRAY_REF_IN_DECLARATIONS_NOT_ALLOWED);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void arrayDimensionDeclarationsNotIntegerError(Point errorPoint) {
+    public static void arrayDimensionDeclarationsNotIntegerError(MessageLog msgLog, Point errorPoint) {
         String msg = String.format(STR_ERROR_ARRAY_DIMENSION_DECLARATION_NOT_INTEGER);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void arrayIndexNotIntegerError(Point errorPoint) {
+    public static void arrayIndexNotIntegerError(MessageLog msgLog, Point errorPoint) {
         String msg = String.format(STR_ERROR_ARRAY_INDEX_NOT_INTEGER);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void arrayIndicesAndDimensionsMismatchError(Point errorPoint, Array arr, int indicesNumber) {
+    public static void arrayIndicesAndDimensionsMismatchError(MessageLog msgLog, Point errorPoint, Array arr, int indicesNumber) {
         String msg = String.format(STR_ERROR_ARRAY_INDICES_AND_DIMENSIONS_MISMATCH, indicesNumber, arr.getName(), arr.getNumberOfDimensions());
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void leftSideOfAssignmentMustBeVarOrArrayError(Point errorPoint) {
+    public static void leftSideOfAssignmentMustBeVarOrArrayError(MessageLog msgLog, Point errorPoint) {
         String msg = String.format(STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void readItemMustBeIntRealOrStringError(Point errorPoint, Type invalidType) {
+    public static void readItemMustBeIntRealOrStringError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_READ_STM_ITEM_MUST_BE_INT_REAL_OR_STR, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void varOrConstNotInitializedButReferencedError(Point errorPoint, Symbol s) {
+    public static void varOrConstNotInitializedButReferencedError(MessageLog msgLog, Point errorPoint, Symbol s) {
         String msg = String.format(STR_ERROR_VAR_OR_CONST_REFERENCED_BUT_NOT_INITIALIZED, symbolTypeToTheString(s), s.getName());
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void arrayItemNotInitializedButReferencedError(Point errorPoint, Array arr, List<Integer> indices) {
+    public static void arrayItemNotInitializedButReferencedError(MessageLog msgLog, Point errorPoint, Array arr, List<Integer> indices) {
         String msg = String.format(STR_ERROR_ARRAY_ΙΤΕΜ_REFERENCED_BUT_NOT_INITIALIZED, symbolTypeToTheString(arr), arr.getName(), arrayIndexToString(indices));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void ifExpressionMustBeBoolean(Point errorPoint, Type invalidType) {
+    public static void ifExpressionMustBeBooleanError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void whileExpressionMustBeBoolean(Point errorPoint, Type invalidType) {
+    public static void whileExpressionMustBeBooleanError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_WHILE_EXPRESSION_MUST_BE_BOOLEAN, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void forCounterMustBeOfNumericType(Point errorPoint, Type invalidType) {
+    public static void forCounterMustBeOfNumericTypeError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_FOR_COUNTER_MUST_BE_NUMERIC, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void forFromToStepExpressionsMustBeOfNumericType(Point errorPoint, Type invalidType) {
+    public static void forFromToStepExpressionsMustBeOfNumericTypeError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_FOR_FROM_TO_STEP_EXPR_MUST_BE_NUMERIC, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void forFromStepExpressionsMustBeInteger(Point errorPoint, Type invalidType) {
+    public static void forFromStepExpressionsMustBeIntegerError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_FOR_FROM_STEP_EXPR_MUST_BE_INTEGER, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
 
-    public static void caseStmMustHaveAtLeastOneCase(Point errorPoint) {
+    public static void caseStmMustHaveAtLeastOneCaseError(MessageLog msgLog, Point errorPoint) {
         String msg = String.format(STR_ERROR_CASE_STM_MUST_HAVE_AT_LEAST_ONE_CASE);
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void incompatibleTypesForCaseStmFoundError(Type type1, Point type1ReferencePoint, Type type2, Point type2ReferencePoint, Point errorPoint) {
+    public static void incompatibleTypesForCaseStmFoundError(MessageLog msgLog, Type type1, Point type1ReferencePoint, Type type2, Point type2ReferencePoint, Point errorPoint) {
         String type1Str;
         String type2Str;
         if (type1 == null) {
@@ -327,12 +283,12 @@ public class Messages {
         String msg = String.format(STR_ERROR_INCOMPATIBLE_TYPES_FOR_CASE_STM,
                 type1Str, pointToString(type1ReferencePoint),
                 type2Str, pointToString(type2ReferencePoint));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
-    public static void caseItemExprMustBeIntRealOrStringError(Point errorPoint, Type invalidType) {
+    public static void caseItemExprMustBeIntRealOrStringError(MessageLog msgLog, Point errorPoint, Type invalidType) {
         String msg = String.format(STR_ERROR_CASE_ITEM_EXPR_MUST_BE_INT_REAL_OR_STR, typeToStringM(invalidType));
-        error(errorPoint, msg);
+        msgLog.error(errorPoint, msg);
     }
 
     public static String pointToString(Point p) {

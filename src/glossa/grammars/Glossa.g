@@ -78,6 +78,12 @@ import java.awt.Point;
 
 @lexer::members {
 
+    private MessageLog msgLog;
+
+    public void setMessageLog(MessageLog msgLog){
+        this.msgLog = msgLog;
+    }
+
 
     public Token nextToken() {
 		while (true) {
@@ -110,7 +116,7 @@ import java.awt.Point;
         public void displayRecognitionError(String[] tokenNames,
                 RecognitionException e) {
                 String msg = getErrorMessage(e, tokenNames);
-                Messages.lexerError(new Point(e.line, e.charPositionInLine), msg);
+                msgLog.lexerError(new Point(e.line, e.charPositionInLine), msg);
         }
 
 
@@ -203,10 +209,16 @@ import java.awt.Point;
 
 @members{
 
+        private MessageLog msgLog;
+
+        public void setMessageLog(MessageLog msgLog){
+            this.msgLog = msgLog;
+        }
+
         public void displayRecognitionError(String[] tokenNames,
             RecognitionException e) {
             String msg = getErrorMessage(e, tokenNames);
-            Messages.parserError(new Point(e.line, e.charPositionInLine), msg);
+            msgLog.parserError(new Point(e.line, e.charPositionInLine), msg);
         }
 
         public String getTokenErrorDisplay(Token t) {

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-27 23:51:55
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-28 13:50:20
 
 /*
  *  The MIT License
@@ -192,10 +192,16 @@ public class GlossaParser extends Parser {
 
 
 
+            private MessageLog msgLog;
+
+            public void setMessageLog(MessageLog msgLog){
+                this.msgLog = msgLog;
+            }
+
             public void displayRecognitionError(String[] tokenNames,
                 RecognitionException e) {
                 String msg = getErrorMessage(e, tokenNames);
-                Messages.parserError(new Point(e.line, e.charPositionInLine), msg);
+                msgLog.parserError(new Point(e.line, e.charPositionInLine), msg);
             }
 
             public String getTokenErrorDisplay(Token t) {
@@ -257,7 +263,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "unit"
-    // src/glossa/grammars/Glossa.g:271:1: unit : program ;
+    // src/glossa/grammars/Glossa.g:283:1: unit : program ;
     public final GlossaParser.unit_return unit() throws RecognitionException {
         GlossaParser.unit_return retval = new GlossaParser.unit_return();
         retval.start = input.LT(1);
@@ -269,8 +275,8 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:271:6: ( program )
-            // src/glossa/grammars/Glossa.g:271:8: program
+            // src/glossa/grammars/Glossa.g:283:6: ( program )
+            // src/glossa/grammars/Glossa.g:283:8: program
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -309,7 +315,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "program"
-    // src/glossa/grammars/Glossa.g:273:1: program : PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:285:1: program : PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ ;
     public final GlossaParser.program_return program() throws RecognitionException {
         GlossaParser.program_return retval = new GlossaParser.program_return();
         retval.start = input.LT(1);
@@ -339,8 +345,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE9_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:273:9: ( PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:273:11: PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:285:9: ( PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:285:11: PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -354,7 +360,7 @@ public class GlossaParser extends Parser {
             id1_tree = (CommonTree)adaptor.create(id1);
             adaptor.addChild(root_0, id1_tree);
             }
-            // src/glossa/grammars/Glossa.g:273:27: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:285:27: ( NEWLINE )+
             int cnt1=0;
             loop1:
             do {
@@ -368,7 +374,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:273:28: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:285:28: NEWLINE
             	    {
             	    NEWLINE3=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program153); if (state.failed) return retval;
 
@@ -392,7 +398,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, declarations4.getTree());
             BEGIN5=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_program164); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:275:11: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:287:11: ( NEWLINE )+
             int cnt2=0;
             loop2:
             do {
@@ -406,7 +412,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:275:12: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:287:12: NEWLINE
             	    {
             	    NEWLINE6=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program169); if (state.failed) return retval;
 
@@ -430,7 +436,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, block7.getTree());
             END_PROGRAM8=(Token)match(input,END_PROGRAM,FOLLOW_END_PROGRAM_in_program180); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:277:16: (id2= ID )?
+            // src/glossa/grammars/Glossa.g:289:16: (id2= ID )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -439,7 +445,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:277:17: id2= ID
+                    // src/glossa/grammars/Glossa.g:289:17: id2= ID
                     {
                     id2=(Token)match(input,ID,FOLLOW_ID_in_program186); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
@@ -452,7 +458,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:277:26: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:289:26: ( NEWLINE )+
             int cnt4=0;
             loop4:
             do {
@@ -466,7 +472,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:277:27: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:289:27: NEWLINE
             	    {
             	    NEWLINE9=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program191); if (state.failed) return retval;
 
@@ -512,7 +518,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "declarations"
-    // src/glossa/grammars/Glossa.g:279:1: declarations : ( constDecl )? ( varDecl )? ;
+    // src/glossa/grammars/Glossa.g:291:1: declarations : ( constDecl )? ( varDecl )? ;
     public final GlossaParser.declarations_return declarations() throws RecognitionException {
         GlossaParser.declarations_return retval = new GlossaParser.declarations_return();
         retval.start = input.LT(1);
@@ -526,12 +532,12 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:280:2: ( ( constDecl )? ( varDecl )? )
-            // src/glossa/grammars/Glossa.g:280:4: ( constDecl )? ( varDecl )?
+            // src/glossa/grammars/Glossa.g:292:2: ( ( constDecl )? ( varDecl )? )
+            // src/glossa/grammars/Glossa.g:292:4: ( constDecl )? ( varDecl )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // src/glossa/grammars/Glossa.g:280:4: ( constDecl )?
+            // src/glossa/grammars/Glossa.g:292:4: ( constDecl )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -554,7 +560,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:280:15: ( varDecl )?
+            // src/glossa/grammars/Glossa.g:292:15: ( varDecl )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -606,7 +612,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "constDecl"
-    // src/glossa/grammars/Glossa.g:282:1: constDecl : CONSTANTS ( NEWLINE )+ ( constAssign )* ;
+    // src/glossa/grammars/Glossa.g:294:1: constDecl : CONSTANTS ( NEWLINE )+ ( constAssign )* ;
     public final GlossaParser.constDecl_return constDecl() throws RecognitionException {
         GlossaParser.constDecl_return retval = new GlossaParser.constDecl_return();
         retval.start = input.LT(1);
@@ -622,8 +628,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE13_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:283:2: ( CONSTANTS ( NEWLINE )+ ( constAssign )* )
-            // src/glossa/grammars/Glossa.g:283:4: CONSTANTS ( NEWLINE )+ ( constAssign )*
+            // src/glossa/grammars/Glossa.g:295:2: ( CONSTANTS ( NEWLINE )+ ( constAssign )* )
+            // src/glossa/grammars/Glossa.g:295:4: CONSTANTS ( NEWLINE )+ ( constAssign )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -632,7 +638,7 @@ public class GlossaParser extends Parser {
             CONSTANTS12_tree = (CommonTree)adaptor.create(CONSTANTS12);
             root_0 = (CommonTree)adaptor.becomeRoot(CONSTANTS12_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:283:15: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:295:15: ( NEWLINE )+
             int cnt7=0;
             loop7:
             do {
@@ -646,7 +652,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt7) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:283:16: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:295:16: NEWLINE
             	    {
             	    NEWLINE13=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_constDecl224); if (state.failed) return retval;
 
@@ -663,7 +669,7 @@ public class GlossaParser extends Parser {
                 cnt7++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:283:27: ( constAssign )*
+            // src/glossa/grammars/Glossa.g:295:27: ( constAssign )*
             loop8:
             do {
                 int alt8=2;
@@ -722,7 +728,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "constAssign"
-    // src/glossa/grammars/Glossa.g:285:1: constAssign : ID EQ expr ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:297:1: constAssign : ID EQ expr ( NEWLINE )+ ;
     public final GlossaParser.constAssign_return constAssign() throws RecognitionException {
         GlossaParser.constAssign_return retval = new GlossaParser.constAssign_return();
         retval.start = input.LT(1);
@@ -740,8 +746,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE18_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:286:2: ( ID EQ expr ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:286:4: ID EQ expr ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:298:2: ( ID EQ expr ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:298:4: ID EQ expr ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -761,7 +767,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr17.getTree());
-            // src/glossa/grammars/Glossa.g:286:16: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:298:16: ( NEWLINE )+
             int cnt9=0;
             loop9:
             do {
@@ -775,7 +781,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt9) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:286:17: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:298:17: NEWLINE
             	    {
             	    NEWLINE18=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_constAssign247); if (state.failed) return retval;
 
@@ -821,7 +827,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varDecl"
-    // src/glossa/grammars/Glossa.g:288:1: varDecl : VARIABLES ( NEWLINE )+ ( varsDecl )* ;
+    // src/glossa/grammars/Glossa.g:300:1: varDecl : VARIABLES ( NEWLINE )+ ( varsDecl )* ;
     public final GlossaParser.varDecl_return varDecl() throws RecognitionException {
         GlossaParser.varDecl_return retval = new GlossaParser.varDecl_return();
         retval.start = input.LT(1);
@@ -837,8 +843,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE20_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:288:9: ( VARIABLES ( NEWLINE )+ ( varsDecl )* )
-            // src/glossa/grammars/Glossa.g:288:11: VARIABLES ( NEWLINE )+ ( varsDecl )*
+            // src/glossa/grammars/Glossa.g:300:9: ( VARIABLES ( NEWLINE )+ ( varsDecl )* )
+            // src/glossa/grammars/Glossa.g:300:11: VARIABLES ( NEWLINE )+ ( varsDecl )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -847,7 +853,7 @@ public class GlossaParser extends Parser {
             VARIABLES19_tree = (CommonTree)adaptor.create(VARIABLES19);
             root_0 = (CommonTree)adaptor.becomeRoot(VARIABLES19_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:288:22: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:300:22: ( NEWLINE )+
             int cnt10=0;
             loop10:
             do {
@@ -861,7 +867,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt10) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:288:23: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:300:23: NEWLINE
             	    {
             	    NEWLINE20=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_varDecl263); if (state.failed) return retval;
 
@@ -878,7 +884,7 @@ public class GlossaParser extends Parser {
                 cnt10++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:288:34: ( varsDecl )*
+            // src/glossa/grammars/Glossa.g:300:34: ( varsDecl )*
             loop11:
             do {
                 int alt11=2;
@@ -937,7 +943,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varsDecl"
-    // src/glossa/grammars/Glossa.g:290:1: varsDecl : varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:302:1: varsDecl : varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ ;
     public final GlossaParser.varsDecl_return varsDecl() throws RecognitionException {
         GlossaParser.varsDecl_return retval = new GlossaParser.varsDecl_return();
         retval.start = input.LT(1);
@@ -959,8 +965,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE27_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:291:2: ( varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:291:4: varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:303:2: ( varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:303:4: varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -977,7 +983,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclItem24.getTree());
-            // src/glossa/grammars/Glossa.g:291:32: ( COMMA varDeclItem )*
+            // src/glossa/grammars/Glossa.g:303:32: ( COMMA varDeclItem )*
             loop12:
             do {
                 int alt12=2;
@@ -990,7 +996,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:291:33: COMMA varDeclItem
+            	    // src/glossa/grammars/Glossa.g:303:33: COMMA varDeclItem
             	    {
             	    COMMA25=(Token)match(input,COMMA,FOLLOW_COMMA_in_varsDecl288); if (state.failed) return retval;
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl291);
@@ -1008,7 +1014,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:291:54: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:303:54: ( NEWLINE )+
             int cnt13=0;
             loop13:
             do {
@@ -1022,7 +1028,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:291:55: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:303:55: NEWLINE
             	    {
             	    NEWLINE27=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_varsDecl296); if (state.failed) return retval;
 
@@ -1068,7 +1074,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/grammars/Glossa.g:293:1: varDeclItem : ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) );
+    // src/glossa/grammars/Glossa.g:305:1: varDeclItem : ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) );
     public final GlossaParser.varDeclItem_return varDeclItem() throws RecognitionException {
         GlossaParser.varDeclItem_return retval = new GlossaParser.varDeclItem_return();
         retval.start = input.LT(1);
@@ -1085,7 +1091,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_arrayDimension=new RewriteRuleSubtreeStream(adaptor,"rule arrayDimension");
         try {
-            // src/glossa/grammars/Glossa.g:294:2: ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) )
+            // src/glossa/grammars/Glossa.g:306:2: ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1115,7 +1121,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:294:4: ID
+                    // src/glossa/grammars/Glossa.g:306:4: ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1128,7 +1134,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:295:5: ID arrayDimension
+                    // src/glossa/grammars/Glossa.g:307:5: ID arrayDimension
                     {
                     ID29=(Token)match(input,ID,FOLLOW_ID_in_varDeclItem315); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(ID29);
@@ -1142,7 +1148,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayDimension, ID
+                    // elements: ID, arrayDimension
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1153,9 +1159,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 295:23: -> ^( ARRAY ID arrayDimension )
+                    // 307:23: -> ^( ARRAY ID arrayDimension )
                     {
-                        // src/glossa/grammars/Glossa.g:295:26: ^( ARRAY ID arrayDimension )
+                        // src/glossa/grammars/Glossa.g:307:26: ^( ARRAY ID arrayDimension )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY, "ARRAY"), root_1);
@@ -1199,7 +1205,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/grammars/Glossa.g:297:1: arrayDimension : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // src/glossa/grammars/Glossa.g:309:1: arrayDimension : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final GlossaParser.arrayDimension_return arrayDimension() throws RecognitionException {
         GlossaParser.arrayDimension_return retval = new GlossaParser.arrayDimension_return();
         retval.start = input.LT(1);
@@ -1219,14 +1225,14 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:298:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/grammars/Glossa.g:298:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
+            // src/glossa/grammars/Glossa.g:310:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) )
+            // src/glossa/grammars/Glossa.g:310:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
             {
             LBRACKET31=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arrayDimension336); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET31);
 
-            // src/glossa/grammars/Glossa.g:298:13: (dimension+= expr )
-            // src/glossa/grammars/Glossa.g:298:14: dimension+= expr
+            // src/glossa/grammars/Glossa.g:310:13: (dimension+= expr )
+            // src/glossa/grammars/Glossa.g:310:14: dimension+= expr
             {
             pushFollow(FOLLOW_expr_in_arrayDimension341);
             dimension=expr();
@@ -1240,7 +1246,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:298:31: ( COMMA dimension+= expr )*
+            // src/glossa/grammars/Glossa.g:310:31: ( COMMA dimension+= expr )*
             loop15:
             do {
                 int alt15=2;
@@ -1253,7 +1259,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt15) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:298:32: COMMA dimension+= expr
+            	    // src/glossa/grammars/Glossa.g:310:32: COMMA dimension+= expr
             	    {
             	    COMMA32=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayDimension345); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA32);
@@ -1293,9 +1299,9 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 298:65: -> ^( ARRAY_DIMENSION ( expr )+ )
+            // 310:65: -> ^( ARRAY_DIMENSION ( expr )+ )
             {
-                // src/glossa/grammars/Glossa.g:298:68: ^( ARRAY_DIMENSION ( expr )+ )
+                // src/glossa/grammars/Glossa.g:310:68: ^( ARRAY_DIMENSION ( expr )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_DIMENSION, "ARRAY_DIMENSION"), root_1);
@@ -1343,7 +1349,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varType"
-    // src/glossa/grammars/Glossa.g:300:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // src/glossa/grammars/Glossa.g:312:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final GlossaParser.varType_return varType() throws RecognitionException {
         GlossaParser.varType_return retval = new GlossaParser.varType_return();
         retval.start = input.LT(1);
@@ -1355,7 +1361,7 @@ public class GlossaParser extends Parser {
         CommonTree set34_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:300:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // src/glossa/grammars/Glossa.g:312:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
             // src/glossa/grammars/Glossa.g:
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1401,7 +1407,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "block"
-    // src/glossa/grammars/Glossa.g:305:1: block : ( stm )* -> ^( BLOCK ( stm )* ) ;
+    // src/glossa/grammars/Glossa.g:317:1: block : ( stm )* -> ^( BLOCK ( stm )* ) ;
     public final GlossaParser.block_return block() throws RecognitionException {
         GlossaParser.block_return retval = new GlossaParser.block_return();
         retval.start = input.LT(1);
@@ -1413,10 +1419,10 @@ public class GlossaParser extends Parser {
 
         RewriteRuleSubtreeStream stream_stm=new RewriteRuleSubtreeStream(adaptor,"rule stm");
         try {
-            // src/glossa/grammars/Glossa.g:305:7: ( ( stm )* -> ^( BLOCK ( stm )* ) )
-            // src/glossa/grammars/Glossa.g:305:9: ( stm )*
+            // src/glossa/grammars/Glossa.g:317:7: ( ( stm )* -> ^( BLOCK ( stm )* ) )
+            // src/glossa/grammars/Glossa.g:317:9: ( stm )*
             {
-            // src/glossa/grammars/Glossa.g:305:9: ( stm )*
+            // src/glossa/grammars/Glossa.g:317:9: ( stm )*
             loop16:
             do {
                 int alt16=2;
@@ -1460,14 +1466,14 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 305:15: -> ^( BLOCK ( stm )* )
+            // 317:15: -> ^( BLOCK ( stm )* )
             {
-                // src/glossa/grammars/Glossa.g:305:18: ^( BLOCK ( stm )* )
+                // src/glossa/grammars/Glossa.g:317:18: ^( BLOCK ( stm )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(BLOCK, "BLOCK"), root_1);
 
-                // src/glossa/grammars/Glossa.g:305:26: ( stm )*
+                // src/glossa/grammars/Glossa.g:317:26: ( stm )*
                 while ( stream_stm.hasNext() ) {
                     adaptor.addChild(root_1, stream_stm.nextTree());
 
@@ -1508,7 +1514,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "stm"
-    // src/glossa/grammars/Glossa.g:307:1: stm : ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm );
+    // src/glossa/grammars/Glossa.g:319:1: stm : ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm );
     public final GlossaParser.stm_return stm() throws RecognitionException {
         GlossaParser.stm_return retval = new GlossaParser.stm_return();
         retval.start = input.LT(1);
@@ -1534,7 +1540,7 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:307:5: ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm )
+            // src/glossa/grammars/Glossa.g:319:5: ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm )
             int alt17=8;
             switch ( input.LA(1) ) {
             case PRINT:
@@ -1587,7 +1593,7 @@ public class GlossaParser extends Parser {
 
             switch (alt17) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:307:7: printStm
+                    // src/glossa/grammars/Glossa.g:319:7: printStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1601,7 +1607,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:308:17: readStm
+                    // src/glossa/grammars/Glossa.g:320:17: readStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1615,7 +1621,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:309:4: assingmentStm
+                    // src/glossa/grammars/Glossa.g:321:4: assingmentStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1629,7 +1635,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:310:17: ifStm
+                    // src/glossa/grammars/Glossa.g:322:17: ifStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1643,7 +1649,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/Glossa.g:311:17: caseStm
+                    // src/glossa/grammars/Glossa.g:323:17: caseStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1657,7 +1663,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/Glossa.g:312:17: forStm
+                    // src/glossa/grammars/Glossa.g:324:17: forStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1671,7 +1677,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/Glossa.g:313:17: whileStm
+                    // src/glossa/grammars/Glossa.g:325:17: whileStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1685,7 +1691,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/Glossa.g:314:17: repeatStm
+                    // src/glossa/grammars/Glossa.g:326:17: repeatStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1726,7 +1732,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "printStm"
-    // src/glossa/grammars/Glossa.g:317:1: printStm : PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:329:1: printStm : PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ ;
     public final GlossaParser.printStm_return printStm() throws RecognitionException {
         GlossaParser.printStm_return retval = new GlossaParser.printStm_return();
         retval.start = input.LT(1);
@@ -1746,8 +1752,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE48_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:318:9: ( PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:318:11: PRINT ( expr ( ',' expr )* )? ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:330:9: ( PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:330:11: PRINT ( expr ( ',' expr )* )? ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1756,7 +1762,7 @@ public class GlossaParser extends Parser {
             PRINT44_tree = (CommonTree)adaptor.create(PRINT44);
             root_0 = (CommonTree)adaptor.becomeRoot(PRINT44_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:318:18: ( expr ( ',' expr )* )?
+            // src/glossa/grammars/Glossa.g:330:18: ( expr ( ',' expr )* )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1765,7 +1771,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:318:19: expr ( ',' expr )*
+                    // src/glossa/grammars/Glossa.g:330:19: expr ( ',' expr )*
                     {
                     pushFollow(FOLLOW_expr_in_printStm558);
                     expr45=expr();
@@ -1773,7 +1779,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expr45.getTree());
-                    // src/glossa/grammars/Glossa.g:318:24: ( ',' expr )*
+                    // src/glossa/grammars/Glossa.g:330:24: ( ',' expr )*
                     loop18:
                     do {
                         int alt18=2;
@@ -1786,7 +1792,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:318:26: ',' expr
+                    	    // src/glossa/grammars/Glossa.g:330:26: ',' expr
                     	    {
                     	    char_literal46=(Token)match(input,COMMA,FOLLOW_COMMA_in_printStm562); if (state.failed) return retval;
                     	    pushFollow(FOLLOW_expr_in_printStm565);
@@ -1810,7 +1816,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:318:41: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:330:41: ( NEWLINE )+
             int cnt20=0;
             loop20:
             do {
@@ -1824,7 +1830,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt20) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:318:42: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:330:42: NEWLINE
             	    {
             	    NEWLINE48=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_printStm573); if (state.failed) return retval;
 
@@ -1870,7 +1876,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "readStm"
-    // src/glossa/grammars/Glossa.g:320:1: readStm : READ readItem ( COMMA readItem )* ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:332:1: readStm : READ readItem ( COMMA readItem )* ( NEWLINE )+ ;
     public final GlossaParser.readStm_return readStm() throws RecognitionException {
         GlossaParser.readStm_return retval = new GlossaParser.readStm_return();
         retval.start = input.LT(1);
@@ -1890,8 +1896,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE53_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:320:9: ( READ readItem ( COMMA readItem )* ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:321:17: READ readItem ( COMMA readItem )* ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:332:9: ( READ readItem ( COMMA readItem )* ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:333:17: READ readItem ( COMMA readItem )* ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1906,7 +1912,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, readItem50.getTree());
-            // src/glossa/grammars/Glossa.g:321:32: ( COMMA readItem )*
+            // src/glossa/grammars/Glossa.g:333:32: ( COMMA readItem )*
             loop21:
             do {
                 int alt21=2;
@@ -1919,7 +1925,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt21) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:321:33: COMMA readItem
+            	    // src/glossa/grammars/Glossa.g:333:33: COMMA readItem
             	    {
             	    COMMA51=(Token)match(input,COMMA,FOLLOW_COMMA_in_readStm606); if (state.failed) return retval;
             	    pushFollow(FOLLOW_readItem_in_readStm609);
@@ -1937,7 +1943,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:321:51: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:333:51: ( NEWLINE )+
             int cnt22=0;
             loop22:
             do {
@@ -1951,7 +1957,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt22) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:321:52: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:333:52: NEWLINE
             	    {
             	    NEWLINE53=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_readStm614); if (state.failed) return retval;
 
@@ -1997,7 +2003,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/Glossa.g:324:1: readItem : (arrId= ID arraySubscript | varId= ID );
+    // src/glossa/grammars/Glossa.g:336:1: readItem : (arrId= ID arraySubscript | varId= ID );
     public final GlossaParser.readItem_return readItem() throws RecognitionException {
         GlossaParser.readItem_return retval = new GlossaParser.readItem_return();
         retval.start = input.LT(1);
@@ -2013,7 +2019,7 @@ public class GlossaParser extends Parser {
         CommonTree varId_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:324:9: (arrId= ID arraySubscript | varId= ID )
+            // src/glossa/grammars/Glossa.g:336:9: (arrId= ID arraySubscript | varId= ID )
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2043,7 +2049,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:325:17: arrId= ID arraySubscript
+                    // src/glossa/grammars/Glossa.g:337:17: arrId= ID arraySubscript
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2062,7 +2068,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:326:17: varId= ID
+                    // src/glossa/grammars/Glossa.g:338:17: varId= ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2102,7 +2108,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "assingmentStm"
-    // src/glossa/grammars/Glossa.g:329:1: assingmentStm : (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ );
+    // src/glossa/grammars/Glossa.g:341:1: assingmentStm : (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ );
     public final GlossaParser.assingmentStm_return assingmentStm() throws RecognitionException {
         GlossaParser.assingmentStm_return retval = new GlossaParser.assingmentStm_return();
         retval.start = input.LT(1);
@@ -2130,7 +2136,7 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE59_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:330:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:342:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -2160,7 +2166,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt26) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:330:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
+                    // src/glossa/grammars/Glossa.g:342:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2180,7 +2186,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, varValue.getTree());
-                    // src/glossa/grammars/Glossa.g:330:35: ( NEWLINE )+
+                    // src/glossa/grammars/Glossa.g:342:35: ( NEWLINE )+
                     int cnt24=0;
                     loop24:
                     do {
@@ -2194,7 +2200,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt24) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:330:36: NEWLINE
+                    	    // src/glossa/grammars/Glossa.g:342:36: NEWLINE
                     	    {
                     	    NEWLINE56=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm704); if (state.failed) return retval;
 
@@ -2215,7 +2221,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:331:17: arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+
+                    // src/glossa/grammars/Glossa.g:343:17: arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2241,7 +2247,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, arrItemValue.getTree());
-                    // src/glossa/grammars/Glossa.g:331:67: ( NEWLINE )+
+                    // src/glossa/grammars/Glossa.g:343:67: ( NEWLINE )+
                     int cnt25=0;
                     loop25:
                     do {
@@ -2255,7 +2261,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt25) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:331:68: NEWLINE
+                    	    // src/glossa/grammars/Glossa.g:343:68: NEWLINE
                     	    {
                     	    NEWLINE59=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm739); if (state.failed) return retval;
 
@@ -2303,7 +2309,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "ifStm"
-    // src/glossa/grammars/Glossa.g:334:1: ifStm : ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? ) ;
+    // src/glossa/grammars/Glossa.g:346:1: ifStm : ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? ) ;
     public final GlossaParser.ifStm_return ifStm() throws RecognitionException {
         GlossaParser.ifStm_return retval = new GlossaParser.ifStm_return();
         retval.start = input.LT(1);
@@ -2327,8 +2333,8 @@ public class GlossaParser extends Parser {
         RewriteRuleSubtreeStream stream_ifBlock=new RewriteRuleSubtreeStream(adaptor,"rule ifBlock");
         RewriteRuleSubtreeStream stream_elseBlock=new RewriteRuleSubtreeStream(adaptor,"rule elseBlock");
         try {
-            // src/glossa/grammars/Glossa.g:334:7: ( ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? ) )
-            // src/glossa/grammars/Glossa.g:334:9: ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:346:7: ( ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? ) )
+            // src/glossa/grammars/Glossa.g:346:9: ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+
             {
             pushFollow(FOLLOW_ifBlock_in_ifStm759);
             ifBlock60=ifBlock();
@@ -2336,7 +2342,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_ifBlock.add(ifBlock60.getTree());
-            // src/glossa/grammars/Glossa.g:334:17: ( elseIfBlock )*
+            // src/glossa/grammars/Glossa.g:346:17: ( elseIfBlock )*
             loop27:
             do {
                 int alt27=2;
@@ -2366,7 +2372,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:334:30: ( elseBlock )?
+            // src/glossa/grammars/Glossa.g:346:30: ( elseBlock )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2392,7 +2398,7 @@ public class GlossaParser extends Parser {
             END_IF63=(Token)match(input,END_IF,FOLLOW_END_IF_in_ifStm767); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_END_IF.add(END_IF63);
 
-            // src/glossa/grammars/Glossa.g:334:48: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:346:48: ( NEWLINE )+
             int cnt29=0;
             loop29:
             do {
@@ -2406,7 +2412,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt29) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:334:49: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:346:49: NEWLINE
             	    {
             	    NEWLINE64=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_ifStm770); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE64);
@@ -2428,7 +2434,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: elseBlock, elseIfBlock, ifBlock
+            // elements: elseIfBlock, ifBlock, elseBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2439,21 +2445,21 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 334:59: -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? )
+            // 346:59: -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? )
             {
-                // src/glossa/grammars/Glossa.g:334:62: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? )
+                // src/glossa/grammars/Glossa.g:346:62: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(IFNODE, "IFNODE"), root_1);
 
                 adaptor.addChild(root_1, stream_ifBlock.nextTree());
-                // src/glossa/grammars/Glossa.g:334:79: ( elseIfBlock )*
+                // src/glossa/grammars/Glossa.g:346:79: ( elseIfBlock )*
                 while ( stream_elseIfBlock.hasNext() ) {
                     adaptor.addChild(root_1, stream_elseIfBlock.nextTree());
 
                 }
                 stream_elseIfBlock.reset();
-                // src/glossa/grammars/Glossa.g:334:92: ( elseBlock )?
+                // src/glossa/grammars/Glossa.g:346:92: ( elseBlock )?
                 if ( stream_elseBlock.hasNext() ) {
                     adaptor.addChild(root_1, stream_elseBlock.nextTree());
 
@@ -2494,7 +2500,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/Glossa.g:336:1: ifBlock : IF expr THEN ( NEWLINE )+ block ;
+    // src/glossa/grammars/Glossa.g:348:1: ifBlock : IF expr THEN ( NEWLINE )+ block ;
     public final GlossaParser.ifBlock_return ifBlock() throws RecognitionException {
         GlossaParser.ifBlock_return retval = new GlossaParser.ifBlock_return();
         retval.start = input.LT(1);
@@ -2514,8 +2520,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE68_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:336:9: ( IF expr THEN ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:336:11: IF expr THEN ( NEWLINE )+ block
+            // src/glossa/grammars/Glossa.g:348:9: ( IF expr THEN ( NEWLINE )+ block )
+            // src/glossa/grammars/Glossa.g:348:11: IF expr THEN ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2531,7 +2537,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr66.getTree());
             THEN67=(Token)match(input,THEN,FOLLOW_THEN_in_ifBlock799); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:336:26: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:348:26: ( NEWLINE )+
             int cnt30=0;
             loop30:
             do {
@@ -2545,7 +2551,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt30) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:336:27: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:348:27: NEWLINE
             	    {
             	    NEWLINE68=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_ifBlock803); if (state.failed) return retval;
 
@@ -2597,7 +2603,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/Glossa.g:338:1: elseBlock : ELSE ( NEWLINE )+ block ;
+    // src/glossa/grammars/Glossa.g:350:1: elseBlock : ELSE ( NEWLINE )+ block ;
     public final GlossaParser.elseBlock_return elseBlock() throws RecognitionException {
         GlossaParser.elseBlock_return retval = new GlossaParser.elseBlock_return();
         retval.start = input.LT(1);
@@ -2613,8 +2619,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE71_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:339:2: ( ELSE ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:339:4: ELSE ( NEWLINE )+ block
+            // src/glossa/grammars/Glossa.g:351:2: ( ELSE ( NEWLINE )+ block )
+            // src/glossa/grammars/Glossa.g:351:4: ELSE ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2623,7 +2629,7 @@ public class GlossaParser extends Parser {
             ELSE70_tree = (CommonTree)adaptor.create(ELSE70);
             root_0 = (CommonTree)adaptor.becomeRoot(ELSE70_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:339:10: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:351:10: ( NEWLINE )+
             int cnt31=0;
             loop31:
             do {
@@ -2637,7 +2643,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt31) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:339:11: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:351:11: NEWLINE
             	    {
             	    NEWLINE71=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_elseBlock821); if (state.failed) return retval;
 
@@ -2689,7 +2695,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/Glossa.g:341:1: elseIfBlock : ELSE_IF expr THEN ( NEWLINE )+ block ;
+    // src/glossa/grammars/Glossa.g:353:1: elseIfBlock : ELSE_IF expr THEN ( NEWLINE )+ block ;
     public final GlossaParser.elseIfBlock_return elseIfBlock() throws RecognitionException {
         GlossaParser.elseIfBlock_return retval = new GlossaParser.elseIfBlock_return();
         retval.start = input.LT(1);
@@ -2709,8 +2715,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE76_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:342:2: ( ELSE_IF expr THEN ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:342:4: ELSE_IF expr THEN ( NEWLINE )+ block
+            // src/glossa/grammars/Glossa.g:354:2: ( ELSE_IF expr THEN ( NEWLINE )+ block )
+            // src/glossa/grammars/Glossa.g:354:4: ELSE_IF expr THEN ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2726,7 +2732,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr74.getTree());
             THEN75=(Token)match(input,THEN,FOLLOW_THEN_in_elseIfBlock840); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:342:24: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:354:24: ( NEWLINE )+
             int cnt32=0;
             loop32:
             do {
@@ -2740,7 +2746,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt32) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:342:25: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:354:25: NEWLINE
             	    {
             	    NEWLINE76=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_elseIfBlock844); if (state.failed) return retval;
 
@@ -2792,7 +2798,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseStm"
-    // src/glossa/grammars/Glossa.g:344:1: caseStm : SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:356:1: caseStm : SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ ;
     public final GlossaParser.caseStm_return caseStm() throws RecognitionException {
         GlossaParser.caseStm_return retval = new GlossaParser.caseStm_return();
         retval.start = input.LT(1);
@@ -2816,8 +2822,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE84_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:344:9: ( SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:344:11: SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:356:9: ( SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:356:11: SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2832,7 +2838,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr79.getTree());
-            // src/glossa/grammars/Glossa.g:344:24: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:356:24: ( NEWLINE )+
             int cnt33=0;
             loop33:
             do {
@@ -2846,7 +2852,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt33) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:344:25: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:356:25: NEWLINE
             	    {
             	    NEWLINE80=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseStm863); if (state.failed) return retval;
 
@@ -2863,7 +2869,7 @@ public class GlossaParser extends Parser {
                 cnt33++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:344:36: ( caseBlock )*
+            // src/glossa/grammars/Glossa.g:356:36: ( caseBlock )*
             loop34:
             do {
                 int alt34=2;
@@ -2899,7 +2905,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:344:47: ( caseElseBlock )?
+            // src/glossa/grammars/Glossa.g:356:47: ( caseElseBlock )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -2923,7 +2929,7 @@ public class GlossaParser extends Parser {
             }
 
             END_SWITCH83=(Token)match(input,END_SWITCH,FOLLOW_END_SWITCH_in_caseStm874); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:344:74: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:356:74: ( NEWLINE )+
             int cnt36=0;
             loop36:
             do {
@@ -2937,7 +2943,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt36) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:344:75: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:356:75: NEWLINE
             	    {
             	    NEWLINE84=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseStm878); if (state.failed) return retval;
 
@@ -2983,7 +2989,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/Glossa.g:346:1: caseBlock : CASE caseExprList ( NEWLINE )+ block ;
+    // src/glossa/grammars/Glossa.g:358:1: caseBlock : CASE caseExprList ( NEWLINE )+ block ;
     public final GlossaParser.caseBlock_return caseBlock() throws RecognitionException {
         GlossaParser.caseBlock_return retval = new GlossaParser.caseBlock_return();
         retval.start = input.LT(1);
@@ -3001,8 +3007,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE87_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:347:2: ( CASE caseExprList ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:347:4: CASE caseExprList ( NEWLINE )+ block
+            // src/glossa/grammars/Glossa.g:359:2: ( CASE caseExprList ( NEWLINE )+ block )
+            // src/glossa/grammars/Glossa.g:359:4: CASE caseExprList ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3017,7 +3023,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, caseExprList86.getTree());
-            // src/glossa/grammars/Glossa.g:347:23: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:359:23: ( NEWLINE )+
             int cnt37=0;
             loop37:
             do {
@@ -3031,7 +3037,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt37) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:347:24: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:359:24: NEWLINE
             	    {
             	    NEWLINE87=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseBlock896); if (state.failed) return retval;
 
@@ -3083,7 +3089,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseExprList"
-    // src/glossa/grammars/Glossa.g:349:1: caseExprList : caseExprListItem ( COMMA caseExprListItem )* ;
+    // src/glossa/grammars/Glossa.g:361:1: caseExprList : caseExprListItem ( COMMA caseExprListItem )* ;
     public final GlossaParser.caseExprList_return caseExprList() throws RecognitionException {
         GlossaParser.caseExprList_return retval = new GlossaParser.caseExprList_return();
         retval.start = input.LT(1);
@@ -3099,8 +3105,8 @@ public class GlossaParser extends Parser {
         CommonTree COMMA90_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:350:2: ( caseExprListItem ( COMMA caseExprListItem )* )
-            // src/glossa/grammars/Glossa.g:350:4: caseExprListItem ( COMMA caseExprListItem )*
+            // src/glossa/grammars/Glossa.g:362:2: ( caseExprListItem ( COMMA caseExprListItem )* )
+            // src/glossa/grammars/Glossa.g:362:4: caseExprListItem ( COMMA caseExprListItem )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3110,7 +3116,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, caseExprListItem89.getTree());
-            // src/glossa/grammars/Glossa.g:350:21: ( COMMA caseExprListItem )*
+            // src/glossa/grammars/Glossa.g:362:21: ( COMMA caseExprListItem )*
             loop38:
             do {
                 int alt38=2;
@@ -3123,7 +3129,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt38) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:350:22: COMMA caseExprListItem
+            	    // src/glossa/grammars/Glossa.g:362:22: COMMA caseExprListItem
             	    {
             	    COMMA90=(Token)match(input,COMMA,FOLLOW_COMMA_in_caseExprList913); if (state.failed) return retval;
             	    pushFollow(FOLLOW_caseExprListItem_in_caseExprList916);
@@ -3170,7 +3176,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/Glossa.g:352:1: caseExprListItem : ( rangeItem | expr | infRangeItem );
+    // src/glossa/grammars/Glossa.g:364:1: caseExprListItem : ( rangeItem | expr | infRangeItem );
     public final GlossaParser.caseExprListItem_return caseExprListItem() throws RecognitionException {
         GlossaParser.caseExprListItem_return retval = new GlossaParser.caseExprListItem_return();
         retval.start = input.LT(1);
@@ -3186,12 +3192,12 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:353:2: ( rangeItem | expr | infRangeItem )
+            // src/glossa/grammars/Glossa.g:365:2: ( rangeItem | expr | infRangeItem )
             int alt39=3;
             alt39 = dfa39.predict(input);
             switch (alt39) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:353:5: rangeItem
+                    // src/glossa/grammars/Glossa.g:365:5: rangeItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3205,7 +3211,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:353:17: expr
+                    // src/glossa/grammars/Glossa.g:365:17: expr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3219,7 +3225,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:353:24: infRangeItem
+                    // src/glossa/grammars/Glossa.g:365:24: infRangeItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3260,7 +3266,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "rangeItem"
-    // src/glossa/grammars/Glossa.g:355:1: rangeItem : expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) ;
+    // src/glossa/grammars/Glossa.g:367:1: rangeItem : expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) ;
     public final GlossaParser.rangeItem_return rangeItem() throws RecognitionException {
         GlossaParser.rangeItem_return retval = new GlossaParser.rangeItem_return();
         retval.start = input.LT(1);
@@ -3277,8 +3283,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_RANGE=new RewriteRuleTokenStream(adaptor,"token RANGE");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:356:9: (expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) )
-            // src/glossa/grammars/Glossa.g:356:17: expr1= expr RANGE expr2= expr
+            // src/glossa/grammars/Glossa.g:368:9: (expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) )
+            // src/glossa/grammars/Glossa.g:368:17: expr1= expr RANGE expr2= expr
             {
             pushFollow(FOLLOW_expr_in_rangeItem960);
             expr1=expr();
@@ -3298,7 +3304,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expr1, RANGE, expr2
+            // elements: RANGE, expr2, expr1
             // token labels: 
             // rule labels: retval, expr1, expr2
             // token list labels: 
@@ -3311,9 +3317,9 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_expr2=new RewriteRuleSubtreeStream(adaptor,"rule expr2",expr2!=null?expr2.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 356:45: -> ^( RANGE $expr1 $expr2)
+            // 368:45: -> ^( RANGE $expr1 $expr2)
             {
-                // src/glossa/grammars/Glossa.g:356:48: ^( RANGE $expr1 $expr2)
+                // src/glossa/grammars/Glossa.g:368:48: ^( RANGE $expr1 $expr2)
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_RANGE.nextNode(), root_1);
@@ -3355,7 +3361,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "infRangeItem"
-    // src/glossa/grammars/Glossa.g:358:1: infRangeItem : ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) );
+    // src/glossa/grammars/Glossa.g:370:1: infRangeItem : ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) );
     public final GlossaParser.infRangeItem_return infRangeItem() throws RecognitionException {
         GlossaParser.infRangeItem_return retval = new GlossaParser.infRangeItem_return();
         retval.start = input.LT(1);
@@ -3385,7 +3391,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_LE=new RewriteRuleTokenStream(adaptor,"token LE");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:359:9: ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) )
+            // src/glossa/grammars/Glossa.g:371:9: ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) )
             int alt40=4;
             switch ( input.LA(1) ) {
             case LT:
@@ -3418,7 +3424,7 @@ public class GlossaParser extends Parser {
 
             switch (alt40) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:359:17: LT expr
+                    // src/glossa/grammars/Glossa.g:371:17: LT expr
                     {
                     LT96=(Token)match(input,LT,FOLLOW_LT_in_infRangeItem1000); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LT.add(LT96);
@@ -3432,7 +3438,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, LT
+                    // elements: LT, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3443,9 +3449,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 359:25: -> ^( INF_RANGE LT expr )
+                    // 371:25: -> ^( INF_RANGE LT expr )
                     {
-                        // src/glossa/grammars/Glossa.g:359:28: ^( INF_RANGE LT expr )
+                        // src/glossa/grammars/Glossa.g:371:28: ^( INF_RANGE LT expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3462,7 +3468,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:360:17: LE expr
+                    // src/glossa/grammars/Glossa.g:372:17: LE expr
                     {
                     LE98=(Token)match(input,LE,FOLLOW_LE_in_infRangeItem1030); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LE.add(LE98);
@@ -3487,9 +3493,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 360:25: -> ^( INF_RANGE LE expr )
+                    // 372:25: -> ^( INF_RANGE LE expr )
                     {
-                        // src/glossa/grammars/Glossa.g:360:28: ^( INF_RANGE LE expr )
+                        // src/glossa/grammars/Glossa.g:372:28: ^( INF_RANGE LE expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3506,7 +3512,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:361:17: GT expr
+                    // src/glossa/grammars/Glossa.g:373:17: GT expr
                     {
                     GT100=(Token)match(input,GT,FOLLOW_GT_in_infRangeItem1060); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_GT.add(GT100);
@@ -3531,9 +3537,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 361:25: -> ^( INF_RANGE GT expr )
+                    // 373:25: -> ^( INF_RANGE GT expr )
                     {
-                        // src/glossa/grammars/Glossa.g:361:28: ^( INF_RANGE GT expr )
+                        // src/glossa/grammars/Glossa.g:373:28: ^( INF_RANGE GT expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3550,7 +3556,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:362:17: GE expr
+                    // src/glossa/grammars/Glossa.g:374:17: GE expr
                     {
                     GE102=(Token)match(input,GE,FOLLOW_GE_in_infRangeItem1090); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_GE.add(GE102);
@@ -3564,7 +3570,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: GE, expr
+                    // elements: expr, GE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3575,9 +3581,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 362:25: -> ^( INF_RANGE GE expr )
+                    // 374:25: -> ^( INF_RANGE GE expr )
                     {
-                        // src/glossa/grammars/Glossa.g:362:28: ^( INF_RANGE GE expr )
+                        // src/glossa/grammars/Glossa.g:374:28: ^( INF_RANGE GE expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3621,7 +3627,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/Glossa.g:365:1: caseElseBlock : CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE block ) ;
+    // src/glossa/grammars/Glossa.g:377:1: caseElseBlock : CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE block ) ;
     public final GlossaParser.caseElseBlock_return caseElseBlock() throws RecognitionException {
         GlossaParser.caseElseBlock_return retval = new GlossaParser.caseElseBlock_return();
         retval.start = input.LT(1);
@@ -3642,8 +3648,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_CASE=new RewriteRuleTokenStream(adaptor,"token CASE");
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
-            // src/glossa/grammars/Glossa.g:366:2: ( CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE block ) )
-            // src/glossa/grammars/Glossa.g:366:4: CASE ELSE ( NEWLINE )+ block
+            // src/glossa/grammars/Glossa.g:378:2: ( CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE block ) )
+            // src/glossa/grammars/Glossa.g:378:4: CASE ELSE ( NEWLINE )+ block
             {
             CASE104=(Token)match(input,CASE,FOLLOW_CASE_in_caseElseBlock1120); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CASE.add(CASE104);
@@ -3651,7 +3657,7 @@ public class GlossaParser extends Parser {
             ELSE105=(Token)match(input,ELSE,FOLLOW_ELSE_in_caseElseBlock1122); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ELSE.add(ELSE105);
 
-            // src/glossa/grammars/Glossa.g:366:14: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:378:14: ( NEWLINE )+
             int cnt41=0;
             loop41:
             do {
@@ -3704,9 +3710,9 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 366:29: -> ^( CASE_ELSE block )
+            // 378:29: -> ^( CASE_ELSE block )
             {
-                // src/glossa/grammars/Glossa.g:366:32: ^( CASE_ELSE block )
+                // src/glossa/grammars/Glossa.g:378:32: ^( CASE_ELSE block )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(CASE_ELSE, "CASE_ELSE"), root_1);
@@ -3747,7 +3753,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "forStm"
-    // src/glossa/grammars/Glossa.g:368:1: forStm : FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:380:1: forStm : FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
     public final GlossaParser.forStm_return forStm() throws RecognitionException {
         GlossaParser.forStm_return retval = new GlossaParser.forStm_return();
         retval.start = input.LT(1);
@@ -3781,8 +3787,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE116_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:368:8: ( FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:368:10: FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:380:8: ( FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:380:10: FOR ID FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3810,7 +3816,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, to.getTree());
-            // src/glossa/grammars/Glossa.g:368:46: ( STEP step= expr )?
+            // src/glossa/grammars/Glossa.g:380:46: ( STEP step= expr )?
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -3819,7 +3825,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt42) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:368:47: STEP step= expr
+                    // src/glossa/grammars/Glossa.g:380:47: STEP step= expr
                     {
                     STEP112=(Token)match(input,STEP,FOLLOW_STEP_in_forStm1163); if (state.failed) return retval;
                     pushFollow(FOLLOW_expr_in_forStm1168);
@@ -3834,7 +3840,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:368:65: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:380:65: ( NEWLINE )+
             int cnt43=0;
             loop43:
             do {
@@ -3848,7 +3854,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt43) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:368:66: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:380:66: NEWLINE
             	    {
             	    NEWLINE113=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_forStm1173); if (state.failed) return retval;
 
@@ -3872,7 +3878,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, block114.getTree());
             END_LOOP115=(Token)match(input,END_LOOP,FOLLOW_END_LOOP_in_forStm1180); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:368:93: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:380:93: ( NEWLINE )+
             int cnt44=0;
             loop44:
             do {
@@ -3886,7 +3892,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt44) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:368:94: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:380:94: NEWLINE
             	    {
             	    NEWLINE116=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_forStm1184); if (state.failed) return retval;
 
@@ -3932,7 +3938,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "whileStm"
-    // src/glossa/grammars/Glossa.g:370:1: whileStm : WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:382:1: whileStm : WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
     public final GlossaParser.whileStm_return whileStm() throws RecognitionException {
         GlossaParser.whileStm_return retval = new GlossaParser.whileStm_return();
         retval.start = input.LT(1);
@@ -3956,8 +3962,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE123_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:371:9: ( WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:371:11: WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:383:9: ( WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:383:11: WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3973,7 +3979,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr118.getTree());
             LOOP119=(Token)match(input,LOOP,FOLLOW_LOOP_in_whileStm1208); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:371:29: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:383:29: ( NEWLINE )+
             int cnt45=0;
             loop45:
             do {
@@ -3987,7 +3993,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt45) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:371:30: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:383:30: NEWLINE
             	    {
             	    NEWLINE120=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_whileStm1212); if (state.failed) return retval;
 
@@ -4011,7 +4017,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, block121.getTree());
             END_LOOP122=(Token)match(input,END_LOOP,FOLLOW_END_LOOP_in_whileStm1219); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:371:57: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:383:57: ( NEWLINE )+
             int cnt46=0;
             loop46:
             do {
@@ -4025,7 +4031,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt46) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:371:58: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:383:58: NEWLINE
             	    {
             	    NEWLINE123=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_whileStm1223); if (state.failed) return retval;
 
@@ -4071,7 +4077,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "repeatStm"
-    // src/glossa/grammars/Glossa.g:373:1: repeatStm : REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ ;
+    // src/glossa/grammars/Glossa.g:385:1: repeatStm : REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ ;
     public final GlossaParser.repeatStm_return repeatStm() throws RecognitionException {
         GlossaParser.repeatStm_return retval = new GlossaParser.repeatStm_return();
         retval.start = input.LT(1);
@@ -4093,8 +4099,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE129_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:374:2: ( REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:374:4: REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:386:2: ( REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ )
+            // src/glossa/grammars/Glossa.g:386:4: REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4103,7 +4109,7 @@ public class GlossaParser extends Parser {
             REPEAT124_tree = (CommonTree)adaptor.create(REPEAT124);
             root_0 = (CommonTree)adaptor.becomeRoot(REPEAT124_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:374:12: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:386:12: ( NEWLINE )+
             int cnt47=0;
             loop47:
             do {
@@ -4117,7 +4123,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt47) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:374:13: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:386:13: NEWLINE
             	    {
             	    NEWLINE125=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_repeatStm1239); if (state.failed) return retval;
 
@@ -4147,7 +4153,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr128.getTree());
-            // src/glossa/grammars/Glossa.g:374:42: ( NEWLINE )+
+            // src/glossa/grammars/Glossa.g:386:42: ( NEWLINE )+
             int cnt48=0;
             loop48:
             do {
@@ -4161,7 +4167,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt48) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:374:43: NEWLINE
+            	    // src/glossa/grammars/Glossa.g:386:43: NEWLINE
             	    {
             	    NEWLINE129=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_repeatStm1252); if (state.failed) return retval;
 
@@ -4207,7 +4213,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/Glossa.g:376:1: expr : andExpr ( OR andExpr )* ;
+    // src/glossa/grammars/Glossa.g:388:1: expr : andExpr ( OR andExpr )* ;
     public final GlossaParser.expr_return expr() throws RecognitionException {
         GlossaParser.expr_return retval = new GlossaParser.expr_return();
         retval.start = input.LT(1);
@@ -4223,8 +4229,8 @@ public class GlossaParser extends Parser {
         CommonTree OR131_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:376:6: ( andExpr ( OR andExpr )* )
-            // src/glossa/grammars/Glossa.g:376:8: andExpr ( OR andExpr )*
+            // src/glossa/grammars/Glossa.g:388:6: ( andExpr ( OR andExpr )* )
+            // src/glossa/grammars/Glossa.g:388:8: andExpr ( OR andExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4234,7 +4240,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpr130.getTree());
-            // src/glossa/grammars/Glossa.g:376:16: ( OR andExpr )*
+            // src/glossa/grammars/Glossa.g:388:16: ( OR andExpr )*
             loop49:
             do {
                 int alt49=2;
@@ -4247,7 +4253,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt49) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:376:18: OR andExpr
+            	    // src/glossa/grammars/Glossa.g:388:18: OR andExpr
             	    {
             	    OR131=(Token)match(input,OR,FOLLOW_OR_in_expr1268); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4298,7 +4304,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "andExpr"
-    // src/glossa/grammars/Glossa.g:378:1: andExpr : eqExpr ( AND eqExpr )* ;
+    // src/glossa/grammars/Glossa.g:390:1: andExpr : eqExpr ( AND eqExpr )* ;
     public final GlossaParser.andExpr_return andExpr() throws RecognitionException {
         GlossaParser.andExpr_return retval = new GlossaParser.andExpr_return();
         retval.start = input.LT(1);
@@ -4314,8 +4320,8 @@ public class GlossaParser extends Parser {
         CommonTree AND134_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:378:9: ( eqExpr ( AND eqExpr )* )
-            // src/glossa/grammars/Glossa.g:378:17: eqExpr ( AND eqExpr )*
+            // src/glossa/grammars/Glossa.g:390:9: ( eqExpr ( AND eqExpr )* )
+            // src/glossa/grammars/Glossa.g:390:17: eqExpr ( AND eqExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4325,7 +4331,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, eqExpr133.getTree());
-            // src/glossa/grammars/Glossa.g:378:24: ( AND eqExpr )*
+            // src/glossa/grammars/Glossa.g:390:24: ( AND eqExpr )*
             loop50:
             do {
                 int alt50=2;
@@ -4338,7 +4344,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt50) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:378:25: AND eqExpr
+            	    // src/glossa/grammars/Glossa.g:390:25: AND eqExpr
             	    {
             	    AND134=(Token)match(input,AND,FOLLOW_AND_in_andExpr1290); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4389,7 +4395,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "eqExpr"
-    // src/glossa/grammars/Glossa.g:380:1: eqExpr : compExpr ( EQ compExpr | NEQ compExpr )* ;
+    // src/glossa/grammars/Glossa.g:392:1: eqExpr : compExpr ( EQ compExpr | NEQ compExpr )* ;
     public final GlossaParser.eqExpr_return eqExpr() throws RecognitionException {
         GlossaParser.eqExpr_return retval = new GlossaParser.eqExpr_return();
         retval.start = input.LT(1);
@@ -4409,8 +4415,8 @@ public class GlossaParser extends Parser {
         CommonTree NEQ139_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:380:8: ( compExpr ( EQ compExpr | NEQ compExpr )* )
-            // src/glossa/grammars/Glossa.g:380:10: compExpr ( EQ compExpr | NEQ compExpr )*
+            // src/glossa/grammars/Glossa.g:392:8: ( compExpr ( EQ compExpr | NEQ compExpr )* )
+            // src/glossa/grammars/Glossa.g:392:10: compExpr ( EQ compExpr | NEQ compExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4420,7 +4426,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, compExpr136.getTree());
-            // src/glossa/grammars/Glossa.g:380:19: ( EQ compExpr | NEQ compExpr )*
+            // src/glossa/grammars/Glossa.g:392:19: ( EQ compExpr | NEQ compExpr )*
             loop51:
             do {
                 int alt51=3;
@@ -4436,7 +4442,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt51) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:380:20: EQ compExpr
+            	    // src/glossa/grammars/Glossa.g:392:20: EQ compExpr
             	    {
             	    EQ137=(Token)match(input,EQ,FOLLOW_EQ_in_eqExpr1306); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4453,7 +4459,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:380:35: NEQ compExpr
+            	    // src/glossa/grammars/Glossa.g:392:35: NEQ compExpr
             	    {
             	    NEQ139=(Token)match(input,NEQ,FOLLOW_NEQ_in_eqExpr1313); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4504,7 +4510,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "compExpr"
-    // src/glossa/grammars/Glossa.g:382:1: compExpr : addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* ;
+    // src/glossa/grammars/Glossa.g:394:1: compExpr : addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* ;
     public final GlossaParser.compExpr_return compExpr() throws RecognitionException {
         GlossaParser.compExpr_return retval = new GlossaParser.compExpr_return();
         retval.start = input.LT(1);
@@ -4532,8 +4538,8 @@ public class GlossaParser extends Parser {
         CommonTree GE148_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:382:9: ( addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* )
-            // src/glossa/grammars/Glossa.g:382:11: addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
+            // src/glossa/grammars/Glossa.g:394:9: ( addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* )
+            // src/glossa/grammars/Glossa.g:394:11: addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4543,7 +4549,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, addExpr141.getTree());
-            // src/glossa/grammars/Glossa.g:382:19: ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
+            // src/glossa/grammars/Glossa.g:394:19: ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
             loop52:
             do {
                 int alt52=5;
@@ -4573,7 +4579,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt52) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:382:20: LT addExpr
+            	    // src/glossa/grammars/Glossa.g:394:20: LT addExpr
             	    {
             	    LT142=(Token)match(input,LT,FOLLOW_LT_in_compExpr1330); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4590,7 +4596,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:382:34: LE addExpr
+            	    // src/glossa/grammars/Glossa.g:394:34: LE addExpr
             	    {
             	    LE144=(Token)match(input,LE,FOLLOW_LE_in_compExpr1337); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4607,7 +4613,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // src/glossa/grammars/Glossa.g:382:48: GT addExpr
+            	    // src/glossa/grammars/Glossa.g:394:48: GT addExpr
             	    {
             	    GT146=(Token)match(input,GT,FOLLOW_GT_in_compExpr1344); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4624,7 +4630,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 4 :
-            	    // src/glossa/grammars/Glossa.g:382:62: GE addExpr
+            	    // src/glossa/grammars/Glossa.g:394:62: GE addExpr
             	    {
             	    GE148=(Token)match(input,GE,FOLLOW_GE_in_compExpr1351); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4675,7 +4681,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "addExpr"
-    // src/glossa/grammars/Glossa.g:384:1: addExpr : multExpr ( PLUS multExpr | MINUS multExpr )* ;
+    // src/glossa/grammars/Glossa.g:396:1: addExpr : multExpr ( PLUS multExpr | MINUS multExpr )* ;
     public final GlossaParser.addExpr_return addExpr() throws RecognitionException {
         GlossaParser.addExpr_return retval = new GlossaParser.addExpr_return();
         retval.start = input.LT(1);
@@ -4695,8 +4701,8 @@ public class GlossaParser extends Parser {
         CommonTree MINUS153_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:384:9: ( multExpr ( PLUS multExpr | MINUS multExpr )* )
-            // src/glossa/grammars/Glossa.g:384:11: multExpr ( PLUS multExpr | MINUS multExpr )*
+            // src/glossa/grammars/Glossa.g:396:9: ( multExpr ( PLUS multExpr | MINUS multExpr )* )
+            // src/glossa/grammars/Glossa.g:396:11: multExpr ( PLUS multExpr | MINUS multExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4706,7 +4712,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, multExpr150.getTree());
-            // src/glossa/grammars/Glossa.g:384:20: ( PLUS multExpr | MINUS multExpr )*
+            // src/glossa/grammars/Glossa.g:396:20: ( PLUS multExpr | MINUS multExpr )*
             loop53:
             do {
                 int alt53=3;
@@ -4722,7 +4728,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt53) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:384:21: PLUS multExpr
+            	    // src/glossa/grammars/Glossa.g:396:21: PLUS multExpr
             	    {
             	    PLUS151=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr1370); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4739,7 +4745,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:384:38: MINUS multExpr
+            	    // src/glossa/grammars/Glossa.g:396:38: MINUS multExpr
             	    {
             	    MINUS153=(Token)match(input,MINUS,FOLLOW_MINUS_in_addExpr1377); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4790,7 +4796,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "multExpr"
-    // src/glossa/grammars/Glossa.g:386:1: multExpr : powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* ;
+    // src/glossa/grammars/Glossa.g:398:1: multExpr : powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* ;
     public final GlossaParser.multExpr_return multExpr() throws RecognitionException {
         GlossaParser.multExpr_return retval = new GlossaParser.multExpr_return();
         retval.start = input.LT(1);
@@ -4818,8 +4824,8 @@ public class GlossaParser extends Parser {
         CommonTree MOD162_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:386:10: ( powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* )
-            // src/glossa/grammars/Glossa.g:386:12: powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
+            // src/glossa/grammars/Glossa.g:398:10: ( powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* )
+            // src/glossa/grammars/Glossa.g:398:12: powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4829,7 +4835,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, powExpr155.getTree());
-            // src/glossa/grammars/Glossa.g:386:20: ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
+            // src/glossa/grammars/Glossa.g:398:20: ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
             loop54:
             do {
                 int alt54=5;
@@ -4859,7 +4865,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt54) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:386:21: TIMES powExpr
+            	    // src/glossa/grammars/Glossa.g:398:21: TIMES powExpr
             	    {
             	    TIMES156=(Token)match(input,TIMES,FOLLOW_TIMES_in_multExpr1395); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4876,7 +4882,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:386:38: DIA powExpr
+            	    // src/glossa/grammars/Glossa.g:398:38: DIA powExpr
             	    {
             	    DIA158=(Token)match(input,DIA,FOLLOW_DIA_in_multExpr1402); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4893,7 +4899,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // src/glossa/grammars/Glossa.g:386:53: DIV powExpr
+            	    // src/glossa/grammars/Glossa.g:398:53: DIV powExpr
             	    {
             	    DIV160=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr1409); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4910,7 +4916,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 4 :
-            	    // src/glossa/grammars/Glossa.g:386:68: MOD powExpr
+            	    // src/glossa/grammars/Glossa.g:398:68: MOD powExpr
             	    {
             	    MOD162=(Token)match(input,MOD,FOLLOW_MOD_in_multExpr1416); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4961,7 +4967,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "powExpr"
-    // src/glossa/grammars/Glossa.g:388:1: powExpr : unaryExpr ( POW unaryExpr )* ;
+    // src/glossa/grammars/Glossa.g:400:1: powExpr : unaryExpr ( POW unaryExpr )* ;
     public final GlossaParser.powExpr_return powExpr() throws RecognitionException {
         GlossaParser.powExpr_return retval = new GlossaParser.powExpr_return();
         retval.start = input.LT(1);
@@ -4977,8 +4983,8 @@ public class GlossaParser extends Parser {
         CommonTree POW165_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:388:9: ( unaryExpr ( POW unaryExpr )* )
-            // src/glossa/grammars/Glossa.g:388:11: unaryExpr ( POW unaryExpr )*
+            // src/glossa/grammars/Glossa.g:400:9: ( unaryExpr ( POW unaryExpr )* )
+            // src/glossa/grammars/Glossa.g:400:11: unaryExpr ( POW unaryExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4988,7 +4994,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpr164.getTree());
-            // src/glossa/grammars/Glossa.g:388:21: ( POW unaryExpr )*
+            // src/glossa/grammars/Glossa.g:400:21: ( POW unaryExpr )*
             loop55:
             do {
                 int alt55=2;
@@ -5001,7 +5007,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt55) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:388:22: POW unaryExpr
+            	    // src/glossa/grammars/Glossa.g:400:22: POW unaryExpr
             	    {
             	    POW165=(Token)match(input,POW,FOLLOW_POW_in_powExpr1434); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5052,7 +5058,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "unaryExpr"
-    // src/glossa/grammars/Glossa.g:390:1: unaryExpr : ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom );
+    // src/glossa/grammars/Glossa.g:402:1: unaryExpr : ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom );
     public final GlossaParser.unaryExpr_return unaryExpr() throws RecognitionException {
         GlossaParser.unaryExpr_return retval = new GlossaParser.unaryExpr_return();
         retval.start = input.LT(1);
@@ -5078,7 +5084,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_MINUS=new RewriteRuleTokenStream(adaptor,"token MINUS");
         RewriteRuleSubtreeStream stream_atom=new RewriteRuleSubtreeStream(adaptor,"rule atom");
         try {
-            // src/glossa/grammars/Glossa.g:391:2: ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom )
+            // src/glossa/grammars/Glossa.g:403:2: ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom )
             int alt56=4;
             switch ( input.LA(1) ) {
             case PLUS:
@@ -5117,7 +5123,7 @@ public class GlossaParser extends Parser {
 
             switch (alt56) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:391:4: PLUS atom
+                    // src/glossa/grammars/Glossa.g:403:4: PLUS atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5132,7 +5138,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:392:4: MINUS atom
+                    // src/glossa/grammars/Glossa.g:404:4: MINUS atom
                     {
                     MINUS169=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpr1456); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_MINUS.add(MINUS169);
@@ -5157,9 +5163,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 392:15: -> ^( NEG atom )
+                    // 404:15: -> ^( NEG atom )
                     {
-                        // src/glossa/grammars/Glossa.g:392:18: ^( NEG atom )
+                        // src/glossa/grammars/Glossa.g:404:18: ^( NEG atom )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(NEG, "NEG"), root_1);
@@ -5175,7 +5181,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:393:4: NOT atom
+                    // src/glossa/grammars/Glossa.g:405:4: NOT atom
                     {
                     NOT171=(Token)match(input,NOT,FOLLOW_NOT_in_unaryExpr1471); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NOT.add(NOT171);
@@ -5200,9 +5206,9 @@ public class GlossaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 393:13: -> ^( NOT atom )
+                    // 405:13: -> ^( NOT atom )
                     {
-                        // src/glossa/grammars/Glossa.g:393:16: ^( NOT atom )
+                        // src/glossa/grammars/Glossa.g:405:16: ^( NOT atom )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(stream_NOT.nextNode(), root_1);
@@ -5218,7 +5224,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:394:4: atom
+                    // src/glossa/grammars/Glossa.g:406:4: atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5259,7 +5265,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "atom"
-    // src/glossa/grammars/Glossa.g:397:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' );
+    // src/glossa/grammars/Glossa.g:409:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' );
     public final GlossaParser.atom_return atom() throws RecognitionException {
         GlossaParser.atom_return retval = new GlossaParser.atom_return();
         retval.start = input.LT(1);
@@ -5289,12 +5295,12 @@ public class GlossaParser extends Parser {
         CommonTree char_literal183_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:397:6: ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' )
+            // src/glossa/grammars/Glossa.g:409:6: ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' )
             int alt57=8;
             alt57 = dfa57.predict(input);
             switch (alt57) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:397:8: CONST_TRUE
+                    // src/glossa/grammars/Glossa.g:409:8: CONST_TRUE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5307,7 +5313,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:398:4: CONST_FALSE
+                    // src/glossa/grammars/Glossa.g:410:4: CONST_FALSE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5320,7 +5326,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:399:4: CONST_STR
+                    // src/glossa/grammars/Glossa.g:411:4: CONST_STR
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5333,7 +5339,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:400:4: CONST_INT
+                    // src/glossa/grammars/Glossa.g:412:4: CONST_INT
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5346,7 +5352,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/Glossa.g:401:4: CONST_REAL
+                    // src/glossa/grammars/Glossa.g:413:4: CONST_REAL
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5359,7 +5365,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/Glossa.g:402:4: arrayItem
+                    // src/glossa/grammars/Glossa.g:414:4: arrayItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5373,7 +5379,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/Glossa.g:403:4: ID
+                    // src/glossa/grammars/Glossa.g:415:4: ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5386,7 +5392,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/Glossa.g:404:4: '(' expr ')'
+                    // src/glossa/grammars/Glossa.g:416:4: '(' expr ')'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5429,7 +5435,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arrayItem"
-    // src/glossa/grammars/Glossa.g:407:1: arrayItem : ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) ;
+    // src/glossa/grammars/Glossa.g:419:1: arrayItem : ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) ;
     public final GlossaParser.arrayItem_return arrayItem() throws RecognitionException {
         GlossaParser.arrayItem_return retval = new GlossaParser.arrayItem_return();
         retval.start = input.LT(1);
@@ -5444,8 +5450,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_arraySubscript=new RewriteRuleSubtreeStream(adaptor,"rule arraySubscript");
         try {
-            // src/glossa/grammars/Glossa.g:408:2: ( ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) )
-            // src/glossa/grammars/Glossa.g:408:4: ID arraySubscript
+            // src/glossa/grammars/Glossa.g:420:2: ( ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) )
+            // src/glossa/grammars/Glossa.g:420:4: ID arraySubscript
             {
             ID184=(Token)match(input,ID,FOLLOW_ID_in_arrayItem1548); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID184);
@@ -5470,9 +5476,9 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 408:22: -> ^( ARRAY_ITEM ID arraySubscript )
+            // 420:22: -> ^( ARRAY_ITEM ID arraySubscript )
             {
-                // src/glossa/grammars/Glossa.g:408:25: ^( ARRAY_ITEM ID arraySubscript )
+                // src/glossa/grammars/Glossa.g:420:25: ^( ARRAY_ITEM ID arraySubscript )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_ITEM, "ARRAY_ITEM"), root_1);
@@ -5514,7 +5520,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/Glossa.g:410:1: arraySubscript : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) ;
+    // src/glossa/grammars/Glossa.g:422:1: arraySubscript : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) ;
     public final GlossaParser.arraySubscript_return arraySubscript() throws RecognitionException {
         GlossaParser.arraySubscript_return retval = new GlossaParser.arraySubscript_return();
         retval.start = input.LT(1);
@@ -5534,14 +5540,14 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:411:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/Glossa.g:411:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
+            // src/glossa/grammars/Glossa.g:423:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) )
+            // src/glossa/grammars/Glossa.g:423:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
             {
             LBRACKET186=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arraySubscript1570); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET186);
 
-            // src/glossa/grammars/Glossa.g:411:13: (dimension+= expr )
-            // src/glossa/grammars/Glossa.g:411:14: dimension+= expr
+            // src/glossa/grammars/Glossa.g:423:13: (dimension+= expr )
+            // src/glossa/grammars/Glossa.g:423:14: dimension+= expr
             {
             pushFollow(FOLLOW_expr_in_arraySubscript1575);
             dimension=expr();
@@ -5555,7 +5561,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:411:31: ( COMMA dimension+= expr )*
+            // src/glossa/grammars/Glossa.g:423:31: ( COMMA dimension+= expr )*
             loop58:
             do {
                 int alt58=2;
@@ -5568,7 +5574,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt58) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:411:32: COMMA dimension+= expr
+            	    // src/glossa/grammars/Glossa.g:423:32: COMMA dimension+= expr
             	    {
             	    COMMA187=(Token)match(input,COMMA,FOLLOW_COMMA_in_arraySubscript1579); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA187);
@@ -5608,9 +5614,9 @@ public class GlossaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 411:65: -> ^( ARRAY_INDEX ( expr )+ )
+            // 423:65: -> ^( ARRAY_INDEX ( expr )+ )
             {
-                // src/glossa/grammars/Glossa.g:411:68: ^( ARRAY_INDEX ( expr )+ )
+                // src/glossa/grammars/Glossa.g:423:68: ^( ARRAY_INDEX ( expr )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_INDEX, "ARRAY_INDEX"), root_1);
@@ -5654,8 +5660,8 @@ public class GlossaParser extends Parser {
 
     // $ANTLR start synpred48_Glossa
     public final void synpred48_Glossa_fragment() throws RecognitionException {   
-        // src/glossa/grammars/Glossa.g:353:5: ( rangeItem )
-        // src/glossa/grammars/Glossa.g:353:5: rangeItem
+        // src/glossa/grammars/Glossa.g:365:5: ( rangeItem )
+        // src/glossa/grammars/Glossa.g:365:5: rangeItem
         {
         pushFollow(FOLLOW_rangeItem_in_synpred48_Glossa928);
         rangeItem();
@@ -5669,8 +5675,8 @@ public class GlossaParser extends Parser {
 
     // $ANTLR start synpred49_Glossa
     public final void synpred49_Glossa_fragment() throws RecognitionException {   
-        // src/glossa/grammars/Glossa.g:353:17: ( expr )
-        // src/glossa/grammars/Glossa.g:353:17: expr
+        // src/glossa/grammars/Glossa.g:365:17: ( expr )
+        // src/glossa/grammars/Glossa.g:365:17: expr
         {
         pushFollow(FOLLOW_expr_in_synpred49_Glossa932);
         expr();
@@ -5779,7 +5785,7 @@ public class GlossaParser extends Parser {
             this.transition = DFA39_transition;
         }
         public String getDescription() {
-            return "352:1: caseExprListItem : ( rangeItem | expr | infRangeItem );";
+            return "364:1: caseExprListItem : ( rangeItem | expr | infRangeItem );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -5999,7 +6005,7 @@ public class GlossaParser extends Parser {
             this.transition = DFA57_transition;
         }
         public String getDescription() {
-            return "397:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' );";
+            return "409:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | '(' expr ')' );";
         }
     }
  

@@ -24,6 +24,7 @@
 
 package glossa.statictypeanalysis.scopetable.scopes;
 
+import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import java.awt.Point;
@@ -47,19 +48,19 @@ public class Scope {
         this.variablesDeclared = false;
     }
 
-    public void defineSymbol(String key, Symbol s) {
+    public void defineSymbol(MessageLog msgLog, String key, Symbol s) {
         Symbol existingSymbol = getSymbols().get(key);
         if (existingSymbol != null) {
-            Messages.symbolRedefinitionError(s, existingSymbol);
+            Messages.symbolRedefinitionError(msgLog, s, existingSymbol);
         } else {
             this.getSymbols().put(key, s);
         }
     }
 
-    public Symbol referenceSymbol(String symbolName, Point referencePosition) {
+    public Symbol referenceSymbol(MessageLog msgLog, String symbolName, Point referencePosition) {
         Symbol symbol = this.getSymbols().get(symbolName);
         if (symbol == null) {
-            Messages.symbolUndefinedError(symbolName, referencePosition);
+            Messages.symbolUndefinedError(msgLog, symbolName, referencePosition);
             return null;
         } else {
             return symbol;

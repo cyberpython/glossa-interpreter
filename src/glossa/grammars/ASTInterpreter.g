@@ -63,7 +63,9 @@ import glossa.statictypeanalysis.scopetable.*;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
 import java.awt.Point;
+import java.io.PrintStream;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Deque;
 import java.util.ArrayList;
 
@@ -75,6 +77,9 @@ import java.util.ArrayList;
         private Deque<SymbolTable> stack;
 
         private SymbolTable currentSymbolTable;
+
+        private PrintStream out;
+        private PrintStream err;
 
         public void setScopeTable(ScopeTable s){
             this.scopeTable = s;
@@ -90,6 +95,22 @@ import java.util.ArrayList;
 
         public Deque<SymbolTable> getStack(){
             return this.stack;
+        }
+
+        public void setOutputStream(PrintStream out){
+            this.out = out;
+        }
+
+        public PrintStream getOutputStream(){
+            return this.out;
+        }
+
+        public void setErrorStream(PrintStream err){
+            this.err = err;
+        }
+
+        public PrintStream getErrorStream(){
+            return this.err;
         }
 
 }
@@ -125,7 +146,10 @@ constDecl
         ;
 
 constAssign
-	:	 ^(EQ ID expr )
+	:	 ^(EQ ID expr ) {
+                                        RuntimeConstant constant = (RuntimeConstant)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        constant.setValue($expr.result);
+                                 }
         ;
 
 
@@ -187,13 +211,10 @@ block	:	^(BLOCK stm*)
 stm	:	^(  PRINT
                     (expr1=expr     {
                                         Object o = $expr1.result;
-                                        if(o instanceof String){
-                                            o = ((String)o).substring(1, ((String)o).length()-1);
-                                        }
-                                        System.out.print(o.toString());
+                                        InterpreterUtils.print(o, this.out);
                                     }
                     )*)             {
-                                        System.out.println();
+                                        this.out.println();
                                     }
         |       ^(READ readItem+)
 	|	^(ASSIGN ID expr)   {
@@ -269,7 +290,7 @@ expr	returns [Object result]
 	|	CONST_FALSE                 {   $result = Boolean.valueOf(false);   }
 	|	CONST_STR                   {   $result = new String($CONST_STR.text);  }
 	|	CONST_INT                   {   $result = new BigInteger($CONST_INT.text);  }
-	|	CONST_REAL                  {   $result = new BigInteger($CONST_REAL.text); }
+	|	CONST_REAL                  {   $result = new BigDecimal($CONST_REAL.text, InterpreterUtils.getMathContext()); }
 	|	ID                          {
                                                 RuntimeSimpleSymbol s = (RuntimeSimpleSymbol)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                                 $result = s.getValue();
@@ -287,7 +308,7 @@ expr	returns [Object result]
                                                     throw new RuntimeException("Array dimensions and item index mismatch"); //TODO: proper runtime error message
                                                 }else{
                                                     for(int i=0; i<dimensions.size(); i++){
-                                                        if(indices.get(i).compareTo(dimensions.get(i))>=0){
+                                                        if(indices.get(i).compareTo(dimensions.get(i))>0){
                                                             throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
                                                         }
                                                     }

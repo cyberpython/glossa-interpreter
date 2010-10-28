@@ -23,8 +23,12 @@
  */
 package glossa.interpreter;
 
+import glossa.messages.RuntimeMessages;
+import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
  *
@@ -32,10 +36,18 @@ import java.math.BigInteger;
  */
 public class InterpreterUtils {
 
-    private static BigInteger maxInt;
+    private static final BigInteger maxInt;
+    private static final MathContext mc;
+    private static final int maxDecimalDigits;
 
     static {
+        maxDecimalDigits = 34;
         maxInt = new BigInteger(new Integer(Integer.MAX_VALUE).toString());
+        mc = new MathContext(maxDecimalDigits, RoundingMode.UP);
+    }
+
+    public static MathContext getMathContext(){
+        return InterpreterUtils.mc;
     }
 
     public static boolean isValidArrayDimension(Object o) {
@@ -315,15 +327,15 @@ public class InterpreterUtils {
     }
 
     public static BigDecimal add(BigDecimal a, BigInteger b) {
-        return a.add(new BigDecimal(b));
+        return a.add(new BigDecimal(b, mc), mc);
     }
 
     public static BigDecimal add(BigInteger a, BigDecimal b) {
-        return b.add(new BigDecimal(a));
+        return b.add(new BigDecimal(a, mc), mc);
     }
 
     public static BigDecimal add(BigDecimal a, BigDecimal b) {
-        return b.add(a);
+        return b.add(a, mc);
     }
 
     public static Object subtract(Object a, Object b) {
@@ -348,15 +360,15 @@ public class InterpreterUtils {
     }
 
     public static BigDecimal subtract(BigDecimal a, BigInteger b) {
-        return a.subtract(new BigDecimal(b));
+        return a.subtract(new BigDecimal(b, mc), mc);
     }
 
     public static BigDecimal subtract(BigInteger a, BigDecimal b) {
-        return b.subtract(new BigDecimal(a));
+        return b.subtract(new BigDecimal(a, mc), mc);
     }
 
     public static BigDecimal subtract(BigDecimal a, BigDecimal b) {
-        return b.subtract(a);
+        return b.subtract(a, mc);
     }
 
     public static Object multiply(Object a, Object b) {
@@ -381,15 +393,15 @@ public class InterpreterUtils {
     }
 
     public static BigDecimal multiply(BigDecimal a, BigInteger b) {
-        return a.multiply(new BigDecimal(b));
+        return a.multiply(new BigDecimal(b, mc), mc);
     }
 
     public static BigDecimal multiply(BigInteger a, BigDecimal b) {
-        return b.multiply(new BigDecimal(a));
+        return b.multiply(new BigDecimal(a, mc), mc);
     }
 
     public static BigDecimal multiply(BigDecimal a, BigDecimal b) {
-        return a.multiply(b);
+        return a.multiply(b, mc);
     }
 
     public static Object divide(Object a, Object b) {
@@ -420,21 +432,21 @@ public class InterpreterUtils {
         if (b.equals(BigInteger.ZERO)) {
             throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
         }
-        return a.divide(new BigDecimal(b));
+        return a.divide(new BigDecimal(b, mc), mc);
     }
 
     public static BigDecimal divide(BigInteger a, BigDecimal b) {
         if (b.equals(BigDecimal.ZERO)) {
             throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
         }
-        return (new BigDecimal(a)).divide(b);
+        return (new BigDecimal(a, mc)).divide(b, mc);
     }
 
     public static BigDecimal divide(BigDecimal a, BigDecimal b) {
         if (b.equals(BigDecimal.ZERO)) {
             throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
         }
-        return a.divide(b);
+        return a.divide(b, mc);
     }
 
     public static Object intDivide(Object a, Object b) {
@@ -477,20 +489,40 @@ public class InterpreterUtils {
     }
 
     public static BigDecimal pow(BigInteger a, BigInteger b) {
-        return (new BigDecimal(a)).pow(b.intValue());
+        return (new BigDecimal(a, mc)).pow(b.intValue(), mc);
     }
 
     public static BigDecimal pow(BigDecimal a, BigInteger b) {
-        return a.pow(b.intValue());
+        return a.pow(b.intValue(), mc);
     }
 
     public static Object negate(Object a) {
         if (a instanceof BigInteger) {
             return ((BigInteger) a).negate();
         } else if (a instanceof BigDecimal) {
-            return ((BigDecimal) a).negate();
+            return ((BigDecimal) a).negate(mc);
         }
         throw new RuntimeException("Cannot negate non-numeric types"); //TODO: proper runtime error message
     }
     //</editor-fold>
+
+    public static void print(Object o, PrintStream out) {
+        
+        out.print(toPrintableString(o));
+    }
+
+    private static String toPrintableString(Object o){
+        if(o==null){
+            return RuntimeMessages.UNDEFINED_VALUE;
+        }else if (o instanceof String) {
+            return ((String) o).substring(1, ((String) o).length() - 1);
+        }else if(o instanceof Boolean){
+            if(((Boolean) o).booleanValue()==true){
+                return RuntimeMessages.CONST_STR_TRUE;
+            }else{
+                return RuntimeMessages.CONST_STR_FALSE;
+            }
+        }
+        return o.toString();
+    }
 }

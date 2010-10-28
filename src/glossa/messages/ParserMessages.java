@@ -36,7 +36,7 @@ public class ParserMessages {
     public final static String STR_ERROR_PARSER_EXTRANEOUS_TOKEN_BEFORE_THIS = "Αναμενόταν: %1$s. Βρέθηκε ενώ δε χρειάζεται: %2$s.";
     public final static String STR_ERROR_PARSER_MISSING_TOKEN_BEFORE_THIS = "Λείπει το: %1$s.";
     public final static String STR_ERROR_PARSER_PROBLEM_NEAR = "Λάθος πριν/μετά το: %1$s.";
-    public final static String STR_ERROR_PARSER_EARLY_EXIT = "Βρέθηκε πρόωρα: %1$s.";
+    public final static String STR_ERROR_PARSER_EARLY_EXIT = "Δεν αναμενόταν: %1$s.";
     public final static String STR_ERROR_PARSER_EXPECTING = "Αναμενόταν: %1$s. Βρέθηκε: %2$s.";
 
 

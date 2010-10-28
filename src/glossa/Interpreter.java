@@ -25,24 +25,15 @@ package glossa;
 
 import glossa.interpreter.ASTInterpreter;
 import glossa.interpreter.symboltable.SymbolTable;
+import glossa.messages.MessageLog;
 import glossa.recognizers.GlossaParser;
 import glossa.recognizers.GlossaLexer;
-import glossa.messages.ErrorMessage;
-import glossa.messages.InterpreterMessage;
-import glossa.messages.Messages;
-import glossa.messages.WarningMessage;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
+import java.io.PrintStream;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Deque;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.BufferedTreeNodeStream;
@@ -53,37 +44,37 @@ import org.antlr.runtime.tree.CommonTree;
  * @author cyberpython
  */
 public class Interpreter {
+    
+    private PrintStream out;
+    private PrintStream err;
+
+    public Interpreter() {
+        this.out = System.out;
+        this.err = System.err;
+    }
 
     public void run(String[] args) throws Exception {
 
-        Messages.clearMessages();
-
-        List<InterpreterMessage> msgs = Messages.getMessages();
+        MessageLog msgLog = new MessageLog(err, out);
 
         GlossaParser.unit_return r = null;
 
         try {
             ANTLRFileStream input = new ANTLRFileStream(args[0]);
             GlossaLexer lexer = new GlossaLexer(input);
+            lexer.setMessageLog(msgLog);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             GlossaParser parser = new GlossaParser(tokens);
+            parser.setMessageLog(msgLog);
             r = parser.unit();
         } catch (RuntimeException re) {
             
         }
 
-        int errors = 0;
+        int errors = msgLog.getNumberOfErrors();
+        msgLog.printErrors();
+        msgLog.printWarnings();
 
-        for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
-            InterpreterMessage interpreterMessage = it.next();
-            if (interpreterMessage instanceof ErrorMessage) {
-                Messages.printError((ErrorMessage) interpreterMessage);
-                errors++;
-
-            } else if (interpreterMessage instanceof WarningMessage) {
-                Messages.printWarning((WarningMessage) interpreterMessage);
-            }
-        }
 
 
         if (errors == 0) {
@@ -96,23 +87,15 @@ public class Interpreter {
             BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
             StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
             staticTypeAnalyzer.setScopeTable(scopeTable);
+            staticTypeAnalyzer.setMessageLog(msgLog);
             staticTypeAnalyzer.unit();                 // launch at start rule prog
             
 
             MainProgramScope mpst = scopeTable.getMainProgramScope();
 
-            errors = 0;
-
-            for (Iterator<InterpreterMessage> it = msgs.iterator(); it.hasNext();) {
-                InterpreterMessage interpreterMessage = it.next();
-                if (interpreterMessage instanceof ErrorMessage) {
-                    Messages.printError((ErrorMessage) interpreterMessage);
-                    errors++;
-
-                } else if (interpreterMessage instanceof WarningMessage) {
-                    Messages.printWarning((WarningMessage) interpreterMessage);
-                }
-            }
+            errors = msgLog.getNumberOfErrors();
+            msgLog.printErrors();
+            msgLog.printWarnings();
 
             if (errors == 0) {
                 try{
@@ -121,10 +104,12 @@ public class Interpreter {
                 ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
                 interpreter.setScopeTable(scopeTable);
                 interpreter.setStack(stack);
+                interpreter.setOutputStream(out);
+                interpreter.setErrorStream(err);
                 interpreter.unit();                 // launch at start rule prog
                 
                 }catch(RuntimeException re){
-                    System.out.println(re.getMessage());
+                    out.println(re.getMessage());
                 }
             }
         }
