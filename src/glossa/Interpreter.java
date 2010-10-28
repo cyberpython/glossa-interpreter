@@ -31,6 +31,7 @@ import glossa.recognizers.GlossaLexer;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -47,10 +48,18 @@ public class Interpreter {
     
     private PrintStream out;
     private PrintStream err;
+    private InputStream in;
 
     public Interpreter() {
         this.out = System.out;
         this.err = System.err;
+        this.in = System.in;
+    }
+
+    public Interpreter(PrintStream out, PrintStream err, InputStream in) {
+        this.out = out;
+        this.err = err;
+        this.in = in;
     }
 
     public void run(String[] args) throws Exception {
@@ -106,10 +115,11 @@ public class Interpreter {
                 interpreter.setStack(stack);
                 interpreter.setOutputStream(out);
                 interpreter.setErrorStream(err);
+                interpreter.setInputStream(in);
                 interpreter.unit();                 // launch at start rule prog
                 
                 }catch(RuntimeException re){
-                    out.println(re.getMessage());
+                    err.println(re.getMessage());
                 }
             }
         }

@@ -63,6 +63,9 @@ import glossa.statictypeanalysis.scopetable.*;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.math.BigInteger;
 import java.math.BigDecimal;
@@ -80,6 +83,8 @@ import java.util.ArrayList;
 
         private PrintStream out;
         private PrintStream err;
+        private InputStream in;
+        private BufferedReader reader;
 
         public void setScopeTable(ScopeTable s){
             this.scopeTable = s;
@@ -111,6 +116,15 @@ import java.util.ArrayList;
 
         public PrintStream getErrorStream(){
             return this.err;
+        }
+
+        public void setInputStream(InputStream in){
+            this.in = in;
+            this.reader = new BufferedReader(new InputStreamReader(in));
+        }
+
+        public InputStream getInputStream(){
+            return this.in;
         }
 
 }
@@ -234,7 +248,24 @@ stm	:	^(  PRINT
         ;
 
 readItem:       arrId=ID arraySubscript
-        |       varId=ID
+                                    {
+                                        String line = "";
+                                        try{
+                                            line = reader.readLine();
+                                        }catch(Exception e){
+                                        }
+                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        arr.set($arraySubscript.value, InterpreterUtils.toValue(line, arr.getType()));
+                                    }
+        |       varId=ID            {
+                                        String line = "";
+                                        try{
+                                            line = reader.readLine();
+                                        }catch(Exception e){
+                                        }
+                                        RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        var.setValue(InterpreterUtils.toValue(line, var.getType()));
+                                    }
         ;
 
 ifBlock	:       ^(IF expr block)

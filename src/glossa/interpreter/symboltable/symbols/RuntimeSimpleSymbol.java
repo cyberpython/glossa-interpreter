@@ -60,7 +60,7 @@ public abstract class RuntimeSimpleSymbol extends RuntimeSymbol{
      */
     public Object getValue() {
         if( ! this.isInitialized() ){
-            throw new RuntimeException("Symbol.getValue(): "+this.getName()+" has not been initialized.");//TODO: proper runtime error report
+            throw new RuntimeException(this.getName()+" has not been initialized.");//TODO: proper runtime error report
         }else{
             return value;
         }

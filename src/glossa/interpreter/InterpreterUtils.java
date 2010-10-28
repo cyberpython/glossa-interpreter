@@ -24,6 +24,7 @@
 package glossa.interpreter;
 
 import glossa.messages.RuntimeMessages;
+import glossa.types.Type;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -511,7 +512,7 @@ public class InterpreterUtils {
         out.print(toPrintableString(o));
     }
 
-    private static String toPrintableString(Object o){
+    public static String toPrintableString(Object o){
         if(o==null){
             return RuntimeMessages.UNDEFINED_VALUE;
         }else if (o instanceof String) {
@@ -524,5 +525,27 @@ public class InterpreterUtils {
             }
         }
         return o.toString();
+    }
+
+    public static Object toValue(String s, Type t){
+
+        if((s==null)||(t==null)){
+            throw new RuntimeException("Invalid value"); //TODO: proper runtime error message
+        }else if(t.equals(Type.INTEGER)){
+            try{
+                return new BigInteger(s);
+            }catch(NumberFormatException nfe){
+                throw new RuntimeException("Invalid integer value: "+nfe); //TODO: proper runtime error message
+            }
+        }else if(t.equals(Type.REAL)){
+            try{
+                return new BigDecimal(s, mc);
+            }catch(NumberFormatException nfe){
+                throw new RuntimeException("Invalid integer value: "+nfe); //TODO: proper runtime error message
+            }
+        }else if(t.equals(Type.STRING)){
+            return "'"+s+"'";
+        }
+        throw new RuntimeException("Incompatible value for assignment: "+s+" - needed: "+t.toString()); //TODO: proper runtime error message
     }
 }
