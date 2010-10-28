@@ -49,7 +49,7 @@ e.g.:
 
 
 ![Screenshot][screenshot]
-[screenshot]: http://img253.imageshack.us/img253/9409/screenshotdn.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
+[screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
 
 
 ##Samples
