@@ -12,11 +12,13 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 - Static type analysis: Errors/warnings in Greek ✔
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔
-- Statement execution: Main program structure ✘
+- Statement execution: Main program structure ⟳
 - Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘
 - Static type analysis: Built-in functions ✘
+
+✔ = completed, ⟳ = in progress, ✘ = not implemented yet
 
 ##Build instructions
 
@@ -29,8 +31,10 @@ To build the project’s code you will need :
 You have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar
 
 
-Open a terminal, go to the project's directory (e.g. glossa-interpreter) and give:
+Open a terminal and give:
 
+    git clone git://github.com/cyberpython/glossa-interpreter.git
+    cd glossa-interpreter
     ant jar
 
 ##How to run the interpreter
@@ -41,11 +45,18 @@ To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 
 e.g.:
 
-    java -jar dist/glossa-interpreter.jar src/glossa/samples/VariablesDeclaration.gls
+    java -jar dist/glossa-interpreter.jar src/glossa/samples/PrintTest.gls
+
+
+![Screenshot][screenshot]
+[screenshot]: http://img253.imageshack.us/img253/9409/screenshotdn.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
+
+
+##Samples
 
 There are some example input files in:
 
-    src/glossa/interpreter/tests/
+    src/glossa/samples/
 
 The project is developed using [Netbeans 6.9](http://netbeans.org/) but you can use your editor/IDE of choice.
 
