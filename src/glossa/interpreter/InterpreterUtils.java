@@ -535,13 +535,13 @@ public class InterpreterUtils {
             try{
                 return new BigInteger(s);
             }catch(NumberFormatException nfe){
-                throw new RuntimeException("Invalid integer value: "+nfe); //TODO: proper runtime error message
+                throw new RuntimeException("Invalid integer value: "+s); //TODO: proper runtime error message
             }
         }else if(t.equals(Type.REAL)){
             try{
                 return new BigDecimal(s, mc);
             }catch(NumberFormatException nfe){
-                throw new RuntimeException("Invalid integer value: "+nfe); //TODO: proper runtime error message
+                throw new RuntimeException("Invalid real value: "+s); //TODO: proper runtime error message
             }
         }else if(t.equals(Type.STRING)){
             return "'"+s+"'";

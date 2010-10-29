@@ -10,13 +10,15 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 - Lexer/Parser: Errors/warnings in Greek ✔
 - Static type analysis: Errors/warnings in Greek ✔
+- Runtime errors/warnings in Greek ✘
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔
 - Statement execution: Main program structure ⟳
 - Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘
-- Static type analysis: Built-in functions ✘
+- Built-in functions ✘
+
 
 ✔ = completed, ⟳ = in progress, ✘ = not implemented yet
 
@@ -26,9 +28,9 @@ To build the project’s code you will need :
 
 - [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Apache Ant](http://ant.apache.org/) (built-in in Netbeans)
-- [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (if you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build)
+- [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (*)
 
-You have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar
+(*) If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar
 
 
 Open a terminal and give:

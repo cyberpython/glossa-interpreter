@@ -59,6 +59,7 @@ options{
 
 package glossa.interpreter;
 
+import glossa.types.*;
 import glossa.statictypeanalysis.scopetable.*;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
@@ -235,18 +236,127 @@ stm	:	^(  PRINT
                                         RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                         var.setValue($expr.result);
                                     }
-        |       ^(ASSIGN ID arraySubscript expr)
-                                    {
+        |       ^(ASSIGN ID         {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                    }
+                  arraySubscript [arr]
+                  expr
+                 )                  {
                                         arr.set($arraySubscript.value, $expr.result);
                                     }
         |       ^(IFNODE 
-                  ifBlock {boolean proceed = $ifBlock.proceedToNextCondition;}
-                  (elseIfBlock [proceed] {proceed = $elseIfBlock.proceedToNextCondition;})*
+                  ifBlock           {
+                                        boolean proceed = $ifBlock.proceedToNextCondition;
+                                    }
+                  (elseIfBlock [proceed]
+                                    {
+                                        proceed = $elseIfBlock.proceedToNextCondition;
+                                    }
+                  )*
                   (elseBlock [proceed])?
                 )
         |       ^(SWITCH expr caseBlock* caseElseBlock?)
-        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block){/*TODO: For counter can be an array item*/}
+        |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=.)
+                                    {
+                                        int resumeAt = input.index();
+
+                                        RuntimeVariable counter = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        Object step = null;
+                                        Type counterType = counter.getType();
+                                        if(counterType.equals(Type.INTEGER)){
+                                            counter.setValue($fromValue.result);
+                                            if(stepValue!=null){
+                                                step = (BigInteger)$stepValue.result;
+                                            }else{
+                                                step = new BigInteger("1");
+                                            }
+
+                                        }else if(counterType.equals(Type.REAL)){
+                                            if($fromValue.result instanceof BigInteger){
+                                                counter.setValue(new BigDecimal((BigInteger)$fromValue.result, InterpreterUtils.getMathContext()));
+                                            }else{
+                                                counter.setValue($fromValue.result);
+                                            }
+                                            if(stepValue!=null){
+                                                if($stepValue.result instanceof BigInteger){
+                                                    step = new BigDecimal((BigInteger)$stepValue.result, InterpreterUtils.getMathContext());
+                                                }else{
+                                                    step = (BigDecimal)$stepValue.result;
+                                                }
+                                            }else{
+                                                step = new BigDecimal("1", InterpreterUtils.getMathContext());
+                                            }
+                                        }
+
+                                        if(InterpreterUtils.greaterThanOrEqual(step, BigInteger.ZERO)){ //step is positive
+                                            while(InterpreterUtils.lowerThanOrEqual(counter.getValue(), $toValue.result)){
+                                                input.seek(blkIndex);
+                                                block();
+                                                counter.setValue(InterpreterUtils.add(counter.getValue(), step));
+                                            }
+                                        }else{                                                //step is negative
+                                            while(InterpreterUtils.greaterThanOrEqual(counter.getValue(), $toValue.result)){
+                                                input.seek(blkIndex);
+                                                block();
+                                                counter.setValue(InterpreterUtils.add(counter.getValue(), step));
+                                            }
+                                        }
+
+                                        input.seek(resumeAt);
+                                    }
+        |       ^(FOR ID            {
+                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                    }
+                  arraySubscript [arr]
+                  fromValue=expr
+                  toValue=expr
+                  (stepValue=expr)?
+                  {int blkIndex = input.index();} blk=.
+                 )                  {
+                                        int resumeAt = input.index();
+                                        Object step = null;
+                                        Type counterType = arr.getType();
+                                        if(counterType.equals(Type.INTEGER)){
+                                            arr.set($arraySubscript.value, $fromValue.result);
+                                            if(stepValue!=null){
+                                                step = (BigInteger)$stepValue.result;
+                                            }else{
+                                                step = new BigInteger("1");
+                                            }
+
+                                        }else if(counterType.equals(Type.REAL)){
+                                            if($fromValue.result instanceof BigInteger){
+                                                arr.set($arraySubscript.value, new BigDecimal((BigInteger)$fromValue.result, InterpreterUtils.getMathContext()));
+                                            }else{
+                                                arr.set($arraySubscript.value, $fromValue.result);
+                                            }
+                                            if(stepValue!=null){
+                                                if($stepValue.result instanceof BigInteger){
+                                                    step = new BigDecimal((BigInteger)$stepValue.result, InterpreterUtils.getMathContext());
+                                                }else{
+                                                    step = (BigDecimal)$stepValue.result;
+                                                }
+                                            }else{
+                                                step = new BigDecimal("1", InterpreterUtils.getMathContext());
+                                            }
+                                        }
+
+                                        if(InterpreterUtils.greaterThanOrEqual(step, BigInteger.ZERO)){ //step is positive
+                                            while(InterpreterUtils.lowerThanOrEqual(arr.get($arraySubscript.value), $toValue.result)){
+                                                input.seek(blkIndex);
+                                                block();
+                                                arr.set($arraySubscript.value, InterpreterUtils.add(arr.get($arraySubscript.value), step));
+                                            }
+                                        }else{                                                //step is negative
+                                            while(InterpreterUtils.greaterThanOrEqual(arr.get($arraySubscript.value), $toValue.result)){
+                                                input.seek(blkIndex);
+                                                block();
+                                                arr.set($arraySubscript.value, InterpreterUtils.add(arr.get($arraySubscript.value), step));
+                                            }
+                                        }
+
+                                        input.seek(resumeAt);
+                                    }
         |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=.)
                                     {
                                             int resumeAt = input.index();
@@ -279,14 +389,16 @@ stm	:	^(  PRINT
         ;
 
 readItem
-        :       arrId=ID arraySubscript
+        :       arrId=ID            {
+                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                    }
+                arraySubscript [arr]
                                     {
                                         String line = "";
                                         try{
                                             line = reader.readLine();
                                         }catch(Exception e){
                                         }
-                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                         arr.set($arraySubscript.value, InterpreterUtils.toValue(line, arr.getType()));
                                     }
         |       varId=ID            {
@@ -398,27 +510,15 @@ expr	returns [Object result]
                     ARRAY_ITEM
                     ID                      {
                                                 RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
-                                                List<Integer> dimensions = arr.getDimensions();
                                             }
-                    arraySubscript
+                    arraySubscript [arr]
                                             {
-                                                List<Integer> indices = $arraySubscript.value;
-                                                if(indices.size()!=dimensions.size()){
-                                                    throw new RuntimeException("Array dimensions and item index mismatch"); //TODO: proper runtime error message
-                                                }else{
-                                                    for(int i=0; i<dimensions.size(); i++){
-                                                        if(indices.get(i).compareTo(dimensions.get(i))>0){
-                                                            throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
-                                                        }
-                                                    }
-                                                }
-
-                                                $result = arr.get(indices);
+                                                $result = arr.get($arraySubscript.value);
                                             }
                 )
         ;
 
-arraySubscript returns [List<Integer> value]
+arraySubscript [RuntimeArray arr] returns [List<Integer> value]
 	:	^(ARRAY_INDEX
                                 {List<Integer> result = new ArrayList<Integer>();}
                     (expr
@@ -431,6 +531,17 @@ arraySubscript returns [List<Integer> value]
                                 }
                     )+
                                 {
+                                    List<Integer> dimensions = arr.getDimensions();
+                                    if(result.size()!=dimensions.size()){
+                                        throw new RuntimeException("Array dimensions and item index mismatch"); //TODO: proper runtime error message
+                                    }else{
+                                        for(int i=0; i<dimensions.size(); i++){
+                                            if(result.get(i).compareTo(dimensions.get(i))>0){
+                                                throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
+                                            }
+                                        }
+                                    }
+                                    
                                     $value = result;
                                 }
                 )

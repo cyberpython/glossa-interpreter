@@ -242,9 +242,17 @@ stm	:	^(PRINT (expr1=expr)* )
                                                     Messages.caseStmMustHaveAtLeastOneCaseError(msgLog, new Point($SWITCH.line, $SWITCH.pos));
                                                 }
                                             }
-        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block){/*TODO: For counter can be an array item*/}
-                                            {
+        |       ^(FOR ID                    {
                                                 Symbol s = currentScope.referenceSymbol(msgLog, $ID.text, new Point($ID.line, $ID.pos));
+                                                if((s != null)&&(s instanceof Variable)){
+                                                    s.setInitialized(true);
+                                                }
+                                            }
+                  expr1=expr
+                  expr2=expr
+                  (expr3=expr)?
+                  block)
+                                            {
                                                 if(s != null){
                                                      if(s instanceof Variable){
                                                         if(StaticTypeAnalyzerUtils.isNumericType(s.getType())){
@@ -278,6 +286,60 @@ stm	:	^(PRINT (expr1=expr)* )
                                                         }
                                                     }else{
                                                         Messages.nonVariableSymbolReferencedAsSuchError(msgLog, new Point($ID.line, $ID.pos), s);
+                                                    }
+                                                }
+                                            }
+        |       ^(FOR ID arraySubscript     {
+                                                Symbol s = currentScope.referenceSymbol(msgLog, $ID.text, new Point($ID.line, $ID.pos));
+                                                if((s != null)&&(s instanceof Array)){
+                                                    s.setInitialized(true);
+                                                }
+                                            }
+                  expr1=expr
+                  expr2=expr
+                  (expr3=expr)?
+                  block)
+                                            {
+                                                if(s != null){
+                                                     if(s instanceof Array){
+                                                        s.setInitialized(true);
+                                                        Array arr = (Array)s;
+                                                        int indicesCount = $arraySubscript.indicesCount;
+                                                        if(arr.getNumberOfDimensions() != indicesCount){
+                                                            Messages.arrayIndicesAndDimensionsMismatchError(msgLog, new Point($arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine()), arr, indicesCount);
+                                                        }else{
+                                                            if(StaticTypeAnalyzerUtils.isNumericType(s.getType())){
+                                                                if(StaticTypeAnalyzerUtils.isNumericType($expr1.expressionType) && StaticTypeAnalyzerUtils.isNumericType($expr2.expressionType) ){
+                                                                    if(s.getType().equals(Type.INTEGER)){
+                                                                        if(!$expr1.expressionType.equals(Type.INTEGER)){
+                                                                            Messages.forFromStepExpressionsMustBeIntegerError(msgLog, new Point($expr1.start.getLine(), $expr1.start.getCharPositionInLine()), $expr1.expressionType);
+                                                                        }
+                                                                        if(expr3!=null){
+                                                                            if(  ($expr3.expressionType==null) || (!$expr3.expressionType.equals(Type.INTEGER))  ){
+                                                                                Messages.forFromStepExpressionsMustBeIntegerError(msgLog, new Point($expr3.start.getLine(), $expr3.start.getCharPositionInLine()), $expr3.expressionType);
+                                                                            }
+                                                                        }
+                                                                    }else{
+                                                                        if(expr3!=null){
+                                                                            if(!StaticTypeAnalyzerUtils.isNumericType($expr3.expressionType)){
+                                                                                Messages.forFromToStepExpressionsMustBeOfNumericTypeError(msgLog, new Point($expr3.start.getLine(), $expr3.start.getCharPositionInLine()), $expr3.expressionType);
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }else{
+                                                                    if(!StaticTypeAnalyzerUtils.isNumericType($expr1.expressionType)){
+                                                                        Messages.forFromToStepExpressionsMustBeOfNumericTypeError(msgLog, new Point($expr1.start.getLine(), $expr1.start.getCharPositionInLine()), $expr1.expressionType);
+                                                                    }
+                                                                    if(!StaticTypeAnalyzerUtils.isNumericType($expr2.expressionType)){
+                                                                        Messages.forFromToStepExpressionsMustBeOfNumericTypeError(msgLog, new Point($expr2.start.getLine(), $expr2.start.getCharPositionInLine()), $expr2.expressionType);
+                                                                    }
+                                                                }
+                                                            }else{
+                                                                Messages.forCounterMustBeOfNumericTypeError(msgLog, new Point($ID.line, $ID.pos), s.getType());
+                                                            }
+                                                        }
+                                                    }else{
+                                                        Messages.nonArraySymbolReferencedAsSuchError(msgLog, s, new Point($ID.line, $ID.pos));
                                                     }
                                                 }
                                             }

@@ -126,7 +126,7 @@ public class RuntimeArray extends RuntimeSymbol {
         } else if ((value instanceof String) && this.getType().equals(Type.STRING)) {
             this.values[resolveIndex(indices)] = value;
         } else {
-            throw new RuntimeException("Invalid type in array assignment");//TODO: Proper runtime error report
+            throw new RuntimeException("Invalid type in array assignment: "+value.getClass().getName()+" instead of "+getType().toString());//TODO: Proper runtime error report
         }
     }
 
