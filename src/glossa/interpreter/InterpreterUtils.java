@@ -365,11 +365,11 @@ public class InterpreterUtils {
     }
 
     public static BigDecimal subtract(BigInteger a, BigDecimal b) {
-        return b.subtract(new BigDecimal(a, mc), mc);
+        return new BigDecimal(a, mc).subtract(b, mc);
     }
 
     public static BigDecimal subtract(BigDecimal a, BigDecimal b) {
-        return b.subtract(a, mc);
+        return a.subtract(b, mc);
     }
 
     public static Object multiply(Object a, Object b) {
@@ -475,7 +475,7 @@ public class InterpreterUtils {
         if (b.equals(BigInteger.ZERO)) {
             throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
         }
-        return a.mod(b);
+        return a.remainder(b);
     }
 
     public static Object pow(Object a, Object b) {

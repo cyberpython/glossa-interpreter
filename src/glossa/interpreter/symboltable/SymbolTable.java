@@ -83,7 +83,7 @@ public class SymbolTable {
     }
 
     public RuntimeSymbol referenceSymbol(String symbolName, Point referencePosition) {
-        RuntimeSymbol symbol = this.getSymbols().get(symbolName);
+        RuntimeSymbol symbol = this.getSymbols().get(symbolName.toLowerCase());
         if (symbol == null) {
             //TODO: Proper runtime error report
             return null;

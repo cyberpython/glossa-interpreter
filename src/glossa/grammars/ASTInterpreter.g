@@ -246,9 +246,36 @@ stm	:	^(  PRINT
                   (elseBlock [proceed])?
                 )
         |       ^(SWITCH expr caseBlock* caseElseBlock?)
-        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
-        |       ^(WHILE expr block)
-	|	^(REPEAT block expr)
+        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block){/*TODO: For counter can be an array item*/}
+        |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=.)
+                                    {
+                                            int resumeAt = input.index();
+                                            input.seek(conditionIndex);
+                                            Boolean exprResult = (Boolean)expr();
+
+                                            while(  exprResult.equals(Boolean.TRUE)  ){
+                                                input.seek(blkIndex);
+                                                block();
+                                                input.seek(conditionIndex);
+                                                exprResult = (Boolean)expr();
+                                            }
+
+                                            input.seek(resumeAt);
+                                    }
+	|	^(REPEAT {int blkIndex = input.index()+1;} blk=. {int conditionIndex = input.index();} condition=.)
+                                    {
+                                            int resumeAt = input.index();
+                                            Boolean exprResult = Boolean.FALSE;
+
+                                            while(  exprResult.equals(Boolean.FALSE)  ){
+                                                input.seek(blkIndex);
+                                                block();
+                                                input.seek(conditionIndex);
+                                                exprResult = (Boolean)expr();
+                                            }
+
+                                            input.seek(resumeAt);
+                                    }
         ;
 
 readItem

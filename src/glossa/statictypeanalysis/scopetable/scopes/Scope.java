@@ -48,7 +48,8 @@ public class Scope {
         this.variablesDeclared = false;
     }
 
-    public void defineSymbol(MessageLog msgLog, String key, Symbol s) {
+    public void defineSymbol(MessageLog msgLog, String searchKey, Symbol s) {
+        String key = searchKey.toLowerCase();
         Symbol existingSymbol = getSymbols().get(key);
         if (existingSymbol != null) {
             Messages.symbolRedefinitionError(msgLog, s, existingSymbol);
@@ -58,7 +59,8 @@ public class Scope {
     }
 
     public Symbol referenceSymbol(MessageLog msgLog, String symbolName, Point referencePosition) {
-        Symbol symbol = this.getSymbols().get(symbolName);
+        String key = symbolName.toLowerCase();
+        Symbol symbol = this.getSymbols().get(key);
         if (symbol == null) {
             Messages.symbolUndefinedError(msgLog, symbolName, referencePosition);
             return null;

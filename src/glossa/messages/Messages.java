@@ -95,8 +95,8 @@ public class Messages {
 
     public final static String STR_ERROR_LEFT_SIDE_OF_ASSIGNMENT_MUST_BE_VAR_OR_ARRAY_ITEM = "Στο αριστερό μέρος της ανάθεσης τιμής πρέπει να βρίσκεται μεταβλητή ή στοιχείο πίνακα.";
     public final static String STR_ERROR_READ_STM_ITEM_MUST_BE_INT_REAL_OR_STR = "Οι μεταβλητές και οι πίνακες που χρησιμοποιούνται στην εντολή \"ΔΙΑΒΑΣΕ\" πρέπει να είναι δηλωμένες ως ακέραιες, πραγματικές ή χαρακτήρες - βρέθηκε %1$s.";
-    public final static String STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN = "Η έκφραση στις δομές ΑΝ/ΑΛΛΙΩΣ_ΑΝ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
-    public final static String STR_ERROR_WHILE_EXPRESSION_MUST_BE_BOOLEAN = "Η έκφραση στις δομές ΌΣΟ..ΕΠΑΝΑΛΑΒΕ/ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ..ΜΕΧΡΙΣ_ΌΤΟΥ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
+    public final static String STR_ERROR_IF_EXPRESSION_MUST_BE_BOOLEAN = "Η συνθήκη στις δομές ΑΝ/ΑΛΛΙΩΣ_ΑΝ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
+    public final static String STR_ERROR_WHILE_EXPRESSION_MUST_BE_BOOLEAN = "Η συνθήκη στις δομές ΌΣΟ..ΕΠΑΝΑΛΑΒΕ/ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ..ΜΕΧΡΙΣ_ΌΤΟΥ πρέπει να είναι λογικού τύπου - βρέθηκε %1$s.";
     public final static String STR_ERROR_FOR_COUNTER_MUST_BE_NUMERIC = "Η μεταβλητή-μετρητής στη δομή ΓΙΑ..ΑΠΟ..ΜΕΧΡΙ..(ΜΕ_ΒΗΜΑ..) πρέπει να είναι ακέραιου ή πραγματικού τύπου - βρέθηκε %1$s.";
     public final static String STR_ERROR_FOR_FROM_TO_STEP_EXPR_MUST_BE_NUMERIC = "Οι εκφράσεις μετά το ΑΠΟ../ΜΕΧΡΙ../ΜΕ_ΒΗΜΑ.. πρέπει να είναι ακέραιου ή πραγματικού τύπου - βρέθηκε %1$s.";
     public final static String STR_ERROR_FOR_FROM_STEP_EXPR_MUST_BE_INTEGER = "Οι εκφράσεις μετά το ΑΠΟ../ΜΕ_ΒΗΜΑ.. πρέπει να είναι ακέραιου τύπου όταν ο μετρητής είναι ακέραιου τύπου - βρέθηκε %1$s.";

@@ -117,7 +117,7 @@ program	:	^(PROGRAM
 		declarations
 		block 
 		(id2=ID {
-				if($id1.text.equals($id2.text)==false){
+				if($id1.text.toLowerCase().equals($id2.text.toLowerCase())==false){
 					Messages.programNameMismatchWarning(msgLog, new Point($id2.line, $id2.pos), $id2.text);
 				}
 			}
@@ -242,7 +242,7 @@ stm	:	^(PRINT (expr1=expr)* )
                                                     Messages.caseStmMustHaveAtLeastOneCaseError(msgLog, new Point($SWITCH.line, $SWITCH.pos));
                                                 }
                                             }
-        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
+        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block){/*TODO: For counter can be an array item*/}
                                             {
                                                 Symbol s = currentScope.referenceSymbol(msgLog, $ID.text, new Point($ID.line, $ID.pos));
                                                 if(s != null){

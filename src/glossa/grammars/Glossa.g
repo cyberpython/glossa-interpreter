@@ -376,8 +376,8 @@ infRangeItem
 
 caseElseBlock
 	:	CASE ELSE NEWLINE+ block -> ^(CASE_ELSE block);
-
-forStm	:	FOR^ ID FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
+forStm	:	FOR^ ID FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+ {/*TODO: For counter can be an array item*/}
+        ;
 
 whileStm
         :	WHILE^ expr LOOP! (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
