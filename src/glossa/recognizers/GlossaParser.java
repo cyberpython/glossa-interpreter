@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-28 16:45:08
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-29 15:26:00
 
 /*
  *  The MIT License
@@ -2434,7 +2434,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ifBlock, elseIfBlock, elseBlock
+            // elements: elseBlock, elseIfBlock, ifBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3304,7 +3304,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expr1, expr2, RANGE
+            // elements: expr1, RANGE, expr2
             // token labels: 
             // rule labels: retval, expr1, expr2
             // token list labels: 
@@ -3526,7 +3526,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, GT
+                    // elements: GT, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3570,7 +3570,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, GE
+                    // elements: GE, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5195,7 +5195,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: NOT, atom
+                    // elements: atom, NOT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5465,7 +5465,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, arraySubscript
+            // elements: arraySubscript, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 

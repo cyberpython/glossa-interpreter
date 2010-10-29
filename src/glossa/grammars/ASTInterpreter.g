@@ -240,14 +240,19 @@ stm	:	^(  PRINT
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                         arr.set($arraySubscript.value, $expr.result);
                                     }
-        |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
+        |       ^(IFNODE 
+                  ifBlock {boolean proceed = $ifBlock.proceedToNextCondition;}
+                  (elseIfBlock [proceed] {proceed = $elseIfBlock.proceedToNextCondition;})*
+                  (elseBlock [proceed])?
+                )
         |       ^(SWITCH expr caseBlock* caseElseBlock?)
         |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
         |       ^(WHILE expr block)
 	|	^(REPEAT block expr)
         ;
 
-readItem:       arrId=ID arraySubscript
+readItem
+        :       arrId=ID arraySubscript
                                     {
                                         String line = "";
                                         try{
@@ -268,15 +273,51 @@ readItem:       arrId=ID arraySubscript
                                     }
         ;
 
-ifBlock	:       ^(IF expr block)
+ifBlock returns [boolean proceedToNextCondition]
+        :       ^(IF expr {int index = input.index();} cmd=.)
+                                    {
+                                        if(  ((Boolean) $expr.result).equals(Boolean.TRUE)  ){
+                                            int resumeAt = input.index();
+                                            $proceedToNextCondition = false;
+                                            input.seek(index);
+                                            block();
+                                            input.seek(resumeAt);
+                                        }else{
+                                            $proceedToNextCondition = true;
+                                        }
+                                    }
         ;
 
-elseBlock
-	:	^(ELSE block)
+elseBlock [boolean exec]
+	:	^(ELSE  {int elseIndex = input.index()+1;} cmd=.)
+                                    {
+                                        if($exec){
+                                            int resumeAt = input.index();
+                                            input.seek(elseIndex);
+                                            block();
+                                            input.seek(resumeAt);
+                                        }
+                                    }
         ;
 
-elseIfBlock
-	:	^(ELSE_IF expr block)
+elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
+	:	^(ELSE_IF {int conditionIndex = input.index()+1;} e=. {int blkIndex = input.index();}  cmd=.)
+                                    {
+                                        $proceedToNextCondition = $exec;
+                                        if($exec){
+                                            int resumeAt = input.index();
+                                            input.seek(conditionIndex);
+                                            Boolean exprResult = (Boolean)expr();
+
+                                            if(  (exprResult).equals(Boolean.TRUE)  ){
+                                                $proceedToNextCondition = false;
+                                                input.seek(blkIndex);
+                                                block();
+                                            }
+
+                                            input.seek(resumeAt);
+                                        }
+                                    }
         ;
 
 
