@@ -255,7 +255,17 @@ stm	:	^(  PRINT
                   )*
                   (elseBlock [proceed])?
                 )
-        |       ^(SWITCH expr caseBlock* caseElseBlock?)
+        |       ^(SWITCH 
+                  expr              {
+                                        boolean proceed = true;
+                                    }
+                  (caseBlock [$expr.result, proceed]
+                                    {
+                                        proceed = $caseBlock.checkNextCaseBlock;
+                                    }
+                  )*
+                  (caseElseBlock [proceed])?
+                 )
         |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=.)
                                     {
                                         int resumeAt = input.index();
@@ -460,21 +470,84 @@ elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
         ;
 
 
-caseBlock
-	:	^(CASE caseExprListItem+ block)
+caseBlock [Object target, boolean proceed] returns [boolean checkNextCaseBlock]
+	:	^(CASE {boolean foundMatch = false;} (caseExprListItem [$target] {foundMatch = foundMatch || $caseExprListItem.success;} )+  {int blkIndex = input.index();} blk=.)
+                                    {
+                                        $checkNextCaseBlock = $proceed;
+                                        if($proceed){
+                                            int resumeAt = input.index();
+
+                                            if(  foundMatch  ){
+                                                $checkNextCaseBlock = false;
+                                                input.seek(blkIndex);
+                                                block();
+                                            }
+
+                                            input.seek(resumeAt);
+                                        }
+                                    }
         ;
 
-caseExprListItem
-	:	a=expr
+caseExprListItem [Object target] returns [boolean success]
+	:	a=expr              {
+                                        if(InterpreterUtils.equals($target, $a.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
 	|       ^(RANGE a=expr b=expr)
+                                    {
+                                        if(InterpreterUtils.greaterThanOrEqual($target, $a.result)  &&  InterpreterUtils.lowerThanOrEqual($target, $b.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
 	|       ^(INF_RANGE LT a=expr)
-        |       ^(INF_RANGE LE a=expr)
-        |       ^(INF_RANGE GT a=expr)
-        |       ^(INF_RANGE GE a=expr)
+                                    {
+                                        if(InterpreterUtils.lowerThan($target, $a.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
+        |       ^(INF_RANGE LE a=expr) 
+                                    {
+                                        if(InterpreterUtils.lowerThanOrEqual($target, $a.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
+        |       ^(INF_RANGE GT a=expr)  
+                                    {
+                                        if(InterpreterUtils.greaterThan($target, $a.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
+        |       ^(INF_RANGE GE a=expr)  
+                                    {
+                                        if(InterpreterUtils.greaterThanOrEqual($target, $a.result)){
+                                            $success = true;
+                                        }else{
+                                            $success = false;
+                                        }
+                                    }
         ;
 
-caseElseBlock
-	:	^(CASE_ELSE block)
+caseElseBlock [boolean proceed]
+	:	^(CASE_ELSE {int blkIndex = input.index()+1;} blk=.)
+                                    {
+                                        if($proceed){
+                                            int resumeAt = input.index();
+                                            input.seek(blkIndex);
+                                            block();
+                                            input.seek(resumeAt);
+                                        }
+                                    }
         ;
 
 

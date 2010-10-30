@@ -8,12 +8,14 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 ##Status
 
+The interpreter can now execute all programs that have only a main method (i.e. functions and procedures are not implemented yet).
+
 - Lexer/Parser: Errors/warnings in Greek ✔
 - Static type analysis: Errors/warnings in Greek ✔
-- Runtime errors/warnings in Greek ✘
+- Runtime errors/warnings in Greek ⟳
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔
-- Statement execution: Main program structure ⟳
+- Statement execution: Main program structure ✔
 - Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘

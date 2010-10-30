@@ -38,6 +38,7 @@ import java.math.RoundingMode;
 public class InterpreterUtils {
 
     private static final BigInteger maxInt;
+    private static final BigDecimal d360;
     private static final MathContext mc;
     private static final int maxDecimalDigits;
 
@@ -45,6 +46,7 @@ public class InterpreterUtils {
         maxDecimalDigits = 34;
         maxInt = new BigInteger(new Integer(Integer.MAX_VALUE).toString());
         mc = new MathContext(maxDecimalDigits, RoundingMode.UP);
+        d360 = new BigDecimal("360", mc);
     }
 
     public static MathContext getMathContext(){
@@ -506,6 +508,11 @@ public class InterpreterUtils {
         throw new RuntimeException("Cannot negate non-numeric types"); //TODO: proper runtime error message
     }
     //</editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Built-in functions">
+
+    
+
+    // </editor-fold>
 
     public static void print(Object o, PrintStream out) {
         
@@ -523,6 +530,8 @@ public class InterpreterUtils {
             }else{
                 return RuntimeMessages.CONST_STR_FALSE;
             }
+        }else if(o instanceof BigDecimal){
+            return ((BigDecimal)o).toPlainString();
         }
         return o.toString();
     }
