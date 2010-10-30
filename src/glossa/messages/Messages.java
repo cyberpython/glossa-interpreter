@@ -104,8 +104,6 @@ public class Messages {
     public final static String STR_ERROR_INCOMPATIBLE_TYPES_FOR_CASE_STM = "Ασύμβατοι τύποι δεδομένων για χρήση με τη δομή \"ΕΠΙΛΕΞΕ\": %1$s στο (%2$s) και %3$s στο (%4$s).";
     public final static String STR_ERROR_CASE_ITEM_EXPR_MUST_BE_INT_REAL_OR_STR = "Οι εκφράσεις που χρησιμοποιούνται στη λίστα τιμών της \"ΠΕΡΙΠΤΩΣΗ...\" πρέπει να είναι ακέραιες, πραγματικές ή χαρακτήρες - βρέθηκε %1$s.";
 
-    public final static String STR_ERROR_ARRAY_INDEX_OUT_OF_BOUNDS = "Ο δείκτης %1$s προς στοιχείο του πίνακα \"%2$s\" είναι εκτός ορίων.";
-
 
     public static void programNameMismatchWarning(MessageLog msgLog, Point warningPoint, String falseName) {
         String msg = String.format(STR_WARNING_PROG_NAME_MISMATCH, falseName);

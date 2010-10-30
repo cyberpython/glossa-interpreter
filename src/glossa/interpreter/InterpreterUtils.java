@@ -509,9 +509,62 @@ public class InterpreterUtils {
     }
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Built-in functions">
+    /*public static BigDecimal sin(Object degrees){
+        if(degrees instanceof BigDecimal){
+            return sin((BigDecimal)degrees);
+        }else if(degrees instanceof BigInteger){
+            return sin((BigInteger)degrees);
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
+    }
 
-    
+    public static BigDecimal sin(BigDecimal degrees){
+        BigDecimal d = degrees.remainder(d360);
+        return BigDecimal.valueOf(MathUtils.sin(d.doubleValue()));
+    }
 
+    public static BigDecimal sin(BigInteger degrees){
+        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
+        return sin(d);
+    }
+
+    public static BigDecimal cos(Object degrees){
+        if(degrees instanceof BigDecimal){
+            return cos((BigDecimal)degrees);
+        }else if(degrees instanceof BigInteger){
+            return cos((BigInteger)degrees);
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
+    }
+
+    public static BigDecimal cos(BigDecimal degrees){
+        BigDecimal d = degrees.remainder(d360);
+        return BigDecimal.valueOf(MathUtils.cos(d.doubleValue()));
+    }
+
+    public static BigDecimal cos(BigInteger degrees){
+        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
+        return cos(d);
+    }
+
+    public static BigDecimal tan(Object degrees){
+        if(degrees instanceof BigDecimal){
+            return tan((BigDecimal)degrees);
+        }else if(degrees instanceof BigInteger){
+            return tan((BigInteger)degrees);
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
+    }
+
+    public static BigDecimal tan(BigDecimal degrees){
+        BigDecimal d = degrees.remainder(d360);
+        return BigDecimal.valueOf(MathUtils.tan(d.doubleValue()));
+    }
+
+    public static BigDecimal tan(BigInteger degrees){
+        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
+        return tan(d);
+    }*/
     // </editor-fold>
 
     public static void print(Object o, PrintStream out) {

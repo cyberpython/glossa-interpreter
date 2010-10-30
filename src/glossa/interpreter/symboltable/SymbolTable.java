@@ -67,7 +67,6 @@ public class SymbolTable {
 
     private RuntimeSymbol copyFromScope(Symbol original) {
         if (original == null) {
-            //TODO: Proper runtime error report
             return null;
         } else {
             if (original instanceof Constant) {
@@ -85,7 +84,6 @@ public class SymbolTable {
     public RuntimeSymbol referenceSymbol(String symbolName, Point referencePosition) {
         RuntimeSymbol symbol = this.getSymbols().get(symbolName.toLowerCase());
         if (symbol == null) {
-            //TODO: Proper runtime error report
             return null;
         } else {
             return symbol;

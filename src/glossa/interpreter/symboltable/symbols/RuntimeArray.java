@@ -23,7 +23,9 @@
  */
 package glossa.interpreter.symboltable.symbols;
 
+import glossa.interpreter.InterpreterUtils;
 import glossa.messages.Messages;
+import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.types.Type;
 import java.math.BigDecimal;
@@ -99,7 +101,7 @@ public class RuntimeArray extends RuntimeSymbol {
             for (int i = 0; i < numberOfDimensions; i++) {
                 index = indices.get(i).intValue();
                 if (index < 1 || index > dimensions.get(i).intValue()) {
-                    throw new RuntimeException(String.valueOf(index) + " at " + Messages.arrayIndexToString(indices));//TODO: Proper runtime error report
+                    throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDEX_OUT_OF_BOUNDS,  Messages.arrayIndexToString(indices), this.getName()));
                 } else {
                     d = colSizes[i];
                     j = index;
@@ -107,7 +109,7 @@ public class RuntimeArray extends RuntimeSymbol {
                 }
             }
         } else {
-            throw new RuntimeException(Messages.arrayIndexToString(indices));//TODO: Proper runtime error report
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_AND_DIMENSIONS_MISMATCH,  indices.size(), this.getName(), this.getDimensions().size()));
         }
         return result;
     }
@@ -126,7 +128,7 @@ public class RuntimeArray extends RuntimeSymbol {
         } else if ((value instanceof String) && this.getType().equals(Type.STRING)) {
             this.values[resolveIndex(indices)] = value;
         } else {
-            throw new RuntimeException("Invalid type in array assignment: "+value.getClass().getName()+" instead of "+getType().toString());//TODO: Proper runtime error report
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_TYPE_FOR_ASSIGNMENT,  InterpreterUtils.toPrintableString(value), this.getType().toString()));
         }
     }
 

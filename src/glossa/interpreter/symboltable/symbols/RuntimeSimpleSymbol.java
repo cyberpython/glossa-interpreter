@@ -24,6 +24,7 @@
 
 package glossa.interpreter.symboltable.symbols;
 
+import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
 
@@ -60,7 +61,7 @@ public abstract class RuntimeSimpleSymbol extends RuntimeSymbol{
      */
     public Object getValue() {
         if( ! this.isInitialized() ){
-            throw new RuntimeException(this.getName()+" has not been initialized.");//TODO: proper runtime error report
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_SIMPLE_SYMBOL_NOT_INITIALIZED, RuntimeMessages.symbolTypeToTheString(this), this.getName()));
         }else{
             return value;
         }
