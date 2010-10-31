@@ -4,7 +4,11 @@ An interpreter for the 'ΓΛΩΣΣΑ' programming language developed using [Antl
 
 ##License
 
+Copyright (c) Georgios Migdos
+
 Source code is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+
+Antlr 3 is distributed under the terms of the [BSD license](http://www.antlr.org/license.html).
 
 ##Status
 
