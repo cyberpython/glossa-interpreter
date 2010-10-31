@@ -23,6 +23,7 @@
  */
 package glossa.interpreter;
 
+import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.messages.RuntimeMessages;
 import glossa.types.Type;
 import java.io.PrintStream;
@@ -43,7 +44,7 @@ public class InterpreterUtils {
     private static final int maxDecimalDigits;
 
     static {
-        maxDecimalDigits = 34;
+        maxDecimalDigits = 128;
         maxInt = new BigInteger(new Integer(Integer.MAX_VALUE).toString());
         mc = new MathContext(maxDecimalDigits, RoundingMode.UP);
         d360 = new BigDecimal("360", mc);
@@ -509,66 +510,110 @@ public class InterpreterUtils {
     }
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Built-in functions">
-    /*public static BigDecimal sin(Object degrees){
-        if(degrees instanceof BigDecimal){
-            return sin((BigDecimal)degrees);
-        }else if(degrees instanceof BigInteger){
-            return sin((BigInteger)degrees);
+
+    public static Object execBuiltinFunction(String functionName, Object parameter){
+        if(BuiltinFunctions.isBuiltinFunctionName(functionName)){
+            String funcId = functionName.toUpperCase();
+            if (funcId.equals("ΗΜ")){
+                return sin(parameter);
+            }else if (funcId.equals("ΣΥΝ")){
+                return cos(parameter);
+            }else if (funcId.equals("ΕΦ")){
+                return tan(parameter);
+            }else if (funcId.equals("Τ_Ρ")){
+                return sqrt(parameter);
+            }else if (funcId.equals("ΛΟΓ")){
+                return log(parameter);
+            }else if (funcId.equals("Ε")){
+                return exp(parameter);
+            }else if (funcId.equals("Α_Μ")){
+                return intPart(parameter);
+            }else if (funcId.equals("Α_Τ")){
+                return abs(parameter);
+            }else{
+                throw new RuntimeException("Invalid built-in function : "+toPrintableString(functionName)); //TODO: proper runtime error message
+            }
         }
-        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
+        throw new RuntimeException("Invalid built-in function : "+toPrintableString(functionName)); //TODO: proper runtime error message
     }
 
-    public static BigDecimal sin(BigDecimal degrees){
-        BigDecimal d = degrees.remainder(d360);
-        return BigDecimal.valueOf(MathUtils.sin(d.doubleValue()));
-    }
-
-    public static BigDecimal sin(BigInteger degrees){
-        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
-        return sin(d);
+    public static BigDecimal sin(Object degrees){
+        if(degrees instanceof BigDecimal){
+            return MathUtils.sin((BigDecimal)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }else if(degrees instanceof BigInteger){
+            return MathUtils.sin((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
     }
 
     public static BigDecimal cos(Object degrees){
         if(degrees instanceof BigDecimal){
-            return cos((BigDecimal)degrees);
+            return MathUtils.cos((BigDecimal)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }else if(degrees instanceof BigInteger){
-            return cos((BigInteger)degrees);
+            return MathUtils.cos((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
-    }
-
-    public static BigDecimal cos(BigDecimal degrees){
-        BigDecimal d = degrees.remainder(d360);
-        return BigDecimal.valueOf(MathUtils.cos(d.doubleValue()));
-    }
-
-    public static BigDecimal cos(BigInteger degrees){
-        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
-        return cos(d);
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
     }
 
     public static BigDecimal tan(Object degrees){
         if(degrees instanceof BigDecimal){
-            return tan((BigDecimal)degrees);
+            return MathUtils.tan((BigDecimal)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }else if(degrees instanceof BigInteger){
-            return tan((BigInteger)degrees);
+            return MathUtils.tan((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+degrees.toString()); //TODO: proper runtime error message
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
     }
 
-    public static BigDecimal tan(BigDecimal degrees){
-        BigDecimal d = degrees.remainder(d360);
-        return BigDecimal.valueOf(MathUtils.tan(d.doubleValue()));
+    public static BigDecimal sqrt(Object n){
+        if(n instanceof BigDecimal){
+            return MathUtils.sqrt((BigDecimal)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }else if(n instanceof BigInteger){
+            return MathUtils.sqrt((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
     }
 
-    public static BigDecimal tan(BigInteger degrees){
-        BigDecimal d = new BigDecimal(degrees, mc).remainder(d360);
-        return tan(d);
-    }*/
+
+    public static BigDecimal log(Object n){
+        if(n instanceof BigDecimal){
+            return MathUtils.log((BigDecimal)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }else if(n instanceof BigInteger){
+            return MathUtils.log((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+    }
+
+    public static BigDecimal exp(Object n){
+        if(n instanceof BigDecimal){
+            return MathUtils.exp((BigDecimal)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }else if(n instanceof BigInteger){
+            return MathUtils.exp((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+    }
+
+    public static BigInteger intPart(Object n){
+        if(n instanceof BigDecimal){
+            return MathUtils.intPart((BigDecimal)n);
+        }else if(n instanceof BigInteger){
+            return MathUtils.intPart((BigInteger)n);
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+    }
+
+    public static Object abs(Object n){
+        if(n instanceof BigDecimal){
+            return MathUtils.abs((BigDecimal)n).setScale(maxDecimalDigits, mc.getRoundingMode());
+        }else if(n instanceof BigInteger){
+            return MathUtils.abs((BigInteger)n);
+        }
+        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+    }
+
+    
     // </editor-fold>
 
     public static void print(Object o, PrintStream out) {
-        
         out.print(toPrintableString(o));
     }
 
@@ -584,7 +629,7 @@ public class InterpreterUtils {
                 return RuntimeMessages.CONST_STR_FALSE;
             }
         }else if(o instanceof BigDecimal){
-            return ((BigDecimal)o).toPlainString();
+            return ((BigDecimal)o).stripTrailingZeros().toPlainString();
         }
         return o.toString();
     }

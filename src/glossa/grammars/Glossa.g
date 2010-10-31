@@ -43,6 +43,8 @@ tokens
   ARRAY_DIMENSION;
   INF_RANGE;
   CASE_ELSE;
+  PARAMS;
+  FUNC_CALL;
 }
 
 @lexer::header{
@@ -384,7 +386,10 @@ whileStm
 
 repeatStm
 	:	REPEAT^ (NEWLINE!)+ block UNTIL! expr (NEWLINE!)+;
-	
+
+paramsList
+	:	(params+=expr (COMMA params+=expr)*)? -> ^(PARAMS $params*);
+
 expr	:	andExpr ( OR^ andExpr)*;
 
 andExpr :       eqExpr (AND^ eqExpr)*;
@@ -413,8 +418,11 @@ atom	:	CONST_TRUE
 	|	CONST_REAL
 	|	arrayItem
 	|	ID
+        |	functionCall
 	|	'('! expr ')'!;
-	
+
+functionCall
+	:	ID LPAR paramsList RPAR -> ^(FUNC_CALL ID paramsList);
 	
 arrayItem
 	:	ID arraySubscript -> ^(ARRAY_ITEM ID arraySubscript);

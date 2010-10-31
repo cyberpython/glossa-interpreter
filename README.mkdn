@@ -16,10 +16,10 @@ The interpreter can now execute all programs that have only a main method (i.e. 
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔
 - Statement execution: Main program structure ✔
+- Built-in functions ✔
 - Lexer/Parser: Functions and procedures ✘
 - Static type analysis: Functions and procedures ✘
 - Statement execution: Functions and procedures ✘
-- Built-in functions ✘
 
 
 ✔ = completed, ⟳ = in progress, ✘ = not implemented yet

@@ -60,6 +60,7 @@ options{
 package glossa.statictypeanalysis;
 
 import glossa.messages.*;
+import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.statictypeanalysis.scopetable.symbols.*;
@@ -716,8 +717,31 @@ expr	returns [Type expressionType]
                                                             }
                                                         }
                                                     }
+        |       ^(FUNC_CALL ID paramsList)          {
+                                                            if(BuiltinFunctions.isBuiltinFunctionName($ID.text)){
+                                                                if($paramsList.paramTypes.size()==1){
+                                                                    Type paramType = $paramsList.paramTypes.get(0);
+                                                                    if(StaticTypeAnalyzerUtils.isNumericType(paramType)){
+                                                                        $expressionType = BuiltinFunctions.getReturnTypeForBuiltinFuntion($ID.text, $paramsList.paramTypes.get(0));
+                                                                    }else{
+                                                                        Messages.callToBuiltinFunctionWithWrongParamTypeError(msgLog, new Point($ID.line, $ID.pos), $ID.text, paramType);
+                                                                    }
+                                                                }else{
+                                                                    Messages.callToBuiltinFunctionWithWrongNumOfParamsError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.paramTypes.size());
+                                                                }
+                                                            }else{
+                                                                Messages.callToUnknownFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.paramTypes);
+                                                            }
+                                                    }
         ;
-	
+
+paramsList returns [List<Type> paramTypes]
+	:	^(PARAMS    {List<Type> result = new ArrayList<Type>();}
+                  (expr     {result.add($expr.expressionType);}
+                  )*
+                )           {$paramTypes = result;}
+        ;
+
 arraySubscript  returns [int indicesCount]
 	:	^(ARRAY_INDEX       {
                                         int count = 0;

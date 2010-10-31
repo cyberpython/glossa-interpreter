@@ -589,6 +589,16 @@ expr	returns [Object result]
                                                 $result = arr.get($arraySubscript.value);
                                             }
                 )
+        |       ^(FUNC_CALL ID paramsList)          {
+                                                            $result = InterpreterUtils.execBuiltinFunction($ID.text, $paramsList.parameters.get(0));
+                                                    }
+        ;
+
+paramsList returns [List<Object> parameters]
+	:	^(PARAMS    {List<Object> result = new ArrayList<Object>();}
+                  (expr     {result.add($expr.result);}
+                  )*
+                )           {$parameters = result;}
         ;
 
 arraySubscript [RuntimeArray arr] returns [List<Integer> value]

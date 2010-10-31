@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-30 14:05:50
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-31 16:03:24
 
 /*
  *  The MIT License
@@ -35,129 +35,131 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class GlossaLexer extends Lexer {
-    public static final int FUNCTION=101;
-    public static final int LT=42;
-    public static final int END_PROCEDURE=98;
-    public static final int WHILE=51;
-    public static final int LETTER=112;
-    public static final int MOD=63;
-    public static final int STRINGS=27;
-    public static final int LAMDA=87;
-    public static final int UPSILON_DIALYTIKA_TONOS=125;
-    public static final int CASE=40;
-    public static final int NOT=65;
-    public static final int OMICRON=77;
+    public static final int FUNCTION=103;
+    public static final int LT=44;
+    public static final int END_PROCEDURE=100;
+    public static final int WHILE=53;
+    public static final int LETTER=114;
+    public static final int MOD=65;
+    public static final int STRINGS=29;
+    public static final int LAMDA=89;
+    public static final int UPSILON_DIALYTIKA_TONOS=127;
+    public static final int CASE=42;
+    public static final int NOT=67;
+    public static final int OMICRON=79;
     public static final int EOF=-1;
-    public static final int LBRACKET=24;
-    public static final int MU=83;
-    public static final int TAU=84;
-    public static final int POW=64;
-    public static final int LPAR=71;
-    public static final int UPSILON_TONOS=121;
-    public static final int CONT_COMMAND=115;
-    public static final int CONST_INT=69;
-    public static final int LOOP=52;
-    public static final int BEGIN=17;
-    public static final int KAPPA=73;
-    public static final int EQ=20;
-    public static final int COMMENT=114;
+    public static final int FUNC_CALL=15;
+    public static final int LBRACKET=26;
+    public static final int MU=85;
+    public static final int TAU=86;
+    public static final int POW=66;
+    public static final int LPAR=73;
+    public static final int UPSILON_TONOS=123;
+    public static final int CONT_COMMAND=117;
+    public static final int CONST_INT=71;
+    public static final int LOOP=54;
+    public static final int BEGIN=19;
+    public static final int KAPPA=75;
+    public static final int EQ=22;
+    public static final int COMMENT=116;
     public static final int ARRAY=8;
-    public static final int GREEK_LETTER=118;
-    public static final int END_LOOP=50;
-    public static final int GE=45;
-    public static final int END_SWITCH=39;
-    public static final int CONST_TRUE=66;
-    public static final int NU=100;
-    public static final int XI=106;
-    public static final int SWITCH=38;
-    public static final int ELSE=36;
-    public static final int DELTA=94;
-    public static final int EPSILON=85;
-    public static final int CONST_STR=68;
-    public static final int INTEGERS=28;
-    public static final int ALPHA=74;
-    public static final int SIGMA_TELIKO=88;
-    public static final int REAL=108;
-    public static final int THETA=93;
-    public static final int BOOLEANS=26;
-    public static final int UPSILON_DIALYTIKA=123;
-    public static final int WS=116;
-    public static final int OMICRON_TONOS=78;
-    public static final int EPSILON_TONOS=86;
-    public static final int READ=31;
-    public static final int OMEGA=104;
-    public static final int UNTIL=54;
-    public static final int OR=55;
-    public static final int GT=44;
-    public static final int ALPHA_TONOS=89;
-    public static final int REPEAT=53;
-    public static final int CALL=103;
-    public static final int PI=80;
-    public static final int FROM=47;
-    public static final int PHI=120;
-    public static final int RHO=81;
-    public static final int UPSILON=99;
-    public static final int FOR=46;
-    public static final int STEP=49;
-    public static final int ETA_TONOS=76;
-    public static final int CONSTANTS=19;
-    public static final int ID=15;
-    public static final int AND=56;
+    public static final int GREEK_LETTER=120;
+    public static final int END_LOOP=52;
+    public static final int GE=47;
+    public static final int END_SWITCH=41;
+    public static final int CONST_TRUE=68;
+    public static final int NU=102;
+    public static final int XI=108;
+    public static final int SWITCH=40;
+    public static final int ELSE=38;
+    public static final int DELTA=96;
+    public static final int EPSILON=87;
+    public static final int CONST_STR=70;
+    public static final int INTEGERS=30;
+    public static final int ALPHA=76;
+    public static final int SIGMA_TELIKO=90;
+    public static final int REAL=110;
+    public static final int THETA=95;
+    public static final int BOOLEANS=28;
+    public static final int UPSILON_DIALYTIKA=125;
+    public static final int WS=118;
+    public static final int OMICRON_TONOS=80;
+    public static final int EPSILON_TONOS=88;
+    public static final int READ=33;
+    public static final int OMEGA=106;
+    public static final int UNTIL=56;
+    public static final int OR=57;
+    public static final int GT=46;
+    public static final int ALPHA_TONOS=91;
+    public static final int REPEAT=55;
+    public static final int CALL=105;
+    public static final int PI=82;
+    public static final int FROM=49;
+    public static final int PHI=122;
+    public static final int RHO=83;
+    public static final int UPSILON=101;
+    public static final int FOR=48;
+    public static final int STEP=51;
+    public static final int ETA_TONOS=78;
+    public static final int CONSTANTS=21;
+    public static final int ID=17;
+    public static final int AND=58;
     public static final int ARRAY_DIMENSION=11;
-    public static final int IF=34;
-    public static final int OMEGA_TONOS=105;
-    public static final int NOT_EOL=113;
-    public static final int BOOLEAN=110;
-    public static final int THEN=35;
-    public static final int END_FUNCTION=102;
-    public static final int COMMA=23;
-    public static final int ETA=91;
+    public static final int IF=36;
+    public static final int OMEGA_TONOS=107;
+    public static final int NOT_EOL=115;
+    public static final int BOOLEAN=112;
+    public static final int THEN=37;
+    public static final int END_FUNCTION=104;
+    public static final int COMMA=25;
+    public static final int ETA=93;
     public static final int ARRAY_INDEX=10;
     public static final int IFNODE=7;
-    public static final int PSI=95;
-    public static final int PLUS=58;
-    public static final int SIGMA=92;
-    public static final int DIGIT=111;
+    public static final int PSI=97;
+    public static final int PLUS=60;
+    public static final int SIGMA=94;
+    public static final int DIGIT=113;
     public static final int CASE_ELSE=13;
-    public static final int RBRACKET=25;
-    public static final int IOTA_DIALYTIKA_TONOS=124;
-    public static final int ELSE_IF=37;
+    public static final int RBRACKET=27;
+    public static final int IOTA_DIALYTIKA_TONOS=126;
+    public static final int ELSE_IF=39;
+    public static final int CONST_REAL=72;
     public static final int VARSDECL=6;
-    public static final int CONST_REAL=70;
-    public static final int INTEGER=107;
+    public static final int PARAMS=14;
+    public static final int INTEGER=109;
     public static final int INF_RANGE=12;
-    public static final int TO=48;
-    public static final int LATIN_LETTER=117;
-    public static final int REALS=29;
-    public static final int RANGE=41;
-    public static final int CHI=79;
-    public static final int MINUS=59;
-    public static final int DIA=61;
-    public static final int BETA=90;
-    public static final int PRINT=30;
-    public static final int PROCEDURE=97;
-    public static final int COLON=22;
+    public static final int TO=50;
+    public static final int LATIN_LETTER=119;
+    public static final int REALS=31;
+    public static final int RANGE=43;
+    public static final int CHI=81;
+    public static final int MINUS=61;
+    public static final int DIA=63;
+    public static final int BETA=92;
+    public static final int PRINT=32;
+    public static final int PROCEDURE=99;
+    public static final int COLON=24;
     public static final int ARRAY_ITEM=9;
-    public static final int NEQ=57;
-    public static final int NEWLINE=16;
-    public static final int END_PROGRAM=18;
-    public static final int ZETA=119;
-    public static final int CONST_FALSE=67;
+    public static final int NEQ=59;
+    public static final int NEWLINE=18;
+    public static final int END_PROGRAM=20;
+    public static final int ZETA=121;
+    public static final int CONST_FALSE=69;
     public static final int BLOCK=4;
     public static final int NEG=5;
-    public static final int VARIABLES=21;
-    public static final int ASSIGN=32;
-    public static final int END_IF=33;
-    public static final int RPAR=72;
-    public static final int PROGRAM=14;
-    public static final int IOTA=75;
-    public static final int DIV=62;
-    public static final int GAMMA=82;
-    public static final int TIMES=60;
-    public static final int LE=43;
-    public static final int IOTA_DIALYTIKA=122;
-    public static final int IOTA_TONOS=96;
-    public static final int STRING=109;
+    public static final int VARIABLES=23;
+    public static final int ASSIGN=34;
+    public static final int END_IF=35;
+    public static final int RPAR=74;
+    public static final int PROGRAM=16;
+    public static final int IOTA=77;
+    public static final int DIV=64;
+    public static final int GAMMA=84;
+    public static final int TIMES=62;
+    public static final int LE=45;
+    public static final int IOTA_DIALYTIKA=124;
+    public static final int IOTA_TONOS=98;
+    public static final int STRING=111;
 
 
         private MessageLog msgLog;
@@ -276,7 +278,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:433:2: ( '<-' | '\\u2190' )
+            // src/glossa/grammars/Glossa.g:441:2: ( '<-' | '\\u2190' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -294,7 +296,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:433:4: '<-'
+                    // src/glossa/grammars/Glossa.g:441:4: '<-'
                     {
                     match("<-"); 
 
@@ -302,7 +304,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:433:11: '\\u2190'
+                    // src/glossa/grammars/Glossa.g:441:11: '\\u2190'
                     {
                     match('\u2190'); 
 
@@ -323,8 +325,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:435:7: ( ',' )
-            // src/glossa/grammars/Glossa.g:435:9: ','
+            // src/glossa/grammars/Glossa.g:443:7: ( ',' )
+            // src/glossa/grammars/Glossa.g:443:9: ','
             {
             match(','); 
 
@@ -343,8 +345,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:437:7: ( ':' )
-            // src/glossa/grammars/Glossa.g:437:9: ':'
+            // src/glossa/grammars/Glossa.g:445:7: ( ':' )
+            // src/glossa/grammars/Glossa.g:445:9: ':'
             {
             match(':'); 
 
@@ -363,8 +365,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LPAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:439:6: ( '(' )
-            // src/glossa/grammars/Glossa.g:439:8: '('
+            // src/glossa/grammars/Glossa.g:447:6: ( '(' )
+            // src/glossa/grammars/Glossa.g:447:8: '('
             {
             match('('); 
 
@@ -383,8 +385,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RPAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:441:6: ( ')' )
-            // src/glossa/grammars/Glossa.g:441:8: ')'
+            // src/glossa/grammars/Glossa.g:449:6: ( ')' )
+            // src/glossa/grammars/Glossa.g:449:8: ')'
             {
             match(')'); 
 
@@ -403,8 +405,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:443:9: ( '[' )
-            // src/glossa/grammars/Glossa.g:443:11: '['
+            // src/glossa/grammars/Glossa.g:451:9: ( '[' )
+            // src/glossa/grammars/Glossa.g:451:11: '['
             {
             match('['); 
 
@@ -423,8 +425,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:445:9: ( ']' )
-            // src/glossa/grammars/Glossa.g:445:11: ']'
+            // src/glossa/grammars/Glossa.g:453:9: ( ']' )
+            // src/glossa/grammars/Glossa.g:453:11: ']'
             {
             match(']'); 
 
@@ -443,8 +445,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:447:6: ( '+' )
-            // src/glossa/grammars/Glossa.g:447:8: '+'
+            // src/glossa/grammars/Glossa.g:455:6: ( '+' )
+            // src/glossa/grammars/Glossa.g:455:8: '+'
             {
             match('+'); 
 
@@ -463,8 +465,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:449:7: ( '-' )
-            // src/glossa/grammars/Glossa.g:449:9: '-'
+            // src/glossa/grammars/Glossa.g:457:7: ( '-' )
+            // src/glossa/grammars/Glossa.g:457:9: '-'
             {
             match('-'); 
 
@@ -483,8 +485,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = TIMES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:451:7: ( '*' )
-            // src/glossa/grammars/Glossa.g:451:9: '*'
+            // src/glossa/grammars/Glossa.g:459:7: ( '*' )
+            // src/glossa/grammars/Glossa.g:459:9: '*'
             {
             match('*'); 
 
@@ -503,8 +505,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = DIA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:453:5: ( '/' )
-            // src/glossa/grammars/Glossa.g:453:7: '/'
+            // src/glossa/grammars/Glossa.g:461:5: ( '/' )
+            // src/glossa/grammars/Glossa.g:461:7: '/'
             {
             match('/'); 
 
@@ -523,8 +525,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = POW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:455:5: ( '^' )
-            // src/glossa/grammars/Glossa.g:455:7: '^'
+            // src/glossa/grammars/Glossa.g:463:5: ( '^' )
+            // src/glossa/grammars/Glossa.g:463:7: '^'
             {
             match('^'); 
 
@@ -543,8 +545,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = DIV;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:457:5: ( ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' ) )
-            // src/glossa/grammars/Glossa.g:457:7: ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' )
+            // src/glossa/grammars/Glossa.g:465:5: ( ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' ) )
+            // src/glossa/grammars/Glossa.g:465:7: ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
                 input.consume();
@@ -589,8 +591,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = MOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:459:5: ( ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' ) )
-            // src/glossa/grammars/Glossa.g:459:7: ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' )
+            // src/glossa/grammars/Glossa.g:467:5: ( ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' ) )
+            // src/glossa/grammars/Glossa.g:467:7: ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' )
             {
             if ( input.LA(1)=='M'||input.LA(1)=='m' ) {
                 input.consume();
@@ -635,7 +637,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:461:4: ( '<=' | '\\u2264' )
+            // src/glossa/grammars/Glossa.g:469:4: ( '<=' | '\\u2264' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -653,7 +655,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:461:6: '<='
+                    // src/glossa/grammars/Glossa.g:469:6: '<='
                     {
                     match("<="); 
 
@@ -661,7 +663,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:461:13: '\\u2264'
+                    // src/glossa/grammars/Glossa.g:469:13: '\\u2264'
                     {
                     match('\u2264'); 
 
@@ -682,8 +684,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:463:4: ( '<' )
-            // src/glossa/grammars/Glossa.g:463:6: '<'
+            // src/glossa/grammars/Glossa.g:471:4: ( '<' )
+            // src/glossa/grammars/Glossa.g:471:6: '<'
             {
             match('<'); 
 
@@ -702,7 +704,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = GE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:465:4: ( '>=' | '\\u2265' )
+            // src/glossa/grammars/Glossa.g:473:4: ( '>=' | '\\u2265' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -720,7 +722,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:465:6: '>='
+                    // src/glossa/grammars/Glossa.g:473:6: '>='
                     {
                     match(">="); 
 
@@ -728,7 +730,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:465:13: '\\u2265'
+                    // src/glossa/grammars/Glossa.g:473:13: '\\u2265'
                     {
                     match('\u2265'); 
 
@@ -749,8 +751,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:467:4: ( '>' )
-            // src/glossa/grammars/Glossa.g:467:6: '>'
+            // src/glossa/grammars/Glossa.g:475:4: ( '>' )
+            // src/glossa/grammars/Glossa.g:475:6: '>'
             {
             match('>'); 
 
@@ -769,8 +771,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:469:4: ( '=' )
-            // src/glossa/grammars/Glossa.g:469:6: '='
+            // src/glossa/grammars/Glossa.g:477:4: ( '=' )
+            // src/glossa/grammars/Glossa.g:477:6: '='
             {
             match('='); 
 
@@ -789,7 +791,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:471:5: ( '<>' | '\\u2260' )
+            // src/glossa/grammars/Glossa.g:479:5: ( '<>' | '\\u2260' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -807,7 +809,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:471:7: '<>'
+                    // src/glossa/grammars/Glossa.g:479:7: '<>'
                     {
                     match("<>"); 
 
@@ -815,7 +817,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:471:14: '\\u2260'
+                    // src/glossa/grammars/Glossa.g:479:14: '\\u2260'
                     {
                     match('\u2260'); 
 
@@ -836,8 +838,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:474:5: ( KAPPA ALPHA IOTA )
-            // src/glossa/grammars/Glossa.g:474:7: KAPPA ALPHA IOTA
+            // src/glossa/grammars/Glossa.g:482:5: ( KAPPA ALPHA IOTA )
+            // src/glossa/grammars/Glossa.g:482:7: KAPPA ALPHA IOTA
             {
             mKAPPA(); 
             mALPHA(); 
@@ -858,8 +860,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:476:4: ( ETA_TONOS )
-            // src/glossa/grammars/Glossa.g:476:6: ETA_TONOS
+            // src/glossa/grammars/Glossa.g:484:4: ( ETA_TONOS )
+            // src/glossa/grammars/Glossa.g:484:6: ETA_TONOS
             {
             mETA_TONOS(); 
 
@@ -878,8 +880,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:478:5: ( ( OMICRON | OMICRON_TONOS ) CHI IOTA )
-            // src/glossa/grammars/Glossa.g:478:7: ( OMICRON | OMICRON_TONOS ) CHI IOTA
+            // src/glossa/grammars/Glossa.g:486:5: ( ( OMICRON | OMICRON_TONOS ) CHI IOTA )
+            // src/glossa/grammars/Glossa.g:486:7: ( OMICRON | OMICRON_TONOS ) CHI IOTA
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
                 input.consume();
@@ -908,8 +910,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RANGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:480:9: ( '..' )
-            // src/glossa/grammars/Glossa.g:480:17: '..'
+            // src/glossa/grammars/Glossa.g:488:9: ( '..' )
+            // src/glossa/grammars/Glossa.g:488:17: '..'
             {
             match(".."); 
 
@@ -929,8 +931,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PROGRAM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:483:9: ( PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA )
-            // src/glossa/grammars/Glossa.g:483:12: PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA
+            // src/glossa/grammars/Glossa.g:491:9: ( PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA )
+            // src/glossa/grammars/Glossa.g:491:12: PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA
             {
             mPI(); 
             mRHO(); 
@@ -965,8 +967,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_PROGRAM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:486:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:486:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:494:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:494:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1018,8 +1020,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = VARIABLES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:489:2: ( MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:489:4: MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:497:2: ( MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:497:4: MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mMU(); 
             mEPSILON(); 
@@ -1055,8 +1057,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONSTANTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:492:2: ( SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:492:4: SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:500:2: ( SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:500:4: SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mSIGMA(); 
             mTAU(); 
@@ -1090,8 +1092,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = READ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:494:6: ( DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON )
-            // src/glossa/grammars/Glossa.g:494:8: DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON
+            // src/glossa/grammars/Glossa.g:502:6: ( DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON )
+            // src/glossa/grammars/Glossa.g:502:8: DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON
             {
             mDELTA(); 
             mIOTA(); 
@@ -1124,8 +1126,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PRINT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:496:7: ( GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON )
-            // src/glossa/grammars/Glossa.g:496:9: GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON
+            // src/glossa/grammars/Glossa.g:504:7: ( GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON )
+            // src/glossa/grammars/Glossa.g:504:9: GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON
             {
             mGAMMA(); 
             mRHO(); 
@@ -1156,8 +1158,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BEGIN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:498:7: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:498:9: ALPHA RHO CHI ( ETA | ETA_TONOS )
+            // src/glossa/grammars/Glossa.g:506:7: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) )
+            // src/glossa/grammars/Glossa.g:506:9: ALPHA RHO CHI ( ETA | ETA_TONOS )
             {
             mALPHA(); 
             mRHO(); 
@@ -1187,8 +1189,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PROCEDURE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:501:2: ( DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA )
-            // src/glossa/grammars/Glossa.g:501:4: DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA
+            // src/glossa/grammars/Glossa.g:509:2: ( DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA )
+            // src/glossa/grammars/Glossa.g:509:4: DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA
             {
             mDELTA(); 
             mIOTA(); 
@@ -1224,8 +1226,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_PROCEDURE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:504:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:504:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:512:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:512:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1276,8 +1278,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:506:9: ( SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA )
-            // src/glossa/grammars/Glossa.g:506:11: SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA
+            // src/glossa/grammars/Glossa.g:514:9: ( SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA )
+            // src/glossa/grammars/Glossa.g:514:11: SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA
             {
             mSIGMA(); 
             mUPSILON(); 
@@ -1312,8 +1314,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:509:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:509:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:517:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:517:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1363,8 +1365,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CALL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:511:6: ( KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON )
-            // src/glossa/grammars/Glossa.g:511:8: KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON
+            // src/glossa/grammars/Glossa.g:519:6: ( KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON )
+            // src/glossa/grammars/Glossa.g:519:8: KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON
             {
             mKAPPA(); 
             if ( input.LA(1)=='\u0386'||input.LA(1)=='\u0391'||input.LA(1)=='\u03AC'||input.LA(1)=='\u03B1' ) {
@@ -1396,8 +1398,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:514:4: ( ALPHA NU )
-            // src/glossa/grammars/Glossa.g:514:6: ALPHA NU
+            // src/glossa/grammars/Glossa.g:522:4: ( ALPHA NU )
+            // src/glossa/grammars/Glossa.g:522:6: ALPHA NU
             {
             mALPHA(); 
             mNU(); 
@@ -1417,8 +1419,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = THEN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:516:6: ( TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON )
-            // src/glossa/grammars/Glossa.g:516:8: TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON
+            // src/glossa/grammars/Glossa.g:524:6: ( TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON )
+            // src/glossa/grammars/Glossa.g:524:8: TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON
             {
             mTAU(); 
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
@@ -1448,8 +1450,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:518:6: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:518:8: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:526:6: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:526:8: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO
             {
             mALPHA(); 
             mLAMDA(); 
@@ -1481,8 +1483,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ELSE_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:520:9: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU )
-            // src/glossa/grammars/Glossa.g:520:11: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU
+            // src/glossa/grammars/Glossa.g:528:9: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU )
+            // src/glossa/grammars/Glossa.g:528:11: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU
             {
             mALPHA(); 
             mLAMDA(); 
@@ -1517,8 +1519,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:522:8: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU )
-            // src/glossa/grammars/Glossa.g:522:10: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU
+            // src/glossa/grammars/Glossa.g:530:8: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU )
+            // src/glossa/grammars/Glossa.g:530:10: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1552,8 +1554,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:527:8: ( EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON )
-            // src/glossa/grammars/Glossa.g:527:10: EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON
+            // src/glossa/grammars/Glossa.g:535:8: ( EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON )
+            // src/glossa/grammars/Glossa.g:535:10: EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON
             {
             mEPSILON(); 
             mPI(); 
@@ -1586,8 +1588,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:529:6: ( PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA )
-            // src/glossa/grammars/Glossa.g:529:8: PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA
+            // src/glossa/grammars/Glossa.g:537:6: ( PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA )
+            // src/glossa/grammars/Glossa.g:537:8: PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA
             {
             mPI(); 
             mEPSILON(); 
@@ -1622,8 +1624,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:532:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU )
-            // src/glossa/grammars/Glossa.g:532:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU
+            // src/glossa/grammars/Glossa.g:540:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU )
+            // src/glossa/grammars/Glossa.g:540:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1671,8 +1673,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:536:7: ( ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON )
-            // src/glossa/grammars/Glossa.g:536:9: ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON
+            // src/glossa/grammars/Glossa.g:544:7: ( ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON )
+            // src/glossa/grammars/Glossa.g:544:9: ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
                 input.consume();
@@ -1701,8 +1703,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LOOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:538:6: ( EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON )
-            // src/glossa/grammars/Glossa.g:538:8: EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON
+            // src/glossa/grammars/Glossa.g:546:6: ( EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON )
+            // src/glossa/grammars/Glossa.g:546:8: EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON
             {
             mEPSILON(); 
             mPI(); 
@@ -1737,8 +1739,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_LOOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:540:9: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:540:11: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:548:9: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:548:11: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1788,8 +1790,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REPEAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:544:8: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:544:10: ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:552:8: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:552:10: ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
             {
             mALPHA(); 
             mRHO(); 
@@ -1838,8 +1840,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = UNTIL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:546:7: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON )
-            // src/glossa/grammars/Glossa.g:546:9: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON
+            // src/glossa/grammars/Glossa.g:554:7: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON )
+            // src/glossa/grammars/Glossa.g:554:9: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON
             {
             mMU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1884,8 +1886,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:549:5: ( GAMMA IOTA ALPHA )
-            // src/glossa/grammars/Glossa.g:549:7: GAMMA IOTA ALPHA
+            // src/glossa/grammars/Glossa.g:557:5: ( GAMMA IOTA ALPHA )
+            // src/glossa/grammars/Glossa.g:557:7: GAMMA IOTA ALPHA
             {
             mGAMMA(); 
             mIOTA(); 
@@ -1906,8 +1908,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FROM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:551:6: ( ALPHA PI ( OMICRON | OMICRON_TONOS ) )
-            // src/glossa/grammars/Glossa.g:551:8: ALPHA PI ( OMICRON | OMICRON_TONOS )
+            // src/glossa/grammars/Glossa.g:559:6: ( ALPHA PI ( OMICRON | OMICRON_TONOS ) )
+            // src/glossa/grammars/Glossa.g:559:8: ALPHA PI ( OMICRON | OMICRON_TONOS )
             {
             mALPHA(); 
             mPI(); 
@@ -1936,8 +1938,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = TO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:553:4: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA )
-            // src/glossa/grammars/Glossa.g:553:6: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA
+            // src/glossa/grammars/Glossa.g:561:4: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA )
+            // src/glossa/grammars/Glossa.g:561:6: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA
             {
             mMU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1968,12 +1970,12 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STEP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:555:6: ( MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA )
-            // src/glossa/grammars/Glossa.g:555:8: MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA
+            // src/glossa/grammars/Glossa.g:563:6: ( MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA )
+            // src/glossa/grammars/Glossa.g:563:8: MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA
             {
             mMU(); 
             mEPSILON(); 
-            // src/glossa/grammars/Glossa.g:555:19: ( '_' | ( ' ' | '\\t' )+ )
+            // src/glossa/grammars/Glossa.g:563:19: ( '_' | ( ' ' | '\\t' )+ )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1991,16 +1993,16 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:555:21: '_'
+                    // src/glossa/grammars/Glossa.g:563:21: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:555:27: ( ' ' | '\\t' )+
+                    // src/glossa/grammars/Glossa.g:563:27: ( ' ' | '\\t' )+
                     {
-                    // src/glossa/grammars/Glossa.g:555:27: ( ' ' | '\\t' )+
+                    // src/glossa/grammars/Glossa.g:563:27: ( ' ' | '\\t' )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -2072,8 +2074,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:559:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA )
-            // src/glossa/grammars/Glossa.g:559:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA
+            // src/glossa/grammars/Glossa.g:567:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA )
+            // src/glossa/grammars/Glossa.g:567:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA
             {
             mALPHA(); 
             mKAPPA(); 
@@ -2106,8 +2108,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = INTEGERS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:561:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:561:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:569:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:569:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO
             {
             mALPHA(); 
             mKAPPA(); 
@@ -2141,8 +2143,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:563:6: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:563:8: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS )
+            // src/glossa/grammars/Glossa.g:571:6: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS ) )
+            // src/glossa/grammars/Glossa.g:571:8: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS )
             {
             mPI(); 
             mRHO(); 
@@ -2178,8 +2180,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:565:7: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:565:9: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:573:7: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:573:9: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mPI(); 
             mRHO(); 
@@ -2216,8 +2218,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:567:8: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:567:10: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:575:8: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:575:10: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO
             {
             mCHI(); 
             mALPHA(); 
@@ -2253,8 +2255,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STRINGS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:569:9: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:569:11: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:577:9: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:577:11: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO
             {
             mCHI(); 
             mALPHA(); 
@@ -2290,8 +2292,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:571:9: ( LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:571:11: LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS )
+            // src/glossa/grammars/Glossa.g:579:9: ( LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS ) )
+            // src/glossa/grammars/Glossa.g:579:11: LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS )
             {
             mLAMDA(); 
             mOMICRON(); 
@@ -2323,8 +2325,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BOOLEANS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:573:10: ( LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:573:12: LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:581:10: ( LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:581:12: LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mLAMDA(); 
             mOMICRON(); 
@@ -2357,8 +2359,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:581:2: ( ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:581:4: ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:589:2: ( ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:589:4: ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO
             {
             mALPHA(); 
             mLAMDA(); 
@@ -2390,8 +2392,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:584:2: ( PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:584:4: PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO
+            // src/glossa/grammars/Glossa.g:592:2: ( PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
+            // src/glossa/grammars/Glossa.g:592:4: PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO
             {
             mPSI(); 
             mEPSILON(); 
@@ -2423,7 +2425,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_STR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:587:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
+            // src/glossa/grammars/Glossa.g:595:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2441,10 +2443,10 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:587:4: '\\'' ( . )* '\\''
+                    // src/glossa/grammars/Glossa.g:595:4: '\\'' ( . )* '\\''
                     {
                     match('\''); 
-                    // src/glossa/grammars/Glossa.g:587:9: ( . )*
+                    // src/glossa/grammars/Glossa.g:595:9: ( . )*
                     loop7:
                     do {
                         int alt7=2;
@@ -2460,7 +2462,7 @@ public class GlossaLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:587:9: .
+                    	    // src/glossa/grammars/Glossa.g:595:9: .
                     	    {
                     	    matchAny(); 
 
@@ -2477,10 +2479,10 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:587:19: '\"' ( . )* '\"'
+                    // src/glossa/grammars/Glossa.g:595:19: '\"' ( . )* '\"'
                     {
                     match('\"'); 
-                    // src/glossa/grammars/Glossa.g:587:23: ( . )*
+                    // src/glossa/grammars/Glossa.g:595:23: ( . )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2496,7 +2498,7 @@ public class GlossaLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:587:23: .
+                    	    // src/glossa/grammars/Glossa.g:595:23: .
                     	    {
                     	    matchAny(); 
 
@@ -2527,10 +2529,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:590:2: ( ( DIGIT )+ )
-            // src/glossa/grammars/Glossa.g:590:4: ( DIGIT )+
+            // src/glossa/grammars/Glossa.g:598:2: ( ( DIGIT )+ )
+            // src/glossa/grammars/Glossa.g:598:4: ( DIGIT )+
             {
-            // src/glossa/grammars/Glossa.g:590:4: ( DIGIT )+
+            // src/glossa/grammars/Glossa.g:598:4: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
@@ -2544,7 +2546,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:590:4: DIGIT
+            	    // src/glossa/grammars/Glossa.g:598:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2576,10 +2578,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:593:2: ( ( DIGIT )+ '.' ( DIGIT )+ )
-            // src/glossa/grammars/Glossa.g:593:4: ( DIGIT )+ '.' ( DIGIT )+
+            // src/glossa/grammars/Glossa.g:601:2: ( ( DIGIT )+ '.' ( DIGIT )+ )
+            // src/glossa/grammars/Glossa.g:601:4: ( DIGIT )+ '.' ( DIGIT )+
             {
-            // src/glossa/grammars/Glossa.g:593:4: ( DIGIT )+
+            // src/glossa/grammars/Glossa.g:601:4: ( DIGIT )+
             int cnt11=0;
             loop11:
             do {
@@ -2593,7 +2595,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:593:4: DIGIT
+            	    // src/glossa/grammars/Glossa.g:601:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2610,7 +2612,7 @@ public class GlossaLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // src/glossa/grammars/Glossa.g:593:15: ( DIGIT )+
+            // src/glossa/grammars/Glossa.g:601:15: ( DIGIT )+
             int cnt12=0;
             loop12:
             do {
@@ -2624,7 +2626,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:593:15: DIGIT
+            	    // src/glossa/grammars/Glossa.g:601:15: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2656,11 +2658,11 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:595:4: ( LETTER ( LETTER | DIGIT | '_' )* )
-            // src/glossa/grammars/Glossa.g:595:6: LETTER ( LETTER | DIGIT | '_' )*
+            // src/glossa/grammars/Glossa.g:603:4: ( LETTER ( LETTER | DIGIT | '_' )* )
+            // src/glossa/grammars/Glossa.g:603:6: LETTER ( LETTER | DIGIT | '_' )*
             {
             mLETTER(); 
-            // src/glossa/grammars/Glossa.g:595:13: ( LETTER | DIGIT | '_' )*
+            // src/glossa/grammars/Glossa.g:603:13: ( LETTER | DIGIT | '_' )*
             loop13:
             do {
                 int alt13=2;
@@ -2709,11 +2711,11 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:597:9: ( '!' ( NOT_EOL )* )
-            // src/glossa/grammars/Glossa.g:597:11: '!' ( NOT_EOL )*
+            // src/glossa/grammars/Glossa.g:605:9: ( '!' ( NOT_EOL )* )
+            // src/glossa/grammars/Glossa.g:605:11: '!' ( NOT_EOL )*
             {
             match('!'); 
-            // src/glossa/grammars/Glossa.g:597:15: ( NOT_EOL )*
+            // src/glossa/grammars/Glossa.g:605:15: ( NOT_EOL )*
             loop14:
             do {
                 int alt14=2;
@@ -2726,7 +2728,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:597:15: NOT_EOL
+            	    // src/glossa/grammars/Glossa.g:605:15: NOT_EOL
             	    {
             	    mNOT_EOL(); 
 
@@ -2755,8 +2757,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONT_COMMAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:600:2: ( NEWLINE '&' )
-            // src/glossa/grammars/Glossa.g:600:4: NEWLINE '&'
+            // src/glossa/grammars/Glossa.g:608:2: ( NEWLINE '&' )
+            // src/glossa/grammars/Glossa.g:608:4: NEWLINE '&'
             {
             mNEWLINE(); 
             match('&'); 
@@ -2777,10 +2779,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:602:9: ( ( '\\r' )? '\\n' )
-            // src/glossa/grammars/Glossa.g:602:11: ( '\\r' )? '\\n'
+            // src/glossa/grammars/Glossa.g:610:9: ( ( '\\r' )? '\\n' )
+            // src/glossa/grammars/Glossa.g:610:11: ( '\\r' )? '\\n'
             {
-            // src/glossa/grammars/Glossa.g:602:11: ( '\\r' )?
+            // src/glossa/grammars/Glossa.g:610:11: ( '\\r' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2789,7 +2791,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:602:11: '\\r'
+                    // src/glossa/grammars/Glossa.g:610:11: '\\r'
                     {
                     match('\r'); 
 
@@ -2815,10 +2817,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:604:4: ( ( ' ' | '\\t' )+ )
-            // src/glossa/grammars/Glossa.g:604:6: ( ' ' | '\\t' )+
+            // src/glossa/grammars/Glossa.g:612:4: ( ( ' ' | '\\t' )+ )
+            // src/glossa/grammars/Glossa.g:612:6: ( ' ' | '\\t' )+
             {
-            // src/glossa/grammars/Glossa.g:604:6: ( ' ' | '\\t' )+
+            // src/glossa/grammars/Glossa.g:612:6: ( ' ' | '\\t' )+
             int cnt16=0;
             loop16:
             do {
@@ -2871,8 +2873,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:616:2: ( '0' .. '9' )
-            // src/glossa/grammars/Glossa.g:616:4: '0' .. '9'
+            // src/glossa/grammars/Glossa.g:624:2: ( '0' .. '9' )
+            // src/glossa/grammars/Glossa.g:624:4: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -2887,7 +2889,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:619:2: ( LATIN_LETTER | GREEK_LETTER )
+            // src/glossa/grammars/Glossa.g:627:2: ( LATIN_LETTER | GREEK_LETTER )
             // src/glossa/grammars/Glossa.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z')||input.LA(1)=='\u0386'||(input.LA(1)>='\u0388' && input.LA(1)<='\u038A')||input.LA(1)=='\u038C'||(input.LA(1)>='\u038E' && input.LA(1)<='\u03A1')||(input.LA(1)>='\u03A3' && input.LA(1)<='\u03CE') ) {
@@ -2911,7 +2913,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LATIN_LETTER"
     public final void mLATIN_LETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:623:2: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // src/glossa/grammars/Glossa.g:631:2: ( 'a' .. 'z' | 'A' .. 'Z' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -2935,7 +2937,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "GREEK_LETTER"
     public final void mGREEK_LETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:627:2: ( ALPHA | BETA | GAMMA | DELTA | EPSILON | ZETA | ETA | THETA | IOTA | KAPPA | LAMDA | MU | NU | XI | OMICRON | PI | RHO | SIGMA | TAU | UPSILON | PHI | CHI | PSI | OMEGA | SIGMA_TELIKO | ALPHA_TONOS | EPSILON_TONOS | ETA_TONOS | IOTA_TONOS | UPSILON_TONOS | OMICRON_TONOS | OMEGA_TONOS | IOTA_DIALYTIKA | UPSILON_DIALYTIKA | IOTA_DIALYTIKA_TONOS | UPSILON_DIALYTIKA_TONOS )
+            // src/glossa/grammars/Glossa.g:635:2: ( ALPHA | BETA | GAMMA | DELTA | EPSILON | ZETA | ETA | THETA | IOTA | KAPPA | LAMDA | MU | NU | XI | OMICRON | PI | RHO | SIGMA | TAU | UPSILON | PHI | CHI | PSI | OMEGA | SIGMA_TELIKO | ALPHA_TONOS | EPSILON_TONOS | ETA_TONOS | IOTA_TONOS | UPSILON_TONOS | OMICRON_TONOS | OMEGA_TONOS | IOTA_DIALYTIKA | UPSILON_DIALYTIKA | IOTA_DIALYTIKA_TONOS | UPSILON_DIALYTIKA_TONOS )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0386'||(input.LA(1)>='\u0388' && input.LA(1)<='\u038A')||input.LA(1)=='\u038C'||(input.LA(1)>='\u038E' && input.LA(1)<='\u03A1')||(input.LA(1)>='\u03A3' && input.LA(1)<='\u03CE') ) {
@@ -2959,7 +2961,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:635:2: ( '\\u03B1' | '\\u0391' )
+            // src/glossa/grammars/Glossa.g:643:2: ( '\\u03B1' | '\\u0391' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0391'||input.LA(1)=='\u03B1' ) {
@@ -2983,7 +2985,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "BETA"
     public final void mBETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:637:2: ( '\\u03B2' | '\\u0392' )
+            // src/glossa/grammars/Glossa.g:645:2: ( '\\u03B2' | '\\u0392' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0392'||input.LA(1)=='\u03B2' ) {
@@ -3007,7 +3009,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "GAMMA"
     public final void mGAMMA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:639:2: ( '\\u03B3' | '\\u0393' )
+            // src/glossa/grammars/Glossa.g:647:2: ( '\\u03B3' | '\\u0393' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0393'||input.LA(1)=='\u03B3' ) {
@@ -3031,7 +3033,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "DELTA"
     public final void mDELTA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:641:2: ( '\\u03B4' | '\\u0394' )
+            // src/glossa/grammars/Glossa.g:649:2: ( '\\u03B4' | '\\u0394' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0394'||input.LA(1)=='\u03B4' ) {
@@ -3055,7 +3057,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "EPSILON"
     public final void mEPSILON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:643:2: ( '\\u03B5' | '\\u0395' )
+            // src/glossa/grammars/Glossa.g:651:2: ( '\\u03B5' | '\\u0395' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0395'||input.LA(1)=='\u03B5' ) {
@@ -3079,7 +3081,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ZETA"
     public final void mZETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:645:2: ( '\\u03B6' | '\\u0396' )
+            // src/glossa/grammars/Glossa.g:653:2: ( '\\u03B6' | '\\u0396' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0396'||input.LA(1)=='\u03B6' ) {
@@ -3103,7 +3105,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ETA"
     public final void mETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:647:2: ( '\\u03B7' | '\\u0397' )
+            // src/glossa/grammars/Glossa.g:655:2: ( '\\u03B7' | '\\u0397' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0397'||input.LA(1)=='\u03B7' ) {
@@ -3127,7 +3129,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "THETA"
     public final void mTHETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:649:2: ( '\\u03B8' | '\\u0398' )
+            // src/glossa/grammars/Glossa.g:657:2: ( '\\u03B8' | '\\u0398' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0398'||input.LA(1)=='\u03B8' ) {
@@ -3151,7 +3153,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA"
     public final void mIOTA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:651:2: ( '\\u03B9' | '\\u0399' )
+            // src/glossa/grammars/Glossa.g:659:2: ( '\\u03B9' | '\\u0399' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0399'||input.LA(1)=='\u03B9' ) {
@@ -3175,7 +3177,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "KAPPA"
     public final void mKAPPA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:653:2: ( '\\u03BA' | '\\u039A' )
+            // src/glossa/grammars/Glossa.g:661:2: ( '\\u03BA' | '\\u039A' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039A'||input.LA(1)=='\u03BA' ) {
@@ -3199,7 +3201,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LAMDA"
     public final void mLAMDA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:655:2: ( '\\u03BB' | '\\u039B' )
+            // src/glossa/grammars/Glossa.g:663:2: ( '\\u03BB' | '\\u039B' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039B'||input.LA(1)=='\u03BB' ) {
@@ -3223,7 +3225,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "MU"
     public final void mMU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:657:2: ( '\\u03BC' | '\\u039C' )
+            // src/glossa/grammars/Glossa.g:665:2: ( '\\u03BC' | '\\u039C' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039C'||input.LA(1)=='\u03BC' ) {
@@ -3247,7 +3249,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NU"
     public final void mNU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:659:2: ( '\\u03BD' | '\\u039D' )
+            // src/glossa/grammars/Glossa.g:667:2: ( '\\u03BD' | '\\u039D' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039D'||input.LA(1)=='\u03BD' ) {
@@ -3271,7 +3273,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "XI"
     public final void mXI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:661:2: ( '\\u03BE' | '\\u039E' )
+            // src/glossa/grammars/Glossa.g:669:2: ( '\\u03BE' | '\\u039E' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039E'||input.LA(1)=='\u03BE' ) {
@@ -3295,7 +3297,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMICRON"
     public final void mOMICRON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:663:2: ( '\\u03BF' | '\\u039F' )
+            // src/glossa/grammars/Glossa.g:671:2: ( '\\u03BF' | '\\u039F' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039F'||input.LA(1)=='\u03BF' ) {
@@ -3319,7 +3321,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PI"
     public final void mPI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:665:2: ( '\\u03C0' | '\\u03A0' )
+            // src/glossa/grammars/Glossa.g:673:2: ( '\\u03C0' | '\\u03A0' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A0'||input.LA(1)=='\u03C0' ) {
@@ -3343,7 +3345,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "RHO"
     public final void mRHO() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:667:2: ( '\\u03C1' | '\\u03A1' )
+            // src/glossa/grammars/Glossa.g:675:2: ( '\\u03C1' | '\\u03A1' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A1'||input.LA(1)=='\u03C1' ) {
@@ -3367,7 +3369,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "SIGMA"
     public final void mSIGMA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:669:2: ( '\\u03C3' | '\\u03A3' )
+            // src/glossa/grammars/Glossa.g:677:2: ( '\\u03C3' | '\\u03A3' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A3'||input.LA(1)=='\u03C3' ) {
@@ -3391,7 +3393,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "TAU"
     public final void mTAU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:671:2: ( '\\u03C4' | '\\u03A4' )
+            // src/glossa/grammars/Glossa.g:679:2: ( '\\u03C4' | '\\u03A4' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A4'||input.LA(1)=='\u03C4' ) {
@@ -3415,7 +3417,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON"
     public final void mUPSILON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:673:2: ( '\\u03C5' | '\\u03A5' )
+            // src/glossa/grammars/Glossa.g:681:2: ( '\\u03C5' | '\\u03A5' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A5'||input.LA(1)=='\u03C5' ) {
@@ -3439,7 +3441,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PHI"
     public final void mPHI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:675:2: ( '\\u03C6' | '\\u03A6' )
+            // src/glossa/grammars/Glossa.g:683:2: ( '\\u03C6' | '\\u03A6' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A6'||input.LA(1)=='\u03C6' ) {
@@ -3463,7 +3465,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "CHI"
     public final void mCHI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:677:2: ( '\\u03C7' | '\\u03A7' )
+            // src/glossa/grammars/Glossa.g:685:2: ( '\\u03C7' | '\\u03A7' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A7'||input.LA(1)=='\u03C7' ) {
@@ -3487,7 +3489,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PSI"
     public final void mPSI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:679:2: ( '\\u03C8' | '\\u03A8' )
+            // src/glossa/grammars/Glossa.g:687:2: ( '\\u03C8' | '\\u03A8' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A8'||input.LA(1)=='\u03C8' ) {
@@ -3511,7 +3513,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMEGA"
     public final void mOMEGA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:681:2: ( '\\u03C9' | '\\u03A9' )
+            // src/glossa/grammars/Glossa.g:689:2: ( '\\u03C9' | '\\u03A9' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A9'||input.LA(1)=='\u03C9' ) {
@@ -3535,7 +3537,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "SIGMA_TELIKO"
     public final void mSIGMA_TELIKO() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:683:2: ( '\\u03C2' | '\\u03A3' )
+            // src/glossa/grammars/Glossa.g:691:2: ( '\\u03C2' | '\\u03A3' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A3'||input.LA(1)=='\u03C2' ) {
@@ -3559,7 +3561,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ALPHA_TONOS"
     public final void mALPHA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:685:2: ( '\\u03AC' | '\\u0386' )
+            // src/glossa/grammars/Glossa.g:693:2: ( '\\u03AC' | '\\u0386' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0386'||input.LA(1)=='\u03AC' ) {
@@ -3583,7 +3585,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "EPSILON_TONOS"
     public final void mEPSILON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:687:2: ( '\\u03AD' | '\\u0388' )
+            // src/glossa/grammars/Glossa.g:695:2: ( '\\u03AD' | '\\u0388' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u03AD' ) {
@@ -3607,7 +3609,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ETA_TONOS"
     public final void mETA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:689:2: ( '\\u03AE' | '\\u0389' )
+            // src/glossa/grammars/Glossa.g:697:2: ( '\\u03AE' | '\\u0389' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0389'||input.LA(1)=='\u03AE' ) {
@@ -3631,7 +3633,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_TONOS"
     public final void mIOTA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:691:2: ( '\\u03AF' | '\\u038A' )
+            // src/glossa/grammars/Glossa.g:699:2: ( '\\u03AF' | '\\u038A' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038A'||input.LA(1)=='\u03AF' ) {
@@ -3655,7 +3657,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_TONOS"
     public final void mUPSILON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:693:2: ( '\\u03CD' | '\\u038E' )
+            // src/glossa/grammars/Glossa.g:701:2: ( '\\u03CD' | '\\u038E' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038E'||input.LA(1)=='\u03CD' ) {
@@ -3679,7 +3681,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMICRON_TONOS"
     public final void mOMICRON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:695:2: ( '\\u03CC' | '\\u038C' )
+            // src/glossa/grammars/Glossa.g:703:2: ( '\\u03CC' | '\\u038C' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u03CC' ) {
@@ -3703,7 +3705,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMEGA_TONOS"
     public final void mOMEGA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:697:2: ( '\\u03CE' | '\\u038F' )
+            // src/glossa/grammars/Glossa.g:705:2: ( '\\u03CE' | '\\u038F' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038F'||input.LA(1)=='\u03CE' ) {
@@ -3727,7 +3729,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_DIALYTIKA"
     public final void mIOTA_DIALYTIKA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:699:2: ( '\\u03CA' | '\\u03AA' )
+            // src/glossa/grammars/Glossa.g:707:2: ( '\\u03CA' | '\\u03AA' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03AA'||input.LA(1)=='\u03CA' ) {
@@ -3751,7 +3753,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_DIALYTIKA"
     public final void mUPSILON_DIALYTIKA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:701:2: ( '\\u03CB' | '\\u03AB' )
+            // src/glossa/grammars/Glossa.g:709:2: ( '\\u03CB' | '\\u03AB' )
             // src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03AB'||input.LA(1)=='\u03CB' ) {
@@ -3775,8 +3777,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_DIALYTIKA_TONOS"
     public final void mIOTA_DIALYTIKA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:703:2: ( '\\u0390' )
-            // src/glossa/grammars/Glossa.g:703:4: '\\u0390'
+            // src/glossa/grammars/Glossa.g:711:2: ( '\\u0390' )
+            // src/glossa/grammars/Glossa.g:711:4: '\\u0390'
             {
             match('\u0390'); 
 
@@ -3791,8 +3793,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_DIALYTIKA_TONOS"
     public final void mUPSILON_DIALYTIKA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:705:2: ( '\\u03B0' )
-            // src/glossa/grammars/Glossa.g:705:4: '\\u03B0'
+            // src/glossa/grammars/Glossa.g:713:2: ( '\\u03B0' )
+            // src/glossa/grammars/Glossa.g:713:4: '\\u03B0'
             {
             match('\u03B0'); 
 
@@ -3807,7 +3809,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NOT_EOL"
     public final void mNOT_EOL() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:709:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\uFFFF' ) )
+            // src/glossa/grammars/Glossa.g:717:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\uFFFF' ) )
             int alt17=4;
             int LA17_0 = input.LA(1);
 
@@ -3831,10 +3833,10 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:709:4: ( '\\u0000' .. '\\u0009' )
+                    // src/glossa/grammars/Glossa.g:717:4: ( '\\u0000' .. '\\u0009' )
                     {
-                    // src/glossa/grammars/Glossa.g:709:4: ( '\\u0000' .. '\\u0009' )
-                    // src/glossa/grammars/Glossa.g:709:5: '\\u0000' .. '\\u0009'
+                    // src/glossa/grammars/Glossa.g:717:4: ( '\\u0000' .. '\\u0009' )
+                    // src/glossa/grammars/Glossa.g:717:5: '\\u0000' .. '\\u0009'
                     {
                     matchRange('\u0000','\t'); 
 
@@ -3844,24 +3846,24 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:709:27: '\\u000B'
+                    // src/glossa/grammars/Glossa.g:717:27: '\\u000B'
                     {
                     match('\u000B'); 
 
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:709:38: '\\u000C'
+                    // src/glossa/grammars/Glossa.g:717:38: '\\u000C'
                     {
                     match('\f'); 
 
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:709:48: ( '\\u000E' .. '\\uFFFF' )
+                    // src/glossa/grammars/Glossa.g:717:48: ( '\\u000E' .. '\\uFFFF' )
                     {
-                    // src/glossa/grammars/Glossa.g:709:48: ( '\\u000E' .. '\\uFFFF' )
-                    // src/glossa/grammars/Glossa.g:709:49: '\\u000E' .. '\\uFFFF'
+                    // src/glossa/grammars/Glossa.g:717:48: ( '\\u000E' .. '\\uFFFF' )
+                    // src/glossa/grammars/Glossa.g:717:49: '\\u000E' .. '\\uFFFF'
                     {
                     matchRange('\u000E','\uFFFF'); 
 

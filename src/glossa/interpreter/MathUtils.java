@@ -49,47 +49,21 @@ public class MathUtils {
         d360 = new BigDecimal("360", mc15);
     }
 
-    public static BigDecimal tan(double degrees) {
-        return tan(new BigDecimal(degrees, mc15));
-    }
-
-    public static BigDecimal tan(BigInteger degrees) {
-        return tan(new BigDecimal(degrees, mc15));
-    }
-
-    public static BigDecimal tan(BigDecimal degrees) {
-        BigDecimal d = degrees.remainder(d360);
-        if((d.compareTo(d90)==0) || (d.compareTo(d90.negate())==0) || (d.compareTo(d270)==0) || (d.compareTo(d270.negate())==0) ){
-            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_TANGENT_NOT_DEFINED_FOR_THIS_ANGLE, d.toPlainString()));
-        }
-        return sin(d).divide(cos(d), mc15);
-    }
-
-
-    public static BigDecimal sin(double degrees) {
-        return sin(new BigDecimal(degrees, mc15));
-    }
-
     public static BigDecimal sin(BigInteger degrees) {
-        return sin(new BigDecimal(degrees, mc15));
+        return sin(new BigDecimal(degrees));
     }
 
     public static BigDecimal sin(BigDecimal degrees) {
-        BigDecimal d = degrees.remainder(d360, mc15);
-        if((d.compareTo(BigDecimal.ZERO)==0)||(d.compareTo(d180)==0)||(d.compareTo(d360)==0)){
+        BigDecimal d = degrees.remainder(d360);
+        if ((d.compareTo(BigDecimal.ZERO) == 0) || (d.compareTo(d180) == 0) || (d.compareTo(d360) == 0)) {
             return BigDecimal.ZERO;
-        }else if(d.compareTo(d90)==0){
+        } else if (d.compareTo(d90) == 0) {
             return BigDecimal.ONE;
-        }else if(d.compareTo(d270)==0){
+        } else if (d.compareTo(d270) == 0) {
             return BigDecimal.ONE.negate(mc15);
-        }else{
+        } else {
             return cos(d90.subtract(d, mc15));
         }
-    }
-
-
-    public static BigDecimal cos(double d) {
-        return cos(new BigDecimal(d, mc15));
     }
 
     public static BigDecimal cos(BigInteger d) {
@@ -98,43 +72,124 @@ public class MathUtils {
 
     public static BigDecimal cos(BigDecimal degrees) {
         int signFactor = 1;
-        BigDecimal d = degrees.remainder(d360, mc15).abs(mc15);
+        BigDecimal d = degrees.remainder(d360).abs(mc15);
 
-        if (  (d.compareTo(d90)>0) && (d.compareTo(d180)<0)   ) {
+        if ((d.compareTo(d90) > 0) && (d.compareTo(d180) < 0)) {
             d = d180.subtract(d, mc15);
             signFactor = -1;
-        } else if (   (d.compareTo(d180)>0) && (d.compareTo(d270)<0)  ) {
+        } else if ((d.compareTo(d180) > 0) && (d.compareTo(d270) < 0)) {
             d = d.subtract(d180, mc15);
             signFactor = -1;
-        } else if (   (d.compareTo(d270)>0) && (d.compareTo(d360)<0)  ) {
+        } else if ((d.compareTo(d270) > 0) && (d.compareTo(d360) < 0)) {
             d = d360.subtract(d, mc15);
             signFactor = 1;
         }
 
-        if((d.compareTo(BigDecimal.ZERO)==0)||(d.compareTo(d360)==0)){
+        if ((d.compareTo(BigDecimal.ZERO) == 0) || (d.compareTo(d360) == 0)) {
             return BigDecimal.ONE;
-        }else if((d.compareTo(d180)==0)){
+        } else if ((d.compareTo(d180) == 0)) {
             return BigDecimal.ONE.negate(mc15);
-        }else if((d.compareTo(d90)==0)||(d.compareTo(d270)==0)){
+        } else if ((d.compareTo(d90) == 0) || (d.compareTo(d270) == 0)) {
             return BigDecimal.ZERO;
-        }else{
-            return new BigDecimal(    signFactor *  Math.cos(Math.toRadians(d.doubleValue()))  , mc15);
+        } else {
+            return new BigDecimal(   Double.toString(signFactor * Math.cos(Math.toRadians(d.doubleValue())))  , mc15);
         }
     }
 
+    public static BigDecimal tan(BigInteger degrees) {
+        return tan(new BigDecimal(degrees));
+    }
 
-    public static void main(String[] args){
+    public static BigDecimal tan(BigDecimal degrees) {
+        BigDecimal d = degrees.remainder(d360);
+        if ((d.compareTo(d90) == 0) || (d.compareTo(d90.negate()) == 0) || (d.compareTo(d270) == 0) || (d.compareTo(d270.negate()) == 0)) {
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_TANGENT_NOT_DEFINED_FOR_THIS_ANGLE, InterpreterUtils.toPrintableString(d)));
+        }
+        return sin(d).divide(cos(d), mc15);
+    }
 
-                for(double i=0; i<=360; i++){
-                    System.out.print("ΣΥΝ("+i+") : "+cos(i)+"\t\t"+"ΗΜ("+i+")  : "+sin(i));
-                    try{
-                        System.out.println("\t\t"+"ΕΦ("+i+")  : "+tan(i));
-                    }catch(Exception e){
-                        System.out.println("\t\t"+"ΕΦ("+i+")  : "+e.getMessage());
-                    }
-                }
+    public static BigInteger intPart(BigDecimal n){
+        return n.toBigInteger();
+    }
 
+    public static BigInteger intPart(BigInteger n){
+        return n;
+    }
+
+    public static BigDecimal abs(BigDecimal n){
+        return n.abs();
+    }
+
+    public static BigInteger abs(BigInteger n){
+        return n.abs();
+    }
+
+    public static BigDecimal sqrt(BigDecimal n){
+        if(n.compareTo(BigDecimal.ZERO) == 0){
+            return BigDecimal.ZERO;
+        }else if (n.compareTo(BigDecimal.ZERO) > 0) {
+            double d = n.doubleValue();
+            if(d==Double.POSITIVE_INFINITY){
+                throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της Τ_Ρ(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+            }else{
+                return new BigDecimal(Double.toString(Math.sqrt(d)));
+            }
+        }else{
+            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η ρίζα αρνητικού αριθμού: Τ_Ρ(%1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+        }
+    }
+
+    public static BigDecimal sqrt(BigInteger n){
+        return sqrt(new BigDecimal(n));
+    }
+
+
+    public static BigDecimal log(BigDecimal n){
+        if (n.compareTo(BigDecimal.ZERO) > 0) {
+            double d = n.doubleValue();
+            if(d==Double.POSITIVE_INFINITY){
+                throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της ΛΟΓ(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+            }else{
+                return new BigDecimal(Double.toString(Math.log(d)));
+            }
+        }else{
+            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί ο φυσικός λογάριθμος αριθμού <=0: ΛΟΓ(%1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+        }
+    }
+
+    public static BigDecimal log(BigInteger n){
+        return log(new BigDecimal(n));
+    }
+
+    public static BigDecimal exp(BigDecimal n){
+        
+        double d = n.doubleValue();
+        if(d==Double.POSITIVE_INFINITY){
+            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της Ε(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+        }if(d==Double.NEGATIVE_INFINITY){
+            return BigDecimal.ZERO;
+        }else{
+            return new BigDecimal(Double.toString(Math.exp(d)));
+        }
+        
+    }
+
+    public static BigDecimal exp(BigInteger n){
+        return exp(new BigDecimal(n));
+    }
+
+
+    public static void main(String[] args) {
+
+        for (int i = 0; i <= 360; i++) {
+            BigInteger bi = new BigInteger(String.valueOf(i));
+            System.out.print("ΣΥΝ(" + i + ") : " + cos(bi) + "\t\t" + "ΗΜ(" + i + ")  : " + sin(bi));
+            try {
+                System.out.println("\t\t" + "ΕΦ(" + i + ")  : " + tan(bi));
+            } catch (Exception e) {
+                System.out.println("\t\t" + "ΕΦ(" + i + ")  : " + e.getMessage());
+            }
         }
 
-
+    }
 }

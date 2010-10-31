@@ -104,6 +104,11 @@ public class Messages {
     public final static String STR_ERROR_INCOMPATIBLE_TYPES_FOR_CASE_STM = "Ασύμβατοι τύποι δεδομένων για χρήση με τη δομή \"ΕΠΙΛΕΞΕ\": %1$s στο (%2$s) και %3$s στο (%4$s).";
     public final static String STR_ERROR_CASE_ITEM_EXPR_MUST_BE_INT_REAL_OR_STR = "Οι εκφράσεις που χρησιμοποιούνται στη λίστα τιμών της \"ΠΕΡΙΠΤΩΣΗ...\" πρέπει να είναι ακέραιες, πραγματικές ή χαρακτήρες - βρέθηκε %1$s.";
 
+    public final static String STR_ERROR_CALL_TO_UNKNOWN_FUNCTION = "Κλήση σε άγνωστη συνάρτηση: %1$s %2$s";
+    public final static String STR_ERROR_CALL_TO_BUILTIN_FUNCTION_WITH_WRONG_NUMBER_OF_PARAMS = "Λάθος πλήθος παραμέτρων για κλήση στην ενσωματωμένη συνάρτηση %1$s(Χ): %2$d";
+    public final static String STR_ERROR_CALL_TO_BUILTIN_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER = "Ασύμβατος τύπος παραμέτρου για κλήση στην ενσωματωμένη συνάρτηση %1$s(Χ): %2$s";
+
+
 
     public static void programNameMismatchWarning(MessageLog msgLog, Point warningPoint, String falseName) {
         String msg = String.format(STR_WARNING_PROG_NAME_MISMATCH, falseName);
@@ -289,8 +294,40 @@ public class Messages {
         msgLog.error(errorPoint, msg);
     }
 
+    public static void callToUnknownFunctionError(MessageLog msgLog, Point errorPoint, String functionName, List<Type> paramTypes) {
+        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_FUNCTION, functionName, paramTypesToString(paramTypes));
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToBuiltinFunctionWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String functionName, int numOfParams) {
+        String msg = String.format(STR_ERROR_CALL_TO_BUILTIN_FUNCTION_WITH_WRONG_NUMBER_OF_PARAMS, functionName, numOfParams);
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToBuiltinFunctionWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, String functionName, Type paramType) {
+        String msg = String.format(STR_ERROR_CALL_TO_BUILTIN_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER, functionName, typeToString(paramType));
+        msgLog.error(errorPoint, msg);
+    }
+
     public static String pointToString(Point p) {
         return ((int) p.getX()) + "," + ((int) p.getY() + 1);
+    }
+
+    public static String typeToString(Type t) {
+        if(t==null){
+            return Messages.CONSTS_STR_TYPE_UNKNOWN;
+        }
+        if (t.equals(Type.INTEGER)) {
+            return Messages.CONSTS_STR_TYPE_INTEGER;
+        } else if (t.equals(Type.REAL)) {
+            return Messages.CONSTS_STR_TYPE_REAL;
+        } else if (t.equals(Type.BOOLEAN)) {
+            return Messages.CONSTS_STR_TYPE_BOOLEAN;
+        } else if (t.equals(Type.STRING)) {
+            return Messages.CONSTS_STR_TYPE_STRING;
+        } else {
+            return Messages.CONSTS_STR_TYPE_UNKNOWN;
+        }
     }
 
     public static String typeToStringM(Type t) {
@@ -345,6 +382,20 @@ public class Messages {
             }
         }
         dim.append("]");
+        return dim.toString();
+    }
+
+    public static String paramTypesToString(List<Type> paramTypes) {
+        StringBuilder dim = new StringBuilder();
+        dim.append("(");
+        for (Iterator<Type> it = paramTypes.iterator(); it.hasNext();) {
+            Type type = it.next();
+            dim.append(typeToString(type));
+            if (it.hasNext()) {
+                dim.append(", ");
+            }
+        }
+        dim.append(")");
         return dim.toString();
     }
 }
