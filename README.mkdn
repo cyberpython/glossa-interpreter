@@ -8,7 +8,7 @@ Copyright (c) Georgios Migdos
 
 Source code is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
-Antlr 3 is distributed under the terms of the [BSD license](http://www.antlr.org/license.html).
+Antlr 3 is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
 
 ##Status
 
@@ -66,5 +66,5 @@ There are some example input files in:
 
     src/glossa/samples/
 
-The project is developed using [Netbeans 6.9](http://netbeans.org/) but you can use your editor/IDE of choice.
+The project is developed using [Netbeans 6.9](http://netbeans.org/).
 

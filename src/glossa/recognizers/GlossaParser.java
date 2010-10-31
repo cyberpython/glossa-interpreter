@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-31 16:03:23
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-10-31 22:23:54
 
 /*
  *  The MIT License
@@ -1150,7 +1150,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayDimension, ID
+                    // elements: ID, arrayDimension
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2436,7 +2436,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ifBlock, elseBlock, elseIfBlock
+            // elements: elseIfBlock, elseBlock, ifBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3306,7 +3306,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: RANGE, expr1, expr2
+            // elements: expr1, expr2, RANGE
             // token labels: 
             // rule labels: retval, expr1, expr2
             // token list labels: 
@@ -3440,7 +3440,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, LT
+                    // elements: LT, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3484,7 +3484,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, LE
+                    // elements: LE, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5746,7 +5746,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, arraySubscript
+            // elements: arraySubscript, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 

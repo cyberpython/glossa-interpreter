@@ -68,6 +68,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.lang.StringBuilder;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Deque;
@@ -223,13 +224,21 @@ block	:	^(BLOCK stm*)
 
 
 
-stm	:	^(  PRINT
+stm	:	^(  PRINT           {
+                                        StringBuilder sb = new StringBuilder();
+                                    }
                     (expr1=expr     {
                                         Object o = $expr1.result;
-                                        InterpreterUtils.print(o, this.out);
+                                        //InterpreterUtils.print(o, this.out);
+                                        sb.append(InterpreterUtils.toPrintableString(o));
                                     }
                     )*)             {
-                                        this.out.println();
+                                        String outputString = sb.toString();
+                                        if(outputString.endsWith(" ")){
+                                            this.out.print(outputString);
+                                        }else{
+                                            this.out.println(outputString);
+                                        }
                                     }
         |       ^(READ readItem+)
 	|	^(ASSIGN ID expr)   {
