@@ -29,6 +29,13 @@
             </classpath>
         </java>
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+            <arg value="${src.dir}/glossa/grammars/FirstPass.g"/>
+            <classpath>
+                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </java>
+        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
             <classpath>
                 <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
@@ -50,6 +57,7 @@
         </move>
         <move todir="${src.dir}/glossa/statictypeanalysis">
             <fileset dir="${src.dir}/glossa/grammars">
+                <include name="FirstPass.java"/>
                 <include name="StaticTypeAnalyzer.java"/>
             </fileset>
         </move>

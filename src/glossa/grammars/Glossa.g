@@ -45,6 +45,7 @@ tokens
   CASE_ELSE;
   PARAMS;
   FUNC_CALL;
+  FORMAL_PARAMS;
 }
 
 @lexer::header{
@@ -282,7 +283,7 @@ import java.awt.Point;
 **************************
 */
 
-unit	:	program;
+unit	:	(NEWLINE!)* program function*;
 
 program	:	PROGRAM^ id1=ID (NEWLINE!)+
 		declarations
@@ -430,6 +431,22 @@ arrayItem
 arraySubscript
 	:	LBRACKET (dimension+=expr) (COMMA dimension+=expr)* RBRACKET -> ^(ARRAY_INDEX expr+);
 
+
+function
+	:	FUNCTION id=ID LPAR formalParamsList RPAR COLON ret=returnType NEWLINE+
+		constDecl? varDecl?
+		BEGIN  NEWLINE+
+		block
+		END_FUNCTION NEWLINE+ -> ^(FUNCTION $id $ret formalParamsList constDecl? varDecl? block);
+
+returnType
+	:	INTEGER
+	|	REAL
+	|	STRING
+	|	BOOLEAN;
+
+formalParamsList
+	:	(params+=ID (COMMA params+=ID)*)? -> ^(FORMAL_PARAMS $params*);
 
 /*
 **************************

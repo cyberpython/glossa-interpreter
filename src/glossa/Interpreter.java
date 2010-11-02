@@ -28,9 +28,9 @@ import glossa.interpreter.symboltable.SymbolTable;
 import glossa.messages.MessageLog;
 import glossa.recognizers.GlossaParser;
 import glossa.recognizers.GlossaLexer;
+import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
-import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayDeque;
@@ -45,7 +45,7 @@ import org.antlr.runtime.tree.CommonTree;
  * @author cyberpython
  */
 public class Interpreter {
-    
+
     private PrintStream out;
     private PrintStream err;
     private InputStream in;
@@ -77,12 +77,10 @@ public class Interpreter {
             parser.setMessageLog(msgLog);
             r = parser.unit();
         } catch (RuntimeException re) {
-            
         }
 
         int errors = msgLog.getNumberOfErrors();
         msgLog.printErrors();
-        msgLog.printWarnings();
 
 
 
@@ -94,34 +92,49 @@ public class Interpreter {
             CommonTree t = (CommonTree) r.getTree(); // get tree from parser
             // Create a tree node stream from resulting tree
             BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-            StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
-            staticTypeAnalyzer.setScopeTable(scopeTable);
-            staticTypeAnalyzer.setMessageLog(msgLog);
-            staticTypeAnalyzer.unit();                 // launch at start rule prog
-            
-
-            MainProgramScope mpst = scopeTable.getMainProgramScope();
+            FirstPass fp = new FirstPass(nodes);
+            fp.setScopeTable(scopeTable);
+            fp.setMessageLog(msgLog);
+            fp.unit();                 // launch at start rule prog
 
             errors = msgLog.getNumberOfErrors();
             msgLog.printErrors();
-            msgLog.printWarnings();
+
 
             if (errors == 0) {
-                try{
-                Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
                 nodes.reset();
-                ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
-                interpreter.setScopeTable(scopeTable);
-                interpreter.setStack(stack);
-                interpreter.setOutputStream(out);
-                interpreter.setErrorStream(err);
-                interpreter.setInputStream(in);
-                interpreter.unit();                 // launch at start rule prog
+                StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
+                staticTypeAnalyzer.setScopeTable(scopeTable);
+                staticTypeAnalyzer.setMessageLog(msgLog);
+                staticTypeAnalyzer.unit();                 // launch at start rule prog
                 
-                }catch(RuntimeException re){
-                    err.println(re.getMessage());
+                errors = msgLog.getNumberOfErrors();
+                msgLog.printErrors();
+                msgLog.printWarnings();
+
+                if (errors == 0) {
+                    scopeTable.printScopes(out);
+                    /*try {
+                        Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
+                        nodes.reset();
+                        ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
+                        interpreter.setScopeTable(scopeTable);
+                        interpreter.setStack(stack);
+                        interpreter.setOutputStream(out);
+                        interpreter.setErrorStream(err);
+                        interpreter.setInputStream(in);
+                        interpreter.unit();                 // launch at start rule prog
+
+                    } catch (RuntimeException re) {
+                        err.println(re.getMessage());
+                    }*/
                 }
+
+            }else{
+                msgLog.printWarnings();
             }
+        }else{
+            msgLog.printWarnings();
         }
     }
 }

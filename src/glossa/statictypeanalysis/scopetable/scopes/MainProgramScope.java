@@ -24,12 +24,7 @@
 
 package glossa.statictypeanalysis.scopetable.scopes;
 
-
-import glossa.statictypeanalysis.scopetable.symbols.Array;
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
-import glossa.statictypeanalysis.scopetable.symbols.Variable;
-import glossa.types.Type;
-import java.awt.Point;
+import java.io.PrintStream;
 
 /**
  *
@@ -57,6 +52,13 @@ public class MainProgramScope extends Scope{
      */
     public void setProgramName(String programName) {
         this.programName = programName;
+    }
+
+    @Override
+    public void print(PrintStream out) {
+        out.println("\t\tΚύριο Πρόγραμμα");
+        out.println("---------------------------------------------------------------------");
+        super.print(out);
     }
 
 }

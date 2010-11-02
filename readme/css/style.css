@@ -1,0 +1,78 @@
+body {
+	margin:0 auto;
+	padding:0;
+	line-height:1.4;
+	font-family: 'Droid Serif', 'FreeSerif', Georgia, 'Times New Roman', Times, serif;
+	background-color: rgb(255,255,255);
+	background-image: url('bg.png');
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 10%, from(#DDDDDD), to(#FFFFFF));
+	background-image: -moz-linear-gradient(0% 10% 90deg,#fff, #DDDDDD);
+	
+}
+
+div#content{
+	width: 800px;
+	margin:50px auto auto;
+}
+
+h1 {
+	font-size:300%;
+	margin:0px ;
+	color:#333;
+	text-align: center;
+}
+
+p:first-of-type{
+	color:#555;
+	float:right;
+	font-size:80%;
+	margin-right:.1em;
+	line-height:1;
+}
+
+a {
+	color:inherit;
+	font-weight:bold;
+	font-style:italic;
+	text-decoration:none;
+	border-bottom:1px dotted;
+}
+
+a:hover {
+	border:none;
+	text-decoration:underline;
+}
+
+a[href$=".pdf"]::before {
+	content:url(images/pdf.png);
+	margin-right:4px;
+}
+
+
+h2 {
+        margin-top: 75px;
+	color:#555;
+}
+
+img {
+	margin:10px auto 10px;
+	padding:6px;
+	border:1px solid #ccc;
+}
+
+pre {
+	font-size: 12px;
+	padding: 5px 5px 5px 50px;
+	margin-left: 50px;
+	background: #f0f0f0;
+	border: 1px solid #ccc;
+	width: 600px;
+	overflow: auto;
+	overflow-Y: hidden;
+}
+
+pre code {
+	display: block;
+}
+	

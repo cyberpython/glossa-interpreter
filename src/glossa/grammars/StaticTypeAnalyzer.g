@@ -65,6 +65,7 @@ import glossa.statictypeanalysis.scopetable.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.awt.Point;
 
@@ -77,6 +78,7 @@ import java.awt.Point;
 	private Scope currentScope;
         private boolean inConstantDeclaration = false;
         private boolean inVariableDeclaration = false;
+        private boolean inSubprogram = false;
 
         public void setMessageLog(MessageLog msgLog){
             this.msgLog = msgLog;
@@ -106,24 +108,19 @@ import java.awt.Point;
 **************************
 */
 
-unit	:	program;
+unit	:	program (function*) ;
 
 program	:	^(PROGRAM
-		id1=ID	{
-                                MainProgramScope mainProgramScope = new MainProgramScope();
-				mainProgramScope.setProgramName($id1.text);
-                                scopeTable.setMainProgramScope(mainProgramScope);
-                                currentScope = mainProgramScope;
-			}
+		id1=ID      {
+                                currentScope = scopeTable.getMainProgramScope();
+                            }
 		declarations
 		block 
-		(id2=ID {
-				if($id1.text.toLowerCase().equals($id2.text.toLowerCase())==false){
-					Messages.programNameMismatchWarning(msgLog, new Point($id2.line, $id2.pos), $id2.text);
-				}
-			}
-		)?
-		);
+		(id2=ID)?
+		)           {
+                                    currentScope = null;
+                            }
+        ;
 		
 declarations
 	:	constDecl? varDecl?;
@@ -149,6 +146,7 @@ constAssign
                                     Constant s = new Constant($ID.text, $expr.expressionType, $ID.line, $ID.pos, $ID.getTokenStartIndex());
                                     s.setInitialized(true);
                                     currentScope.defineSymbol(msgLog, s.getName(), s);
+                                    
                                 }
         ;
 	
@@ -224,9 +222,23 @@ block	:	^(BLOCK stm*);
 
 stm	:	^(PRINT (expr1=expr)* )
         |       ^(READ readItem+)
-	|	^(ASSIGN ID expr)           {   StaticTypeAnalyzerUtils.checkVariableAssignment(msgLog, this.currentScope, $ID.text, $ID.line, $ID.pos,
+	|	^(ASSIGN ID expr)           {   
+                                                boolean varAssignment = true;
+                                                if(currentScope instanceof FunctionScope){
+                                                    FunctionScope fs = (FunctionScope) currentScope;
+                                                    if(fs.getSubprogramName().toLowerCase().equals($ID.text.toLowerCase())){
+                                                        varAssignment = false;
+                                                        fs.setReturnValueSet(true);
+                                                         if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(fs.getReturnType(), $expr.expressionType) < 0) {
+                                                            Messages.incompatibleTypesFoundError(msgLog, fs.getReturnType(), new Point( $ID.line, $ID.pos), $expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()), new Point($ASSIGN.line, $ASSIGN.pos), $ASSIGN.text);
+                                                        }
+                                                    }
+                                                }
+                                                if(varAssignment){
+                                                    StaticTypeAnalyzerUtils.checkVariableAssignment(msgLog, this.currentScope, $ID.text, $ID.line, $ID.pos,
                                                                                     $expr.expressionType, $expr.start.getLine(), $expr.start.getCharPositionInLine(),
                                                                                     $ASSIGN.text, $ASSIGN.line, $ASSIGN.pos);
+                                                }
                                             }
         |       ^(ASSIGN ID arraySubscript expr)
                                             {
@@ -730,7 +742,7 @@ expr	returns [Type expressionType]
                                                                     Messages.callToBuiltinFunctionWithWrongNumOfParamsError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.paramTypes.size());
                                                                 }
                                                             }else{
-                                                                Messages.callToUnknownFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.paramTypes);
+                                                                $expressionType = StaticTypeAnalyzerUtils.checkFunctionCall(msgLog, this.scopeTable, $ID.text, $ID.line, $ID.pos, $paramsList.paramTypes);
                                                             }
                                                     }
         ;
@@ -760,3 +772,59 @@ arraySubscript  returns [int indicesCount]
                   )+
                                     {   $indicesCount = count;    }
                  );
+
+
+function
+	:	^(FUNCTION          {
+                                        inSubprogram = true;
+                                    }
+                  ID returnType formalParamsList
+                                    {
+                                        FunctionScope fs = scopeTable.getFunctionScope($ID.text);
+                                        currentScope = fs;
+                                    }
+                  constDecl?
+                  varDecl?          {
+                                        List<FormalParameter> formalParams = fs.getFormalParameters();
+                                        HashMap<String, Symbol> symbols = fs.getSymbols();
+                                        for(Iterator<FormalParameter> it = formalParams.iterator(); it.hasNext();){
+                                            FormalParameter param = it.next();
+                                            Symbol symbol = symbols.get(param.getName().toLowerCase());
+                                            if (symbol == null) {
+                                                //TODO: Error message
+                                                msgLog.error(new Point(param.getLine(), param.getPos()), "Parameter \""+param.getName()+"\" not declared.");
+                                            }else{
+                                                if((symbol instanceof Variable)||(symbol instanceof Array)){
+                                                    symbol.setInitialized(true);
+                                                    param.setSymbol(symbol);
+                                                }else{
+                                                    //TODO: Error message
+                                                    msgLog.error(new Point(param.getLine(), param.getPos()), "Parameters can only be declared as variables or arrays.");
+                                                }
+                                            }
+                                        }
+                                    }
+                  block
+                )                   {
+                                        if(!fs.isReturnValueSet()){
+                                            //TODO: Error message
+                                            msgLog.error(new Point($ID.line, $ID.pos), "Function's return value has not been set.");
+                                        }
+                                        inSubprogram = false;
+                                        currentScope = null;
+                                    }
+        ;
+
+returnType
+	:	INTEGER
+	|	REAL
+	|	STRING
+	|	BOOLEAN
+        ;
+
+
+
+
+formalParamsList
+	:	^(FORMAL_PARAMS (ID)* )
+        ;

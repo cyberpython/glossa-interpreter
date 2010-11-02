@@ -138,7 +138,7 @@ import java.util.ArrayList;
 **************************
 */
 
-unit	:	program;
+unit	:	program function*;
 
 program	:	^(  PROGRAM         {
                                         SymbolTable mainProgramSymbolTable = new SymbolTable(this.scopeTable.getMainProgramScope());
@@ -639,3 +639,20 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                 )
         ;
 
+function
+	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block )
+        ;
+
+returnType
+	:	INTEGER
+	|	REAL
+	|	STRING
+	|	BOOLEAN
+        ;
+
+
+
+
+formalParamsList returns [List<String> formalParamsNames]
+	:	^(FORMAL_PARAMS  (ID)*  )
+        ;

@@ -25,12 +25,15 @@ package glossa.statictypeanalysis;
 
 import glossa.messages.MessageLog;
 import glossa.messages.Messages;
+import glossa.statictypeanalysis.scopetable.ScopeTable;
+import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 import glossa.types.Type;
 import java.awt.Point;
+import java.util.List;
 
 /**
  *
@@ -229,4 +232,23 @@ public class StaticTypeAnalyzerUtils {
             }
         }
     }
+
+
+
+    public static Type checkFunctionCall(MessageLog msgLog, ScopeTable scopes, String functionId, int idLine, int idPosition, List<Type> paramTypes) {
+        FunctionScope fs = scopes.getFunctionScope(functionId);
+        if(fs!=null){
+            if(fs.checkParameterTypes(paramTypes) == -1){
+                msgLog.error(new Point(idLine, idPosition), functionId+Messages.paramTypesToString(paramTypes)+" - Εσφαλμένο πλήθος παραμέτρων: "+paramTypes.size());//TODO: proper error message
+            }else if(fs.checkParameterTypes(paramTypes) == -2){
+                msgLog.error(new Point(idLine, idPosition), "Εσφαλμένος τύπος παραμέτρων: "+functionId+Messages.paramTypesToString(paramTypes));//TODO: proper error message
+            }
+            return fs.getReturnType();
+        }else{
+            Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, paramTypes);
+            return null;
+        }
+    }
+
+
 }

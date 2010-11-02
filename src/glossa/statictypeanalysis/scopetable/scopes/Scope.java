@@ -28,7 +28,10 @@ import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import java.awt.Point;
+import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -137,5 +140,19 @@ public class Scope {
      */
     public void setSymbols(HashMap<String, Symbol> symbols) {
         this.symbols = symbols;
+    }
+
+
+    public void print(PrintStream out){
+        out.println(" "+Messages.CONSTS_STR_CONSTANTS+" & "+Messages.CONSTS_STR_VARIABLES+": ");
+        Set<String> keys = symbols.keySet();
+        for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+            String key = it.next();
+            Symbol s = symbols.get(key);
+            out.println("\t"+s.toString());
+        }
+        out.println("---------------------------------------------------------------------");
+        out.println();
+        out.println();
     }
 }

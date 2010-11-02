@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+        <head>
+                <meta charset="UTF-8"/>
+                <title>Interpreter for ΓΛΩΣΣΑ</title>
+                
+                <link href="css/style.css" rel="stylesheet" type="text/css">
+                </head>
+        <body>
+        <div id="content">
+<h1>Glossa-Interpreter</h1>
+
+<p>An interpreter for the 'ΓΛΩΣΣΑ' programming language developed using <a href="http://www.antlr.org/">Antlr 3.2</a> and <a href="http://www.java.com/en/">Java</a>.</p>
+
+<h2>License</h2>
+
+<p>Copyright (c) Georgios Migdos</p>
+
+<p>Source code is available under the terms of the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</p>
+
+<p>Antlr 3 is copyright of Terence Parr and it is available under the terms of the <a href="http://www.antlr.org/license.html">BSD license</a>.</p>
+
+<h2>Status</h2>
+
+<p>The interpreter can now execute all programs that have only a main method (i.e. functions and procedures are not implemented yet).</p>
+
+<ul>
+<li>Lexer/Parser: Errors/warnings in Greek ✔</li>
+<li>Static type analysis: Errors/warnings in Greek ✔</li>
+<li>Runtime errors/warnings in Greek ⟳</li>
+<li>Lexer/Parser: Main program structure ✔</li>
+<li>Static type analysis: Main program structure ✔</li>
+<li>Statement execution: Main program structure ✔</li>
+<li>Built-in functions ✔</li>
+<li>Lexer/Parser: Functions ✔</li>
+<li>Static type analysis: Functions ✔</li>
+<li>Statement execution: Functions ⟳</li>
+<li>Lexer/Parser: Procedures ✘</li>
+<li>Static type analysis: Procedures ✘</li>
+<li>Statement execution: Procedures ✘</li>
+</ul>
+
+<p>✔ = completed, ⟳ = in progress, ✘ = not implemented yet</p>
+
+<h2>Build instructions</h2>
+
+<p>To build the project’s code you will need :</p>
+
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK (6.x+)</a></li>
+<li><a href="http://ant.apache.org/">Apache Ant</a> (built-in in Netbeans)</li>
+<li><a href="http://www.antlr.org/download/antlr-3.2.jar">Antlr 3.2</a> (*)</li>
+</ul>
+
+<p>(*) If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar</p>
+
+<p>Open a terminal and give:</p>
+
+<pre><code>git clone git://github.com/cyberpython/glossa-interpreter.git
+cd glossa-interpreter
+ant jar
+</code></pre>
+
+<h2>How to run the interpreter</h2>
+
+<p>To run the interpreter you must have a JRE (6.x+) installed. Then you can give:</p>
+
+<pre><code>java -jar dist/glossa-interpreter.jar &lt;input_file&gt;
+</code></pre>
+
+<p>e.g.:</p>
+
+<pre><code>java -jar dist/glossa-interpreter.jar src/glossa/samples/PrintTest.gls
+</code></pre>
+
+<p><img src="http://img338.imageshack.us/img338/3604/screenshotme.png" alt="Screenshot" title="Screenshot of the interpreter running a sample input file in Ubuntu 10.10" /></p>
+
+<h2>Samples</h2>
+
+<p>There are some example input files in:</p>
+
+<pre><code>src/glossa/samples/
+</code></pre>
+
+<p>The project is developed using <a href="http://netbeans.org/">Netbeans 6.9</a>.</p>
+        </div>
+        </body>
+</html>
+

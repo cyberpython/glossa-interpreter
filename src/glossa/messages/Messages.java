@@ -52,22 +52,28 @@ public class Messages {
     public final static String CONSTS_STR_THE_SYMBOL = "Το σύμβολο";
     public final static String CONSTS_STR_VARIABLE = "Μεταβλητή";
     public final static String CONSTS_STR_CONSTANT = "Σταθερά";
+    public final static String CONSTS_STR_VARIABLES = "Μεταβλητές";
+    public final static String CONSTS_STR_CONSTANTS = "Σταθερές";
     public final static String CONSTS_STR_ARRAY = "Πίνακας";
     public final static String CONSTS_STR_SYMBOL = "Σύμβολο";
     public final static String CONSTS_STR_NAME = "Όνομα";
     public final static String CONSTS_STR_TYPE = "Τύπος";
+    public final static String CONSTS_STR_FUNCTION = "Συνάρτηση";
+    public final static String CONSTS_STR_PARAMETERS = "Παράμετροι";
+    public final static String CONSTS_STR_PARAMETER = "Παράμετρος";
+    public final static String CONSTS_STR_RETURNS = "επιστρέφει";
 
     public final static String CONSTS_STR_DECLARED_AT = "Δηλωμένο στο";
 
     public final static String CONSTS_STR_TYPE_INTEGER = "Ακέραια";
     public final static String CONSTS_STR_TYPE_REAL = "Πραγματική";
     public final static String CONSTS_STR_TYPE_BOOLEAN = "Λογική";
-    public final static String CONSTS_STR_TYPE_STRING = "Χαρακτήρες";
+    public final static String CONSTS_STR_TYPE_STRING = "Χαρακτήρας";
     public final static String CONSTS_STR_TYPE_UNKNOWN = "Άγνωστος_Τύπος";
     public final static String CONSTS_STR_TYPE_INTEGER_Μ = "Ακέραιος";
     public final static String CONSTS_STR_TYPE_REAL_Μ = "Πραγματικός";
     public final static String CONSTS_STR_TYPE_BOOLEAN_Μ = "Λογικός";
-    public final static String CONSTS_STR_TYPE_STRING_Μ = "Χαρακτήρες";
+    public final static String CONSTS_STR_TYPE_STRING_Μ  = "Χαρακτήρας";
     public final static String CONSTS_STR_TYPE_UNKNOWN_Μ = "Άγνωστος_Τύπος";
 
     public final static String STR_WARNING_PROG_NAME_MISMATCH = "Το αναγνωριστικό \"%1$s\" είναι διαφορετικό από το όνομα του προγράμματος.";
@@ -75,7 +81,7 @@ public class Messages {
     public final static String STR_ERROR_CONSTANTS_ALREADY_DEFINED = "Οι σταθερές έχουν ήδη δηλωθεί στο %1$s.";
     public final static String STR_ERROR_VARIABLES_ALREADY_DEFINED = "Οι μεταβλητές έχουν ήδη δηλωθεί στο %1$s.";
     public final static String STR_ERROR_SYMBOL_ALREADY_DEFINED = "%1$s \"%2$s\" έχει ήδη δηλωθεί στο %3$s.";
-    public final static String STR_ERROR_SYMBOL_UNDEFINED = "Το αναγνωριστικό \"%1$s\" δεν έχει δηλωθεί ως σταθερά, μεταβλητή, συνάρτηση ή διαδικασία.";
+    public final static String STR_ERROR_SYMBOL_UNDEFINED = "Το αναγνωριστικό \"%1$s\" δεν έχει δηλωθεί ως σταθερά ή μεταβλητή.";
 
     public final static String STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως πίνακας ενώ είναι %2$s.";
     public final static String STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως μεταβλητή ενώ είναι %2$s.";
