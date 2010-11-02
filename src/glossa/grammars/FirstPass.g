@@ -62,6 +62,7 @@ package glossa.statictypeanalysis;
 import glossa.messages.*;
 import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
+import glossa.statictypeanalysis.scopetable.parameters.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
@@ -185,7 +186,9 @@ varDeclItem [Type t]
                                                         FormalParameter fp = new FormalParameter($ID.line, $ID.pos, $ID.text);
                                                         List<FormalParameter> paramsList = sc.getFormalParameters();
                                                         if(paramsList.contains(fp)){
-                                                            paramsList.get(paramsList.indexOf(fp)).setType(t);
+                                                            FormalParameter tmp = paramsList.get(paramsList.indexOf(fp));
+                                                            tmp.setType(t);
+                                                            tmp.setArrayParamFlagSet(true);
                                                         }
                                                     }
                                                 }

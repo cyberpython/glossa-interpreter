@@ -26,6 +26,7 @@ package glossa.statictypeanalysis;
 import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
+import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
@@ -40,6 +41,29 @@ import java.util.List;
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
 public class StaticTypeAnalyzerUtils {
+
+
+    public static void checkResultsForms(MessageLog msgLog, ExpressionResultForm form1, ExpressionResultForm form2,
+                                                            int expr1Line, int expr1Pos,
+                                                            int expr2Line, int expr2Pos
+                                        ) {
+        if (ExpressionResultForm.ARRAY.equals(form1)) {
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos)); //TODO: include the array name in the message
+        }
+
+        if (ExpressionResultForm.ARRAY.equals(form2)) {
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr2Line, expr2Pos)); //TODO: include the array name in the message
+        }
+    }
+
+
+    public static void checkResultForm(MessageLog msgLog, ExpressionResultForm form1,
+                                                            int expr1Line, int expr1Pos
+                                        ) {
+        if (ExpressionResultForm.ARRAY.equals(form1)) {
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos)); //TODO: include the array name in the message
+        }
+    }
 
     /**
      * @return an integer indicating the compatibility between the types
@@ -235,17 +259,18 @@ public class StaticTypeAnalyzerUtils {
 
 
 
-    public static Type checkFunctionCall(MessageLog msgLog, ScopeTable scopes, String functionId, int idLine, int idPosition, List<Type> paramTypes) {
+    public static Type checkFunctionCall(MessageLog msgLog, ScopeTable scopes, String functionId, int idLine, int idPosition, List<ActualParameter> params) {
         FunctionScope fs = scopes.getFunctionScope(functionId);
         if(fs!=null){
-            if(fs.checkParameterTypes(paramTypes) == -1){
-                msgLog.error(new Point(idLine, idPosition), functionId+Messages.paramTypesToString(paramTypes)+" - Εσφαλμένο πλήθος παραμέτρων: "+paramTypes.size());//TODO: proper error message
-            }else if(fs.checkParameterTypes(paramTypes) == -2){
-                msgLog.error(new Point(idLine, idPosition), "Εσφαλμένος τύπος παραμέτρων: "+functionId+Messages.paramTypesToString(paramTypes));//TODO: proper error message
+            List<Integer> checkResults = fs.checkParameterTypes(params);
+            if(checkResults==null){
+                msgLog.error(new Point(idLine, idPosition), functionId+Messages.actualParametersToString(params)+" - Εσφαλμένο πλήθος παραμέτρων: "+params.size());//TODO: proper error message
+            }else if(checkResults.size() > 0) {
+                msgLog.error(new Point(idLine, idPosition), "Εσφαλμένος τύπος παραμέτρων: "+functionId+Messages.actualParametersToString(params));//TODO: get info for wrong params from params list and checkResults
             }
             return fs.getReturnType();
         }else{
-            Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, paramTypes);
+            Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, params);
             return null;
         }
     }

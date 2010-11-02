@@ -62,6 +62,7 @@ package glossa.statictypeanalysis;
 import glossa.messages.*;
 import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
+import glossa.statictypeanalysis.scopetable.parameters.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
@@ -514,8 +515,12 @@ caseElseBlock
 
 
 
-expr	returns [Type expressionType]
+expr	returns [Type expressionType, ExpressionResultForm resultForm]
 	:	^(AND	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForBooleanExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -526,6 +531,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(OR	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForBooleanExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -536,6 +545,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(EQ	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -546,6 +559,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(NEQ	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForEqualityExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -556,6 +573,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(LT	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -566,6 +587,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(LE	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -576,6 +601,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(GT	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -586,6 +615,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(GE	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForComparisonExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -596,6 +629,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(PLUS	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = StaticTypeAnalyzerUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
@@ -606,6 +643,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(MINUS	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = StaticTypeAnalyzerUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
@@ -616,6 +657,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(TIMES	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = StaticTypeAnalyzerUtils.getWiderType($a.expressionType, $b.expressionType);
                                                 }else{
@@ -626,6 +671,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(DIA	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.REAL;
                                                 }else{
@@ -636,6 +685,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(DIV	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForIntegerArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.INTEGER;
                                                 }else{
@@ -646,6 +699,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(MOD	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForIntegerArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     $expressionType = Type.INTEGER;
                                                 }else{
@@ -656,6 +713,10 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(POW	a=expr	  b=expr)   {
+                                                StaticTypeAnalyzerUtils.checkResultsForms(msgLog, $a.resultForm, $b.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine(),
+                                                            $b.start.getLine(), $b.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypesForArithmeticExpression($a.expressionType, $b.expressionType)){
                                                     if(($b.expressionType!=null)&&($b.expressionType.equals(Type.INTEGER))){
                                                         $expressionType = Type.REAL;
@@ -670,6 +731,9 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(NEG	a=expr)             {
+                                                StaticTypeAnalyzerUtils.checkResultForm(msgLog, $a.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.isNumericType($a.expressionType)){
                                                     $expressionType = $a.expressionType;
                                                 }else{
@@ -679,6 +743,9 @@ expr	returns [Type expressionType]
                                                 }
                                             }
 	|	^(NOT	a=expr)             {
+                                                StaticTypeAnalyzerUtils.checkResultForm(msgLog, $a.resultForm,
+                                                            $a.start.getLine(), $a.start.getCharPositionInLine());
+                                                $resultForm=ExpressionResultForm.VALUE;
                                                 if(StaticTypeAnalyzerUtils.checkTypeForNotExpression($a.expressionType)){
                                                         $expressionType = Type.BOOLEAN;
                                                 }else{
@@ -687,19 +754,21 @@ expr	returns [Type expressionType]
                                                                                                            new Point($a.start.getLine(), $a.start.getCharPositionInLine()));
                                                 }
                                             }
-	|	CONST_TRUE {$expressionType = Type.BOOLEAN;}
-	|	CONST_FALSE {$expressionType = Type.BOOLEAN;}
-	|	CONST_STR {$expressionType = Type.STRING;}
-	|	CONST_INT {$expressionType = Type.INTEGER;}
-	|	CONST_REAL {$expressionType = Type.REAL;}
+	|	CONST_TRUE {$expressionType = Type.BOOLEAN; $resultForm=ExpressionResultForm.VALUE;}
+	|	CONST_FALSE {$expressionType = Type.BOOLEAN; $resultForm=ExpressionResultForm.VALUE;}
+	|	CONST_STR {$expressionType = Type.STRING; $resultForm=ExpressionResultForm.VALUE;}
+	|	CONST_INT {$expressionType = Type.INTEGER; $resultForm=ExpressionResultForm.VALUE;}
+	|	CONST_REAL {$expressionType = Type.REAL; $resultForm=ExpressionResultForm.VALUE;}
 	|	ID  {
+                        $resultForm=ExpressionResultForm.VARIABLE;
                         Symbol s = currentScope.referenceSymbol(msgLog, $ID.text, new Point($ID.line, $ID.pos));
                         if(s != null){
                             if( (s instanceof Constant == false)  &&  (inConstantDeclaration || inVariableDeclaration) ){
                                 Messages.variableReferencesInDeclarationsNotAllowedError(msgLog, s, new Point($ID.line, $ID.pos));
                             }else{
                                 if(s instanceof Array){
-                                    Messages.nonVariableSymbolReferencedAsSuchError(msgLog, new Point($ID.line, $ID.pos), s);
+                                    //Messages.nonVariableSymbolReferencedAsSuchError(msgLog, new Point($ID.line, $ID.pos), s);
+                                    $resultForm=ExpressionResultForm.ARRAY;
                                 }else{
                                     $expressionType = s.getType();
                                     if(!s.isInitialized()){
@@ -710,6 +779,7 @@ expr	returns [Type expressionType]
                         }
                     }
 	|	^(ARRAY_ITEM ID arraySubscript)    {
+                                                        $resultForm=ExpressionResultForm.ARRAY_ITEM;
                                                         Symbol s = currentScope.referenceSymbol(msgLog, $ID.text, new Point($ID.line, $ID.pos));
                                                         if(s != null){
                                                             if(s instanceof Array){
@@ -730,28 +800,29 @@ expr	returns [Type expressionType]
                                                         }
                                                     }
         |       ^(FUNC_CALL ID paramsList)          {
+                                                            $resultForm=ExpressionResultForm.FUNCTION_CALL;
                                                             if(BuiltinFunctions.isBuiltinFunctionName($ID.text)){
-                                                                if($paramsList.paramTypes.size()==1){
-                                                                    Type paramType = $paramsList.paramTypes.get(0);
+                                                                if($paramsList.params.size()==1){
+                                                                    Type paramType = $paramsList.params.get(0).getType();
                                                                     if(StaticTypeAnalyzerUtils.isNumericType(paramType)){
-                                                                        $expressionType = BuiltinFunctions.getReturnTypeForBuiltinFuntion($ID.text, $paramsList.paramTypes.get(0));
+                                                                        $expressionType = BuiltinFunctions.getReturnTypeForBuiltinFuntion($ID.text, paramType);
                                                                     }else{
                                                                         Messages.callToBuiltinFunctionWithWrongParamTypeError(msgLog, new Point($ID.line, $ID.pos), $ID.text, paramType);
                                                                     }
                                                                 }else{
-                                                                    Messages.callToBuiltinFunctionWithWrongNumOfParamsError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.paramTypes.size());
+                                                                    Messages.callToBuiltinFunctionWithWrongNumOfParamsError(msgLog, new Point($ID.line, $ID.pos), $ID.text, $paramsList.params.size());
                                                                 }
                                                             }else{
-                                                                $expressionType = StaticTypeAnalyzerUtils.checkFunctionCall(msgLog, this.scopeTable, $ID.text, $ID.line, $ID.pos, $paramsList.paramTypes);
+                                                                $expressionType = StaticTypeAnalyzerUtils.checkFunctionCall(msgLog, this.scopeTable, $ID.text, $ID.line, $ID.pos, $paramsList.params);
                                                             }
                                                     }
         ;
 
-paramsList returns [List<Type> paramTypes]
-	:	^(PARAMS    {List<Type> result = new ArrayList<Type>();}
-                  (expr     {result.add($expr.expressionType);}
+paramsList returns [List<ActualParameter> params]
+	:	^(PARAMS    {List<ActualParameter> result = new ArrayList<ActualParameter>();}
+                  (expr     {result.add(new ActualParameter($expr.start.getLine(), $expr.start.getCharPositionInLine(), $expr.expressionType, $expr.resultForm));}
                   )*
-                )           {$paramTypes = result;}
+                )           {$params = result;}
         ;
 
 arraySubscript  returns [int indicesCount]

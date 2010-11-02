@@ -24,6 +24,7 @@
 package glossa.messages;
 
 
+import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.statictypeanalysis.scopetable.symbols.Constant;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
@@ -85,6 +86,7 @@ public class Messages {
 
     public final static String STR_ERROR_NONARRAY_REFERENCED_AS_ARRAY = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως πίνακας ενώ είναι %2$s.";
     public final static String STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE = "Το σύμβολο \"%1$s\" χρησιμοποιείται ως μεταβλητή ενώ είναι %2$s.";
+    public final static String STR_ERROR_ARRAY_USED_IN_EXPR = "Στις εκφράσεις δε μπορούν να χρησιμοποιηθούν πίνακες (αλλά στοιχεία τους).";
     public final static String STR_ERROR_VAR_AND_ARRAY_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση μεταβλητών και πινάκων στη δήλωση σταθερών και μεταβλητών.";
     public final static String STR_ERROR_ARRAY_REF_IN_DECLARATIONS_NOT_ALLOWED = "Δεν επιτρέπεται η χρήση πινάκων στη δήλωση σταθερών και μεταβλητών.";
 
@@ -195,6 +197,11 @@ public class Messages {
         msgLog.error(errorPoint, msg);
     }
 
+    public static void arrayUsedInExpressionError(MessageLog msgLog, Point errorPoint) {
+        String msg = STR_ERROR_ARRAY_USED_IN_EXPR;
+        msgLog.error(errorPoint, msg);
+    }
+
     public static void nonVariableSymbolReferencedAsSuchError(MessageLog msgLog, Point errorPoint, Symbol s) {
         String msg = String.format(STR_ERROR_NONVARIABLE_REFERENCED_AS_VARIABLE, s.getName(), symbolTypeToString(s).toLowerCase());
         msgLog.error(errorPoint, msg);
@@ -300,8 +307,8 @@ public class Messages {
         msgLog.error(errorPoint, msg);
     }
 
-    public static void callToUnknownFunctionError(MessageLog msgLog, Point errorPoint, String functionName, List<Type> paramTypes) {
-        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_FUNCTION, functionName, paramTypesToString(paramTypes));
+    public static void callToUnknownFunctionError(MessageLog msgLog, Point errorPoint, String functionName, List<ActualParameter> params) {
+        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_FUNCTION, functionName, actualParametersToString(params));
         msgLog.error(errorPoint, msg);
     }
 
@@ -396,6 +403,20 @@ public class Messages {
         dim.append("(");
         for (Iterator<Type> it = paramTypes.iterator(); it.hasNext();) {
             Type type = it.next();
+            dim.append(typeToString(type));
+            if (it.hasNext()) {
+                dim.append(", ");
+            }
+        }
+        dim.append(")");
+        return dim.toString();
+    }
+
+    public static String actualParametersToString(List<ActualParameter> params) {
+        StringBuilder dim = new StringBuilder();
+        dim.append("(");
+        for (Iterator<ActualParameter> it = params.iterator(); it.hasNext();) {
+            Type type = it.next().getType();
             dim.append(typeToString(type));
             if (it.hasNext()) {
                 dim.append(", ");

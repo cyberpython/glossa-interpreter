@@ -25,7 +25,7 @@
 package glossa.statictypeanalysis.scopetable.scopes;
 
 import glossa.messages.Messages;
-import glossa.statictypeanalysis.scopetable.symbols.FormalParameter;
+import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import glossa.types.Type;
 import java.io.PrintStream;
 import java.util.List;

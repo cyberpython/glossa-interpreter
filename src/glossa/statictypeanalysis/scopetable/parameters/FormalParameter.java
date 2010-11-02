@@ -22,9 +22,10 @@
  *  THE SOFTWARE.
  */
 
-package glossa.statictypeanalysis.scopetable.symbols;
+package glossa.statictypeanalysis.scopetable.parameters;
 
 import glossa.messages.Messages;
+import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
 
 /**
@@ -39,6 +40,7 @@ public class FormalParameter implements Comparable<FormalParameter>{
 
     private Type type;
     private Symbol symbol;
+    private boolean arrayParamFlagSet;
 
     public FormalParameter(int line, int pos, String name) {
         this.line = line;
@@ -46,6 +48,7 @@ public class FormalParameter implements Comparable<FormalParameter>{
         this.name = name;
         this.type = null;
         this.symbol = null;
+        this.arrayParamFlagSet = false;
     }
 
     /**
@@ -96,6 +99,14 @@ public class FormalParameter implements Comparable<FormalParameter>{
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public boolean isArrayParamFlagSet() {
+        return arrayParamFlagSet;
+    }
+
+    public void setArrayParamFlagSet(boolean arrayParamFlagSet) {
+        this.arrayParamFlagSet = arrayParamFlagSet;
     }
 
     public Symbol getSymbol() {

@@ -24,10 +24,12 @@
 package glossa.statictypeanalysis.scopetable.scopes;
 
 import glossa.messages.Messages;
+import glossa.statictypeanalysis.ExpressionResultForm;
 import glossa.statictypeanalysis.StaticTypeAnalyzerUtils;
-import glossa.statictypeanalysis.scopetable.symbols.FormalParameter;
-import glossa.types.Type;
+import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
+import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -71,28 +73,44 @@ public class SubProgramScope extends Scope {
         this.index = index;
     }
 
-    public int checkParameterTypes(List<Type> parameterTypes) {
-        if (parameterTypes == null) {
+    /*
+     * @return a List<Integer> indicating the indices of parameters
+     *         with the wrong type or null if 
+     *                - the parameters list is null
+     *                  and the formal parameters list is non-empty and not null
+     *                 -OR the number of parameters does not
+     *                  match the number of formal parameters
+     */
+    public List<Integer> checkParameterTypes(List<ActualParameter> parameters) {
+        List<Integer> result = new ArrayList<Integer>();
+        if (parameters == null) {
             if ((this.formalParameters == null) || this.formalParameters.isEmpty()) {
-                return 0;
+                return result;
             } else {
-                return -1;
+                return null;
             }
         }
 
-        if (parameterTypes.size() != this.formalParameters.size()) {
-            return -1;
-        }else{
+        if (parameters.size() == this.formalParameters.size()) {
             int i=0;
+            FormalParameter fp;
+            ActualParameter ap;
             while(i<this.formalParameters.size()){
-                if( StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(this.formalParameters.get(i).getType(), parameterTypes.get(i)) < 0 ){
-                    return -2;
+                fp = this.formalParameters.get(i);
+                ap = parameters.get(i);
+                if( StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(fp.getType(), ap.getType()) < 0 ){
+                    result.add(new Integer(i));
+                }else{
+                    if( (fp.isArrayParamFlagSet())  &&  (!ap.getForm().equals(ExpressionResultForm.ARRAY))  ){
+                        result.add(new Integer(i));
+                    }
                 }
                 i++;
             }
-            return 0;
+            return result;
+        }else{
+            return null;
         }
-
     }
 
     public String paramNamesToString() {
