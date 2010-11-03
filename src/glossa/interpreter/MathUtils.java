@@ -130,12 +130,12 @@ public class MathUtils {
         }else if (n.compareTo(BigDecimal.ZERO) > 0) {
             double d = n.doubleValue();
             if(d==Double.POSITIVE_INFINITY){
-                throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της Τ_Ρ(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_SQRT_FOR_A_NUMBER_THIS_BIG, InterpreterUtils.toPrintableString(n)));
             }else{
                 return new BigDecimal(Double.toString(Math.sqrt(d)));
             }
         }else{
-            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η ρίζα αρνητικού αριθμού: Τ_Ρ(%1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_SQRT_FOR_NEGATIVE_NUMBER, InterpreterUtils.toPrintableString(n)));
         }
     }
 
@@ -148,12 +148,12 @@ public class MathUtils {
         if (n.compareTo(BigDecimal.ZERO) > 0) {
             double d = n.doubleValue();
             if(d==Double.POSITIVE_INFINITY){
-                throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της ΛΟΓ(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_LN_FOR_A_NUMBER_THIS_BIG, InterpreterUtils.toPrintableString(n)));
             }else{
                 return new BigDecimal(Double.toString(Math.log(d)));
             }
         }else{
-            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί ο φυσικός λογάριθμος αριθμού <=0: ΛΟΓ(%1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_LN_FOR_NEGATIVE_NUMBER, InterpreterUtils.toPrintableString(n)));
         }
     }
 
@@ -165,7 +165,7 @@ public class MathUtils {
         
         double d = n.doubleValue();
         if(d==Double.POSITIVE_INFINITY){
-            throw new RuntimeException(String.format("Δε μπορεί να υπολογιστεί η τιμή της Ε(Χ) για τόσο μεγάλο Χ: %1$s)", InterpreterUtils.toPrintableString(n)));//TODO: move message to RuntimeMessages
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_EXP_FOR_A_NUMBER_THIS_BIG, InterpreterUtils.toPrintableString(n)));
         }if(d==Double.NEGATIVE_INFINITY){
             return BigDecimal.ZERO;
         }else{
@@ -179,7 +179,7 @@ public class MathUtils {
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         for (int i = 0; i <= 360; i++) {
             BigInteger bi = new BigInteger(String.valueOf(i));
@@ -191,5 +191,5 @@ public class MathUtils {
             }
         }
 
-    }
+    }*/
 }

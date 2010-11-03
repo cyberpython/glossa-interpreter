@@ -69,7 +69,7 @@ public class InterpreterUtils {
         if ((a instanceof Boolean) && (b instanceof Boolean)) {
             return and((Boolean) a, (Boolean) b);
         }
-        throw new RuntimeException("Cannot apply boolean-AND to non-boolean types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_AND_FOR_NON_BOOLEAN_VALUES));
     }
 
     public static Boolean and(Boolean a, Boolean b) {
@@ -80,7 +80,7 @@ public class InterpreterUtils {
         if ((a instanceof Boolean) && (b instanceof Boolean)) {
             return or((Boolean) a, (Boolean) b);
         }
-        throw new RuntimeException("Cannot apply boolean-OR to non-boolean types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_OR_FOR_NON_BOOLEAN_VALUES));
     }
 
     public static Boolean or(Boolean a, Boolean b) {
@@ -91,7 +91,7 @@ public class InterpreterUtils {
         if (a instanceof Boolean) {
             return not((Boolean) a);
         }
-        throw new RuntimeException("Cannot apply boolean-NOT to non-boolean type"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_NOT_FOR_NON_BOOLEAN_VALUE));
     }
 
     public static Boolean not(Boolean a) {
@@ -118,7 +118,7 @@ public class InterpreterUtils {
         } else if ((a instanceof Boolean) && (b instanceof Boolean)) {
             return equals((Boolean) a, (Boolean) b);
         }
-        throw new RuntimeException("Cannot compare non-compatible types for equality"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_CHECK_NON_COMPATIBLE_TYPES_FOR_EQUALITY));
     }
 
     public static Boolean equals(BigInteger a, BigInteger b) {
@@ -167,7 +167,7 @@ public class InterpreterUtils {
         } else if ((a instanceof String) && (b instanceof String)) {
             return lowerThan((String) a, (String) b);
         }
-        throw new RuntimeException("Cannot compare non-numeric/non-string types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CAN_ONLY_COMPARE_NUMERIC_TYPES_OR_STRINGS));
     }
 
     public static Boolean lowerThan(BigInteger a, BigInteger b) {
@@ -206,7 +206,7 @@ public class InterpreterUtils {
         } else if ((a instanceof String) && (b instanceof String)) {
             return lowerThanOrEqual((String) a, (String) b);
         }
-        throw new RuntimeException("Cannot compare non-numeric/non-string types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CAN_ONLY_COMPARE_NUMERIC_TYPES_OR_STRINGS));
     }
 
     public static Boolean lowerThanOrEqual(BigInteger a, BigInteger b) {
@@ -245,7 +245,7 @@ public class InterpreterUtils {
         } else if ((a instanceof String) && (b instanceof String)) {
             return greaterThan((String) a, (String) b);
         }
-        throw new RuntimeException("Cannot compare non-numeric/non-string types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CAN_ONLY_COMPARE_NUMERIC_TYPES_OR_STRINGS));
     }
 
     public static Boolean greaterThan(BigInteger a, BigInteger b) {
@@ -284,7 +284,7 @@ public class InterpreterUtils {
         } else if ((a instanceof String) && (b instanceof String)) {
             return greaterThanOrEqual((String) a, (String) b);
         }
-        throw new RuntimeException("Cannot compare non-numeric/non-string types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CAN_ONLY_COMPARE_NUMERIC_TYPES_OR_STRINGS));
     }
 
     public static Boolean greaterThanOrEqual(BigInteger a, BigInteger b) {
@@ -323,7 +323,7 @@ public class InterpreterUtils {
                 return add((BigDecimal) a, (BigDecimal) b);
             }
         }
-        throw new RuntimeException("Cannot add non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ADD_NON_NUMERIC_VALUES));
     }
 
     public static BigInteger add(BigInteger a, BigInteger b) {
@@ -356,7 +356,7 @@ public class InterpreterUtils {
                 return subtract((BigDecimal) a, (BigDecimal) b);
             }
         }
-        throw new RuntimeException("Cannot subtract non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_SUBTRACT_NON_NUMERIC_VALUES));
     }
 
     public static BigInteger subtract(BigInteger a, BigInteger b) {
@@ -389,7 +389,7 @@ public class InterpreterUtils {
                 return multiply((BigDecimal) a, (BigDecimal) b);
             }
         }
-        throw new RuntimeException("Cannot multiply non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_MULTIPLY_NON_NUMERIC_VALUES));
     }
 
     public static BigInteger multiply(BigInteger a, BigInteger b) {
@@ -422,33 +422,33 @@ public class InterpreterUtils {
                 return divide((BigDecimal) a, (BigDecimal) b);
             }
         }
-        throw new RuntimeException("Cannot divide non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_DIVIDE_NON_NUMERIC_VALUES));
     }
 
     public static BigDecimal divide(BigInteger a, BigInteger b) {
         if (b.equals(BigInteger.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return (new BigDecimal(a)).divide(new BigDecimal(b));
     }
 
     public static BigDecimal divide(BigDecimal a, BigInteger b) {
         if (b.equals(BigInteger.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return a.divide(new BigDecimal(b, mc), mc);
     }
 
     public static BigDecimal divide(BigInteger a, BigDecimal b) {
         if (b.equals(BigDecimal.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return (new BigDecimal(a, mc)).divide(b, mc);
     }
 
     public static BigDecimal divide(BigDecimal a, BigDecimal b) {
         if (b.equals(BigDecimal.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return a.divide(b, mc);
     }
@@ -457,12 +457,12 @@ public class InterpreterUtils {
         if ((a instanceof BigInteger) && (b instanceof BigInteger)) {
             return intDivide((BigInteger) a, (BigInteger) b);
         }
-        throw new RuntimeException("Cannot intDivide non-integer types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_INTDIVIDE_NON_INTEGER_VALUES));
     }
 
     public static BigInteger intDivide(BigInteger a, BigInteger b) {
         if (b.equals(BigInteger.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return a.divide(b);
     }
@@ -471,12 +471,12 @@ public class InterpreterUtils {
         if ((a instanceof BigInteger) && (b instanceof BigInteger)) {
             return intMod((BigInteger) a, (BigInteger) b);
         }
-        throw new RuntimeException("Cannot intMod non-integer types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_INTMOD_NON_INTEGER_VALUES));
     }
 
     public static BigInteger intMod(BigInteger a, BigInteger b) {
         if (b.equals(BigInteger.ZERO)) {
-            throw new RuntimeException("Division by 0"); //TODO: proper runtime error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
         return a.remainder(b);
     }
@@ -489,7 +489,7 @@ public class InterpreterUtils {
                 return pow((BigDecimal) a, (BigInteger) b);
             }
         }
-        throw new RuntimeException("Cannot exponentiate non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_EXPONENTIATE_NON_NUMERIC_VALUE));
     }
 
     public static BigDecimal pow(BigInteger a, BigInteger b) {
@@ -506,7 +506,7 @@ public class InterpreterUtils {
         } else if (a instanceof BigDecimal) {
             return ((BigDecimal) a).negate(mc);
         }
-        throw new RuntimeException("Cannot negate non-numeric types"); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_NEGATE_NON_NUMERIC_VALUE));
     }
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Built-in functions">
@@ -531,10 +531,10 @@ public class InterpreterUtils {
             }else if (funcId.equals("Α_Τ")){
                 return abs(parameter);
             }else{
-                throw new RuntimeException("Invalid built-in function : "+toPrintableString(functionName)); //TODO: proper runtime error message
+                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_BUILT_IN_FUNCTION, toPrintableString(functionName)));
             }
         }
-        throw new RuntimeException("Invalid built-in function : "+toPrintableString(functionName)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_BUILT_IN_FUNCTION, toPrintableString(functionName)));
     }
 
     public static BigDecimal sin(Object degrees){
@@ -543,7 +543,7 @@ public class InterpreterUtils {
         }else if(degrees instanceof BigInteger){
             return MathUtils.sin((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(degrees)));
     }
 
     public static BigDecimal cos(Object degrees){
@@ -552,7 +552,7 @@ public class InterpreterUtils {
         }else if(degrees instanceof BigInteger){
             return MathUtils.cos((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(degrees)));
     }
 
     public static BigDecimal tan(Object degrees){
@@ -561,7 +561,7 @@ public class InterpreterUtils {
         }else if(degrees instanceof BigInteger){
             return MathUtils.tan((BigInteger)degrees).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(degrees)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(degrees)));
     }
 
     public static BigDecimal sqrt(Object n){
@@ -570,7 +570,7 @@ public class InterpreterUtils {
         }else if(n instanceof BigInteger){
             return MathUtils.sqrt((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(n)));
     }
 
 
@@ -580,7 +580,7 @@ public class InterpreterUtils {
         }else if(n instanceof BigInteger){
             return MathUtils.log((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(n)));
     }
 
     public static BigDecimal exp(Object n){
@@ -589,7 +589,7 @@ public class InterpreterUtils {
         }else if(n instanceof BigInteger){
             return MathUtils.exp((BigInteger)n).setScale(maxDecimalDigits, mc.getRoundingMode());
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(n)));
     }
 
     public static BigInteger intPart(Object n){
@@ -598,7 +598,7 @@ public class InterpreterUtils {
         }else if(n instanceof BigInteger){
             return MathUtils.intPart((BigInteger)n);
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(n)));
     }
 
     public static Object abs(Object n){
@@ -607,7 +607,7 @@ public class InterpreterUtils {
         }else if(n instanceof BigInteger){
             return MathUtils.abs((BigInteger)n);
         }
-        throw new RuntimeException("Invalid arithmetic value : "+toPrintableString(n)); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE, toPrintableString(n)));
     }
 
     
@@ -637,22 +637,22 @@ public class InterpreterUtils {
     public static Object toValue(String s, Type t){
 
         if((s==null)||(t==null)){
-            throw new RuntimeException("Invalid value"); //TODO: proper runtime error message
+            throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_VALUE);
         }else if(t.equals(Type.INTEGER)){
             try{
                 return new BigInteger(s);
             }catch(NumberFormatException nfe){
-                throw new RuntimeException("Invalid integer value: "+s); //TODO: proper runtime error message
+                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_INTEGER_VALUE, s));
             }
         }else if(t.equals(Type.REAL)){
             try{
                 return new BigDecimal(s, mc);
             }catch(NumberFormatException nfe){
-                throw new RuntimeException("Invalid real value: "+s); //TODO: proper runtime error message
+                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_REAL_VALUE, s));
             }
         }else if(t.equals(Type.STRING)){
             return "'"+s+"'";
         }
-        throw new RuntimeException("Incompatible value for assignment: "+s+" - needed: "+t.toString()); //TODO: proper runtime error message
+        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_VALUE_FOR_ASSIGNMENT, s, t.toString()));
     }
 }

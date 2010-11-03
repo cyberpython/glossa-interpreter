@@ -44,8 +44,36 @@ public class RuntimeMessages {
     public final static String STR_RUNTIME_ERROR_ARRAY_INDICES_AND_DIMENSIONS_MISMATCH = "Το πλήθος των δεικτών (%1$d) δε συμφωνεί με τις διαστάσεις του πίνακα \"%2$s\" (%3$d).";
     public final static String STR_RUNTIME_ERROR_INVALID_TYPE_FOR_ASSIGNMENT = "Ασύμβατη τιμή για χρήση με τον τελεστή εκχώρησης: %1$s. Αναμενόταν %2$s.";
 
-    public final static String STR_RUNTIME_ERROR_TANGENT_NOT_DEFINED_FOR_THIS_ANGLE = "Η εφαπτομένη δεν ορίζεται για γωνία %1$s μοιρών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_AND_FOR_NON_BOOLEAN_VALUES = "Δε μπορεί να υπολογιστεί το λογικό \"ΚΑΙ\" μη λογικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_OR_FOR_NON_BOOLEAN_VALUES = "Δε μπορεί να υπολογιστεί το λογικό \"Ή\" μη λογικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_LOGIC_NOT_FOR_NON_BOOLEAN_VALUE = "Δε μπορεί να υπολογιστεί το λογικό \"ΌΧΙ\" μη λογικής τιμής.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_CHECK_NON_COMPATIBLE_TYPES_FOR_EQUALITY = "Δε μπορεί να γίνει έλεγχος ισότητας σε τιμές ασύμβατου τύπου.";
+    public final static String STR_RUNTIME_ERROR_CAN_ONLY_COMPARE_NUMERIC_TYPES_OR_STRINGS = "Η σύγκριση επιτρέπεται μόνο μεταξύ αριθμητικών τιμών ή χαρακτήρων.";
+    
+    public final static String STR_RUNTIME_ERROR_DIVISION_BY_ZERO = "Διαίρεση με το μηδέν.";
 
+    public final static String STR_RUNTIME_ERROR_CANNOT_ADD_NON_NUMERIC_VALUES = "Δε μπορεί να γίνει η πρόσθεση μη αριθμητικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_SUBTRACT_NON_NUMERIC_VALUES = "Δε μπορεί να γίνει η αφαίρεση μη αριθμητικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_MULTIPLY_NON_NUMERIC_VALUES = "Δε μπορεί να γίνει ο πολλαπλασιασμός μη αριθμητικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_DIVIDE_NON_NUMERIC_VALUES = "Δε μπορεί να γίνει η διαίρεση μη αριθμητικών τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_INTDIVIDE_NON_INTEGER_VALUES = "Δε μπορεί να γίνει η ακέραια διαίρεση μη ακέραιων τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_INTMOD_NON_INTEGER_VALUES = "Δε μπορεί να υπολογιστεί το υπόλοιπο της ακέραιας διαίρεσης μη ακέραιων τιμών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_NEGATE_NON_NUMERIC_VALUE = "Δε μπορεί να υπολογιστεί ο αντίθετος μη αριθμητικής τιμής.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_EXPONENTIATE_NON_NUMERIC_VALUE = "Δε μπορεί να υπολογιστεί η δύναμη μη αριθμητικής τιμής.";
+
+    public final static String STR_RUNTIME_ERROR_TANGENT_NOT_DEFINED_FOR_THIS_ANGLE = "Η εφαπτομένη δεν ορίζεται για γωνία %1$s μοιρών.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_SQRT_FOR_A_NUMBER_THIS_BIG = "Δε μπορεί να υπολογιστεί η τιμή της Τ_Ρ(Χ) για τόσο μεγάλο Χ: %1$s.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_SQRT_FOR_NEGATIVE_NUMBER = "Δε μπορεί να υπολογιστεί η ρίζα αρνητικού αριθμού: Τ_Ρ(%1$s).";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_LN_FOR_A_NUMBER_THIS_BIG = "Δε μπορεί να υπολογιστεί η τιμή της ΛΟΓ(Χ) για τόσο μεγάλο Χ: %1$s.";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_LN_FOR_NEGATIVE_NUMBER = "Δε μπορεί να υπολογιστεί ο φυσικός λογάριθμος αριθμού <=0: ΛΟΓ(%1$s).";
+    public final static String STR_RUNTIME_ERROR_CANNOT_COMPUTE_EXP_FOR_A_NUMBER_THIS_BIG = "Δε μπορεί να υπολογιστεί η τιμή της Ε(Χ) για τόσο μεγάλο Χ: %1$s.";
+
+    public final static String STR_RUNTIME_ERROR_INVALID_VALUE = "Μη έγκυρη τιμή.";
+    public final static String STR_RUNTIME_ERROR_INVALID_NUMERIC_VALUE = "Μη έγκυρη αριθμητική τιμή: %1$s.";
+    public final static String STR_RUNTIME_ERROR_INVALID_INTEGER_VALUE = "Μη έγκυρη ακέραια τιμή: %1$s.";
+    public final static String STR_RUNTIME_ERROR_INVALID_REAL_VALUE = "Μη έγκυρη πραγματική τιμή: %1$s.";
+    public final static String STR_RUNTIME_ERROR_INVALID_VALUE_FOR_ASSIGNMENT = "Μη έγκυρη τιμή για εκχώρηση: %1$s - χρειάζεται %2$s.";
+    public final static String STR_RUNTIME_ERROR_INVALID_BUILT_IN_FUNCTION = "Ανύπαρκτη ενσωματωμένη συνάρτηση \"%1$s\".";
 
     public static String symbolTypeToTheString(RuntimeSymbol s) {
         if (s instanceof RuntimeVariable) {
