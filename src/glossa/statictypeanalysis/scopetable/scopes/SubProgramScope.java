@@ -92,23 +92,27 @@ public class SubProgramScope extends Scope {
         }
 
         if (parameters.size() == this.formalParameters.size()) {
-            int i=0;
+            int i = 0;
             FormalParameter fp;
             ActualParameter ap;
-            while(i<this.formalParameters.size()){
+            while (i < this.formalParameters.size()) {
                 fp = this.formalParameters.get(i);
                 ap = parameters.get(i);
-                if( StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(fp.getType(), ap.getType()) < 0 ){
+                if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(fp.getType(), ap.getType()) < 0) {
                     result.add(new Integer(i));
-                }else{
-                    if( (fp.isArrayParamFlagSet())  &&  (!ap.getForm().equals(ExpressionResultForm.ARRAY))  ){
-                        result.add(new Integer(i));
+                } else {
+                    if ((fp.getType() != null) && (ap.getType() != null)) {
+                        if ((fp.isArrayParamFlagSet()) && (!ap.getForm().equals(ExpressionResultForm.ARRAY))) {
+                            result.add(new Integer(i));
+                        } else if ((!fp.isArrayParamFlagSet()) && (ap.getForm().equals(ExpressionResultForm.ARRAY))) {
+                            result.add(new Integer(i));
+                        }
                     }
                 }
                 i++;
             }
             return result;
-        }else{
+        } else {
             return null;
         }
     }

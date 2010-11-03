@@ -15,7 +15,7 @@ Antlr 3 is copyright of Terence Parr and it is available under the terms of the 
 The interpreter can now execute all programs that have only a main method (i.e. functions and procedures are not implemented yet).
 
 - Lexer/Parser: Errors/warnings in Greek ✔
-- Static type analysis: Errors/warnings in Greek ✔
+- Static type analysis: Errors/warnings in Greek ⟳
 - Runtime errors/warnings in Greek ⟳
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔

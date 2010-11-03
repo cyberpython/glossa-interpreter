@@ -133,12 +133,10 @@ constAssign
                                     if(inSubprogram && currentScope!=null){
                                         SubProgramScope sc = (SubProgramScope) currentScope;
                                          if((sc instanceof FunctionScope) &&  sc.getSubprogramName().toLowerCase().equals($ID.text.toLowerCase())){
-                                            //TODO: Error message
-                                            msgLog.error(new Point($ID.line, $ID.pos), "\""+$ID.text+"\" - you cannot define a constant with the same name as the function!");
+                                            Messages.constantDeclaredWithSameNameAsFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                         }
                                         if(sc.getFormalParameters().contains(new FormalParameter($ID.line, $ID.pos, $ID.text))){
-                                            //TODO: Error message
-                                            msgLog.error(new Point($ID.line, $ID.pos), "Cannot declare constant \""+$ID.text+"\" - there is a parameter with the same name");
+                                            Messages.parameterWithTheSameNameExistsError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                         }
                                     }
                                 }
@@ -165,8 +163,7 @@ varDeclItem [Type t]
                                                 if(inSubprogram && currentScope!=null){
                                                     SubProgramScope sc = (SubProgramScope) currentScope;
                                                     if( (sc instanceof FunctionScope) &&  sc.getSubprogramName().toLowerCase().equals($ID.text.toLowerCase())){
-                                                        //TODO: Error message
-                                                        msgLog.error(new Point($ID.line, $ID.pos), "\""+$ID.text+"\" - you cannot define a variable with the same name as the function!");
+                                                        Messages.variableDeclaredWithSameNameAsFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                                     }else{
                                                         FormalParameter fp = new FormalParameter($ID.line, $ID.pos, $ID.text);
                                                         List<FormalParameter> paramsList = sc.getFormalParameters();
@@ -180,8 +177,7 @@ varDeclItem [Type t]
                                                 if(inSubprogram && currentScope!=null){
                                                     SubProgramScope sc = (SubProgramScope) currentScope;
                                                     if( (sc instanceof FunctionScope) &&  sc.getSubprogramName().toLowerCase().equals($ID.text.toLowerCase())){
-                                                        //TODO: Error message
-                                                        msgLog.error(new Point($ID.line, $ID.pos), "\""+$ID.text+"\" - you cannot define a variable with the same name as the function!");
+                                                        Messages.variableDeclaredWithSameNameAsFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                                     }else{
                                                         FormalParameter fp = new FormalParameter($ID.line, $ID.pos, $ID.text);
                                                         List<FormalParameter> paramsList = sc.getFormalParameters();
@@ -218,14 +214,12 @@ block	:	^(BLOCK stm*);
 
 stm	:	^(PRINT (expr1=expr)* )     {
                                                 if((currentScope instanceof FunctionScope) && currentScope!=null){
-                                                    //TODO: proper error
-                                                    msgLog.error(new Point($PRINT.line, $PRINT.pos), "You cannot use PRINT statements in functions");
+                                                    msgLog.error(new Point($PRINT.line, $PRINT.pos), Messages.STR_ERROR_CANNOT_USE_PRINT_STM_IN_FUNCTIONS);
                                                 }
                                             }
         |       ^(READ readItem+)           {
                                                 if((currentScope instanceof FunctionScope) && currentScope!=null){
-                                                    //TODO: proper error
-                                                    msgLog.error(new Point($READ.line, $READ.pos), "You cannot use READ statements in functions");
+                                                    msgLog.error(new Point($READ.line, $READ.pos), Messages.STR_ERROR_CANNOT_USE_READ_STM_IN_FUNCTIONS);
                                                 }
                                             }
 	|	^(ASSIGN ID expr)
@@ -327,8 +321,7 @@ function
                   ID returnType formalParamsList [$ID.text, true]
                         {
                             if(BuiltinFunctions.isBuiltinFunctionName($ID.text)){
-                                //TODO: Error message
-                                msgLog.error(new Point($ID.line, $ID.pos), "There is already a built-in function named "+$ID.text);
+                                Messages.redeclarationOfBuiltinFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                             }else{
                                 if(scopeTable.getFunctionScope($ID.text)==null){
                                     if(scopeTable.getProcedureScope($ID.text)==null){
@@ -336,12 +329,10 @@ function
                                         scopeTable.putFunctionScope($ID.text, fs);
                                         currentScope = fs;
                                     }else{
-                                        //TODO: Error message
-                                        msgLog.error(new Point($ID.line, $ID.pos), "There is already a procedure named "+$ID.text);
+                                        Messages.redeclarationOfProcedureError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                     }
                                 }else{
-                                    //TODO: Error message
-                                    msgLog.error(new Point($ID.line, $ID.pos), "There is already a function named "+$ID.text);
+                                    Messages.redeclarationOfFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                 }
                             }
                         }
@@ -370,12 +361,10 @@ formalParamsList [String subprogramName, boolean inFunctionDecl] returns [List<F
                   ( ID  {
                             FormalParameter param = new FormalParameter($ID.line, $ID.pos, $ID.text);
                             if( inFunctionDecl &&  subprogramName.toLowerCase().equals($ID.text.toLowerCase())){
-                                //TODO: Error message
-                                msgLog.error(new Point($ID.line, $ID.pos), "\""+$ID.text+"\" - you cannot define a parameter with the same name as the function!");
+                                Messages.paramDefinedWithSameNameAsFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                             }
                             if(result.contains(param)){
-                                //TODO: Error message
-                                msgLog.error(new Point($ID.line, $ID.pos), "There is already a parameter named "+$ID.text);
+                                Messages.parameterWithTheSameNameExistsError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                             }else{
                                 result.add(param);
                             }

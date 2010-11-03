@@ -27,6 +27,7 @@ import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
+import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
@@ -34,6 +35,7 @@ import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 import glossa.types.Type;
 import java.awt.Point;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -45,23 +47,24 @@ public class StaticTypeAnalyzerUtils {
 
     public static void checkResultsForms(MessageLog msgLog, ExpressionResultForm form1, ExpressionResultForm form2,
                                                             int expr1Line, int expr1Pos,
-                                                            int expr2Line, int expr2Pos
+                                                            int expr2Line, int expr2Pos,
+                                                            String expr1Text, String expr2Text
                                         ) {
         if (ExpressionResultForm.ARRAY.equals(form1)) {
-            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos)); //TODO: include the array name in the message
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos), expr1Text);
         }
 
         if (ExpressionResultForm.ARRAY.equals(form2)) {
-            Messages.arrayUsedInExpressionError(msgLog, new Point(expr2Line, expr2Pos)); //TODO: include the array name in the message
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr2Line, expr2Pos), expr2Text);
         }
     }
 
 
     public static void checkResultForm(MessageLog msgLog, ExpressionResultForm form1,
-                                                            int expr1Line, int expr1Pos
+                                                            int expr1Line, int expr1Pos, String expr1Text
                                         ) {
         if (ExpressionResultForm.ARRAY.equals(form1)) {
-            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos)); //TODO: include the array name in the message
+            Messages.arrayUsedInExpressionError(msgLog, new Point(expr1Line, expr1Pos), expr1Text);
         }
     }
 
@@ -221,11 +224,14 @@ public class StaticTypeAnalyzerUtils {
         return false;
     }
 
-    public static void checkVariableAssignment(MessageLog msgLog, Scope currentScope, String idText, int idLine, int idPosition, Type expressionType, int expressionLine, int expressionPosition, String assignmentOperator, int assignmentLine, int assignmentPosition) {
+    public static void checkVariableAssignment(MessageLog msgLog, Scope currentScope, String idText, int idLine, int idPosition, Type expressionType, ExpressionResultForm expressionForm, String expressionText, int expressionLine, int expressionPosition, String assignmentOperator, int assignmentLine, int assignmentPosition) {
         Symbol s = currentScope.referenceSymbol(msgLog, idText, new Point(idLine, idPosition));
         if (s != null) {
             if (s instanceof Variable) {
                 s.setInitialized(true);
+                if (ExpressionResultForm.ARRAY.equals(expressionForm)) {
+                    Messages.arrayUsedInAssignmentError(msgLog, new Point(expressionLine, expressionPosition), expressionText);
+                }
                 if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(s.getType(), expressionType) < 0) {
                     Messages.incompatibleTypesFoundError(msgLog, s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
                 }
@@ -236,13 +242,16 @@ public class StaticTypeAnalyzerUtils {
     }
 
     public static void checkArrayAssignment(MessageLog msgLog, Scope currentScope, String idText, int idLine, int idPosition,
-            Type expressionType, int expressionLine, int expressionPosition,
+            Type expressionType, ExpressionResultForm expressionForm, String expressionText, int expressionLine, int expressionPosition,
             String assignmentOperator, int assignmentLine, int assignmentPosition,
             int indicesCount, int arraySubscriptLine, int arraySubscriptPosition) {
         Symbol s = currentScope.referenceSymbol(msgLog, idText, new Point(idLine, idPosition));
         if (s != null) {
             if (s instanceof Array) {
                 s.setInitialized(true);
+                if (ExpressionResultForm.ARRAY.equals(expressionForm)) {
+                    Messages.arrayUsedInAssignmentError(msgLog, new Point(expressionLine, expressionPosition), expressionText);
+                }
                 if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(s.getType(), expressionType) < 0) {
                     Messages.incompatibleTypesFoundError(msgLog, s.getType(), new Point(idLine, idPosition), expressionType, new Point(expressionLine, expressionPosition), new Point(assignmentLine, assignmentPosition), assignmentOperator);
                 } else {
@@ -264,9 +273,16 @@ public class StaticTypeAnalyzerUtils {
         if(fs!=null){
             List<Integer> checkResults = fs.checkParameterTypes(params);
             if(checkResults==null){
-                msgLog.error(new Point(idLine, idPosition), functionId+Messages.actualParametersToString(params)+" - Εσφαλμένο πλήθος παραμέτρων: "+params.size());//TODO: proper error message
+                Messages.callToFunctionWithWrongNumOfParamsError(msgLog, new Point(idLine, idPosition), functionId, fs.getFormalParameters(), params.size());
             }else if(checkResults.size() > 0) {
-                msgLog.error(new Point(idLine, idPosition), "Εσφαλμένος τύπος παραμέτρων: "+functionId+Messages.actualParametersToString(params));//TODO: get info for wrong params from params list and checkResults
+                List<FormalParameter> fparams = fs.getFormalParameters();
+                for (Iterator<Integer> it = checkResults.iterator(); it.hasNext();) {
+                    Integer integer = it.next();
+                    int index = integer.intValue();
+                    ActualParameter param = params.get(index);
+                    FormalParameter fp = fparams.get(index);
+                    Messages.callToFunctionWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), integer.intValue(), functionId, fparams, param, fp);
+                }
             }
             return fs.getReturnType();
         }else{
