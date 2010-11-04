@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/FirstPass.g 2010-11-04 16:57:15
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/FirstPass.g 2010-11-04 18:55:22
 
 
 /*
@@ -2559,7 +2559,7 @@ public class FirstPass extends TreeParser {
             {
             match(input,FUNCTION,FOLLOW_FUNCTION_in_function1674); 
 
-
+               int index = input.index()-1;
                                             inSubprogram = true;
                                         
 
@@ -2581,7 +2581,7 @@ public class FirstPass extends TreeParser {
                                         }else{
                                             if(scopeTable.getFunctionScope((ID7!=null?ID7.getText():null))==null){
                                                 if(scopeTable.getProcedureScope((ID7!=null?ID7.getText():null))==null){
-                                                    FunctionScope fs = new FunctionScope(0, (ID7!=null?ID7.getText():null), formalParamsList8, returnType9);
+                                                    FunctionScope fs = new FunctionScope(index, (ID7!=null?ID7.getText():null), formalParamsList8, returnType9);
                                                     scopeTable.putFunctionScope((ID7!=null?ID7.getText():null), fs);
                                                     currentScope = fs;
                                                 }else{
@@ -2636,8 +2636,7 @@ public class FirstPass extends TreeParser {
 
             }
 
-            ((SubProgramScope)currentScope).setIndex(input.index());
-            pushFollow(FOLLOW_block_in_function1757);
+            pushFollow(FOLLOW_block_in_function1755);
             block();
 
             state._fsp--;
@@ -2703,7 +2702,7 @@ public class FirstPass extends TreeParser {
                 case 1 :
                     // src/glossa/grammars/FirstPass.g:346:4: INTEGER
                     {
-                    match(input,INTEGER,FOLLOW_INTEGER_in_returnType1802); 
+                    match(input,INTEGER,FOLLOW_INTEGER_in_returnType1800); 
                     result =Type.INTEGER;
 
                     }
@@ -2711,7 +2710,7 @@ public class FirstPass extends TreeParser {
                 case 2 :
                     // src/glossa/grammars/FirstPass.g:347:4: REAL
                     {
-                    match(input,REAL,FOLLOW_REAL_in_returnType1813); 
+                    match(input,REAL,FOLLOW_REAL_in_returnType1811); 
                     result =Type.REAL;
 
                     }
@@ -2719,7 +2718,7 @@ public class FirstPass extends TreeParser {
                 case 3 :
                     // src/glossa/grammars/FirstPass.g:348:4: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_returnType1827); 
+                    match(input,STRING,FOLLOW_STRING_in_returnType1825); 
                     result =Type.STRING;
 
                     }
@@ -2727,7 +2726,7 @@ public class FirstPass extends TreeParser {
                 case 4 :
                     // src/glossa/grammars/FirstPass.g:349:4: BOOLEAN
                     {
-                    match(input,BOOLEAN,FOLLOW_BOOLEAN_in_returnType1839); 
+                    match(input,BOOLEAN,FOLLOW_BOOLEAN_in_returnType1837); 
                     result =Type.BOOLEAN;
 
                     }
@@ -2757,7 +2756,7 @@ public class FirstPass extends TreeParser {
             // src/glossa/grammars/FirstPass.g:356:2: ( ^( FORMAL_PARAMS ( ID )* ) )
             // src/glossa/grammars/FirstPass.g:356:4: ^( FORMAL_PARAMS ( ID )* )
             {
-            match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList1872); 
+            match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList1870); 
 
 
                                         List<FormalParameter> result = new ArrayList<FormalParameter>();
@@ -2780,7 +2779,7 @@ public class FirstPass extends TreeParser {
                 	case 1 :
                 	    // src/glossa/grammars/FirstPass.g:360:21: ID
                 	    {
-                	    ID10=(CommonTree)match(input,ID,FOLLOW_ID_in_formalParamsList1920); 
+                	    ID10=(CommonTree)match(input,ID,FOLLOW_ID_in_formalParamsList1918); 
 
                 	                                FormalParameter param = new FormalParameter((ID10!=null?ID10.getLine():0), (ID10!=null?ID10.getCharPositionInLine():0), (ID10!=null?ID10.getText():null));
                 	                                if( inFunctionDecl &&  subprogramName.toLowerCase().equals((ID10!=null?ID10.getText():null).toLowerCase())){
@@ -3067,12 +3066,12 @@ public class FirstPass extends TreeParser {
     public static final BitSet FOLLOW_formalParamsList_in_function1701 = new BitSet(new long[]{0x0000000001400010L});
     public static final BitSet FOLLOW_constDecl_in_function1749 = new BitSet(new long[]{0x0000000001400010L});
     public static final BitSet FOLLOW_varDecl_in_function1752 = new BitSet(new long[]{0x0000000001400010L});
-    public static final BitSet FOLLOW_block_in_function1757 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INTEGER_in_returnType1802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_returnType1813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_returnType1827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOLEAN_in_returnType1839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FORMAL_PARAMS_in_formalParamsList1872 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_formalParamsList1920 = new BitSet(new long[]{0x0000000000080008L});
+    public static final BitSet FOLLOW_block_in_function1755 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INTEGER_in_returnType1800 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_returnType1811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_returnType1825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOLEAN_in_returnType1837 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FORMAL_PARAMS_in_formalParamsList1870 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_formalParamsList1918 = new BitSet(new long[]{0x0000000000080008L});
 
 }

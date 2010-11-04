@@ -132,12 +132,30 @@ public class RuntimeArray extends RuntimeSymbol {
         }
     }
 
+
+    private void set(int index, Object value) {
+        if ((value instanceof BigInteger) && this.getType().equals(Type.INTEGER)) {
+            this.values[index] = new BigInteger(((BigInteger)value).toString());
+        } else if ((value instanceof BigDecimal) && this.getType().equals(Type.REAL)) {
+            this.values[index] = new BigDecimal(((BigDecimal)value).toString());
+        } else if ((value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)) {
+            this.values[index] = new Boolean(((Boolean)value).toString());
+        } else if ((value instanceof String) && this.getType().equals(Type.STRING)) {
+            this.values[index] = new String(((String)value).toString());
+        } else {
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_TYPE_FOR_ASSIGNMENT,  InterpreterUtils.toPrintableString(value), this.getType().toString()));
+        }
+    }
+
     public Object[] getValues() {
         return values;
     }
 
-    public Object[] setValues() {
-        return values;
+    public void setValues(Object[] values) { //FIXME: check array size
+        for (int i = 0; i < values.length; i++) {
+            Object value = values[i];
+            this.set(i, value);
+        }
     }
 
     @Override

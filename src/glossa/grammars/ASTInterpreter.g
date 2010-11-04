@@ -140,7 +140,7 @@ import java.util.ArrayList;
 **************************
 */
 
-unit	:	program function*;
+unit	:	program;
 
 program	:	^(  PROGRAM         {
                                         SymbolTable mainProgramSymbolTable = new SymbolTable(this.scopeTable.getMainProgramScope());
@@ -156,7 +156,7 @@ program	:	^(  PROGRAM         {
         ;
 
 declarations
-	:	constDecl? varDecl?
+	:	(constDecl)? (varDecl)?
         ;
 
 constDecl
@@ -174,7 +174,8 @@ constAssign
 
 
 
-varDecl	:	^(VARIABLES varsDecl* )
+varDecl
+        :	^(VARIABLES varsDecl* )
         ;
 
 
@@ -187,8 +188,8 @@ varDeclItem
 	:	ID
 	| 	^(ARRAY ID arrayDimension 
                                 {
-                                    RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
-                                    arr.setDimensions($arrayDimension.value);
+                                        RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                        arr.setDimensions($arrayDimension.value);
                                 }
                  )
         ;
@@ -620,23 +621,23 @@ expr	returns [Object result, Object resultForParam]
                                                             }else{
                                                                 FunctionScope fs = scopeTable.getFunctionScope($ID.text);
                                                                 if(fs!=null){
-                                                                try{
+                                                                //try{
                                                                     FunctionSymbolTable fst = new FunctionSymbolTable(fs, $paramsList.parameters);
                                                                     this.stack.push(fst);
                                                                     this.currentSymbolTable = fst;
 
                                                                     int resumeAt = input.index();
                                                                     input.seek(fst.getIndex());
-                                                                    block();
+                                                                    function(true);
 
                                                                     this.stack.pop();
                                                                     this.currentSymbolTable = this.stack.peek();
                                                                     $result = fst.getReturnValue();
                                                                     input.seek(resumeAt);
 
-                                                                }catch(Exception e){
-                                                                    e.printStackTrace();
-                                                                }
+                                                                //}catch(Exception e){
+                                                                //    e.printStackTrace();
+                                                                //}
                                                                 }else{
                                                                     throw new RuntimeException("Call to unknown function: "+$ID.text);
                                                                 }
@@ -681,8 +682,18 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                 )
         ;
 
-function
-	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? blk=. )
+function [boolean exec]
+	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. )
+                                {
+                                    if(exec){
+                                        FunctionSymbolTable fst = (FunctionSymbolTable)this.currentSymbolTable;
+                                        fst.passParameters();
+                                        int resumeAt = input.index();
+                                        input.seek(blkIndex);
+                                        block();
+                                        input.seek(resumeAt);
+                                    }
+                                }
         ;
 
 returnType

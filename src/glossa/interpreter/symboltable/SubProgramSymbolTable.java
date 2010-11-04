@@ -50,7 +50,6 @@ public class SubProgramSymbolTable extends SymbolTable {
         this.subprogramScope = s;
         this.actualParameters = actualParameters;
         associateFormalParametersWithRuntimeSymbols();
-        passParameters();
     }
 
     public int getIndex() {
@@ -73,7 +72,7 @@ public class SubProgramSymbolTable extends SymbolTable {
         }else{}
     }
 
-    private void passParameters(){
+    public void passParameters(){
         if(this.actualParameters.size()==this.parameters.size()){
             for (int i = 0; i < this.actualParameters.size(); i++) {
                 passParameterByValue(this.parameters.get(i), this.actualParameters.get(i));
@@ -112,19 +111,23 @@ public class SubProgramSymbolTable extends SymbolTable {
     }
 
     protected void copyArrayItems(RuntimeArray original, RuntimeArray copy) {
-        Object[] originals = original.getValues();
-        Object[] copies = original.getValues();
-        if (originals.length != copies.length) {
-            throw new RuntimeException("Array parameter size does not match the formal parameter array size!"); //TODO: proper error message
+        List<Integer> origDims = original.getDimensions();
+        List<Integer> copyDims = copy.getDimensions();
+        if (!origDims.equals(copyDims)) {
+            throw new RuntimeException("Array-parameter dimensions do not match those of the formal parameter. from:"+origDims+" to: "+copyDims); //TODO: proper error message
         } else {
+            Object[] originals = original.getValues();
+            /*Object[] copies = original.getValues();
             for (int i = 0; i < originals.length; i++) {
                 Object object = originals[i];
                 if (  (object instanceof BigInteger) || (object instanceof BigDecimal) || (object instanceof String) || (object instanceof Boolean)  ){
                     copies[i] = object;
-                } else {
+                }
+                else {
                     throw new RuntimeException("Value of unknown type: "+object.toString()); //TODO: proper error message
                 }
-            }
+            }*/
+            copy.setValues(originals);
         }
     }
 }
