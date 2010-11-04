@@ -283,7 +283,7 @@ import java.awt.Point;
 **************************
 */
 
-unit	:	(NEWLINE!)* program function*;
+unit	:	(NEWLINE!)* program (function|procedure)*;
 
 program	:	PROGRAM^ id1=ID (NEWLINE!)+
 		declarations
@@ -327,6 +327,7 @@ stm	:	printStm
         |       forStm
         |       whileStm
         |       repeatStm
+        |	procedureCallStm
         ;
 	
 printStm
@@ -388,6 +389,9 @@ whileStm
 repeatStm
 	:	REPEAT^ (NEWLINE!)+ block UNTIL! expr (NEWLINE!)+;
 
+procedureCallStm
+	:	CALL ID LPAR paramsList RPAR NEWLINE+ -> ^(CALL ID paramsList);
+
 paramsList
 	:	(params+=expr (COMMA params+=expr)*)? -> ^(PARAMS $params*);
 
@@ -431,13 +435,19 @@ arrayItem
 arraySubscript
 	:	LBRACKET (dimension+=expr) (COMMA dimension+=expr)* RBRACKET -> ^(ARRAY_INDEX expr+);
 
-
-function
-	:	FUNCTION id=ID LPAR formalParamsList RPAR COLON ret=returnType NEWLINE+
+procedure
+	:	PROCEDURE ID LPAR formalParamsList RPAR NEWLINE+
 		constDecl? varDecl?
 		BEGIN  NEWLINE+
 		block
-		END_FUNCTION NEWLINE+ -> ^(FUNCTION $id $ret formalParamsList constDecl? varDecl? block);
+		END_PROCEDURE NEWLINE+ -> ^(PROCEDURE ID formalParamsList constDecl? varDecl? block);
+
+function
+	:	FUNCTION ID LPAR formalParamsList RPAR COLON returnType NEWLINE+
+		constDecl? varDecl?
+		BEGIN  NEWLINE+
+		block
+		END_FUNCTION NEWLINE+ -> ^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block);
 
 returnType
 	:	INTEGER

@@ -418,6 +418,25 @@ stm	:	^(  PRINT           {
 
                                             input.seek(resumeAt);
                                     }
+        |       ^(CALL ID paramsList)
+                                    {
+                                        ProcedureScope ps = scopeTable.getProcedureScope($ID.text);
+                                        if(ps!=null){
+                                            ProcedureSymbolTable pst = new ProcedureSymbolTable(ps, $paramsList.parameters);
+                                            this.stack.push(pst);
+                                            this.currentSymbolTable = pst;
+
+                                            int resumeAt = input.index();
+                                            input.seek(pst.getIndex());
+                                            procedure(true);
+                                            this.stack.pop();
+                                            this.currentSymbolTable = this.stack.peek();
+                                            input.seek(resumeAt);
+                                        }else{
+                                            throw new RuntimeException("Call to unknown procedure: "+$ID.text);
+                                        }
+
+                                    }
         ;
 
 readItem
@@ -612,7 +631,7 @@ expr	returns [Object result, Object resultForParam]
                     arraySubscript [arr]
                                             {
                                                 $result = arr.get($arraySubscript.value);
-                                                $resultForParam = $result;
+                                                $resultForParam = new RuntimeArrayItemWrapper(arr, $arraySubscript.value);
                                             }
                 )
         |       ^(FUNC_CALL ID paramsList)          {
@@ -621,7 +640,6 @@ expr	returns [Object result, Object resultForParam]
                                                             }else{
                                                                 FunctionScope fs = scopeTable.getFunctionScope($ID.text);
                                                                 if(fs!=null){
-                                                                //try{
                                                                     FunctionSymbolTable fst = new FunctionSymbolTable(fs, $paramsList.parameters);
                                                                     this.stack.push(fst);
                                                                     this.currentSymbolTable = fst;
@@ -634,10 +652,6 @@ expr	returns [Object result, Object resultForParam]
                                                                     this.currentSymbolTable = this.stack.peek();
                                                                     $result = fst.getReturnValue();
                                                                     input.seek(resumeAt);
-
-                                                                //}catch(Exception e){
-                                                                //    e.printStackTrace();
-                                                                //}
                                                                 }else{
                                                                     throw new RuntimeException("Call to unknown function: "+$ID.text);
                                                                 }
@@ -680,6 +694,21 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                                     $value = result;
                                 }
                 )
+        ;
+
+procedure [boolean exec]
+	:	^(PROCEDURE ID formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. )
+                                {
+                                    if(exec){
+                                        ProcedureSymbolTable pst = (ProcedureSymbolTable)this.currentSymbolTable;
+                                        pst.passParameters();
+                                        int resumeAt = input.index();
+                                        input.seek(blkIndex);
+                                        block();
+                                        pst.restore();
+                                        input.seek(resumeAt);
+                                    }
+                                }
         ;
 
 function [boolean exec]

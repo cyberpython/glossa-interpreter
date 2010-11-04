@@ -123,6 +123,9 @@ public class Messages {
     public final static String STR_ERROR_CALL_TO_BUILTIN_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER = "Ασύμβατος τύπος παραμέτρου για κλήση στην ενσωματωμένη συνάρτηση %1$s(Χ): %2$s.";
     public final static String STR_ERROR_CALL_TO_FUNCTION_WITH_WRONG_NUMBER_OF_PARAMS = "Λάθος πλήθος παραμέτρων για κλήση στην συνάρτηση %1$s%2$s: %3$d.";
     public final static String STR_ERROR_CALL_TO_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER = "Εσφαλμένος τύπος της %1$dης παραμέτρου στην κλήση της συνάρτησης %2$s%3$s: βρέθηκε %4$s ενώ αναμενόταν %5$s.";
+    public final static String STR_ERROR_CALL_TO_UNKNOWN_PROCEDURE = "Κλήση σε άγνωστη διαδικασία: %1$s %2$s.";
+    public final static String STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_NUMBER_OF_PARAMS = "Λάθος πλήθος παραμέτρων για κλήση στη διαδικασία %1$s%2$s: %3$d.";
+    public final static String STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_TYPE_OF_PARAMETER = "Εσφαλμένος τύπος της %1$dης παραμέτρου στην κλήση της διαδικασίας %2$s%3$s: βρέθηκε %4$s ενώ αναμενόταν %5$s.";
 
     public static void programNameMismatchWarning(MessageLog msgLog, Point warningPoint, String falseName) {
         String msg = String.format(STR_WARNING_PROG_NAME_MISMATCH, falseName);
@@ -338,6 +341,21 @@ public class Messages {
 
     public static void callToFunctionWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String functionName, List<FormalParameter> fparams, ActualParameter param, FormalParameter formalParam) {
         String msg = String.format(STR_ERROR_CALL_TO_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, functionName, formalParametersNamesToString(fparams), actualParameterToString(param), formalParameterToString(formalParam));
+        msgLog.error(errorPoint, msg);
+    }
+    
+    public static void callToUnknownProcedureError(MessageLog msgLog, Point errorPoint, String functionName, List<ActualParameter> params) {
+        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_PROCEDURE, functionName, actualParametersTypesToString(params));
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToProcedureWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String functionName, List<FormalParameter> fparams, int numOfParams) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_NUMBER_OF_PARAMS, functionName, formalParametersNamesToString(fparams), numOfParams);
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToProcedureWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String functionName, List<FormalParameter> fparams, ActualParameter param, FormalParameter formalParam) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, functionName, formalParametersNamesToString(fparams), actualParameterToString(param), formalParameterToString(formalParam));
         msgLog.error(errorPoint, msg);
     }
 

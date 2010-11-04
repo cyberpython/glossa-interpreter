@@ -29,6 +29,7 @@ import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
+import glossa.statictypeanalysis.scopetable.scopes.ProcedureScope;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
@@ -288,6 +289,27 @@ public class StaticTypeAnalyzerUtils {
         }else{
             Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, params);
             return null;
+        }
+    }
+
+    public static void checkProcedureCall(MessageLog msgLog, ScopeTable scopes, String procedureName, int idLine, int idPosition, List<ActualParameter> params) {
+        ProcedureScope ps = scopes.getProcedureScope(procedureName);
+        if(ps!=null){
+            List<Integer> checkResults = ps.checkParameterTypes(params);
+            if(checkResults==null){
+                Messages.callToProcedureWithWrongNumOfParamsError(msgLog, new Point(idLine, idPosition), procedureName, ps.getFormalParameters(), params.size());
+            }else if(checkResults.size() > 0) {
+                List<FormalParameter> fparams = ps.getFormalParameters();
+                for (Iterator<Integer> it = checkResults.iterator(); it.hasNext();) {
+                    Integer integer = it.next();
+                    int index = integer.intValue();
+                    ActualParameter param = params.get(index);
+                    FormalParameter fp = fparams.get(index);
+                    Messages.callToProcedureWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), integer.intValue(), procedureName, fparams, param, fp);
+                }
+            }
+        }else{
+            Messages.callToUnknownProcedureError(msgLog, new Point(idLine, idPosition), procedureName, params);
         }
     }
 

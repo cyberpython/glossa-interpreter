@@ -24,13 +24,12 @@
 package glossa.interpreter.symboltable;
 
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
+import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeConstant;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
 import glossa.interpreter.symboltable.symbols.RuntimeVariable;
 import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import glossa.statictypeanalysis.scopetable.scopes.SubProgramScope;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -54,6 +53,18 @@ public class SubProgramSymbolTable extends SymbolTable {
 
     public int getIndex() {
         return subprogramScope.getIndex();
+    }
+
+    public List<Object> getActualParameters() {
+        return actualParameters;
+    }
+
+    public List<RuntimeSymbol> getParameters() {
+        return parameters;
+    }
+
+    public SubProgramScope getSubprogramScope() {
+        return subprogramScope;
     }
 
     private void associateFormalParametersWithRuntimeSymbols() {
@@ -100,6 +111,13 @@ public class SubProgramSymbolTable extends SymbolTable {
                 this.copyArrayItems((RuntimeArray) actualParam, (RuntimeArray) parameter);
             } else {
                 throw new RuntimeException("Cannot assign an array to a variable!"); //TODO: proper error message
+            }
+        } else if (actualParam instanceof RuntimeArrayItemWrapper) { //parameter is an array
+            if (parameter instanceof RuntimeVariable) {
+                RuntimeArrayItemWrapper raiw = (RuntimeArrayItemWrapper) actualParam;
+                ((RuntimeVariable) parameter).setValue(raiw.getArray().get(raiw.getIndex()));
+            } else {
+                throw new RuntimeException("Cannot assign the value of a variable to an array!"); //TODO: proper error message
             }
         } else { //parameter is an expression result
             if (parameter instanceof RuntimeVariable) {

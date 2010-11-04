@@ -109,7 +109,7 @@ import java.awt.Point;
 **************************
 */
 
-unit	:	program (function*) ;
+unit	:	program (function|procedure)* ;
 
 program	:	^(PROGRAM
 		id1=ID      {
@@ -374,6 +374,9 @@ stm	:	^(PRINT (expr1=expr)* )
                                                 }else{
                                                     Messages.whileExpressionMustBeBooleanError(msgLog, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
                                                 }
+                                            }
+        |       ^(CALL ID paramsList)       {
+                                                StaticTypeAnalyzerUtils.checkProcedureCall(msgLog, this.scopeTable, $ID.text, $ID.line, $ID.pos, $paramsList.params);
                                             }
         ;
 
@@ -860,6 +863,39 @@ arraySubscript  returns [int indicesCount]
                                     {   $indicesCount = count;    }
                  );
 
+procedure
+	:	^(PROCEDURE         {
+                                        inSubprogram = true;
+                                    }
+                  ID formalParamsList
+                                    {
+                                        ProcedureScope ps = scopeTable.getProcedureScope($ID.text);
+                                        currentScope = ps;
+                                    }
+                  constDecl?
+                  varDecl?          {
+                                        List<FormalParameter> formalParams = ps.getFormalParameters();
+                                        HashMap<String, Symbol> symbols = ps.getSymbols();
+                                        for(Iterator<FormalParameter> it = formalParams.iterator(); it.hasNext();){
+                                            FormalParameter param = it.next();
+                                            Symbol symbol = symbols.get(param.getName().toLowerCase());
+                                            if (symbol == null) {
+                                                Messages.parameterNotDeclaredError(msgLog, new Point(param.getLine(), param.getPos()), param.getName());
+                                            }else{
+                                                if((symbol instanceof Variable)||(symbol instanceof Array)){
+                                                    symbol.setInitialized(true);
+                                                    param.setSymbol(symbol);
+                                                }else{
+                                                    msgLog.error(new Point(param.getLine(), param.getPos()), Messages.STR_ERROR_PARAMETER_MUST_BE_DECLARED_AS_VAR_OR_ARRAY);
+                                                }
+                                            }
+                                        }
+                                    }
+                  block  )          {
+                                        inSubprogram = false;
+                                        currentScope = null;
+                                    }
+        ;
 
 function
 	:	^(FUNCTION          {

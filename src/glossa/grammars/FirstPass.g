@@ -100,7 +100,7 @@ import java.awt.Point;
 **************************
 */
 
-unit	:	program function*;
+unit	:	program (function|procedure)*;
 
 program	:	^(PROGRAM
 		id1=ID	{
@@ -238,6 +238,7 @@ stm	:	^(PRINT (expr1=expr)* )     {
                   block)
         |       ^(WHILE expr block)
 	|	^(REPEAT block expr)
+        |       ^(CALL ID paramsList)
         ;
 
 readItem:       arrId=ID arraySubscript
@@ -311,7 +312,31 @@ paramsList
 arraySubscript
 	:	^(ARRAY_INDEX (expr)+ );
 
+procedure
+	:	^(PROCEDURE {   int index = input.index()-1;
+                                inSubprogram = true;
+                            }
+                  ID formalParamsList [$ID.text, false]
+                            {
 
+                                if(scopeTable.getFunctionScope($ID.text)==null){
+                                    if(scopeTable.getProcedureScope($ID.text)==null){
+                                        ProcedureScope ps = new ProcedureScope(index, $ID.text, $formalParamsList.formalParams);
+                                        scopeTable.putProcedureScope($ID.text, ps);
+                                        currentScope = ps;
+                                    }else{
+                                        Messages.redeclarationOfProcedureError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
+                                    }
+                                }else{
+                                    Messages.redeclarationOfFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
+                                }
+                        }
+                  constDecl? varDecl? block )
+                        {
+                            inSubprogram = false;
+                            currentScope = null;
+                        }
+        ;
 
 function
 	:	^(FUNCTION  {   int index = input.index()-1;

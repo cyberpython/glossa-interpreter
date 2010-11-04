@@ -12,10 +12,10 @@ Antlr 3 is copyright of Terence Parr and it is available under the terms of the 
 
 ##Status
 
-The interpreter can now execute all programs that have only a main method and functions (i.e. procedures are not implemented yet).
+The interpreter can now execute all programs.
 
 - Lexer/Parser: Errors/warnings in Greek ✔
-- Static type analysis: Errors/warnings in Greek ⟳
+- Static type analysis: Errors/warnings in Greek ✔
 - Runtime errors/warnings in Greek ⟳
 - Lexer/Parser: Main program structure ✔
 - Static type analysis: Main program structure ✔
@@ -24,9 +24,12 @@ The interpreter can now execute all programs that have only a main method and fu
 - Lexer/Parser: Functions ✔
 - Static type analysis: Functions ✔
 - Statement execution: Functions ✔
-- Lexer/Parser: Procedures ✘
-- Static type analysis: Procedures ✘
-- Statement execution: Procedures ✘
+- Lexer/Parser: Procedures ✔
+- Static type analysis: Procedures ✔
+- Statement execution: Procedures ✔
+- Command-line interface ⟳
+- Graphical user interface ✘
+- Run as server (for easier integration with tools written in languages other than Java) ✘
 
 
 ✔ = completed, ⟳ = in progress, ✘ = not implemented yet

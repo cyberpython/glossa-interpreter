@@ -26,6 +26,7 @@ package glossa.statictypeanalysis.scopetable;
 
 import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
+import glossa.statictypeanalysis.scopetable.scopes.ProcedureScope;
 import glossa.statictypeanalysis.scopetable.scopes.Scope;
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -62,12 +63,12 @@ public class ScopeTable {
         return (FunctionScope)this.scopes.get(FUNCTION_SCOPE_PREFIX+scopename.toLowerCase());
     }
 
-    public void putProcedureScope(String scopename, Scope s) {
+    public void putProcedureScope(String scopename, ProcedureScope s) {
         this.scopes.put(PROCEDURE_SCOPE_PREFIX+scopename.toLowerCase(), s);
     }
 
-    public Scope getProcedureScope(String scopename) {
-        return this.scopes.get(PROCEDURE_SCOPE_PREFIX+scopename.toLowerCase());
+    public ProcedureScope getProcedureScope(String scopename) {
+        return (ProcedureScope)this.scopes.get(PROCEDURE_SCOPE_PREFIX+scopename.toLowerCase());
     }
 
     public void setMainProgramScope(MainProgramScope mps){
