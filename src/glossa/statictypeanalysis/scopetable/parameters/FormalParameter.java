@@ -27,6 +27,7 @@ package glossa.statictypeanalysis.scopetable.parameters;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
+import java.awt.Point;
 
 /**
  *
@@ -77,6 +78,11 @@ public class FormalParameter implements Comparable<FormalParameter>{
      */
     public void setPos(int pos) {
         this.pos = pos;
+    }
+
+
+    public Point getPosition(){
+        return new Point(this.line, this.pos);
     }
 
     /**

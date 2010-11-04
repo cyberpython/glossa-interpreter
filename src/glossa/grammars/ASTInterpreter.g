@@ -60,7 +60,9 @@ options{
 package glossa.interpreter;
 
 import glossa.types.*;
+import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
+import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
 import java.awt.Point;
@@ -242,8 +244,18 @@ stm	:	^(  PRINT           {
                                     }
         |       ^(READ readItem+)
 	|	^(ASSIGN ID expr)   {
-                                        RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
-                                        var.setValue($expr.result);
+                                        boolean varAssignment = true;
+                                        if(currentSymbolTable instanceof FunctionSymbolTable){
+                                            FunctionSymbolTable fst = (FunctionSymbolTable)currentSymbolTable;
+                                            if(fst.checkName($ID.text)){
+                                                varAssignment = false;
+                                                fst.setReturnValue($expr.result);
+                                            }
+                                        }
+                                        if(varAssignment){
+                                            RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                            var.setValue($expr.result);
+                                        }
                                     }
         |       ^(ASSIGN ID         {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -380,13 +392,13 @@ stm	:	^(  PRINT           {
                                     {
                                             int resumeAt = input.index();
                                             input.seek(conditionIndex);
-                                            Boolean exprResult = (Boolean)expr();
+                                            Boolean exprResult = (Boolean)expr().result;
 
                                             while(  exprResult.equals(Boolean.TRUE)  ){
                                                 input.seek(blkIndex);
                                                 block();
                                                 input.seek(conditionIndex);
-                                                exprResult = (Boolean)expr();
+                                                exprResult = (Boolean)expr().result;
                                             }
 
                                             input.seek(resumeAt);
@@ -400,7 +412,7 @@ stm	:	^(  PRINT           {
                                                 input.seek(blkIndex);
                                                 block();
                                                 input.seek(conditionIndex);
-                                                exprResult = (Boolean)expr();
+                                                exprResult = (Boolean)expr().result;
                                             }
 
                                             input.seek(resumeAt);
@@ -465,7 +477,7 @@ elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
                                         if($exec){
                                             int resumeAt = input.index();
                                             input.seek(conditionIndex);
-                                            Boolean exprResult = (Boolean)expr();
+                                            Boolean exprResult = (Boolean)expr().result;
 
                                             if(  (exprResult).equals(Boolean.TRUE)  ){
                                                 $proceedToNextCondition = false;
@@ -561,32 +573,35 @@ caseElseBlock [boolean proceed]
 
 
 
-expr	returns [Object result]
-	:	^(AND	a=expr	  b=expr)   {   $result = InterpreterUtils.and($a.result, $b.result);   }
-	|	^(OR	a=expr	  b=expr)   {   $result = InterpreterUtils.or($a.result, $b.result);    }
-	|	^(EQ	a=expr	  b=expr)   {   $result = InterpreterUtils.equals($a.result, $b.result);    }
-	|	^(NEQ	a=expr	  b=expr)   {   $result = InterpreterUtils.notEquals($a.result, $b.result); }
-	|	^(LT	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThan($a.result, $b.result); }
-	|	^(LE	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThanOrEqual($a.result, $b.result);  }
-	|	^(GT	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThan($a.result, $b.result);   }
-	|	^(GE	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThanOrEqual($a.result, $b.result);    }
-	|	^(PLUS	a=expr	  b=expr)   {   $result = InterpreterUtils.add($a.result, $b.result);   }
-	|	^(MINUS	a=expr	  b=expr)   {   $result = InterpreterUtils.subtract($a.result, $b.result);  }
-	|	^(TIMES	a=expr	  b=expr)   {   $result = InterpreterUtils.multiply($a.result, $b.result);  }
-        |	^(DIA	a=expr	  b=expr)   {   $result = InterpreterUtils.divide($a.result, $b.result);    }
-        |	^(DIV	a=expr	  b=expr)   {   $result = InterpreterUtils.intDivide($a.result, $b.result); }
-	|	^(MOD	a=expr	  b=expr)   {   $result = InterpreterUtils.intMod($a.result, $b.result);    }
-	|	^(POW	a=expr	  b=expr)   {   $result = InterpreterUtils.pow($a.result, $b.result);   }
-	|	^(NEG	a=expr)             {   $result = InterpreterUtils.negate($a.result);   }
-	|	^(NOT	a=expr)             {   $result = InterpreterUtils.not($a.result);  }
-	|	CONST_TRUE                  {   $result = Boolean.valueOf(true);    }
-	|	CONST_FALSE                 {   $result = Boolean.valueOf(false);   }
-	|	CONST_STR                   {   $result = new String($CONST_STR.text);  }
-	|	CONST_INT                   {   $result = new BigInteger($CONST_INT.text);  }
-	|	CONST_REAL                  {   $result = new BigDecimal($CONST_REAL.text, InterpreterUtils.getMathContext()); }
+expr	returns [Object result, Object resultForParam]
+	:	^(AND	a=expr	  b=expr)   {   $result = InterpreterUtils.and($a.result, $b.result);   $resultForParam = $result;}
+	|	^(OR	a=expr	  b=expr)   {   $result = InterpreterUtils.or($a.result, $b.result);    $resultForParam = $result;}
+	|	^(EQ	a=expr	  b=expr)   {   $result = InterpreterUtils.equals($a.result, $b.result);    $resultForParam = $result;}
+	|	^(NEQ	a=expr	  b=expr)   {   $result = InterpreterUtils.notEquals($a.result, $b.result); $resultForParam = $result;}
+	|	^(LT	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThan($a.result, $b.result); $resultForParam = $result;}
+	|	^(LE	a=expr	  b=expr)   {   $result = InterpreterUtils.lowerThanOrEqual($a.result, $b.result);  $resultForParam = $result;}
+	|	^(GT	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThan($a.result, $b.result);   $resultForParam = $result;}
+	|	^(GE	a=expr	  b=expr)   {   $result = InterpreterUtils.greaterThanOrEqual($a.result, $b.result);    $resultForParam = $result;}
+	|	^(PLUS	a=expr	  b=expr)   {   $result = InterpreterUtils.add($a.result, $b.result);   $resultForParam = $result;}
+	|	^(MINUS	a=expr	  b=expr)   {   $result = InterpreterUtils.subtract($a.result, $b.result);  $resultForParam = $result;}
+	|	^(TIMES	a=expr	  b=expr)   {   $result = InterpreterUtils.multiply($a.result, $b.result);  $resultForParam = $result;}
+        |	^(DIA	a=expr	  b=expr)   {   $result = InterpreterUtils.divide($a.result, $b.result);    $resultForParam = $result;}
+        |	^(DIV	a=expr	  b=expr)   {   $result = InterpreterUtils.intDivide($a.result, $b.result); $resultForParam = $result;}
+	|	^(MOD	a=expr	  b=expr)   {   $result = InterpreterUtils.intMod($a.result, $b.result);    $resultForParam = $result;}
+	|	^(POW	a=expr	  b=expr)   {   $result = InterpreterUtils.pow($a.result, $b.result);   $resultForParam = $result;}
+	|	^(NEG	a=expr)             {   $result = InterpreterUtils.negate($a.result);   $resultForParam = $result;}
+	|	^(NOT	a=expr)             {   $result = InterpreterUtils.not($a.result);  $resultForParam = $result;}
+	|	CONST_TRUE                  {   $result = Boolean.valueOf(true);    $resultForParam = $result;}
+	|	CONST_FALSE                 {   $result = Boolean.valueOf(false);   $resultForParam = $result;}
+	|	CONST_STR                   {   $result = new String($CONST_STR.text);  $resultForParam = $result;}
+	|	CONST_INT                   {   $result = new BigInteger($CONST_INT.text);  $resultForParam = $result;}
+	|	CONST_REAL                  {   $result = new BigDecimal($CONST_REAL.text, InterpreterUtils.getMathContext()); $resultForParam = $result;}
 	|	ID                          {
-                                                RuntimeSimpleSymbol s = (RuntimeSimpleSymbol)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
-                                                $result = s.getValue();
+                                                RuntimeSymbol s = (RuntimeSymbol)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
+                                                if(s instanceof RuntimeSimpleSymbol){
+                                                    $result = ((RuntimeSimpleSymbol)s).getValue();
+                                                }
+                                                $resultForParam = s;
                                             }
 	|	^(
                     ARRAY_ITEM
@@ -596,16 +611,43 @@ expr	returns [Object result]
                     arraySubscript [arr]
                                             {
                                                 $result = arr.get($arraySubscript.value);
+                                                $resultForParam = $result;
                                             }
                 )
         |       ^(FUNC_CALL ID paramsList)          {
-                                                            $result = InterpreterUtils.execBuiltinFunction($ID.text, $paramsList.parameters.get(0));
+                                                            if(BuiltinFunctions.isBuiltinFunctionName($ID.text)){
+                                                                $result = InterpreterUtils.execBuiltinFunction($ID.text, $paramsList.parameters.get(0));
+                                                            }else{
+                                                                FunctionScope fs = scopeTable.getFunctionScope($ID.text);
+                                                                if(fs!=null){
+                                                                try{
+                                                                    FunctionSymbolTable fst = new FunctionSymbolTable(fs, $paramsList.parameters);
+                                                                    this.stack.push(fst);
+                                                                    this.currentSymbolTable = fst;
+
+                                                                    int resumeAt = input.index();
+                                                                    input.seek(fst.getIndex());
+                                                                    block();
+
+                                                                    this.stack.pop();
+                                                                    this.currentSymbolTable = this.stack.peek();
+                                                                    $result = fst.getReturnValue();
+                                                                    input.seek(resumeAt);
+
+                                                                }catch(Exception e){
+                                                                    e.printStackTrace();
+                                                                }
+                                                                }else{
+                                                                    throw new RuntimeException("Call to unknown function: "+$ID.text);
+                                                                }
+                                                            }
+                                                            $resultForParam = $result;
                                                     }
         ;
 
 paramsList returns [List<Object> parameters]
 	:	^(PARAMS    {List<Object> result = new ArrayList<Object>();}
-                  (expr     {result.add($expr.result);}
+                  (expr     {result.add($expr.resultForParam);}
                   )*
                 )           {$parameters = result;}
         ;
@@ -640,7 +682,7 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
         ;
 
 function
-	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block )
+	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? blk=. )
         ;
 
 returnType

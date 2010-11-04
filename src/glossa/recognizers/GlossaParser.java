@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-11-03 21:13:53
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2010-11-04 16:57:12
 
 /*
  *  The MIT License
@@ -1210,7 +1210,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayDimension, ID
+                    // elements: ID, arrayDimension
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2496,7 +2496,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: elseBlock, elseIfBlock, ifBlock
+            // elements: elseIfBlock, elseBlock, ifBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3366,7 +3366,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expr1, RANGE, expr2
+            // elements: RANGE, expr2, expr1
             // token labels: 
             // rule labels: retval, expr1, expr2
             // token list labels: 
@@ -3500,7 +3500,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, LT
+                    // elements: LT, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5423,7 +5423,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: atom, NOT
+                    // elements: NOT, atom
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6247,7 +6247,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, id, FUNCTION, formalParamsList, ret, varDecl, constDecl
+            // elements: ret, formalParamsList, block, varDecl, constDecl, id, FUNCTION
             // token labels: id
             // rule labels: ret, retval
             // token list labels: 

@@ -314,8 +314,7 @@ arraySubscript
 
 
 function
-	:	{int index=input.index();}
-                ^(FUNCTION  {
+	:	^(FUNCTION  {
                                 inSubprogram = true;
                             }
                   ID returnType formalParamsList [$ID.text, true]
@@ -325,7 +324,7 @@ function
                             }else{
                                 if(scopeTable.getFunctionScope($ID.text)==null){
                                     if(scopeTable.getProcedureScope($ID.text)==null){
-                                        FunctionScope fs = new FunctionScope(index, $ID.text, $formalParamsList.formalParams, $returnType.result);
+                                        FunctionScope fs = new FunctionScope(0, $ID.text, $formalParamsList.formalParams, $returnType.result);
                                         scopeTable.putFunctionScope($ID.text, fs);
                                         currentScope = fs;
                                     }else{
@@ -336,7 +335,7 @@ function
                                 }
                             }
                         }
-                  constDecl? varDecl? block )
+                  constDecl? varDecl? {((SubProgramScope)currentScope).setIndex(input.index());} block )
                     {
                         inSubprogram = false;
                         currentScope = null;

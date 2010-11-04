@@ -74,6 +74,7 @@ public class RuntimeMessages {
     public final static String STR_RUNTIME_ERROR_INVALID_REAL_VALUE = "Μη έγκυρη πραγματική τιμή: %1$s.";
     public final static String STR_RUNTIME_ERROR_INVALID_VALUE_FOR_ASSIGNMENT = "Μη έγκυρη τιμή για εκχώρηση: %1$s - χρειάζεται %2$s.";
     public final static String STR_RUNTIME_ERROR_INVALID_BUILT_IN_FUNCTION = "Ανύπαρκτη ενσωματωμένη συνάρτηση \"%1$s\".";
+    public final static String STR_RUNTIME_ERROR_ARRAY_USED_AS_VALUE = "Ο πίνακας %1$s  δε μπορεί να χρησιμοποιηθεί ως τιμή παραμέτρου για τη συνάρτηση %2$s.";
 
     public static String symbolTypeToTheString(RuntimeSymbol s) {
         if (s instanceof RuntimeVariable) {

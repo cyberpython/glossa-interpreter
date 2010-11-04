@@ -45,9 +45,12 @@ public class SymbolTable {
 
     private HashMap<String, RuntimeSymbol> symbols;
 
+    private String name;
+
     public SymbolTable(Scope s) {
         this.symbols = new HashMap<String, RuntimeSymbol>();
         this.copySymbolsFromScope(s);
+        this.name = "Symbol Table";
     }
 
     private void copySymbolsFromScope(Scope scope) {
@@ -103,4 +106,14 @@ public class SymbolTable {
     public void setSymbols(HashMap<String, RuntimeSymbol> symbols) {
         this.symbols = symbols;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
 }

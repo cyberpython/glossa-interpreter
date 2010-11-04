@@ -113,8 +113,8 @@ public class Interpreter {
                 msgLog.printWarnings();
 
                 if (errors == 0) {
-                    scopeTable.printScopes(out);
-                    /*try {
+                    //scopeTable.printScopes(out);
+                    try {
                         Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
                         nodes.reset();
                         ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
@@ -127,7 +127,7 @@ public class Interpreter {
 
                     } catch (RuntimeException re) {
                         err.println(re.getMessage());
-                    }*/
+                    }
                 }
 
             }else{

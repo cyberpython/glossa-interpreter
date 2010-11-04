@@ -24,6 +24,9 @@
 package glossa.interpreter;
 
 import glossa.builtinfunctions.BuiltinFunctions;
+import glossa.interpreter.symboltable.symbols.RuntimeArray;
+import glossa.interpreter.symboltable.symbols.RuntimeSimpleSymbol;
+import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
 import glossa.messages.RuntimeMessages;
 import glossa.types.Type;
 import java.io.PrintStream;
@@ -511,8 +514,18 @@ public class InterpreterUtils {
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Built-in functions">
 
-    public static Object execBuiltinFunction(String functionName, Object parameter){
+    public static Object execBuiltinFunction(String functionName, Object param){
         if(BuiltinFunctions.isBuiltinFunctionName(functionName)){
+            Object parameter;
+            if(param instanceof RuntimeSymbol){
+                if(param instanceof RuntimeSimpleSymbol){
+                    parameter = ((RuntimeSimpleSymbol)param).getValue();
+                }else{
+                    throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_USED_AS_VALUE, ((RuntimeArray)param).getName(), functionName));
+                }
+            }else{
+                parameter = param;
+            }
             String funcId = functionName.toUpperCase();
             if (funcId.equals("ΗΜ")){
                 return sin(parameter);

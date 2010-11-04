@@ -132,6 +132,14 @@ public class RuntimeArray extends RuntimeSymbol {
         }
     }
 
+    public Object[] getValues() {
+        return values;
+    }
+
+    public Object[] setValues() {
+        return values;
+    }
+
     @Override
     public void setType(Type type) {
         super.setType(type);
