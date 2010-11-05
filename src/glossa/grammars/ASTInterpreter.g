@@ -73,13 +73,20 @@ import java.io.PrintStream;
 import java.lang.StringBuilder;
 import java.math.BigInteger;
 import java.math.BigDecimal;
-import java.util.Deque;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.List;
 
 }
 
 
 @members{
+
+        private final static String STACK_PUSHED   = "__stack_push__";
+        private final static String STACK_POPPED = "__stack_pop__";
+
         private ScopeTable scopeTable;
         private Deque<SymbolTable> stack;
 
@@ -89,6 +96,13 @@ import java.util.ArrayList;
         private PrintStream err;
         private InputStream in;
         private BufferedReader reader;
+
+        private List<ASTInterpreterListener> listeners;
+
+        public void init(){
+            this.listeners = new ArrayList<ASTInterpreterListener>();
+            this.stack = new ArrayDeque<SymbolTable>();
+        }
 
         public void setScopeTable(ScopeTable s){
             this.scopeTable = s;
@@ -131,6 +145,25 @@ import java.util.ArrayList;
             return this.in;
         }
 
+        public void addListener(ASTInterpreterListener listener){
+            this.listeners.add(listener);
+        }
+
+        public void removeListener(ASTInterpreterListener listener){
+            this.listeners.remove(listener);
+        }
+
+        private void notifyListeners(String msg, Object... params){
+            for (Iterator<ASTInterpreterListener> it = listeners.iterator(); it.hasNext();) {
+                ASTInterpreterListener listener = it.next();
+                if(STACK_PUSHED.equals(msg)){
+                    listener.stackPushed((SymbolTable)params[0]);
+                }else if(STACK_POPPED.equals(msg)){
+                    listener.stackPopped();
+                }
+            }
+        }
+
 }
 
 
@@ -144,14 +177,19 @@ unit	:	program;
 
 program	:	^(  PROGRAM         {
                                         SymbolTable mainProgramSymbolTable = new SymbolTable(this.scopeTable.getMainProgramScope());
+                                        mainProgramSymbolTable.setName(this.scopeTable.getMainProgramScope().getProgramName());
                                         this.stack.push(mainProgramSymbolTable);
                                         this.currentSymbolTable = mainProgramSymbolTable;
+                                        notifyListeners(STACK_PUSHED, mainProgramSymbolTable);
                                     }
                     id1=ID
                     declarations
                     block
                     (id2=ID)?
-                )
+                )                   {
+                                        this.stack.pop();
+                                        notifyListeners(STACK_POPPED);
+                                    }
                     
         ;
 
@@ -425,12 +463,14 @@ stm	:	^(  PRINT           {
                                             ProcedureSymbolTable pst = new ProcedureSymbolTable(ps, $paramsList.parameters);
                                             this.stack.push(pst);
                                             this.currentSymbolTable = pst;
+                                            notifyListeners(STACK_PUSHED, pst);
 
                                             int resumeAt = input.index();
                                             input.seek(pst.getIndex());
                                             procedure(true);
                                             this.stack.pop();
                                             this.currentSymbolTable = this.stack.peek();
+                                            notifyListeners(STACK_POPPED);
                                             input.seek(resumeAt);
                                         }else{
                                             throw new RuntimeException("Call to unknown procedure: "+$ID.text);
@@ -643,6 +683,7 @@ expr	returns [Object result, Object resultForParam]
                                                                     FunctionSymbolTable fst = new FunctionSymbolTable(fs, $paramsList.parameters);
                                                                     this.stack.push(fst);
                                                                     this.currentSymbolTable = fst;
+                                                                    notifyListeners(STACK_PUSHED, fst);
 
                                                                     int resumeAt = input.index();
                                                                     input.seek(fst.getIndex());
@@ -650,6 +691,7 @@ expr	returns [Object result, Object resultForParam]
 
                                                                     this.stack.pop();
                                                                     this.currentSymbolTable = this.stack.peek();
+                                                                    notifyListeners(STACK_POPPED);
                                                                     $result = fst.getReturnValue();
                                                                     input.seek(resumeAt);
                                                                 }else{

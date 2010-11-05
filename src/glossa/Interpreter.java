@@ -24,6 +24,7 @@
 package glossa;
 
 import glossa.interpreter.ASTInterpreter;
+import glossa.interpreter.ASTInterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
 import glossa.messages.MessageLog;
 import glossa.recognizers.GlossaParser;
@@ -48,7 +49,7 @@ import org.antlr.runtime.tree.CommonTree;
  *
  * @author cyberpython
  */
-public class Interpreter {
+public class Interpreter implements ASTInterpreterListener {
 
     private PrintStream out;
     private PrintStream err;
@@ -66,90 +67,106 @@ public class Interpreter {
         this.in = in;
     }
 
-    private static Charset getInputCharset(String filename) throws IOException{
-            String[] charsetsToTest = {"UTF-8", "windows-1253", "ISO-8859-7"};
-            File file = new File(filename);
-            Charset charset = new CharsetDetector().detectCharset(file, charsetsToTest);
-            if(charset==null){
-                charset = Charset.forName("UTF-8");
-            }
-            return charset;
+    private static Charset getInputCharset(String filename) throws IOException {
+        String[] charsetsToTest = {"UTF-8", "windows-1253", "ISO-8859-7"};
+        File file = new File(filename);
+        Charset charset = new CharsetDetector().detectCharset(file, charsetsToTest);
+        if (charset == null) {
+            charset = Charset.forName("UTF-8");
+        }
+        return charset;
     }
 
-    public void run(String filename) throws Exception {
-
-        MessageLog msgLog = new MessageLog(err, out);
-        Charset charset  = getInputCharset(filename);
-
-        GlossaParser.unit_return r = null;
-
+    public void run(String filename) {
         try {
-            ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
-            GlossaLexer lexer = new GlossaLexer(input);
-            lexer.setMessageLog(msgLog);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            GlossaParser parser = new GlossaParser(tokens);
-            parser.setMessageLog(msgLog);
-            r = parser.unit();
-        } catch (RuntimeException re) {
-        }
+            MessageLog msgLog = new MessageLog(err, out);
+            Charset charset = getInputCharset(filename);
 
-        int errors = msgLog.getNumberOfErrors();
-        msgLog.printErrors();
+            GlossaParser.unit_return r = null;
 
+            try {
+                ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
+                GlossaLexer lexer = new GlossaLexer(input);
+                lexer.setMessageLog(msgLog);
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                GlossaParser parser = new GlossaParser(tokens);
+                parser.setMessageLog(msgLog);
+                r = parser.unit();
+            } catch (RuntimeException re) {
+            }
 
-
-        if (errors == 0) {
-
-            ScopeTable scopeTable = new ScopeTable();
-
-            // WALK RESULTING TREE
-            CommonTree t = (CommonTree) r.getTree(); // get tree from parser
-            // Create a tree node stream from resulting tree
-            BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-            FirstPass fp = new FirstPass(nodes);
-            fp.setScopeTable(scopeTable);
-            fp.setMessageLog(msgLog);
-            fp.unit();                 // launch at start rule prog
-
-            errors = msgLog.getNumberOfErrors();
+            int errors = msgLog.getNumberOfErrors();
             msgLog.printErrors();
 
 
+
             if (errors == 0) {
-                nodes.reset();
-                StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
-                staticTypeAnalyzer.setScopeTable(scopeTable);
-                staticTypeAnalyzer.setMessageLog(msgLog);
-                staticTypeAnalyzer.unit();                 // launch at start rule prog
-                
+
+                ScopeTable scopeTable = new ScopeTable();
+
+                // WALK RESULTING TREE
+                CommonTree t = (CommonTree) r.getTree(); // get tree from parser
+                // Create a tree node stream from resulting tree
+                BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
+                FirstPass fp = new FirstPass(nodes);
+                fp.setScopeTable(scopeTable);
+                fp.setMessageLog(msgLog);
+                fp.unit();                 // launch at start rule prog
+
                 errors = msgLog.getNumberOfErrors();
                 msgLog.printErrors();
-                msgLog.printWarnings();
+
 
                 if (errors == 0) {
-                    //scopeTable.printScopes(out);
-                    try {
-                        Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
-                        nodes.reset();
-                        ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
-                        interpreter.setScopeTable(scopeTable);
-                        interpreter.setStack(stack);
-                        interpreter.setOutputStream(out);
-                        interpreter.setErrorStream(err);
-                        interpreter.setInputStream(in);
-                        interpreter.unit();                 // launch at start rule prog
+                    nodes.reset();
+                    StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
+                    staticTypeAnalyzer.setScopeTable(scopeTable);
+                    staticTypeAnalyzer.setMessageLog(msgLog);
+                    staticTypeAnalyzer.unit();                 // launch at start rule prog
 
-                    } catch (RuntimeException re) {
-                        err.println(re.getMessage());
+                    errors = msgLog.getNumberOfErrors();
+                    msgLog.printErrors();
+                    msgLog.printWarnings();
+
+                    if (errors == 0) {
+                        //scopeTable.printScopes(out);
+                        try {
+                            Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
+                            nodes.reset();
+                            ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
+                            interpreter.init();
+                            interpreter.addListener(this);
+                            interpreter.setScopeTable(scopeTable);
+                            interpreter.setOutputStream(out);
+                            interpreter.setErrorStream(err);
+                            interpreter.setInputStream(in);
+                            interpreter.unit();                 // launch at start rule prog
+
+                        } catch (RuntimeException re) {
+                            err.println(re.getMessage());
+                        }
                     }
-                }
 
-            }else{
+                } else {
+                    msgLog.printWarnings();
+                }
+            } else {
                 msgLog.printWarnings();
             }
-        }else{
-            msgLog.printWarnings();
+        } catch (Exception e) {
+            System.err.println(e.getLocalizedMessage());
         }
+    }
+
+    public void stackPushed(SymbolTable newSymbolTable) {
+        out.println();
+        out.println("Pushed on stack: " + newSymbolTable.getName());
+        out.println();
+    }
+
+    public void stackPopped() {
+        out.println();
+        out.println("Stack popped!");
+        out.println();
     }
 }

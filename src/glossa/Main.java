@@ -21,12 +21,10 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package glossa;
 
 import java.io.File;
 import java.io.PrintStream;
-
 
 /**
  *
@@ -46,37 +44,31 @@ public class Main {
      */
     public static void main(String[] args) {
         Interpreter inter = new Interpreter();
-        try{
-            String filepath = parseArgs(args, System.out, System.err);
-            if(filepath!=null){
-                inter.run(args[0]);
-            }
-        }catch(Exception e){
-            System.err.println(e.getLocalizedMessage());
+        String filepath = parseArgs(args, System.out, System.err);
+        if (filepath != null) {
+            inter.run(args[0]);
         }
     }
 
-    private static String parseArgs(String args[], PrintStream out, PrintStream err){
-        if(args.length!=1){
+    private static String parseArgs(String args[], PrintStream out, PrintStream err) {
+        if (args.length != 1) {
             err.println(String.format(USAGE_STRING, JAR_NAME));
             return null;
-        }else{
-            if(args[0].toLowerCase().equals(VERSION_SWITCH)){
+        } else {
+            if (args[0].toLowerCase().equals(VERSION_SWITCH)) {
                 out.println(APP_NAME);
                 out.println();
                 out.println(COPYRIGHT_NOTICE);
                 return null;
-            }else{
+            } else {
                 File f = new File(args[0]);
-                if(f.exists()){
+                if (f.exists()) {
                     return f.getAbsolutePath();
-                }else{
+                } else {
                     err.println(String.format(FILE_NOT_FOUND_ERROR, f.getAbsolutePath()));
                     return null;
                 }
             }
         }
     }
-
 }
-
