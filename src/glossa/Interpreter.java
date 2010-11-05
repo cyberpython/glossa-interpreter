@@ -31,8 +31,12 @@ import glossa.recognizers.GlossaLexer;
 import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
+import glossa.utils.CharsetDetector;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import org.antlr.runtime.ANTLRFileStream;
@@ -62,14 +66,25 @@ public class Interpreter {
         this.in = in;
     }
 
-    public void run(String[] args) throws Exception {
+    private static Charset getInputCharset(String filename) throws IOException{
+            String[] charsetsToTest = {"UTF-8", "windows-1253", "ISO-8859-7"};
+            File file = new File(filename);
+            Charset charset = new CharsetDetector().detectCharset(file, charsetsToTest);
+            if(charset==null){
+                charset = Charset.forName("UTF-8");
+            }
+            return charset;
+    }
+
+    public void run(String filename) throws Exception {
 
         MessageLog msgLog = new MessageLog(err, out);
+        Charset charset  = getInputCharset(filename);
 
         GlossaParser.unit_return r = null;
 
         try {
-            ANTLRFileStream input = new ANTLRFileStream(args[0]);
+            ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
             GlossaLexer lexer = new GlossaLexer(input);
             lexer.setMessageLog(msgLog);
             CommonTokenStream tokens = new CommonTokenStream(lexer);

@@ -27,7 +27,7 @@ The interpreter can now execute all programs.
 - Lexer/Parser: Procedures ✔
 - Static type analysis: Procedures ✔
 - Statement execution: Procedures ✔
-- Command-line interface ⟳
+- Command-line interface ✔
 - Graphical user interface ✘
 - Run as server (for easier integration with tools written in languages other than Java) ✘
 
