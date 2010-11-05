@@ -36,7 +36,7 @@ public class Main {
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ\nΈκδοση: 0.2";
     private static final String COPYRIGHT_NOTICE = "Copyright © 2010 Γεώργιος Μίγδος <cyberpython@gmail.com>.";
-    private static final String USAGE_STRING = "Τρόπος χρήσης:\n\tjava -jar %1$s <όνομα_αρχείου_εισόδου>\nπ.χ.\n\tjava -jar %1$s /home/user/Documents/Hello.txt";
+    private static final String USAGE_STRING = "Τρόπος χρήσης:\n\tjava -jar %1$s <όνομα_αρχείου_πηγαίου_κώδικα>\nπ.χ.\n\tjava -jar %1$s /home/user/Documents/Hello_World.gls";
     private static final String JAR_NAME = "glossa-interpreter.jar";
     private static final String VERSION_SWITCH = "-version";
     private static final String FILE_NOT_FOUND_ERROR = "Το αρχείο \"%1$s\" δε βρέθηκε!";
@@ -79,3 +79,4 @@ public class Main {
     }
 
 }
+

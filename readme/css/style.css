@@ -31,9 +31,9 @@ p:first-of-type{
 	line-height:1;
 }
 
+
 a {
 	color:inherit;
-	font-weight:bold;
 	font-style:italic;
 	text-decoration:none;
 	border-bottom:1px dotted;
@@ -42,11 +42,6 @@ a {
 a:hover {
 	border:none;
 	text-decoration:underline;
-}
-
-a[href$=".pdf"]::before {
-	content:url(images/pdf.png);
-	margin-right:4px;
 }
 
 
@@ -59,6 +54,7 @@ img {
 	margin:10px auto 10px;
 	padding:6px;
 	border:1px solid #ccc;
+	display: block;
 }
 
 pre {

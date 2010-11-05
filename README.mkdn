@@ -12,7 +12,7 @@ Antlr 3 is copyright of Terence Parr and it is available under the terms of the 
 
 ##Status
 
-The interpreter can now execute all programs.
+The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
 - Lexer/Parser: Errors/warnings in Greek ✔
 - Static type analysis: Errors/warnings in Greek ✔
@@ -28,7 +28,8 @@ The interpreter can now execute all programs.
 - Static type analysis: Procedures ✔
 - Statement execution: Procedures ✔
 - Command-line interface ✔
-- Graphical user interface ✘
+- Step-by-step execution ✘
+- Graphical user interface (e.g runtime stack inspector) ✘
 - Run as server (for easier integration with tools written in languages other than Java) ✘
 
 
@@ -65,6 +66,12 @@ e.g.:
 ![Screenshot][screenshot]
 [screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
 
+
+Note for Windows users: If the Windows command line (cmd.exe) does not display correctly the interpreter output, you should change the command-line font from "Raster fonts" to "Lucida Console" and give the following command:
+
+    chcp 1253
+    
+After that all output should be displayed correctly.
 
 ##Samples
 
