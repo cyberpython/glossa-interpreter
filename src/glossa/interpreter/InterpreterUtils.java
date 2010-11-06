@@ -634,7 +634,12 @@ public class InterpreterUtils {
         if(o==null){
             return RuntimeMessages.UNDEFINED_VALUE;
         }else if (o instanceof String) {
-            return ((String) o).substring(1, ((String) o).length() - 1);
+            String s = (String)o;
+            if(s.length()>2){
+                return ((String) o).substring(1, ((String) o).length() - 1);
+            }else{
+                return s;
+            }
         }else if(o instanceof Boolean){
             if(((Boolean) o).booleanValue()==true){
                 return RuntimeMessages.CONST_STR_TRUE;

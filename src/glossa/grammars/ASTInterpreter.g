@@ -25,6 +25,7 @@
 tree grammar ASTInterpreter;
 
 options{
+        superClass=RunnableTreeParser;
 	tokenVocab = Glossa; //read token types from Expr.tokens file
 	ASTLabelType=CommonTree;
 }
@@ -70,22 +71,21 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.lang.StringBuilder;
+import java.util.ArrayDeque;
 import java.math.BigInteger;
 import java.math.BigDecimal;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 }
 
 
 @members{
 
-        private final static String STACK_PUSHED   = "__stack_push__";
-        private final static String STACK_POPPED = "__stack_pop__";
+        private static final String COMMAND_EXECUTED = "__cmd_exec__";
+        private static final String STACK_PUSHED = "__stack_pushed__";
+        private static final String STACK_POPPED = "__stack_popped__";
 
         private ScopeTable scopeTable;
         private Deque<SymbolTable> stack;
@@ -97,11 +97,58 @@ import java.util.List;
         private InputStream in;
         private BufferedReader reader;
 
-        private List<ASTInterpreterListener> listeners;
+        List<ASTInterpreterListener> listeners;
+
+        private boolean halt;
 
         public void init(){
-            this.listeners = new ArrayList<ASTInterpreterListener>();
             this.stack = new ArrayDeque<SymbolTable>();
+            this.listeners = new ArrayList<ASTInterpreterListener>();
+            this.halt=false;
+        }
+
+        public void addListener(ASTInterpreterListener listener){
+            this.listeners.add(listener);
+        }
+
+        public boolean removeListener(ASTInterpreterListener listener){
+            return this.listeners.remove(listener);
+        }
+
+        public void notifyListeners(String msg, Object... params){
+            for (Iterator<ASTInterpreterListener> it = listeners.iterator(); it.hasNext();) {
+                ASTInterpreterListener listener = it.next();
+                if(COMMAND_EXECUTED.equals(msg)){
+                    listener.commandExecuted(this, (Boolean)params[0]);
+                }else if(STACK_PUSHED.equals(msg)){
+                    listener.stackPushed((SymbolTable)params[0]);
+                }else if(STACK_POPPED.equals(msg)){
+                    listener.stackPopped();
+                }
+            }
+        }
+
+        public void run(){
+            try{
+                unit();
+                out.println("Execution finished.");//TODO proper termination message
+            }catch(RecognitionException re){
+                err.println(re.getMessage());
+            }catch (RuntimeException re) {
+                err.println(re.getMessage());
+            }
+        }
+
+        public void pause(){
+            this.halt = true;
+        }
+
+         public void stop(){
+            throw new RuntimeException("Execution terminated by user.");//TODO: proper termination-cause-by-user message
+        }
+
+        public void resume(){
+            this.halt = false;
         }
 
         public void setScopeTable(ScopeTable s){
@@ -145,21 +192,14 @@ import java.util.List;
             return this.in;
         }
 
-        public void addListener(ASTInterpreterListener listener){
-            this.listeners.add(listener);
-        }
 
-        public void removeListener(ASTInterpreterListener listener){
-            this.listeners.remove(listener);
-        }
-
-        private void notifyListeners(String msg, Object... params){
-            for (Iterator<ASTInterpreterListener> it = listeners.iterator(); it.hasNext();) {
-                ASTInterpreterListener listener = it.next();
-                if(STACK_PUSHED.equals(msg)){
-                    listener.stackPushed((SymbolTable)params[0]);
-                }else if(STACK_POPPED.equals(msg)){
-                    listener.stackPopped();
+        public void stmExecuted(boolean wasPrintStatement){
+            this.halt=true;
+            this.notifyListeners(COMMAND_EXECUTED, Boolean.valueOf(wasPrintStatement));
+            while(halt){
+                try{
+                    Thread.sleep(500);
+                }catch(InterruptedException ie){
                 }
             }
         }
@@ -176,8 +216,7 @@ import java.util.List;
 unit	:	program;
 
 program	:	^(  PROGRAM         {
-                                        SymbolTable mainProgramSymbolTable = new SymbolTable(this.scopeTable.getMainProgramScope());
-                                        mainProgramSymbolTable.setName(this.scopeTable.getMainProgramScope().getProgramName());
+                                        SymbolTable mainProgramSymbolTable = new MainProgramSymbolTable(this.scopeTable.getMainProgramScope());
                                         this.stack.push(mainProgramSymbolTable);
                                         this.currentSymbolTable = mainProgramSymbolTable;
                                         notifyListeners(STACK_PUSHED, mainProgramSymbolTable);
@@ -259,7 +298,7 @@ varType
 	|	REALS
         ;
 
-block	:	^(BLOCK stm*)
+block	:	^(BLOCK stm *)
         ;
 
 
@@ -280,8 +319,9 @@ stm	:	^(  PRINT           {
                                         }else{
                                             this.out.println(outputString);
                                         }
+                                        stmExecuted(true);
                                     }
-        |       ^(READ readItem+)
+        |       ^(READ readItem+)   {   stmExecuted(false);  }
 	|	^(ASSIGN ID expr)   {
                                         boolean varAssignment = true;
                                         if(currentSymbolTable instanceof FunctionSymbolTable){
@@ -295,6 +335,7 @@ stm	:	^(  PRINT           {
                                             RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                             var.setValue($expr.result);
                                         }
+                                        stmExecuted(false);
                                     }
         |       ^(ASSIGN ID         {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -303,6 +344,7 @@ stm	:	^(  PRINT           {
                   expr
                  )                  {
                                         arr.set($arraySubscript.value, $expr.result);
+                                        stmExecuted(false);
                                     }
         |       ^(IFNODE 
                   ifBlock           {
@@ -314,6 +356,9 @@ stm	:	^(  PRINT           {
                                     }
                   )*
                   (elseBlock [proceed])?
+                                    {
+                                        stmExecuted(false);
+                                    }
                 )
         |       ^(SWITCH 
                   expr              {
@@ -325,7 +370,9 @@ stm	:	^(  PRINT           {
                                     }
                   )*
                   (caseElseBlock [proceed])?
-                 )
+                 )                  {
+                                        stmExecuted(false);
+                                    }
         |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=.)
                                     {
                                         int resumeAt = input.index();
@@ -373,6 +420,7 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
+                                        stmExecuted(false);
                                     }
         |       ^(FOR ID            {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -426,6 +474,7 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
+                                        stmExecuted(false);
                                     }
         |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=.)
                                     {
@@ -441,6 +490,7 @@ stm	:	^(  PRINT           {
                                             }
 
                                             input.seek(resumeAt);
+                                            stmExecuted(false);
                                     }
 	|	^(REPEAT {int blkIndex = input.index()+1;} blk=. {int conditionIndex = input.index();} condition=.)
                                     {
@@ -455,6 +505,7 @@ stm	:	^(  PRINT           {
                                             }
 
                                             input.seek(resumeAt);
+                                            stmExecuted(false);
                                     }
         |       ^(CALL ID paramsList)
                                     {
@@ -475,7 +526,7 @@ stm	:	^(  PRINT           {
                                         }else{
                                             throw new RuntimeException("Call to unknown procedure: "+$ID.text);
                                         }
-
+                                        stmExecuted(false);
                                     }
         ;
 

@@ -33,13 +33,18 @@ import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.utils.CharsetDetector;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.Iterator;
+import java.util.List;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.BufferedTreeNodeStream;
@@ -49,22 +54,48 @@ import org.antlr.runtime.tree.CommonTree;
  *
  * @author cyberpython
  */
-public class Interpreter implements ASTInterpreterListener {
+public class Interpreter implements Runnable, ASTInterpreterListener {
 
+    private static final String COMMAND_EXECUTED = "__cmd_exec__";
+    private static final String STACK_PUSHED = "__stack_pushed__";
+    private static final String STACK_POPPED = "__stack_popped__";
     private PrintStream out;
     private PrintStream err;
     private InputStream in;
+    private File sourceCodeFile;
+    private List<InterpreterListener> listeners;
 
-    public Interpreter() {
-        this.out = System.out;
-        this.err = System.err;
-        this.in = System.in;
+    public Interpreter(File src) {
+        this(src, System.out, System.err, System.in);
     }
 
-    public Interpreter(PrintStream out, PrintStream err, InputStream in) {
+    public Interpreter(File src, PrintStream out, PrintStream err, InputStream in) {
+        this.sourceCodeFile = src;
         this.out = out;
         this.err = err;
         this.in = in;
+        this.listeners = new ArrayList<InterpreterListener>();
+    }
+
+    public void addListener(InterpreterListener listener) {
+        this.listeners.add(listener);
+    }
+
+    public boolean removeListener(InterpreterListener listener) {
+        return this.listeners.remove(listener);
+    }
+
+    public void notifyListeners(String msg, Object... params) {
+        for (Iterator<InterpreterListener> it = listeners.iterator(); it.hasNext();) {
+            InterpreterListener listener = it.next();
+            if (COMMAND_EXECUTED.equals(msg)) {
+                listener.commandExecuted();
+            } else if (STACK_PUSHED.equals(msg)) {
+                listener.stackPushed((SymbolTable) params[0]);
+            } else if (STACK_POPPED.equals(msg)) {
+                listener.stackPopped();
+            }
+        }
     }
 
     private static Charset getInputCharset(String filename) throws IOException {
@@ -77,7 +108,8 @@ public class Interpreter implements ASTInterpreterListener {
         return charset;
     }
 
-    public void run(String filename) {
+    public void run() {
+        String filename = sourceCodeFile.getAbsolutePath();
         try {
             MessageLog msgLog = new MessageLog(err, out);
             Charset charset = getInputCharset(filename);
@@ -130,21 +162,19 @@ public class Interpreter implements ASTInterpreterListener {
 
                     if (errors == 0) {
                         //scopeTable.printScopes(out);
-                        try {
-                            Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
-                            nodes.reset();
-                            ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
-                            interpreter.init();
-                            interpreter.addListener(this);
-                            interpreter.setScopeTable(scopeTable);
-                            interpreter.setOutputStream(out);
-                            interpreter.setErrorStream(err);
-                            interpreter.setInputStream(in);
-                            interpreter.unit();                 // launch at start rule prog
+                        Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
+                        nodes.reset();
+                        ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
+                        interpreter.init();
+                        interpreter.setScopeTable(scopeTable);
+                        interpreter.setOutputStream(out);
+                        interpreter.setErrorStream(err);
+                        interpreter.setInputStream(in);
+                        //interpreter.unit();                 // launch at start rule prog
+                        interpreter.addListener(this);
+                        Thread thread = new Thread(interpreter);
 
-                        } catch (RuntimeException re) {
-                            err.println(re.getMessage());
-                        }
+                        thread.start();
                     }
 
                 } else {
@@ -159,14 +189,36 @@ public class Interpreter implements ASTInterpreterListener {
     }
 
     public void stackPushed(SymbolTable newSymbolTable) {
+        notifyListeners(STACK_PUSHED, newSymbolTable);
         out.println();
         out.println("Pushed on stack: " + newSymbolTable.getName());
         out.println();
     }
 
     public void stackPopped() {
+        notifyListeners(STACK_POPPED);
         out.println();
         out.println("Stack popped!");
         out.println();
+    }
+
+    public void commandExecuted(ASTInterpreter sender, boolean wasPrintStatement) {
+        notifyListeners(COMMAND_EXECUTED);
+        if (!wasPrintStatement) {
+            out.print("Continue? ");
+            BufferedReader r = new BufferedReader(new InputStreamReader(in));
+            try {
+                String s = r.readLine();
+                if (s.equals("")) {
+                    sender.resume();
+                } else {
+                    sender.stop();
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        } else {
+            sender.resume();
+        }
     }
 }

@@ -46,6 +46,7 @@ public class SubProgramSymbolTable extends SymbolTable {
 
     public SubProgramSymbolTable(SubProgramScope s, List<Object> actualParameters) {
         super(s);
+        this.setName(s.getSubprogramName());
         this.subprogramScope = s;
         this.actualParameters = actualParameters;
         associateFormalParametersWithRuntimeSymbols();

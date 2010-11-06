@@ -43,14 +43,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Interpreter inter = new Interpreter();
-        String filepath = parseArgs(args, System.out, System.err);
-        if (filepath != null) {
-            inter.run(args[0]);
+        File f = parseArgs(args, System.out, System.err);
+        if (f != null) {
+            Interpreter inter = new Interpreter(f);
+            Thread t = new Thread(inter);
+            t.start();
         }
     }
 
-    private static String parseArgs(String args[], PrintStream out, PrintStream err) {
+    private static File parseArgs(String args[], PrintStream out, PrintStream err) {
         if (args.length != 1) {
             err.println(String.format(USAGE_STRING, JAR_NAME));
             return null;
@@ -63,7 +64,7 @@ public class Main {
             } else {
                 File f = new File(args[0]);
                 if (f.exists()) {
-                    return f.getAbsolutePath();
+                    return f;
                 } else {
                     err.println(String.format(FILE_NOT_FOUND_ERROR, f.getAbsolutePath()));
                     return null;
