@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter;
+package glossa.interpreter.core;
 
 import glossa.interpreter.symboltable.SymbolTable;
 

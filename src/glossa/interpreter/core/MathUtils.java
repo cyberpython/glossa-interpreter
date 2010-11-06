@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package glossa.interpreter;
+package glossa.interpreter.core;
 
 import glossa.messages.RuntimeMessages;
 import java.math.BigDecimal;

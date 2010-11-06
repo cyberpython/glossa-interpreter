@@ -21,10 +21,10 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package glossa;
+package glossa.interpreter;
 
-import glossa.interpreter.ASTInterpreter;
-import glossa.interpreter.ASTInterpreterListener;
+import glossa.interpreter.core.ASTInterpreter;
+import glossa.interpreter.core.ASTInterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
 import glossa.messages.MessageLog;
 import glossa.recognizers.GlossaParser;
@@ -65,6 +65,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     private File sourceCodeFile;
     private List<InterpreterListener> listeners;
 
+    private ASTInterpreter interpreter;
+
     public Interpreter(File src) {
         this(src, System.out, System.err, System.in);
     }
@@ -75,6 +77,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         this.err = err;
         this.in = in;
         this.listeners = new ArrayList<InterpreterListener>();
+        this.interpreter = null;
     }
 
     public void addListener(InterpreterListener listener) {
@@ -89,7 +92,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         for (Iterator<InterpreterListener> it = listeners.iterator(); it.hasNext();) {
             InterpreterListener listener = it.next();
             if (COMMAND_EXECUTED.equals(msg)) {
-                listener.commandExecuted();
+                listener.commandExecuted(this, (Boolean)params[0]);
             } else if (STACK_PUSHED.equals(msg)) {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
@@ -108,7 +111,38 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         return charset;
     }
 
+    public void resume(){
+        if(this.interpreter!=null){
+                this.interpreter.resume();
+        }
+    }
+
+    public void pause(){
+        if(this.interpreter!=null){
+            if(!interpreter.hasFinished()){
+                this.interpreter.pause();
+            }
+        }
+    }
+
+    public void stop(){
+        if(this.interpreter!=null){
+            if(!interpreter.hasFinished()){
+                this.interpreter.stop();
+                while(!interpreter.hasFinished()){
+                    try{
+                        Thread.sleep(200);
+                    }catch(InterruptedException ie){
+                    }
+                }
+            }
+        }
+    }
+
     public void run() {
+
+        stop();
+
         String filename = sourceCodeFile.getAbsolutePath();
         try {
             MessageLog msgLog = new MessageLog(err, out);
@@ -163,18 +197,14 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                     if (errors == 0) {
                         //scopeTable.printScopes(out);
                         Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
-                        nodes.reset();
-                        ASTInterpreter interpreter = new ASTInterpreter(nodes); // create a tree parser
-                        interpreter.init();
-                        interpreter.setScopeTable(scopeTable);
-                        interpreter.setOutputStream(out);
-                        interpreter.setErrorStream(err);
-                        interpreter.setInputStream(in);
-                        //interpreter.unit();                 // launch at start rule prog
+                        this.interpreter = new ASTInterpreter(nodes); // create a tree parser
+                        interpreter.init(scopeTable, out, err, in);
                         interpreter.addListener(this);
                         Thread thread = new Thread(interpreter);
-
                         thread.start();
+                        while(thread.isAlive()){
+                            Thread.sleep(200);
+                        }
                     }
 
                 } else {
@@ -190,35 +220,13 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
 
     public void stackPushed(SymbolTable newSymbolTable) {
         notifyListeners(STACK_PUSHED, newSymbolTable);
-        out.println();
-        out.println("Pushed on stack: " + newSymbolTable.getName());
-        out.println();
     }
 
     public void stackPopped() {
         notifyListeners(STACK_POPPED);
-        out.println();
-        out.println("Stack popped!");
-        out.println();
     }
 
     public void commandExecuted(ASTInterpreter sender, boolean wasPrintStatement) {
-        notifyListeners(COMMAND_EXECUTED);
-        if (!wasPrintStatement) {
-            out.print("Continue? ");
-            BufferedReader r = new BufferedReader(new InputStreamReader(in));
-            try {
-                String s = r.readLine();
-                if (s.equals("")) {
-                    sender.resume();
-                } else {
-                    sender.stop();
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        } else {
-            sender.resume();
-        }
+        notifyListeners(COMMAND_EXECUTED, Boolean.valueOf(wasPrintStatement));
     }
 }

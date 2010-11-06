@@ -58,7 +58,7 @@ options{
  */
 
 
-package glossa.interpreter;
+package glossa.interpreter.core;
 
 import glossa.types.*;
 import glossa.builtinfunctions.BuiltinFunctions;
@@ -100,11 +100,21 @@ import java.util.Iterator;
         List<ASTInterpreterListener> listeners;
 
         private boolean halt;
+        private boolean finished;
 
-        public void init(){
+        public void init(ScopeTable s, PrintStream out, PrintStream err, InputStream in){
+            input.reset();
+
             this.stack = new ArrayDeque<SymbolTable>();
+            this.scopeTable = s;
             this.listeners = new ArrayList<ASTInterpreterListener>();
             this.halt=false;
+            this.finished = false;
+
+            this.out = out;
+            this.err = err;
+            this.in = in;
+            this.reader = new BufferedReader(new InputStreamReader(in));
         }
 
         public void addListener(ASTInterpreterListener listener){
@@ -129,6 +139,7 @@ import java.util.Iterator;
         }
 
         public void run(){
+            this.finished = false;
             try{
                 unit();
                 out.println("Execution finished.");//TODO proper termination message
@@ -137,6 +148,7 @@ import java.util.Iterator;
             }catch (RuntimeException re) {
                 err.println(re.getMessage());
             }
+            this.finished = true;
         }
 
         public void pause(){
@@ -149,6 +161,10 @@ import java.util.Iterator;
 
         public void resume(){
             this.halt = false;
+        }
+
+        public boolean hasFinished(){
+            return this.finished;
         }
 
         public void setScopeTable(ScopeTable s){

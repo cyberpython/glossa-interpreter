@@ -23,7 +23,7 @@
  */
 package glossa.interpreter.symboltable.symbols;
 
-import glossa.interpreter.InterpreterUtils;
+import glossa.interpreter.core.InterpreterUtils;
 import glossa.messages.Messages;
 import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.symbols.Array;

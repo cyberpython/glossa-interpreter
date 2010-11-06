@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter;
+package glossa.interpreter.core;
 
 import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.tree.TreeNodeStream;

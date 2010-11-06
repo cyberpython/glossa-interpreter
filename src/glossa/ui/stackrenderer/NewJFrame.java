@@ -27,10 +27,11 @@
  *
  * Created on Nov 5, 2010, 7:17:49 PM
  */
-
 package glossa.ui.stackrenderer;
 
-import glossa.Interpreter;
+import glossa.interpreter.Interpreter;
+import glossa.interpreter.InterpreterListener;
+import glossa.interpreter.symboltable.SymbolTable;
 import java.io.File;
 import javax.swing.UIManager;
 
@@ -38,19 +39,42 @@ import javax.swing.UIManager;
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class NewJFrame extends javax.swing.JFrame{
+public class NewJFrame extends javax.swing.JFrame implements InterpreterListener {
+
+    private boolean ready;
+    private Interpreter interpreter;
 
     /** Creates new form NewJFrame */
     public NewJFrame() {
+        ready = false;
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
         }
         initComponents();
+        interpreter = new Interpreter(new File("/home/cyberpython/programming/Java/netbeans projects/Glossa/src/glossa/samples/GenericTest.gls"));
+        interpreter.addListener(jGlossaStackPanel1.getStackRenderer());
+        interpreter.addListener(this);
     }
 
-    public StackRenderer getStackRenderer(){
+    public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
+        ready = true;
+        jButton1.setEnabled(true);
+    }
+
+    public void stackPopped() {
+    }
+
+    public void stackPushed(SymbolTable newSymbolTable) {
+    }
+
+    public StackRenderer getStackRenderer() {
         return this.jGlossaStackPanel1.getStackRenderer();
+    }
+
+    public void runInterpreter(){
+        Thread t = new Thread(interpreter);
+        t.start();
     }
 
     /** This method is called from within the constructor to
@@ -65,6 +89,8 @@ public class NewJFrame extends javax.swing.JFrame{
         jSplitPane1 = new javax.swing.JSplitPane();
         jGlossaStackPanel1 = new glossa.ui.stackrenderer.JGlossaStackPanel();
         jPanel1 = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,15 +98,31 @@ public class NewJFrame extends javax.swing.JFrame{
         jSplitPane1.setResizeWeight(1.0);
         jSplitPane1.setRightComponent(jGlossaStackPanel1);
 
+        jToolBar1.setRollover(true);
+
+        jButton1.setText("Next step");
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -99,26 +141,32 @@ public class NewJFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(ready){
+            ready = false;
+            jButton1.setEnabled(false);
+            interpreter.resume();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 NewJFrame frame = new NewJFrame();
                 frame.setVisible(true);
-                Interpreter inter = new Interpreter(new File("/home/cyberpython/programming/Java/netbeans projects/Glossa/src/glossa/samples/GenericTest.gls"));
-                inter.addListener(frame.getStackRenderer());
-                Thread t= new Thread(inter);
-                t.start();
+                frame.runInterpreter();
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private glossa.ui.stackrenderer.JGlossaStackPanel jGlossaStackPanel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
-
 }

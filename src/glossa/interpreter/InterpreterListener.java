@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package glossa;
+package glossa.interpreter;
 
 import glossa.interpreter.symboltable.SymbolTable;
 
@@ -33,5 +33,5 @@ import glossa.interpreter.symboltable.SymbolTable;
 public interface  InterpreterListener {
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
-    public void commandExecuted();
+    public void commandExecuted(Interpreter sender, boolean wasPrintStatement);
 }

@@ -24,7 +24,8 @@
 
 package glossa.ui.stackrenderer;
 
-import glossa.InterpreterListener;
+import glossa.interpreter.Interpreter;
+import glossa.interpreter.InterpreterListener;
 import glossa.interpreter.symboltable.FunctionSymbolTable;
 import glossa.interpreter.symboltable.MainProgramSymbolTable;
 import glossa.interpreter.symboltable.ProcedureSymbolTable;
@@ -92,7 +93,7 @@ public class StackRenderer extends JPanel implements InterpreterListener{
     }
 
 
-    public void commandExecuted() {
+    public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
         JPanel p = this.stack.peek();
         if(p!=null){
             if(p instanceof JFunctionRenderer){

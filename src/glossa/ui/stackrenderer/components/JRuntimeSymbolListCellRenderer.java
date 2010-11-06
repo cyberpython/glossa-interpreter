@@ -30,7 +30,7 @@
 
 package glossa.ui.stackrenderer.components;
 
-import glossa.interpreter.InterpreterUtils;
+import glossa.interpreter.core.InterpreterUtils;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeSimpleSymbol;
 import glossa.messages.Messages;

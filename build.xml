@@ -61,7 +61,7 @@
                 <include name="StaticTypeAnalyzer.java"/>
             </fileset>
         </move>
-        <move todir="${src.dir}/glossa/interpreter">
+        <move todir="${src.dir}/glossa/interpreter/core">
             <fileset dir="${src.dir}/glossa/grammars">
                 <include name="ASTInterpreter.java"/>
             </fileset>

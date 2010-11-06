@@ -23,6 +23,9 @@
  */
 package glossa;
 
+import glossa.interpreter.Interpreter;
+import glossa.interpreter.InterpreterListener;
+import glossa.ui.CLI;
 import java.io.File;
 import java.io.PrintStream;
 
@@ -30,7 +33,7 @@ import java.io.PrintStream;
  *
  * @author cyberpython
  */
-public class Main {
+public class Main{
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ\nΈκδοση: 0.2";
     private static final String COPYRIGHT_NOTICE = "Copyright © 2010 Γεώργιος Μίγδος <cyberpython@gmail.com>.";
@@ -45,9 +48,8 @@ public class Main {
     public static void main(String[] args) {
         File f = parseArgs(args, System.out, System.err);
         if (f != null) {
-            Interpreter inter = new Interpreter(f);
-            Thread t = new Thread(inter);
-            t.start();
+            CLI cli = new CLI();
+            cli.execute(f);
         }
     }
 
