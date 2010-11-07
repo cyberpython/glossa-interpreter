@@ -8,7 +8,9 @@ Copyright (c) Georgios Migdos
 
 Source code is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
-Antlr 3 is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
+[Antlr 3](http://www.antlr.org/) is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
+
+[jOpt Simple](http://jopt-simple.sourceforge.net/) is copyright of Paul R. Holser and it is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 ##Status
 
