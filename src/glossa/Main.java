@@ -23,55 +23,102 @@
  */
 package glossa;
 
-import glossa.interpreter.Interpreter;
-import glossa.interpreter.InterpreterListener;
 import glossa.ui.CLI;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
+import java.util.List;
+import joptsimple.OptionException;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 /**
  *
  * @author cyberpython
  */
-public class Main{
+public class Main {
 
-    private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ\nΈκδοση: 0.2";
-    private static final String COPYRIGHT_NOTICE = "Copyright © 2010 Γεώργιος Μίγδος <cyberpython@gmail.com>.";
-    private static final String USAGE_STRING = "Τρόπος χρήσης:\n\tjava -jar %1$s <όνομα_αρχείου_πηγαίου_κώδικα>\nπ.χ.\n\tjava -jar %1$s /home/user/Documents/Hello_World.gls";
-    private static final String JAR_NAME = "glossa-interpreter.jar";
-    private static final String VERSION_SWITCH = "-version";
-    private static final String FILE_NOT_FOUND_ERROR = "Το αρχείο \"%1$s\" δε βρέθηκε!";
+    private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
+    private static final String VERSION = "Έκδοση: 0.2";
+    private static final String FEATURE_NOT_IMPLEMENTED = "Αυτή η λειτουργία δεν έχει υλοποιηθεί.";
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File f = parseArgs(args, System.out, System.err);
-        if (f != null) {
-            CLI cli = new CLI(false);
-            cli.execute(f, new File("/home/cyberpython/test_input.txt"));
+
+        String[] arguments = args;
+
+        OptionParser parser = new OptionParser("hVgif:");
+
+        try {
+            OptionSet options = parser.parse(arguments);
+            if (options.has("h") || options.has("V")) {
+                if (options.has("V")) {
+                    printVersionInfo(System.out);
+                    printLicense(System.out);
+                }
+                if (options.has("h")) {
+                    printHelpMessage(System.out);
+                }
+            } else {
+                List<String> remainingArgs = options.nonOptionArguments();
+                if (remainingArgs.size() > 0) {
+                    if (options.has("g")) {
+                        //TODO: GUI
+                        System.out.println(FEATURE_NOT_IMPLEMENTED);
+                    } else {
+                        boolean interactive = false;
+                        File inputFile = null;
+                        if (options.has("i")) {
+                            interactive = true;
+                        }
+                        if (options.has("f")) {
+                            inputFile = new File((String) options.valueOf("f"));
+                        }
+                        File sourceCodeFile = new File(remainingArgs.get(0));
+                        CLI cli = new CLI(interactive);
+                        if (inputFile != null) {
+                            cli.execute(sourceCodeFile, inputFile);
+                        } else {
+                            cli.execute(sourceCodeFile);
+                        }
+                    }
+                } else {
+                    printHelpMessage(System.out);
+                }
+            }
+        } catch (OptionException uoe) {
+            printHelpMessage(System.out);
         }
     }
 
-    private static File parseArgs(String args[], PrintStream out, PrintStream err) {
-        if (args.length != 1) {
-            err.println(String.format(USAGE_STRING, JAR_NAME));
-            return null;
-        } else {
-            if (args[0].toLowerCase().equals(VERSION_SWITCH)) {
-                out.println(APP_NAME);
-                out.println();
-                out.println(COPYRIGHT_NOTICE);
-                return null;
-            } else {
-                File f = new File(args[0]);
-                if (f.exists()) {
-                    return f;
-                } else {
-                    err.println(String.format(FILE_NOT_FOUND_ERROR, f.getAbsolutePath()));
-                    return null;
-                }
-            }
+    private static void printHelpMessage(PrintStream out) {
+        printFile("/glossa/resources/usage.txt", out);
+    }
+
+    private static void printLicense(PrintStream out) {
+        printFile("/glossa/resources/license.txt", out);
+    }
+
+    private static void printFile(String fileURL, PrintStream out) {
+        BufferedReader r = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream(fileURL), Charset.forName("UTF-8")));
+        String line = "";
+        try{
+        while( (line=r.readLine())!=null ){
+            out.println(line);
+        }
+        }catch(IOException ioe){
         }
     }
+
+    private static void printVersionInfo(PrintStream out) {
+        out.println(APP_NAME);
+        out.println(VERSION);
+        out.println();
+    }
+
 }

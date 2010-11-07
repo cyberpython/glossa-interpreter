@@ -25,7 +25,7 @@
 package glossa.interpreter.symboltable;
 
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
-import glossa.statictypeanalysis.scopetable.scopes.Scope;
+import java.io.PrintStream;
 
 /**
  *
@@ -36,6 +36,12 @@ public class MainProgramSymbolTable extends SymbolTable{
     public MainProgramSymbolTable(MainProgramScope s) {
         super(s);
         this.setName(s.getProgramName());
+    }
+
+    @Override
+    public void print(PrintStream out){
+        out.println("ΠΡΟΓΡΑΜΜΑ: "+this.getName());//TODO:message
+        super.print(out);
     }
 
 }

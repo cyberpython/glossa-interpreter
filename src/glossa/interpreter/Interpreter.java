@@ -64,7 +64,6 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     private InputStream in;
     private File sourceCodeFile;
     private List<InterpreterListener> listeners;
-
     private ASTInterpreter interpreter;
 
     public Interpreter(File src) {
@@ -92,7 +91,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         for (Iterator<InterpreterListener> it = listeners.iterator(); it.hasNext();) {
             InterpreterListener listener = it.next();
             if (COMMAND_EXECUTED.equals(msg)) {
-                listener.commandExecuted(this, (Boolean)params[0]);
+                listener.commandExecuted(this, (Boolean) params[0]);
             } else if (STACK_PUSHED.equals(msg)) {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
@@ -111,28 +110,28 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         return charset;
     }
 
-    public void resume(){
-        if(this.interpreter!=null){
-                this.interpreter.resume();
+    public void resume() {
+        if (this.interpreter != null) {
+            this.interpreter.resume();
         }
     }
 
-    public void pause(){
-        if(this.interpreter!=null){
-            if(!interpreter.hasFinished()){
+    public void pause() {
+        if (this.interpreter != null) {
+            if (!interpreter.hasFinished()) {
                 this.interpreter.pause();
             }
         }
     }
 
-    public void stop(){
-        if(this.interpreter!=null){
-            if(!interpreter.hasFinished()){
+    public void stop() {
+        if (this.interpreter != null) {
+            if (!interpreter.hasFinished()) {
                 this.interpreter.stop();
-                while(!interpreter.hasFinished()){
-                    try{
+                while (!interpreter.hasFinished()) {
+                    try {
                         Thread.sleep(200);
-                    }catch(InterruptedException ie){
+                    } catch (InterruptedException ie) {
                     }
                 }
             }
@@ -144,77 +143,98 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         stop();
 
         String filename = sourceCodeFile.getAbsolutePath();
+        MessageLog msgLog = new MessageLog(err, out);
+
+        Charset charset;
+        try{
+            charset= getInputCharset(filename);
+        }catch(IOException ioe){
+            charset = Charset.defaultCharset();
+        }
+
         try {
-            MessageLog msgLog = new MessageLog(err, out);
-            Charset charset = getInputCharset(filename);
-
-            GlossaParser.unit_return r = null;
-
+            ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
+            
             try {
-                ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
-                GlossaLexer lexer = new GlossaLexer(input);
-                lexer.setMessageLog(msgLog);
-                CommonTokenStream tokens = new CommonTokenStream(lexer);
-                GlossaParser parser = new GlossaParser(tokens);
-                parser.setMessageLog(msgLog);
-                r = parser.unit();
-            } catch (RuntimeException re) {
-            }
+                GlossaParser.unit_return r = null;
 
-            int errors = msgLog.getNumberOfErrors();
-            msgLog.printErrors();
+                try {
+                    GlossaLexer lexer = new GlossaLexer(input);
+                    lexer.setMessageLog(msgLog);
+                    CommonTokenStream tokens = new CommonTokenStream(lexer);
+                    GlossaParser parser = new GlossaParser(tokens);
+                    parser.setMessageLog(msgLog);
+                    r = parser.unit();
+                } catch (RuntimeException re) {
+                }
 
-
-
-            if (errors == 0) {
-
-                ScopeTable scopeTable = new ScopeTable();
-
-                // WALK RESULTING TREE
-                CommonTree t = (CommonTree) r.getTree(); // get tree from parser
-                // Create a tree node stream from resulting tree
-                BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-                FirstPass fp = new FirstPass(nodes);
-                fp.setScopeTable(scopeTable);
-                fp.setMessageLog(msgLog);
-                fp.unit();                 // launch at start rule prog
-
-                errors = msgLog.getNumberOfErrors();
+                int errors = msgLog.getNumberOfErrors();
                 msgLog.printErrors();
 
 
+
                 if (errors == 0) {
-                    nodes.reset();
-                    StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
-                    staticTypeAnalyzer.setScopeTable(scopeTable);
-                    staticTypeAnalyzer.setMessageLog(msgLog);
-                    staticTypeAnalyzer.unit();                 // launch at start rule prog
+
+                    ScopeTable scopeTable = new ScopeTable();
+
+                    // WALK RESULTING TREE
+                    CommonTree t = (CommonTree) r.getTree(); // get tree from parser
+                    // Create a tree node stream from resulting tree
+                    BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
+                    FirstPass fp = new FirstPass(nodes);
+                    fp.setScopeTable(scopeTable);
+                    fp.setMessageLog(msgLog);
+                    fp.unit();                 // launch at start rule prog
 
                     errors = msgLog.getNumberOfErrors();
                     msgLog.printErrors();
-                    msgLog.printWarnings();
+
 
                     if (errors == 0) {
-                        //scopeTable.printScopes(out);
-                        Deque<SymbolTable> stack = new ArrayDeque<SymbolTable>();
-                        this.interpreter = new ASTInterpreter(nodes); // create a tree parser
-                        interpreter.init(scopeTable, out, err, in);
-                        interpreter.addListener(this);
-                        Thread thread = new Thread(interpreter);
-                        thread.start();
-                        while(thread.isAlive()){
-                            Thread.sleep(200);
-                        }
-                    }
+                        nodes.reset();
+                        StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
+                        staticTypeAnalyzer.setScopeTable(scopeTable);
+                        staticTypeAnalyzer.setMessageLog(msgLog);
+                        staticTypeAnalyzer.unit();                 // launch at start rule prog
 
+                        errors = msgLog.getNumberOfErrors();
+                        msgLog.printErrors();
+                        msgLog.printWarnings();
+
+                        if (errors == 0) {
+                            //scopeTable.printScopes(out);
+                            this.interpreter = new ASTInterpreter(nodes); // create a tree parser
+                            interpreter.init(scopeTable, out, err, in);
+                            interpreter.addListener(this);
+                            Thread thread = new Thread(interpreter);
+                            thread.start();
+                            while (thread.isAlive()) {
+                                Thread.sleep(200);
+                            }
+                        }
+
+                    } else {
+                        msgLog.printWarnings();
+                    }
                 } else {
                     msgLog.printWarnings();
                 }
-            } else {
-                msgLog.printWarnings();
+            } catch (Exception e) {
+                System.err.println(e.getLocalizedMessage());
             }
-        } catch (Exception e) {
-            System.err.println(e.getLocalizedMessage());
+        } catch (IOException ioe) {
+            err.println(String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));//TODO: message
+        }
+    }
+
+    public void printRuntimeStack(){
+        if(this.interpreter!=null){
+            out.println();
+            Deque<SymbolTable> stack = this.interpreter.getStack();
+            for (Iterator<SymbolTable> it = stack.iterator(); it.hasNext();) {
+                SymbolTable symbolTable = it.next();
+                symbolTable.print(out);
+            }
         }
     }
 

@@ -136,16 +136,6 @@ public class SubProgramSymbolTable extends SymbolTable {
             throw new RuntimeException("Array-parameter dimensions do not match those of the formal parameter. from:"+origDims+" to: "+copyDims); //TODO: proper error message
         } else {
             Object[] originals = original.getValues();
-            /*Object[] copies = original.getValues();
-            for (int i = 0; i < originals.length; i++) {
-                Object object = originals[i];
-                if (  (object instanceof BigInteger) || (object instanceof BigDecimal) || (object instanceof String) || (object instanceof Boolean)  ){
-                    copies[i] = object;
-                }
-                else {
-                    throw new RuntimeException("Value of unknown type: "+object.toString()); //TODO: proper error message
-                }
-            }*/
             copy.setValues(originals);
         }
     }

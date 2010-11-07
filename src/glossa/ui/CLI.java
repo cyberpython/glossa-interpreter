@@ -41,10 +41,18 @@ import java.io.PrintStream;
  */
 public class CLI implements InterpreterListener {
 
+    private static final String FILE_NOT_FOUND_ERROR = "Το αρχείο \"%1$s\" δε βρέθηκε!";
+
     private boolean stepByStep;
+    private PrintStream out;
+    private PrintStream err;
+    private InputStream in;
 
     public CLI(boolean executeStepByStep) {
         this.stepByStep = executeStepByStep;
+        this.out = System.out;
+        this.err = System.err;
+        this.in = System.in;
     }
 
     public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
@@ -67,21 +75,27 @@ public class CLI implements InterpreterListener {
     }
 
     private void checkUserInputAfterStep(Interpreter sender) {
-        System.out.print("Continue? (Enter=Yes / Anything+Enter=No)");
-        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+        out.print("Συνέχεια; (Enter=ΝΑΙ / Σ+Enter=Εμφάνιση Στοίβας / Οτιδήποτε άλλο+Enter=ΤΕΡΜΑΤΙΣΜΟΣ): ");//TODO: message
+        BufferedReader r = new BufferedReader(new InputStreamReader(in));
         try {
             String s = r.readLine();
             if (s.equals("")) {
+                sender.resume();
+            }else if (s.toUpperCase().equals("Σ")) {
+                sender.printRuntimeStack();
                 sender.resume();
             } else {
                 sender.stop();
             }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            err.println(ioe.getLocalizedMessage());//TODO: message
         }
     }
 
     public void execute(File sourceCodeFile, PrintStream out, PrintStream err, InputStream in) {
+        this.out = out;
+        this.err = err;
+        this.in = in;
         Interpreter inter = new Interpreter(sourceCodeFile, out, err, in);
         inter.addListener(this);
         Thread t = new Thread(inter);
@@ -92,7 +106,7 @@ public class CLI implements InterpreterListener {
         try {
             this.execute(sourceCodeFile, System.out, System.err, new FileInputStream(inputFile));
         } catch (FileNotFoundException fnfe) {
-            System.err.println(fnfe.getLocalizedMessage());
+            System.err.println(String.format(FILE_NOT_FOUND_ERROR, inputFile.getAbsolutePath()));
         }
     }
 

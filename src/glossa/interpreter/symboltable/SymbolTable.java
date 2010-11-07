@@ -33,6 +33,7 @@ import glossa.statictypeanalysis.scopetable.symbols.Constant;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 import java.awt.Point;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -113,6 +114,18 @@ public class SymbolTable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void print(PrintStream out){
+        for (Iterator<String> keys = this.symbols.keySet().iterator(); keys.hasNext();) {
+            String key = keys.next();
+            RuntimeSymbol s = symbols.get(key);
+            if(s!=null){
+                out.println(s.toString());
+            }
+        }
+        out.println("----------------------------------------");
+        out.println();
     }
 
     

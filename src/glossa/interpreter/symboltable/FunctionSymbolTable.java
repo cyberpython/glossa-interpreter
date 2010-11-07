@@ -24,7 +24,12 @@
 
 package glossa.interpreter.symboltable;
 
+import glossa.interpreter.core.InterpreterUtils;
+import glossa.messages.Messages;
+import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.SubProgramScope;
+import glossa.types.Type;
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -60,6 +65,14 @@ public class FunctionSymbolTable extends SubProgramSymbolTable{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void print(PrintStream out){
+        out.println("ΣΥΝΑΡΤΗΣΗ: "+this.getName()+" : "+Messages.typeToString(((FunctionScope)this.getSubprogramScope()).getReturnType()));//TODO:message
+        out.println("ΠΑΡΑΜΕΤΡΟΙ: "+Messages.formalParametersNamesToString(this.getSubprogramScope().getFormalParameters()));//TODO:message
+        out.println("ΤΙΜΗ ΕΠΙΣΤΡΟΦΗΣ: "+InterpreterUtils.toPrintableString(this.returnValue));//TODO:message
+        super.print(out);
     }
 
 }
