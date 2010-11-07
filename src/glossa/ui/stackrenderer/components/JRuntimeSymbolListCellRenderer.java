@@ -64,22 +64,22 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
         if(value instanceof RuntimeSimpleSymbol){
             RuntimeSimpleSymbol rss = (RuntimeSimpleSymbol) value;
             this.jLabel7.setIcon(placeHolder);
-            this.jLabel3.setText("Τιμή:");
-            this.jLabel4.setText(rss.getName());
-            this.jLabel5.setText(rss.getType().toString());
+            this.jLabel5.setText("Τιμή:");
+            this.jLabel2.setText(rss.getName());
+            this.jLabel4.setText(rss.getType().toString());
             this.jLabel6.setText(InterpreterUtils.toPrintableString(rss.getValue()));
         }else if(value instanceof RuntimeArray){
             this.jLabel7.setIcon(arrayIcon);
-            this.jLabel3.setText("Τιμές:");
+            this.jLabel5.setText("Τιμές:");
             RuntimeArray arr = (RuntimeArray) value;
-            this.jLabel4.setText(arr.getName());
-            this.jLabel5.setText(Messages.CONSTS_STR_ARRAY+" "+Messages.typeOfToString(arr.getType()));
+            this.jLabel2.setText(arr.getName());
+            this.jLabel4.setText(Messages.CONSTS_STR_ARRAY+" "+Messages.typeOfToString(arr.getType()));
             this.jLabel6.setText("<Κάντε διπλό κλικ εδώ>");
         } else{
             this.jLabel7.setIcon(placeHolder);
-            this.jLabel3.setText("Τιμή:");
+            this.jLabel5.setText("Τιμή:");
+            this.jLabel2.setText("");
             this.jLabel4.setText("");
-            this.jLabel5.setText("");
             this.jLabel6.setText("");
         }
         this.setPreferredSize(new Dimension(list.getWidth(), this.getPreferredSize().height));
@@ -100,80 +100,142 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
     private void initComponents() {
 
         jGradientPanel1 = new glossa.ui.stackrenderer.components.JGradientPanel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/glossa/ui/resources/images/place_holder.png"))); // NOI18N
+        jGradientPanel1.setLayout(new javax.swing.BoxLayout(jGradientPanel1, javax.swing.BoxLayout.X_AXIS));
 
-        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
+        jPanel6.setOpaque(false);
+        jPanel6.setPreferredSize(new java.awt.Dimension(10, 47));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 47, Short.MAX_VALUE)
+        );
+
+        jGradientPanel1.add(jPanel6);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/glossa/ui/resources/images/place_holder.png"))); // NOI18N
+        jGradientPanel1.add(jLabel7);
+
+        jPanel5.setOpaque(false);
+        jPanel5.setPreferredSize(new java.awt.Dimension(10, 47));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 47, Short.MAX_VALUE)
+        );
+
+        jGradientPanel1.add(jPanel5);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(200, 14));
+
         jLabel1.setText("Όνομα:");
 
-        jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
-        jLabel2.setText("Τύπος:");
+        jLabel2.setText("jLabel2");
 
-        jLabel3.setFont(jLabel3.getFont().deriveFont(jLabel3.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
-        jLabel3.setText("Τιμή:");
-
-        jLabel4.setFont(jLabel4.getFont().deriveFont(jLabel4.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
-        jLabel4.setText("12345678");
-
-        jLabel5.setFont(jLabel5.getFont().deriveFont(jLabel5.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
-        jLabel5.setText("12345678");
-
-        jLabel6.setFont(jLabel6.getFont().deriveFont(jLabel6.getFont().getStyle() & ~java.awt.Font.BOLD, 10));
-        jLabel6.setText("12345678");
-
-        javax.swing.GroupLayout jGradientPanel1Layout = new javax.swing.GroupLayout(jGradientPanel1);
-        jGradientPanel1.setLayout(jGradientPanel1Layout);
-        jGradientPanel1Layout.setHorizontalGroup(
-            jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(jGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addGroup(jGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jGradientPanel1Layout.setVerticalGroup(
-            jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))))
-                .addContainerGap(15, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel1)
+                .addComponent(jLabel2))
         );
+
+        jPanel1.add(jPanel2);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(200, 14));
+
+        jLabel3.setText("Τύπος:");
+
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel3)
+                .addComponent(jLabel4))
+        );
+
+        jPanel1.add(jPanel3);
+
+        jPanel4.setOpaque(false);
+        jPanel4.setPreferredSize(new java.awt.Dimension(200, 14));
+
+        jLabel5.setText("Τιμή:");
+
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel5)
+                .addComponent(jLabel6))
+        );
+
+        jPanel1.add(jPanel4);
+
+        jGradientPanel1.add(jPanel1);
 
         add(jGradientPanel1);
     }// </editor-fold>//GEN-END:initComponents
@@ -188,6 +250,12 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 
 }

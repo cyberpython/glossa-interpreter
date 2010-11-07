@@ -96,6 +96,7 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
 
         jSplitPane1.setDividerLocation(450);
         jSplitPane1.setResizeWeight(1.0);
+        jSplitPane1.setContinuousLayout(true);
         jSplitPane1.setRightComponent(jGlossaStackPanel1);
 
         jToolBar1.setRollover(true);

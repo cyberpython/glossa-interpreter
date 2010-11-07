@@ -46,7 +46,7 @@ public class JProgramPartElement extends JPanel{
         super();
         this.bgColor = new Color(255, 255, 255);
         this.borderColor = new Color(0, 0, 0, 50);
-        this.borderStroke = new BasicStroke(2.0f);
+        this.borderStroke = new BasicStroke(1.0f);
     }
 
 

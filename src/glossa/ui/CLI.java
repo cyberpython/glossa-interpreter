@@ -28,8 +28,12 @@ import glossa.interpreter.InterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 /**
  *
@@ -39,8 +43,8 @@ public class CLI implements InterpreterListener {
 
     private boolean stepByStep;
 
-    public CLI() {
-        this.stepByStep = false;
+    public CLI(boolean executeStepByStep) {
+        this.stepByStep = executeStepByStep;
     }
 
     public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
@@ -48,18 +52,7 @@ public class CLI implements InterpreterListener {
             sender.resume();
         } else {
             if (!wasPrintStatement) {
-                System.out.print("Continue? ");
-                BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-                try {
-                    String s = r.readLine();
-                    if (s.equals("")) {
-                        sender.resume();
-                    } else {
-                        sender.stop();
-                    }
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
+                checkUserInputAfterStep(sender);
             } else {
                 sender.resume();
             }
@@ -73,10 +66,37 @@ public class CLI implements InterpreterListener {
     public void stackPushed(SymbolTable newSymbolTable) {
     }
 
-    public void execute(File f) {
-        Interpreter inter = new Interpreter(f);
+    private void checkUserInputAfterStep(Interpreter sender) {
+        System.out.print("Continue? (Enter=Yes / Anything+Enter=No)");
+        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String s = r.readLine();
+            if (s.equals("")) {
+                sender.resume();
+            } else {
+                sender.stop();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void execute(File sourceCodeFile, PrintStream out, PrintStream err, InputStream in) {
+        Interpreter inter = new Interpreter(sourceCodeFile, out, err, in);
         inter.addListener(this);
         Thread t = new Thread(inter);
         t.start();
+    }
+
+    public void execute(File sourceCodeFile, File inputFile) {
+        try {
+            this.execute(sourceCodeFile, System.out, System.err, new FileInputStream(inputFile));
+        } catch (FileNotFoundException fnfe) {
+            System.err.println(fnfe.getLocalizedMessage());
+        }
+    }
+
+    public void execute(File sourceCodeFile) {
+        this.execute(sourceCodeFile, System.out, System.err, System.in);
     }
 }

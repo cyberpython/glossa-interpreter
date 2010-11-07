@@ -36,6 +36,7 @@
       <Properties>
         <Property name="dividerLocation" type="int" value="450"/>
         <Property name="resizeWeight" type="double" value="1.0"/>
+        <Property name="continuousLayout" type="boolean" value="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
