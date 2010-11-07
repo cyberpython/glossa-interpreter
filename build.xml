@@ -14,13 +14,23 @@
     <target name="check-antlr">
         <available file="lib/antlr-3.2.jar" property="antlr.present"/>
     </target>
+
+    <target name="check-jopt">
+        <available file="lib/jopt-simple-3.2.jar" property="jopt.present"/>
+    </target>
     
     <target name="download-antlr" depends="check-antlr" unless="antlr.present">
         <mkdir dir="lib"/>
         <get src="http://www.antlr.org/download/antlr-3.2.jar" dest="lib/antlr-3.2.jar"/>
     </target>
 
-    <target name="-pre-compile" depends="download-antlr">
+    <target name="download-jopt" depends="check-jopt" unless="jopt.present">
+        <mkdir dir="lib"/>
+        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2.jar" dest="lib/jopt-simple-3.2.jar"/>
+        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2-javadoc.jar" dest="lib/jopt-simple-3.2-javadoc.jar"/>
+    </target>
+
+    <target name="generate-antlr3-recognizers" depends="download-antlr">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
             <classpath>
@@ -66,6 +76,10 @@
                 <include name="ASTInterpreter.java"/>
             </fileset>
         </move>
+    </target>
+
+    <target name="-pre-compile" depends="generate-antlr3-recognizers,download-jopt">
+        
     </target>
     <!--
 

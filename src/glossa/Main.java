@@ -48,8 +48,8 @@ public class Main{
     public static void main(String[] args) {
         File f = parseArgs(args, System.out, System.err);
         if (f != null) {
-            CLI cli = new CLI();
-            cli.execute(f);
+            CLI cli = new CLI(false);
+            cli.execute(f, new File("/home/cyberpython/test_input.txt"));
         }
     }
 
