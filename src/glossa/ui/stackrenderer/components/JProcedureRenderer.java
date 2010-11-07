@@ -85,11 +85,12 @@ public class JProcedureRenderer extends JProgramPartRenderer {
 
         jStackElementUnitPanel1 = new glossa.ui.stackrenderer.components.JProgramPartElement();
         jLabel1 = new javax.swing.JLabel();
-        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
+        jSplitPane1 = new javax.swing.JSplitPane();
         jVariablesRenderer1 = new glossa.ui.stackrenderer.components.JVariablesRenderer();
+        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(269, 456));
+        setPreferredSize(new java.awt.Dimension(269, 425));
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 12));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -109,16 +110,22 @@ public class JProcedureRenderer extends JProgramPartRenderer {
             .addComponent(jLabel1)
         );
 
+        jSplitPane1.setDividerLocation(145);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane1.setResizeWeight(0.5);
+        jSplitPane1.setContinuousLayout(true);
+        jSplitPane1.setRightComponent(jVariablesRenderer1);
+        jSplitPane1.setLeftComponent(jConstantsRenderer1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jVariablesRenderer1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jConstantsRenderer1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,9 +134,7 @@ public class JProcedureRenderer extends JProgramPartRenderer {
                 .addContainerGap()
                 .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jConstantsRenderer1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jVariablesRenderer1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -138,6 +143,7 @@ public class JProcedureRenderer extends JProgramPartRenderer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private glossa.ui.stackrenderer.components.JConstantsRenderer jConstantsRenderer1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JSplitPane jSplitPane1;
     private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
     private glossa.ui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
     // End of variables declaration//GEN-END:variables

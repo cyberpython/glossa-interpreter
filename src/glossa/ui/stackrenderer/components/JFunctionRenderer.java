@@ -94,17 +94,18 @@ public class JFunctionRenderer extends JProgramPartRenderer {
 
         jStackElementUnitPanel1 = new glossa.ui.stackrenderer.components.JProgramPartElement();
         jLabel1 = new javax.swing.JLabel();
-        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
-        jVariablesRenderer1 = new glossa.ui.stackrenderer.components.JVariablesRenderer();
         jStackElementUnitPanel2 = new glossa.ui.stackrenderer.components.JProgramPartElement();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jVariablesRenderer1 = new glossa.ui.stackrenderer.components.JVariablesRenderer();
+        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(269, 456));
+        setPreferredSize(new java.awt.Dimension(269, 425));
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 12));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -172,6 +173,13 @@ public class JFunctionRenderer extends JProgramPartRenderer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jSplitPane1.setDividerLocation(145);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane1.setResizeWeight(0.5);
+        jSplitPane1.setContinuousLayout(true);
+        jSplitPane1.setRightComponent(jVariablesRenderer1);
+        jSplitPane1.setTopComponent(jConstantsRenderer1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,8 +187,7 @@ public class JFunctionRenderer extends JProgramPartRenderer {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jVariablesRenderer1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jConstantsRenderer1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jStackElementUnitPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -191,9 +198,7 @@ public class JFunctionRenderer extends JProgramPartRenderer {
                 .addContainerGap()
                 .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jConstantsRenderer1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jVariablesRenderer1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jStackElementUnitPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -209,6 +214,7 @@ public class JFunctionRenderer extends JProgramPartRenderer {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JSplitPane jSplitPane1;
     private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
     private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel2;
     private glossa.ui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
