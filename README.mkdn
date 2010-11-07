@@ -28,7 +28,7 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 - Static type analysis: Procedures ✔
 - Statement execution: Procedures ✔
 - Command-line interface ✔
-- Step-by-step execution ✘
+- Step-by-step execution ✔
 - Graphical user interface (e.g runtime stack inspector) ✘
 - Run as server (for easier integration with tools written in languages other than Java) ✘
 
@@ -61,17 +61,23 @@ To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 e.g.:
 
     java -jar dist/glossa-interpreter.jar src/glossa/samples/PrintTest.gls
-
-
+    
 ![Screenshot][screenshot]
 [screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
 
+
+For more information give:
+
+    java -jar dist/glossa-interpreter.jar -h
 
 Note for Windows users: If the Windows command line (cmd.exe) does not display correctly the interpreter output, you should change the command-line font from "Raster fonts" to "Lucida Console" and give the following command:
 
     chcp 1253
     
 After that all output should be displayed correctly.
+
+![WinXPScreenshot][winscreenshot]
+[winscreenshot]: http://img713.imageshack.us/img713/2603/screenshotwinxp.png  "Screenshot of the interpreter running a sample input file on Windows XP"
 
 ##Samples
 

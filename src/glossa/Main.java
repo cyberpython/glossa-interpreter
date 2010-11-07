@@ -44,6 +44,8 @@ public class Main {
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
     private static final String VERSION = "Έκδοση: 0.2";
     private static final String FEATURE_NOT_IMPLEMENTED = "Αυτή η λειτουργία δεν έχει υλοποιηθεί.";
+    private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
+    private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
 
     /**
      * @param args the command line arguments
@@ -66,32 +68,34 @@ public class Main {
                 }
             } else {
                 List<String> remainingArgs = options.nonOptionArguments();
-                if (remainingArgs.size() > 0) {
-                    if (options.has("g")) {
-                        //TODO: GUI
-                        System.out.println(FEATURE_NOT_IMPLEMENTED);
-                    } else {
-                        boolean interactive = false;
-                        File inputFile = null;
-                        if (options.has("i")) {
-                            interactive = true;
-                        }
-                        if (options.has("f")) {
-                            inputFile = new File((String) options.valueOf("f"));
-                        }
-                        File sourceCodeFile = new File(remainingArgs.get(0));
-                        CLI cli = new CLI(interactive);
-                        if (inputFile != null) {
-                            cli.execute(sourceCodeFile, inputFile);
-                        } else {
-                            cli.execute(sourceCodeFile);
-                        }
+                if (options.has("g")) {
+                    System.out.println(FEATURE_NOT_IMPLEMENTED);
+                } else if (remainingArgs.size() > 0) {
+                    boolean interactive = false;
+                    File inputFile = null;
+                    if (options.has("i")) {
+                        interactive = true;
                     }
+                    if (options.has("f")) {
+                        inputFile = new File((String) options.valueOf("f"));
+                    }
+                    File sourceCodeFile = new File(remainingArgs.get(0));
+                    CLI cli = new CLI(interactive);
+                    if (inputFile != null) {
+                        cli.execute(sourceCodeFile, inputFile);
+                    } else {
+                        cli.execute(sourceCodeFile);
+                    }
+
                 } else {
+                    System.out.println(SOURCE_FILE_NOT_DEFINED);
+                    System.out.println();
                     printHelpMessage(System.out);
                 }
             }
         } catch (OptionException uoe) {
+            System.out.println(WRONG_USAGE);
+            System.out.println();
             printHelpMessage(System.out);
         }
     }
@@ -107,11 +111,11 @@ public class Main {
     private static void printFile(String fileURL, PrintStream out) {
         BufferedReader r = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream(fileURL), Charset.forName("UTF-8")));
         String line = "";
-        try{
-        while( (line=r.readLine())!=null ){
-            out.println(line);
-        }
-        }catch(IOException ioe){
+        try {
+            while ((line = r.readLine()) != null) {
+                out.println(line);
+            }
+        } catch (IOException ioe) {
         }
     }
 
@@ -120,5 +124,4 @@ public class Main {
         out.println(VERSION);
         out.println();
     }
-
 }

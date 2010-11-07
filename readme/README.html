@@ -22,7 +22,7 @@
 
 <h2>Status</h2>
 
-<p>The interpreter can now execute all programs that have only a main method (i.e. functions and procedures are not implemented yet).</p>
+<p>The interpreter can now execute all valid ΓΛΩΣΣΑ programs.</p>
 
 <ul>
 <li>Lexer/Parser: Errors/warnings in Greek ✔</li>
@@ -34,10 +34,14 @@
 <li>Built-in functions ✔</li>
 <li>Lexer/Parser: Functions ✔</li>
 <li>Static type analysis: Functions ✔</li>
-<li>Statement execution: Functions ⟳</li>
-<li>Lexer/Parser: Procedures ✘</li>
-<li>Static type analysis: Procedures ✘</li>
-<li>Statement execution: Procedures ✘</li>
+<li>Statement execution: Functions ✔</li>
+<li>Lexer/Parser: Procedures ✔</li>
+<li>Static type analysis: Procedures ✔</li>
+<li>Statement execution: Procedures ✔</li>
+<li>Command-line interface ✔</li>
+<li>Step-by-step execution ✔</li>
+<li>Graphical user interface (e.g runtime stack inspector) ✘</li>
+<li>Run as server (for easier integration with tools written in languages other than Java) ✘</li>
 </ul>
 
 <p>✔ = completed, ⟳ = in progress, ✘ = not implemented yet</p>
@@ -73,7 +77,20 @@ ant jar
 <pre><code>java -jar dist/glossa-interpreter.jar src/glossa/samples/PrintTest.gls
 </code></pre>
 
-<p><img src="http://img338.imageshack.us/img338/3604/screenshotme.png" alt="Screenshot" title="Screenshot of the interpreter running a sample input file in Ubuntu 10.10" /></p>
+<p><img src="http://img338.imageshack.us/img338/3604/screenshotme.png" alt="Screenshot" title="Screenshot of the interpreter running a sample input file in Ubuntu 10.10" />
+For more information give:</p>
+
+<pre><code>java -jar dist/glossa-interpreter.jar -h
+</code></pre>
+
+<p>Note for Windows users: If the Windows command line (cmd.exe) does not display correctly the interpreter output, you should change the command-line font from "Raster fonts" to "Lucida Console" and give the following command:</p>
+
+<pre><code>chcp 1253
+</code></pre>
+
+<p>After that all output should be displayed correctly.</p>
+
+<p><img src="http://img713.imageshack.us/img713/2603/screenshotwinxp.png" alt="WinXPScreenshot" title="Screenshot of the interpreter running a sample input file on Windows XP" /></p>
 
 <h2>Samples</h2>
 
