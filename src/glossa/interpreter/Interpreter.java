@@ -33,14 +33,12 @@ import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.utils.CharsetDetector;
-import java.io.BufferedReader;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
@@ -56,30 +54,40 @@ import org.antlr.runtime.tree.CommonTree;
  */
 public class Interpreter implements Runnable, ASTInterpreterListener {
 
+    private static final String PARSER_AND_ANALYZER_FINISHED = "__parser_and_analyzer_done__";
     private static final String COMMAND_EXECUTED = "__cmd_exec__";
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
     private static final String RUNTIME_ERROR = "__runtime_error__";
     private PrintStream out;
     private PrintStream err;
-    private InputStream in;
+    private PrintStream runtimeOut;
+    private PrintStream runtimeErr;
+    private InputStream runtimeIn;
     private File sourceCodeFile;
     private List<InterpreterListener> listeners;
+    private BufferedTreeNodeStream nodes;
     private ASTInterpreter interpreter;
     private Thread interpreterThread;
+    private MessageLog msgLog;
+    private ScopeTable scopeTable;
 
     public Interpreter(File src) {
-        this(src, System.out, System.err, System.in);
+        this(src, System.out, System.err, System.out, System.err, System.in);
     }
 
-    public Interpreter(File src, PrintStream out, PrintStream err, InputStream in) {
+    public Interpreter(File src, PrintStream out, PrintStream err, PrintStream runtimeOut, PrintStream runtimeErr, InputStream runtimeIn) {
         this.sourceCodeFile = src;
         this.out = out;
         this.err = err;
-        this.in = in;
+        this.runtimeOut = runtimeOut;
+        this.runtimeErr = runtimeErr;
+        this.runtimeIn = runtimeIn;
         this.listeners = new ArrayList<InterpreterListener>();
         this.interpreter = null;
         this.interpreterThread = null;
+        this.msgLog = new MessageLog(err, out);
+        this.scopeTable = null;
     }
 
     public void addListener(InterpreterListener listener) {
@@ -101,6 +109,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 listener.stackPopped();
             } else if (RUNTIME_ERROR.equals(msg)) {
                 listener.runtimeError();
+            } else if (PARSER_AND_ANALYZER_FINISHED.equals(msg)) {
+                listener.parsingAndSemanticAnalysisFinished((Boolean)params[0]);
             }
         }
     }
@@ -144,12 +154,14 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         }
     }
 
-    public void run() {
+    public boolean parseAndAnalyzeSemantics(boolean silent) {
+
+        int errors = 0;
 
         stop();
 
         String filename = sourceCodeFile.getAbsolutePath();
-        MessageLog msgLog = new MessageLog(err, out);
+        msgLog = new MessageLog(err, out);
 
         Charset charset;
         try {
@@ -174,26 +186,28 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 } catch (RuntimeException re) {
                 }
 
-                int errors = msgLog.getNumberOfErrors();
-                msgLog.printErrors();
-
-
+                errors = msgLog.getNumberOfErrors();
+                if (!silent) {
+                    msgLog.printErrors();
+                }
 
                 if (errors == 0) {
 
-                    ScopeTable scopeTable = new ScopeTable();
+                    scopeTable = new ScopeTable();
 
                     // WALK RESULTING TREE
                     CommonTree t = (CommonTree) r.getTree(); // get tree from parser
                     // Create a tree node stream from resulting tree
-                    BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
+                    nodes = new BufferedTreeNodeStream(t);
                     FirstPass fp = new FirstPass(nodes);
                     fp.setScopeTable(scopeTable);
                     fp.setMessageLog(msgLog);
                     fp.unit();                 // launch at start rule prog
 
                     errors = msgLog.getNumberOfErrors();
-                    msgLog.printErrors();
+                    if (!silent) {
+                        msgLog.printErrors();
+                    }
 
 
                     if (errors == 0) {
@@ -204,36 +218,153 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                         staticTypeAnalyzer.unit();                 // launch at start rule prog
 
                         errors = msgLog.getNumberOfErrors();
-                        msgLog.printErrors();
-                        msgLog.printWarnings();
-
-                        if (errors == 0) {
-                            //scopeTable.printScopes(out);
-                            this.interpreter = new ASTInterpreter(nodes); // create a tree parser
-                            interpreter.init(scopeTable, out, err, in);
-                            interpreter.addListener(this);
-                            Thread thread = new Thread(interpreter);
-                            this.interpreterThread = thread;
-                            thread.start();
-                            while (thread.isAlive()) {
-                                Thread.sleep(200);
-                            }
+                        if (!silent) {
+                            msgLog.printErrors();
+                            msgLog.printWarnings();
                         }
 
+                        //------------------------------------
+
                     } else {
-                        msgLog.printWarnings();
+                        if (!silent) {
+                            msgLog.printWarnings();
+                        }
                     }
                 } else {
-                    msgLog.printWarnings();
+                    if (!silent) {
+                        msgLog.printWarnings();
+                    }
                 }
             } catch (Exception e) {
-                System.err.println(e.getLocalizedMessage());
+                msgLog.error(new Point(0, 0), e.getLocalizedMessage());
+                err.println(e.getLocalizedMessage());
             }
         } catch (IOException ioe) {
             err.println(String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));//TODO: message
+            msgLog.error(new Point(0, 0), String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));
+        }
+
+        errors = msgLog.getNumberOfErrors();
+        boolean result = errors == 0;
+        notifyListeners(PARSER_AND_ANALYZER_FINISHED, Boolean.valueOf(result));
+
+        return result;
+    }
+
+    public MessageLog getMsgLog() {
+        return msgLog;
+    }
+
+    public void run() {
+        stop();
+        if (this.scopeTable != null) {
+            //scopeTable.printScopes(out);
+            this.interpreter = new ASTInterpreter(nodes); // create a tree parser
+            interpreter.init(scopeTable, runtimeOut, runtimeErr, runtimeIn);
+            interpreter.addListener(this);
+            Thread thread = new Thread(interpreter);
+            this.interpreterThread = thread;
+            thread.start();
+            while (thread.isAlive()) {
+                try{
+                    Thread.sleep(200);
+                }catch(InterruptedException ie){
+                }
+            }
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Old run method">
+/*public void run() {
+
+    stop();
+
+    String filename = sourceCodeFile.getAbsolutePath();
+    MessageLog msgLog = new MessageLog(err, out);
+
+    Charset charset;
+    try {
+    charset = getInputCharset(filename);
+    } catch (IOException ioe) {
+    charset = Charset.defaultCharset();
+    }
+
+    try {
+    ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
+
+    try {
+    GlossaParser.unit_return r = null;
+
+    try {
+    GlossaLexer lexer = new GlossaLexer(input);
+    lexer.setMessageLog(msgLog);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    GlossaParser parser = new GlossaParser(tokens);
+    parser.setMessageLog(msgLog);
+    r = parser.unit();
+    } catch (RuntimeException re) {
+    }
+
+    int errors = msgLog.getNumberOfErrors();
+    msgLog.printErrors();
+
+
+
+    if (errors == 0) {
+
+    ScopeTable scopeTable = new ScopeTable();
+
+    // WALK RESULTING TREE
+    CommonTree t = (CommonTree) r.getTree(); // get tree from parser
+    // Create a tree node stream from resulting tree
+    BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
+    FirstPass fp = new FirstPass(nodes);
+    fp.setScopeTable(scopeTable);
+    fp.setMessageLog(msgLog);
+    fp.unit();                 // launch at start rule prog
+
+    errors = msgLog.getNumberOfErrors();
+    msgLog.printErrors();
+
+
+    if (errors == 0) {
+    nodes.reset();
+    StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
+    staticTypeAnalyzer.setScopeTable(scopeTable);
+    staticTypeAnalyzer.setMessageLog(msgLog);
+    staticTypeAnalyzer.unit();                 // launch at start rule prog
+
+    errors = msgLog.getNumberOfErrors();
+    msgLog.printErrors();
+    msgLog.printWarnings();
+
+    if (errors == 0) {
+    //scopeTable.printScopes(out);
+    this.interpreter = new ASTInterpreter(nodes); // create a tree parser
+    interpreter.init(scopeTable, out, err, runtimeIn);
+    interpreter.addListener(this);
+    Thread thread = new Thread(interpreter);
+    this.interpreterThread = thread;
+    thread.start();
+    while (thread.isAlive()) {
+    Thread.sleep(200);
+    }
+    }
+
+    } else {
+    msgLog.printWarnings();
+    }
+    } else {
+    msgLog.printWarnings();
+    }
+    } catch (Exception e) {
+    System.err.println(e.getLocalizedMessage());
+    }
+    } catch (IOException ioe) {
+    err.println(String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));//TODO: message
+    }
+    }*/// </editor-fold>
+    
     public void printRuntimeStack() {
         if (this.interpreter != null) {
             out.println();

@@ -53,6 +53,10 @@ public class StackRenderer extends JPanel implements InterpreterListener{
         this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
     }
 
+    public void parsingAndSemanticAnalysisFinished(boolean success) {
+        
+    }
+
     public void runtimeError() {
         stack.clear();
         this.removeAll();

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-09 14:01:04
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-09 17:37:06
 
 
 /*
@@ -274,7 +274,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     err.println(re.getMessage());
                     notifyListeners(RUNTIME_ERROR);
                 }catch(Error e){
-                    err.println("Stack overflow - Run with -Xss32M");//TODO proper termination message
+                    err.println("Stack overflow (you can set the JVM stack size with -Xss..M e.g. -Xss32M - default is 8M).");//TODO proper termination message
                     notifyListeners(RUNTIME_ERROR);
                 }
                 this.finished = true;

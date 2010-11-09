@@ -54,6 +54,10 @@ public class CLI implements InterpreterListener {
         this.in = System.in;
     }
 
+    public void parsingAndSemanticAnalysisFinished(boolean success) {
+        
+    }
+
     public void runtimeError() {
     }
 
@@ -98,10 +102,12 @@ public class CLI implements InterpreterListener {
         this.out = out;
         this.err = err;
         this.in = in;
-        Interpreter inter = new Interpreter(sourceCodeFile, out, err, in);
+        Interpreter inter = new Interpreter(sourceCodeFile, out, err, out, err, in);
         inter.addListener(this);
-        Thread t = new Thread(inter);
-        t.start();
+        if(inter.parseAndAnalyzeSemantics(false)){
+            Thread t = new Thread(inter);
+            t.start();
+        }
     }
 
     public void execute(File sourceCodeFile, File inputFile) {
