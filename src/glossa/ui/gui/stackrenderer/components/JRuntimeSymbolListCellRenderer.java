@@ -28,7 +28,7 @@
  * Created on Nov 6, 2010, 12:20:45 AM
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
 import glossa.interpreter.core.InterpreterUtils;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
@@ -53,8 +53,8 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
 
     /** Creates new form JRuntimeSymbolListCellRenderer */
     public JRuntimeSymbolListCellRenderer() {
-        this.arrayIcon = new ImageIcon(JRuntimeSymbolListCellRenderer.class.getResource("/glossa/ui/resources/images/array_icon.png"));
-        this.placeHolder = new ImageIcon(JRuntimeSymbolListCellRenderer.class.getResource("/glossa/ui/resources/images/place_holder.png"));
+        this.arrayIcon = new ImageIcon(JRuntimeSymbolListCellRenderer.class.getResource("/glossa/ui/gui/resources/images/array_icon.png"));
+        this.placeHolder = new ImageIcon(JRuntimeSymbolListCellRenderer.class.getResource("/glossa/ui/gui/resources/images/place_holder.png"));
         initComponents();
         maxWidth = 0;
     }
@@ -99,7 +99,7 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jGradientPanel1 = new glossa.ui.stackrenderer.components.JGradientPanel();
+        jGradientPanel1 = new glossa.ui.gui.stackrenderer.components.JGradientPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -135,7 +135,7 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
 
         jGradientPanel1.add(jPanel6);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/glossa/ui/resources/images/place_holder.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/glossa/ui/gui/resources/images/place_holder.png"))); // NOI18N
         jGradientPanel1.add(jLabel7);
 
         jPanel5.setOpaque(false);
@@ -242,7 +242,7 @@ public class JRuntimeSymbolListCellRenderer extends javax.swing.JPanel implement
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private glossa.ui.stackrenderer.components.JGradientPanel jGradientPanel1;
+    private glossa.ui.gui.stackrenderer.components.JGradientPanel jGradientPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

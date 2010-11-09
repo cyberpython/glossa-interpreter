@@ -23,43 +23,49 @@
  */
 
 /*
- * NewJFrame.java
+ * GlossaInterpreterWindow.java
  *
  * Created on Nov 5, 2010, 7:17:49 PM
  */
-package glossa.ui.stackrenderer;
+package glossa.ui.gui;
 
 import glossa.interpreter.Interpreter;
 import glossa.interpreter.InterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
+import glossa.ui.gui.stackrenderer.StackRenderer;
 import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 
 /**
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class NewJFrame extends javax.swing.JFrame implements InterpreterListener {
+public class GlossaInterpreterWindow extends javax.swing.JFrame implements InterpreterListener {
 
-    private boolean ready;
     private Interpreter interpreter;
 
-    /** Creates new form NewJFrame */
-    public NewJFrame() {
-        ready = false;
+    /** Creates new form GlossaInterpreterWindow */
+    public GlossaInterpreterWindow() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
         }
         initComponents();
-        interpreter = new Interpreter(new File("/home/cyberpython/programming/Java/netbeans projects/Glossa/src/glossa/samples/GenericTest.gls"));
-        interpreter.addListener(jGlossaStackPanel1.getStackRenderer());
-        interpreter.addListener(this);
+        init();
+    }
+
+    private void init() {
+        jRuntimeWindowInputPanel1.setWindow(jRuntimeWindow1);
+        jRuntimeWindowInputPanel1.setSubmitButtonText("Υποβολή");
+        jRuntimeWindowInputPanel1.setTextFieldNotFocusedText("Πληκτρολογήστε εδώ");
+    }
+
+    public void runtimeError() {
     }
 
     public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
-        ready = true;
-        jButton1.setEnabled(true);
+        sender.resume();
     }
 
     public void stackPopped() {
@@ -72,7 +78,24 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
         return this.jGlossaStackPanel1.getStackRenderer();
     }
 
-    public void runInterpreter(){
+    public void openFile() {
+        JFileChooser fc = new JFileChooser();
+        int result = fc.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            runInterpreter(fc.getSelectedFile());
+        }
+    }
+
+    public void runInterpreter(File f) {
+        if (interpreter != null) {
+            interpreter.stop();
+            interpreter.removeListener(this);
+            interpreter.removeListener(jGlossaStackPanel1.getStackRenderer());
+        }
+        jRuntimeWindow1.clear();
+        interpreter = new Interpreter(f, jRuntimeWindow1.getOut(), jRuntimeWindow1.getErr(), jRuntimeWindowInputPanel1.getInputStream());
+        interpreter.addListener(jGlossaStackPanel1.getStackRenderer());
+        interpreter.addListener(this);
         Thread t = new Thread(interpreter);
         t.start();
     }
@@ -90,17 +113,17 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jGlossaStackPanel1 = new glossa.ui.stackrenderer.JGlossaStackPanel();
+        jGlossaStackPanel1 = new glossa.ui.gui.stackrenderer.JGlossaStackPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jRuntimeWindowInputPanel1 = new glossa.ui.gui.io.JRuntimeWindowInputPanel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jRuntimeWindow1 = new glossa.ui.gui.io.JRuntimeWindow();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -111,8 +134,7 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
 
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Next step");
-        jButton1.setEnabled(false);
+        jButton1.setText("Άνοιγμα...");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -123,7 +145,7 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
         });
         jToolBar1.add(jButton1);
 
-        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerLocation(400);
         jSplitPane1.setResizeWeight(1.0);
         jSplitPane1.setContinuousLayout(true);
         jSplitPane1.setRightComponent(jGlossaStackPanel1);
@@ -137,29 +159,32 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
 
         jTabbedPane1.addTab("Μηνύματα", jScrollPane1);
 
-        jButton2.setText("Υποβολή");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jRuntimeWindowInputPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton2))
+            .addComponent(jRuntimeWindowInputPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextPane1.setEditable(false);
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(jRuntimeWindow1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -168,19 +193,21 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Παράθυρο εκτέλεσης", jPanel2);
+
+        jTabbedPane1.setSelectedIndex(1);
 
         jSplitPane2.setLeftComponent(jTabbedPane1);
 
@@ -194,15 +221,15 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Αρχείο εισόδου", jPanel4);
@@ -241,11 +268,7 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(ready){
-            ready = false;
-            jButton1.setEnabled(false);
-            interpreter.resume();
-        }
+        openFile();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -255,22 +278,23 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                NewJFrame frame = new NewJFrame();
+                GlossaInterpreterWindow frame = new GlossaInterpreterWindow();
                 frame.setVisible(true);
-                frame.runInterpreter();
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
-    private glossa.ui.stackrenderer.JGlossaStackPanel jGlossaStackPanel1;
+    private glossa.ui.gui.stackrenderer.JGlossaStackPanel jGlossaStackPanel1;
     private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private glossa.ui.gui.io.JRuntimeWindow jRuntimeWindow1;
+    private glossa.ui.gui.io.JRuntimeWindowInputPanel jRuntimeWindowInputPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -279,8 +303,6 @@ public class NewJFrame extends javax.swing.JFrame implements InterpreterListener
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

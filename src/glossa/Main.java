@@ -23,7 +23,7 @@
  */
 package glossa;
 
-import glossa.ui.CLI;
+import glossa.ui.cli.CLI;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;

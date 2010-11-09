@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package glossa.ui.stackrenderer;
+package glossa.ui.gui.stackrenderer;
 
 import glossa.interpreter.Interpreter;
 import glossa.interpreter.InterpreterListener;
@@ -30,14 +30,13 @@ import glossa.interpreter.symboltable.FunctionSymbolTable;
 import glossa.interpreter.symboltable.MainProgramSymbolTable;
 import glossa.interpreter.symboltable.ProcedureSymbolTable;
 import glossa.interpreter.symboltable.SymbolTable;
-import glossa.ui.stackrenderer.components.JFunctionRenderer;
-import glossa.ui.stackrenderer.components.JMainProgramRenderer;
-import glossa.ui.stackrenderer.components.JProcedureRenderer;
+import glossa.ui.gui.stackrenderer.components.JFunctionRenderer;
+import glossa.ui.gui.stackrenderer.components.JMainProgramRenderer;
+import glossa.ui.gui.stackrenderer.components.JProcedureRenderer;
 import java.awt.Color;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 /**
  *
@@ -46,27 +45,19 @@ import javax.swing.JScrollPane;
 public class StackRenderer extends JPanel implements InterpreterListener{
 
     private Deque<JPanel> stack;
-    private JScrollPane scrollPane;
 
     public StackRenderer() {
-        this(null);
-    }
-
-    public StackRenderer(JScrollPane scrollPane) {
         super();
-        this.scrollPane = scrollPane;
         stack = new ArrayDeque<JPanel>();
         this.setBackground(Color.white);
         this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
     }
 
-
-    /*private void scrollToEnd(){
-        if(this.scrollPane!=null){
-            this.scrollPane.scrollRectToVisible(null);
-        }
-    }*/
-
+    public void runtimeError() {
+        stack.clear();
+        this.removeAll();
+        this.repaint();
+    }
 
     public void stackPushed(SymbolTable newSymbolTable) {
         if(newSymbolTable instanceof FunctionSymbolTable){

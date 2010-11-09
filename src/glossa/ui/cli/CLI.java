@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package glossa.ui;
+package glossa.ui.cli;
 
 import glossa.interpreter.Interpreter;
 import glossa.interpreter.InterpreterListener;
@@ -42,7 +42,6 @@ import java.io.PrintStream;
 public class CLI implements InterpreterListener {
 
     private static final String FILE_NOT_FOUND_ERROR = "Το αρχείο \"%1$s\" δε βρέθηκε!";
-
     private boolean stepByStep;
     private PrintStream out;
     private PrintStream err;
@@ -53,6 +52,9 @@ public class CLI implements InterpreterListener {
         this.out = System.out;
         this.err = System.err;
         this.in = System.in;
+    }
+
+    public void runtimeError() {
     }
 
     public void commandExecuted(Interpreter sender, boolean wasPrintStatement) {
@@ -81,7 +83,7 @@ public class CLI implements InterpreterListener {
             String s = r.readLine();
             if (s.equals("")) {
                 sender.resume();
-            }else if (s.toUpperCase().equals("Σ")) {
+            } else if (s.toUpperCase().equals("Σ")) {
                 sender.printRuntimeStack();
                 sender.resume();
             } else {

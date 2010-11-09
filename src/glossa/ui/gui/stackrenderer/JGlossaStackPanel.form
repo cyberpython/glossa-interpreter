@@ -30,7 +30,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Container class="glossa.ui.stackrenderer.StackRenderer" name="stackRenderer1">
+        <Container class="glossa.ui.gui.stackrenderer.StackRenderer" name="stackRenderer1">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
         </Container>

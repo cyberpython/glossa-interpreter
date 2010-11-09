@@ -23,14 +23,14 @@
  */
 
 /*
- * JConstantsRenderer.java
+ * JVariablesRenderer.java
  *
- * Created on Nov 5, 2010, 7:14:02 PM
+ * Created on Nov 5, 2010, 7:12:00 PM
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
-import glossa.interpreter.symboltable.symbols.RuntimeConstant;
+import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -39,19 +39,20 @@ import javax.swing.DefaultListModel;
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class JConstantsRenderer extends JProgramPartElement {
+public class JVariablesRenderer extends JProgramPartElement {
+    
 
-    /** Creates new form JConstantsRenderer */
-    public JConstantsRenderer() {
+    /** Creates new form JVariablesRenderer */
+    public JVariablesRenderer() {
         initComponents();
         this.jList1.setCellRenderer(new JRuntimeSymbolListCellRenderer());
     }
 
-    public void setConstants(List<RuntimeConstant> consts){
+    public void setVariables(List<RuntimeSymbol> vars){
         DefaultListModel model = new DefaultListModel();
-        for (Iterator<RuntimeConstant> it = consts.iterator(); it.hasNext();) {
-            RuntimeConstant runtimeConstant = it.next();
-            model.addElement(runtimeConstant);
+        for (Iterator<RuntimeSymbol> it = vars.iterator(); it.hasNext();) {
+            RuntimeSymbol runtimeSymbol = it.next();
+            model.addElement(runtimeSymbol);
         }
         this.jList1.setModel(model);
     }
@@ -71,7 +72,7 @@ public class JConstantsRenderer extends JProgramPartElement {
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 12));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ΣΤΑΘΕΡΕΣ");
+        jLabel1.setText("ΜΕΤΑΒΛΗΤΕΣ");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -87,8 +88,8 @@ public class JConstantsRenderer extends JProgramPartElement {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,7 +98,7 @@ public class JConstantsRenderer extends JProgramPartElement {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

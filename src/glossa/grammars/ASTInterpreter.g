@@ -86,6 +86,7 @@ import java.util.Iterator;
         private static final String COMMAND_EXECUTED = "__cmd_exec__";
         private static final String STACK_PUSHED = "__stack_pushed__";
         private static final String STACK_POPPED = "__stack_popped__";
+        private static final String RUNTIME_ERROR = "__runtime_error__";
 
         private ScopeTable scopeTable;
         private Deque<SymbolTable> stack;
@@ -100,6 +101,7 @@ import java.util.Iterator;
         List<ASTInterpreterListener> listeners;
 
         private boolean halt;
+        private boolean stop;
         private boolean finished;
 
         public void init(ScopeTable s, PrintStream out, PrintStream err, InputStream in){
@@ -109,6 +111,7 @@ import java.util.Iterator;
             this.scopeTable = s;
             this.listeners = new ArrayList<ASTInterpreterListener>();
             this.halt=false;
+            this.stop=false;
             this.finished = false;
 
             this.out = out;
@@ -134,6 +137,8 @@ import java.util.Iterator;
                     listener.stackPushed((SymbolTable)params[0]);
                 }else if(STACK_POPPED.equals(msg)){
                     listener.stackPopped();
+                }else if (RUNTIME_ERROR.equals(msg)) {
+                    listener.runtimeError();
                 }
             }
         }
@@ -145,8 +150,13 @@ import java.util.Iterator;
                 out.println("Execution finished.");//TODO proper termination message
             }catch(RecognitionException re){
                 err.println(re.getMessage());
+                notifyListeners(RUNTIME_ERROR);
             }catch (RuntimeException re) {
                 err.println(re.getMessage());
+                notifyListeners(RUNTIME_ERROR);
+            }catch(Error e){
+                err.println("Stack overflow (you can set the JVM stack size with -Xss..M e.g. -Xss32M - default is 8M).");//TODO proper termination message
+                notifyListeners(RUNTIME_ERROR);
             }
             this.finished = true;
         }
@@ -155,7 +165,12 @@ import java.util.Iterator;
             this.halt = true;
         }
 
-         public void stop(){
+        public void stop(){
+            stop = true;
+        }
+
+        public void killThread(){
+            notifyListeners(RUNTIME_ERROR);
             throw new RuntimeException("Execution terminated by user.");//TODO: proper termination-cause-by-user message
         }
 
@@ -211,8 +226,14 @@ import java.util.Iterator;
 
         public void stmExecuted(boolean wasPrintStatement){
             this.halt=true;
+            if(stop){
+                killThread();
+            }
             this.notifyListeners(COMMAND_EXECUTED, Boolean.valueOf(wasPrintStatement));
             while(halt){
+                if(stop){
+                    killThread();
+                }
                 try{
                     Thread.sleep(500);
                 }catch(InterruptedException ie){
@@ -245,7 +266,7 @@ program	:	^(  PROGRAM         {
                                         this.stack.pop();
                                         notifyListeners(STACK_POPPED);
                                     }
-                    
+
         ;
 
 declarations
@@ -279,7 +300,7 @@ varsDecl
 
 varDeclItem
 	:	ID
-	| 	^(ARRAY ID arrayDimension 
+	| 	^(ARRAY ID arrayDimension
                                 {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                         arr.setDimensions($arrayDimension.value);
@@ -362,7 +383,7 @@ stm	:	^(  PRINT           {
                                         arr.set($arraySubscript.value, $expr.result);
                                         stmExecuted(false);
                                     }
-        |       ^(IFNODE 
+        |       ^(IFNODE
                   ifBlock           {
                                         boolean proceed = $ifBlock.proceedToNextCondition;
                                     }
@@ -376,7 +397,7 @@ stm	:	^(  PRINT           {
                                         stmExecuted(false);
                                     }
                 )
-        |       ^(SWITCH 
+        |       ^(SWITCH
                   expr              {
                                         boolean proceed = true;
                                     }
@@ -660,7 +681,7 @@ caseExprListItem [Object target] returns [boolean success]
                                             $success = false;
                                         }
                                     }
-        |       ^(INF_RANGE LE a=expr) 
+        |       ^(INF_RANGE LE a=expr)
                                     {
                                         if(InterpreterUtils.lowerThanOrEqual($target, $a.result)){
                                             $success = true;
@@ -668,7 +689,7 @@ caseExprListItem [Object target] returns [boolean success]
                                             $success = false;
                                         }
                                     }
-        |       ^(INF_RANGE GT a=expr)  
+        |       ^(INF_RANGE GT a=expr)
                                     {
                                         if(InterpreterUtils.greaterThan($target, $a.result)){
                                             $success = true;
@@ -676,7 +697,7 @@ caseExprListItem [Object target] returns [boolean success]
                                             $success = false;
                                         }
                                     }
-        |       ^(INF_RANGE GE a=expr)  
+        |       ^(INF_RANGE GE a=expr)
                                     {
                                         if(InterpreterUtils.greaterThanOrEqual($target, $a.result)){
                                             $success = true;
@@ -799,7 +820,7 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                                             }
                                         }
                                     }
-                                    
+
                                     $value = result;
                                 }
                 )

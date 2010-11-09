@@ -28,7 +28,7 @@
  * Created on Nov 6, 2010, 5:31:58 PM
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
 import glossa.interpreter.core.InterpreterUtils;
 import glossa.interpreter.symboltable.FunctionSymbolTable;
@@ -92,17 +92,17 @@ public class JFunctionRenderer extends JProgramPartRenderer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jStackElementUnitPanel1 = new glossa.ui.stackrenderer.components.JProgramPartElement();
+        jStackElementUnitPanel1 = new glossa.ui.gui.stackrenderer.components.JProgramPartElement();
         jLabel1 = new javax.swing.JLabel();
-        jStackElementUnitPanel2 = new glossa.ui.stackrenderer.components.JProgramPartElement();
+        jStackElementUnitPanel2 = new glossa.ui.gui.stackrenderer.components.JProgramPartElement();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jVariablesRenderer1 = new glossa.ui.stackrenderer.components.JVariablesRenderer();
-        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
+        jVariablesRenderer1 = new glossa.ui.gui.stackrenderer.components.JVariablesRenderer();
+        jConstantsRenderer1 = new glossa.ui.gui.stackrenderer.components.JConstantsRenderer();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(269, 425));
@@ -207,7 +207,7 @@ public class JFunctionRenderer extends JProgramPartRenderer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private glossa.ui.stackrenderer.components.JConstantsRenderer jConstantsRenderer1;
+    private glossa.ui.gui.stackrenderer.components.JConstantsRenderer jConstantsRenderer1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,9 +215,9 @@ public class JFunctionRenderer extends JProgramPartRenderer {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSplitPane jSplitPane1;
-    private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
-    private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel2;
-    private glossa.ui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
+    private glossa.ui.gui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
+    private glossa.ui.gui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel2;
+    private glossa.ui.gui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -59,12 +59,14 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     private static final String COMMAND_EXECUTED = "__cmd_exec__";
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
+    private static final String RUNTIME_ERROR = "__runtime_error__";
     private PrintStream out;
     private PrintStream err;
     private InputStream in;
     private File sourceCodeFile;
     private List<InterpreterListener> listeners;
     private ASTInterpreter interpreter;
+    private Thread interpreterThread;
 
     public Interpreter(File src) {
         this(src, System.out, System.err, System.in);
@@ -77,6 +79,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         this.in = in;
         this.listeners = new ArrayList<InterpreterListener>();
         this.interpreter = null;
+        this.interpreterThread = null;
     }
 
     public void addListener(InterpreterListener listener) {
@@ -96,6 +99,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
                 listener.stackPopped();
+            } else if (RUNTIME_ERROR.equals(msg)) {
+                listener.runtimeError();
             }
         }
     }
@@ -128,7 +133,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         if (this.interpreter != null) {
             if (!interpreter.hasFinished()) {
                 this.interpreter.stop();
-                while (!interpreter.hasFinished()) {
+                interpreterThread.interrupt();
+                while (interpreterThread.isAlive()) {
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException ie) {
@@ -146,15 +152,15 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         MessageLog msgLog = new MessageLog(err, out);
 
         Charset charset;
-        try{
-            charset= getInputCharset(filename);
-        }catch(IOException ioe){
+        try {
+            charset = getInputCharset(filename);
+        } catch (IOException ioe) {
             charset = Charset.defaultCharset();
         }
 
         try {
             ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
-            
+
             try {
                 GlossaParser.unit_return r = null;
 
@@ -207,6 +213,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                             interpreter.init(scopeTable, out, err, in);
                             interpreter.addListener(this);
                             Thread thread = new Thread(interpreter);
+                            this.interpreterThread = thread;
                             thread.start();
                             while (thread.isAlive()) {
                                 Thread.sleep(200);
@@ -227,8 +234,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         }
     }
 
-    public void printRuntimeStack(){
-        if(this.interpreter!=null){
+    public void printRuntimeStack() {
+        if (this.interpreter != null) {
             out.println();
             Deque<SymbolTable> stack = this.interpreter.getStack();
             for (Iterator<SymbolTable> it = stack.iterator(); it.hasNext();) {
@@ -236,6 +243,10 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 symbolTable.print(out);
             }
         }
+    }
+
+    public void runtimeError() {
+        notifyListeners(RUNTIME_ERROR);
     }
 
     public void stackPushed(SymbolTable newSymbolTable) {

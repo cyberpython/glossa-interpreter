@@ -23,14 +23,14 @@
  */
 
 /*
- * JProcedureRenderer.java
+ * JMainProgramRenderer.java
  *
- * Created on Nov 6, 2010, 5:31:58 PM
+ * Created on Nov 5, 2010, 7:06:28 PM
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
-import glossa.interpreter.symboltable.ProcedureSymbolTable;
+import glossa.interpreter.symboltable.SymbolTable;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeConstant;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
@@ -45,21 +45,21 @@ import java.util.List;
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class JProcedureRenderer extends JProgramPartRenderer {
+public class JMainProgramRenderer extends JProgramPartRenderer {
 
-    private ProcedureSymbolTable symboltable;
+    private SymbolTable mainProgramSymbolTable;
 
-    /** Creates new form JProcedureRenderer */
-    public JProcedureRenderer(ProcedureSymbolTable symboltable) {
-        super(new Color(204, 255, 170), new Color(68, 170, 0));
-        this.symboltable = symboltable;
+    /** Creates new form JMainProgramRenderer */
+    public JMainProgramRenderer(SymbolTable mainProgramSymbolTable) {
+        super(new Color(202, 211, 255), new Color(152, 170, 255));
+        this.mainProgramSymbolTable = mainProgramSymbolTable;
         initComponents();
-        this.jLabel1.setText("ΔΙΑΔΙΚΑΣΙΑ "+symboltable.getName());
+        this.jLabel1.setText("ΠΡΟΓΡΑΜΜΑ "+mainProgramSymbolTable.getName());
 
         List<RuntimeSymbol> vars = new ArrayList<RuntimeSymbol>();
         List<RuntimeConstant> consts = new ArrayList<RuntimeConstant>();
 
-        HashMap<String, RuntimeSymbol> symbols = symboltable.getSymbols();
+        HashMap<String, RuntimeSymbol> symbols = mainProgramSymbolTable.getSymbols();
         for (Iterator<String> it = symbols.keySet().iterator(); it.hasNext();) {
             String key = it.next();
             RuntimeSymbol symbol = symbols.get(key);
@@ -83,18 +83,17 @@ public class JProcedureRenderer extends JProgramPartRenderer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jStackElementUnitPanel1 = new glossa.ui.stackrenderer.components.JProgramPartElement();
+        jStackElementUnitPanel1 = new glossa.ui.gui.stackrenderer.components.JProgramPartElement();
         jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jVariablesRenderer1 = new glossa.ui.stackrenderer.components.JVariablesRenderer();
-        jConstantsRenderer1 = new glossa.ui.stackrenderer.components.JConstantsRenderer();
+        jVariablesRenderer1 = new glossa.ui.gui.stackrenderer.components.JVariablesRenderer();
+        jConstantsRenderer1 = new glossa.ui.gui.stackrenderer.components.JConstantsRenderer();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(269, 425));
+        setPreferredSize(new java.awt.Dimension(245, 425));
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 12));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ΔΙΑΔΙΚΑΣΙΑ");
+        jLabel1.setText("ΚΥΡΙΩΣ ΠΡΟΓΡΑΜΜΑ");
 
         javax.swing.GroupLayout jStackElementUnitPanel1Layout = new javax.swing.GroupLayout(jStackElementUnitPanel1);
         jStackElementUnitPanel1.setLayout(jStackElementUnitPanel1Layout);
@@ -102,7 +101,7 @@ public class JProcedureRenderer extends JProgramPartRenderer {
             jStackElementUnitPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jStackElementUnitPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jStackElementUnitPanel1Layout.setVerticalGroup(
@@ -124,7 +123,7 @@ public class JProcedureRenderer extends JProgramPartRenderer {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -134,18 +133,18 @@ public class JProcedureRenderer extends JProgramPartRenderer {
                 .addContainerGap()
                 .addComponent(jStackElementUnitPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private glossa.ui.stackrenderer.components.JConstantsRenderer jConstantsRenderer1;
+    private glossa.ui.gui.stackrenderer.components.JConstantsRenderer jConstantsRenderer1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane jSplitPane1;
-    private glossa.ui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
-    private glossa.ui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
+    private glossa.ui.gui.stackrenderer.components.JProgramPartElement jStackElementUnitPanel1;
+    private glossa.ui.gui.stackrenderer.components.JVariablesRenderer jVariablesRenderer1;
     // End of variables declaration//GEN-END:variables
 
 }

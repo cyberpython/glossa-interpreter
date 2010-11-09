@@ -47,7 +47,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="glossa.ui.stackrenderer.components.JProgramPartElement" name="jStackElementUnitPanel1">
+    <Container class="glossa.ui.gui.stackrenderer.components.JProgramPartElement" name="jStackElementUnitPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -89,14 +89,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
-        <Component class="glossa.ui.stackrenderer.components.JVariablesRenderer" name="jVariablesRenderer1">
+        <Component class="glossa.ui.gui.stackrenderer.components.JVariablesRenderer" name="jVariablesRenderer1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
               <JSplitPaneConstraints position="right"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="glossa.ui.stackrenderer.components.JConstantsRenderer" name="jConstantsRenderer1">
+        <Component class="glossa.ui.gui.stackrenderer.components.JConstantsRenderer" name="jConstantsRenderer1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
               <JSplitPaneConstraints position="left"/>

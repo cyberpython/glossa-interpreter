@@ -28,7 +28,7 @@
  * Created on Nov 6, 2010, 6:42:52 PM
  */
 
-package glossa.ui.stackrenderer;
+package glossa.ui.gui.stackrenderer;
 
 /**
  *
@@ -57,7 +57,7 @@ public class JGlossaStackPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        stackRenderer1 = new glossa.ui.stackrenderer.StackRenderer();
+        stackRenderer1 = new glossa.ui.gui.stackrenderer.StackRenderer();
 
         jScrollPane1.setViewportView(stackRenderer1);
 
@@ -76,7 +76,7 @@ public class JGlossaStackPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private glossa.ui.stackrenderer.StackRenderer stackRenderer1;
+    private glossa.ui.gui.stackrenderer.StackRenderer stackRenderer1;
     // End of variables declaration//GEN-END:variables
 
 }

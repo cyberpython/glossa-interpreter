@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
 import java.awt.Color;
 

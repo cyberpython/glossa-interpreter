@@ -34,4 +34,5 @@ public interface  ASTInterpreterListener {
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
     public void commandExecuted(ASTInterpreter sender, boolean wasPrintStatement);
+    public void runtimeError();
 }

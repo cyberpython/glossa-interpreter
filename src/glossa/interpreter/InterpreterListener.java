@@ -34,4 +34,5 @@ public interface  InterpreterListener {
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
     public void commandExecuted(Interpreter sender, boolean wasPrintStatement);
+    public void runtimeError();
 }

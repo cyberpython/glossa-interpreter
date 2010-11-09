@@ -21,7 +21,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
   <SubComponents>
-    <Container class="glossa.ui.stackrenderer.components.JGradientPanel" name="jGradientPanel1">
+    <Container class="glossa.ui.gui.stackrenderer.components.JGradientPanel" name="jGradientPanel1">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
         <Property name="axis" type="int" value="0"/>
@@ -51,7 +51,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/glossa/ui/resources/images/place_holder.png"/>
+              <Image iconType="3" name="/glossa/ui/gui/resources/images/place_holder.png"/>
             </Property>
           </Properties>
         </Component>

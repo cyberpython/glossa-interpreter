@@ -22,55 +22,34 @@
  *  THE SOFTWARE.
  */
 
-package glossa.ui.stackrenderer.components;
+package glossa.ui.gui.stackrenderer.components;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class JGradientPanel extends JPanel{
+public class JProgramPartElement extends JPanel{
 
+    private Color bgColor;
     private Color borderColor;
-    private Color bgColor1;
-    private Color bgColor2;
+    private Stroke borderStroke;
 
-    private Color selectedBgColor1;
-    private Color selectedBgColor2;
-
-    private BasicStroke borderStroke;
-
-    private boolean selected;
-
-    public JGradientPanel() {
-
-        this.borderColor = new Color(99, 99, 99);
-        this.bgColor1 = new Color(245, 245, 245);
-        this.bgColor2 = new Color(230, 230, 230);
-
-        this.selectedBgColor1 = new Color(255, 235, 235);
-        this.selectedBgColor2 = new Color(255, 205, 205);
-
-        this.borderStroke = new BasicStroke(0.5f);
-
-        this.selected = false;
-        
+    public JProgramPartElement() {
+        super();
+        this.bgColor = new Color(255, 255, 255);
+        this.borderColor = new Color(0, 0, 0, 50);
+        this.borderStroke = new BasicStroke(1.0f);
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 
-    public boolean isSelected() {
-        return selected;
-    }
 
     @Override
     protected void paintComponent(Graphics arg0) {
@@ -87,7 +66,7 @@ public class JGradientPanel extends JPanel{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        fillBgWithGradient(g2d, width, height);
+        fillBg(g2d, width, height);
         drawBorder(g2d, width, height);
 
     }
@@ -98,21 +77,9 @@ public class JGradientPanel extends JPanel{
         g2d.drawRect(0, 0, width - 1, height - 1);
     }
 
-    private void fillBgWithGradient(Graphics2D g2d, int width, int height) {
-        GradientPaint bgColor;
-        if(selected){
-            g2d.setBackground(selectedBgColor1);
-            bgColor = new GradientPaint(0, 0, selectedBgColor1, 0, height, selectedBgColor2);
-        }else{
-            g2d.setBackground(bgColor1);
-            bgColor = new GradientPaint(0, 0, bgColor1, 0, height, bgColor2);
-        }
+    private void fillBg(Graphics2D g2d, int width, int height) {
+        g2d.setBackground(bgColor);
         g2d.setPaint(bgColor);
         g2d.fillRect(0, 0, width, height);
     }
-
-
-
-
-
 }
