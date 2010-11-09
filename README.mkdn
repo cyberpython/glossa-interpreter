@@ -31,7 +31,8 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 - Statement execution: Procedures ✔
 - Command-line interface ✔
 - Step-by-step execution ✔
-- Graphical user interface (e.g runtime stack inspector) ✘
+- Graphical user interface components(runtime stack inspector, runtime console, messages output list) ✔
+- Graphical user interface ⟳
 - Run as server (for easier integration with tools written in languages other than Java) ✘
 
 
