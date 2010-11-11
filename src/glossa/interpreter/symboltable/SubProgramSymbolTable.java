@@ -28,6 +28,8 @@ import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeConstant;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
 import glossa.interpreter.symboltable.symbols.RuntimeVariable;
+import glossa.messages.Messages;
+import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
 import glossa.statictypeanalysis.scopetable.scopes.SubProgramScope;
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class SubProgramSymbolTable extends SymbolTable {
                 if ((parameter instanceof RuntimeVariable) || (parameter instanceof RuntimeArray)) {
                     this.parameters.add(parameter);
                 } else {
-                    throw new RuntimeException("Parameters can only be declared as variables or arrays!"); //TODO: proper error message
+                    throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_FOMRAL_PARAMS_MUST_BE_VARS_OR_ARRAYS);
                 }
             }
         }else{}
@@ -90,7 +92,7 @@ public class SubProgramSymbolTable extends SymbolTable {
                 passParameterByValue(this.parameters.get(i), this.actualParameters.get(i));
             }
         }else{
-            throw new RuntimeException("The number of parameters supplied does not match that of the formal parameters."); //TODO: proper error message
+            throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_PARAMS_AND_FOMRAL_PARAMS_COUNT_MISMATCH);
         }
     }
 
@@ -99,32 +101,32 @@ public class SubProgramSymbolTable extends SymbolTable {
             if (parameter instanceof RuntimeVariable) {
                 ((RuntimeVariable) parameter).setValue(((RuntimeConstant) actualParam).getValue());
             } else {
-                throw new RuntimeException("Cannot assign the value of a constant to an array!"); //TODO: proper error message
+                throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ASSIGN_VALUE_TO_ARRAY);
             }
         } else if (actualParam instanceof RuntimeVariable) { //parameter is a variable
             if (parameter instanceof RuntimeVariable) {
                 ((RuntimeVariable) parameter).setValue(((RuntimeVariable) actualParam).getValue());
             } else {
-                throw new RuntimeException("Cannot assign the value of a variable to an array!"); //TODO: proper error message
+                throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ASSIGN_VALUE_TO_ARRAY);
             }
         } else if (actualParam instanceof RuntimeArray) { //parameter is an array
             if (parameter instanceof RuntimeArray) {
                 this.copyArrayItems((RuntimeArray) actualParam, (RuntimeArray) parameter);
             } else {
-                throw new RuntimeException("Cannot assign an array to a variable!"); //TODO: proper error message
+                throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ASSIGN_ARRAY_TO_VAR);
             }
         } else if (actualParam instanceof RuntimeArrayItemWrapper) { //parameter is an array
             if (parameter instanceof RuntimeVariable) {
                 RuntimeArrayItemWrapper raiw = (RuntimeArrayItemWrapper) actualParam;
                 ((RuntimeVariable) parameter).setValue(raiw.getArray().get(raiw.getIndex()));
             } else {
-                throw new RuntimeException("Cannot assign the value of a variable to an array!"); //TODO: proper error message
+                throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ASSIGN_VALUE_TO_ARRAY);
             }
         } else { //parameter is an expression result
             if (parameter instanceof RuntimeVariable) {
                 ((RuntimeVariable) parameter).setValue(actualParam);
             } else {
-                throw new RuntimeException("Cannot assign a value to an array!"); //TODO: proper error message
+                throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_CANNOT_ASSIGN_VALUE_TO_ARRAY);
             }
         }
     }
@@ -133,7 +135,7 @@ public class SubProgramSymbolTable extends SymbolTable {
         List<Integer> origDims = original.getDimensions();
         List<Integer> copyDims = copy.getDimensions();
         if (!origDims.equals(copyDims)) {
-            throw new RuntimeException("Array-parameter dimensions do not match those of the formal parameter. from:"+origDims+" to: "+copyDims); //TODO: proper error message
+            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_PARAM_AND_FORMAL_PARAM_DIMENSIONS_MISMATCH, Messages.arrayIndexToString(origDims), Messages.arrayIndexToString(copyDims)));
         } else {
             Object[] originals = original.getValues();
             copy.setValues(originals);

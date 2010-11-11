@@ -42,6 +42,8 @@ import java.io.PrintStream;
 public class CLI implements InterpreterListener {
 
     private static final String FILE_NOT_FOUND_ERROR = "Το αρχείο \"%1$s\" δε βρέθηκε!";
+    private static final String INPUT_IO_ERROR = "Σφάλμα κατά την ανάγνωση της εισόδου από το πληκτρολόγιο!";
+    private static final String CONTINUE_EXECUTION_PROMPT = "Συνέχεια; (Enter=ΝΑΙ / S+Enter=Εμφάνιση Στοίβας / Οτιδήποτε άλλο+Enter=ΤΕΡΜΑΤΙΣΜΟΣ): ";
     private boolean stepByStep;
     private PrintStream out;
     private PrintStream err;
@@ -81,20 +83,20 @@ public class CLI implements InterpreterListener {
     }
 
     private void checkUserInputAfterStep(Interpreter sender) {
-        out.print("Συνέχεια; (Enter=ΝΑΙ / Σ+Enter=Εμφάνιση Στοίβας / Οτιδήποτε άλλο+Enter=ΤΕΡΜΑΤΙΣΜΟΣ): ");//TODO: message
+        out.print(CONTINUE_EXECUTION_PROMPT);
         BufferedReader r = new BufferedReader(new InputStreamReader(in));
         try {
             String s = r.readLine();
             if (s.equals("")) {
                 sender.resume();
-            } else if (s.toUpperCase().equals("Σ")) {
+            } else if (s.toUpperCase().equals("S")) {
                 sender.printRuntimeStack();
                 sender.resume();
             } else {
                 sender.stop();
             }
         } catch (IOException ioe) {
-            err.println(ioe.getLocalizedMessage());//TODO: message
+            err.println(INPUT_IO_ERROR);
         }
     }
 

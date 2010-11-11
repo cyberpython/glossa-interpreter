@@ -42,8 +42,7 @@ import joptsimple.OptionSet;
 public class Main {
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
-    private static final String VERSION = "Έκδοση: 0.2";
-    private static final String FEATURE_NOT_IMPLEMENTED = "Αυτή η λειτουργία δεν έχει υλοποιηθεί.";
+    private static final String VERSION = "Έκδοση: 1.0beta";
     private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
     private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
 
@@ -54,7 +53,7 @@ public class Main {
 
         String[] arguments = args;
 
-        OptionParser parser = new OptionParser("hVgif:");
+        OptionParser parser = new OptionParser("hVif:");
 
         try {
             OptionSet options = parser.parse(arguments);
@@ -68,9 +67,7 @@ public class Main {
                 }
             } else {
                 List<String> remainingArgs = options.nonOptionArguments();
-                if (options.has("g")) {
-                    System.out.println(FEATURE_NOT_IMPLEMENTED);
-                } else if (remainingArgs.size() > 0) {
+                if (remainingArgs.size() > 0) {
                     boolean interactive = false;
                     File inputFile = null;
                     if (options.has("i")) {

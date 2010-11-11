@@ -151,10 +151,14 @@ public class RuntimeArray extends RuntimeSymbol {
         return values;
     }
 
-    public void setValues(Object[] values) { //FIXME: check array size
-        for (int i = 0; i < values.length; i++) {
-            Object value = values[i];
-            this.set(i, value);
+    public void setValues(Object[] values) {
+        if(values.length == this.values.length){
+            for (int i = 0; i < values.length; i++) {
+                Object value = values[i];
+                this.set(i, value);
+            }
+        }else{
+            throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_LENGTHS_MISMATCH);
         }
     }
 

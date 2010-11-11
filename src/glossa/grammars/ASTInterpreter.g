@@ -61,6 +61,8 @@ options{
 package glossa.interpreter.core;
 
 import glossa.types.*;
+import glossa.messages.RuntimeMessages;
+import glossa.messages.Messages;
 import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
@@ -147,7 +149,7 @@ import java.util.Iterator;
             this.finished = false;
             try{
                 unit();
-                out.println("Execution finished.");//TODO proper termination message
+                out.println(RuntimeMessages.STR_RUNTIME_MSG_EXECUTION_FINISHED);
             }catch(RecognitionException re){
                 err.println(re.getMessage());
                 notifyListeners(RUNTIME_ERROR);
@@ -155,7 +157,11 @@ import java.util.Iterator;
                 err.println(re.getMessage());
                 notifyListeners(RUNTIME_ERROR);
             }catch(Error e){
-                err.println("Stack overflow (you can set the JVM stack size with -Xss..M e.g. -Xss32M - default is 8M).");//TODO proper termination message
+                if(e instanceof StackOverflowError){
+                    err.println(RuntimeMessages.STR_RUNTIME_ERROR_STACk_OVERFLOW);
+                }else{
+                    err.println(String.format(RuntimeMessages.STR_RUNTIME_ERROR_JVM_ERROR, e.getMessage()));
+                }
                 notifyListeners(RUNTIME_ERROR);
             }
             this.finished = true;
@@ -171,7 +177,7 @@ import java.util.Iterator;
 
         public void killThread(){
             notifyListeners(RUNTIME_ERROR);
-            throw new RuntimeException("Execution terminated by user.");//TODO: proper termination-cause-by-user message
+            throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_EXECUTION_TERMINATED_BY_USER);
         }
 
         public void resume(){
@@ -318,7 +324,7 @@ arrayDimension  returns [List<Integer> value]
                                     if(InterpreterUtils.isValidArrayDimension($expr.result)){
                                         result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
                                     }else{
-                                        throw new RuntimeException("Array dimensions must be of integer type and in the range (0,"+Integer.MAX_VALUE+")"); //TODO: proper runtime error message
+                                        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, Integer.MAX_VALUE));
                                     }
                                 }
                     )+
@@ -561,7 +567,7 @@ stm	:	^(  PRINT           {
                                             notifyListeners(STACK_POPPED);
                                             input.seek(resumeAt);
                                         }else{
-                                            throw new RuntimeException("Call to unknown procedure: "+$ID.text);
+                                            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
                                         }
                                         stmExecuted(false);
                                     }
@@ -783,7 +789,7 @@ expr	returns [Object result, Object resultForParam]
                                                                     $result = fst.getReturnValue();
                                                                     input.seek(resumeAt);
                                                                 }else{
-                                                                    throw new RuntimeException("Call to unknown function: "+$ID.text);
+                                                                    throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_FUNCTION, $ID.text));
                                                                 }
                                                             }
                                                             $resultForParam = $result;
@@ -805,18 +811,18 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                                     if(InterpreterUtils.isValidArrayDimension($expr.result)){
                                         result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
                                     }else{
-                                        throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
+                                        throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE);
                                     }
                                 }
                     )+
                                 {
                                     List<Integer> dimensions = arr.getDimensions();
                                     if(result.size()!=dimensions.size()){
-                                        throw new RuntimeException("Array dimensions and item index mismatch"); //TODO: proper runtime error message
+                                        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_AND_DIMENSIONS_MISMATCH,  result.size(), arr.getName(), dimensions.size()));
                                     }else{
                                         for(int i=0; i<dimensions.size(); i++){
                                             if(result.get(i).compareTo(dimensions.get(i))>0){
-                                                throw new RuntimeException("Array index out of bounds"); //TODO: proper runtime error message
+                                                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDEX_OUT_OF_BOUNDS,  Messages.arrayIndexToString(result), arr.getName()));
                                             }
                                         }
                                     }

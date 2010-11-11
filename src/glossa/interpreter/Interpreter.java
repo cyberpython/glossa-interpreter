@@ -27,6 +27,7 @@ import glossa.interpreter.core.ASTInterpreter;
 import glossa.interpreter.core.ASTInterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
 import glossa.messages.MessageLog;
+import glossa.messages.RuntimeMessages;
 import glossa.recognizers.GlossaParser;
 import glossa.recognizers.GlossaLexer;
 import glossa.statictypeanalysis.FirstPass;
@@ -240,8 +241,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 err.println(e.getLocalizedMessage());
             }
         } catch (IOException ioe) {
-            err.println(String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));//TODO: message
-            msgLog.error(new Point(0, 0), String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));
+            err.println(String.format(RuntimeMessages.STR_RUNTIME_ERROR_FILE_NOT_FOUND, filename));
+            msgLog.error(new Point(0, 0), String.format(RuntimeMessages.STR_RUNTIME_ERROR_FILE_NOT_FOUND, filename));
         }
 
         errors = msgLog.getNumberOfErrors();
@@ -274,97 +275,6 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Old run method">
-/*public void run() {
-
-    stop();
-
-    String filename = sourceCodeFile.getAbsolutePath();
-    MessageLog msgLog = new MessageLog(err, out);
-
-    Charset charset;
-    try {
-    charset = getInputCharset(filename);
-    } catch (IOException ioe) {
-    charset = Charset.defaultCharset();
-    }
-
-    try {
-    ANTLRFileStream input = new ANTLRFileStream(filename, charset.name());
-
-    try {
-    GlossaParser.unit_return r = null;
-
-    try {
-    GlossaLexer lexer = new GlossaLexer(input);
-    lexer.setMessageLog(msgLog);
-    CommonTokenStream tokens = new CommonTokenStream(lexer);
-    GlossaParser parser = new GlossaParser(tokens);
-    parser.setMessageLog(msgLog);
-    r = parser.unit();
-    } catch (RuntimeException re) {
-    }
-
-    int errors = msgLog.getNumberOfErrors();
-    msgLog.printErrors();
-
-
-
-    if (errors == 0) {
-
-    ScopeTable scopeTable = new ScopeTable();
-
-    // WALK RESULTING TREE
-    CommonTree t = (CommonTree) r.getTree(); // get tree from parser
-    // Create a tree node stream from resulting tree
-    BufferedTreeNodeStream nodes = new BufferedTreeNodeStream(t);
-    FirstPass fp = new FirstPass(nodes);
-    fp.setScopeTable(scopeTable);
-    fp.setMessageLog(msgLog);
-    fp.unit();                 // launch at start rule prog
-
-    errors = msgLog.getNumberOfErrors();
-    msgLog.printErrors();
-
-
-    if (errors == 0) {
-    nodes.reset();
-    StaticTypeAnalyzer staticTypeAnalyzer = new StaticTypeAnalyzer(nodes); // create a tree parser
-    staticTypeAnalyzer.setScopeTable(scopeTable);
-    staticTypeAnalyzer.setMessageLog(msgLog);
-    staticTypeAnalyzer.unit();                 // launch at start rule prog
-
-    errors = msgLog.getNumberOfErrors();
-    msgLog.printErrors();
-    msgLog.printWarnings();
-
-    if (errors == 0) {
-    //scopeTable.printScopes(out);
-    this.interpreter = new ASTInterpreter(nodes); // create a tree parser
-    interpreter.init(scopeTable, out, err, runtimeIn);
-    interpreter.addListener(this);
-    Thread thread = new Thread(interpreter);
-    this.interpreterThread = thread;
-    thread.start();
-    while (thread.isAlive()) {
-    Thread.sleep(200);
-    }
-    }
-
-    } else {
-    msgLog.printWarnings();
-    }
-    } else {
-    msgLog.printWarnings();
-    }
-    } catch (Exception e) {
-    System.err.println(e.getLocalizedMessage());
-    }
-    } catch (IOException ioe) {
-    err.println(String.format("Το αρχείο \"%1$s\" δε βρέθηκε!", filename));//TODO: message
-    }
-    }*/// </editor-fold>
-    
     public void printRuntimeStack() {
         if (this.interpreter != null) {
             out.println();
