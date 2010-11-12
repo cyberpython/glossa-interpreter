@@ -176,7 +176,19 @@ import java.util.Iterator;
         }
 
         public void pause(){
-            pauseExecution(-1, false);
+            this.halt=true;
+            if(stop){
+                killThread();
+            }
+            while(halt){
+                if(stop){
+                    killThread();
+                }
+                try{
+                    Thread.sleep(500);
+                }catch(InterruptedException ie){
+                }
+            }
         }
 
         public void stop(){
