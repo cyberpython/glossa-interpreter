@@ -34,6 +34,6 @@ public interface  InterpreterListener {
     public void parsingAndSemanticAnalysisFinished(boolean success);
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
-    public void commandExecuted(Interpreter sender, boolean wasPrintStatement);
+    public void executionPaused(Interpreter sender, Integer line, Boolean wasPrintStatement);
     public void runtimeError();
 }

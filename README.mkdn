@@ -43,8 +43,9 @@ To build the project’s code you will need :
 - [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Apache Ant](http://ant.apache.org/) (built-in in Netbeans)
 - [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (*)
+- [JOpt Simple](http://jopt-simple.sourceforge.net/) (*)
 
-(*) If you have an active internet connection antlr will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar to glossa-interpreter/lib/antlr-3.2.jar
+(*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/
 
 
 Open a terminal and give:

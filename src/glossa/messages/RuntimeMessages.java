@@ -35,7 +35,7 @@ import glossa.interpreter.symboltable.symbols.RuntimeVariable;
  */
 public class RuntimeMessages {
 
-    public final static String STR_RUNTIME_MSG_EXECUTION_FINISHED = "Η εκτέλεση ολοκληρώθηκε.";
+    public final static String STR_RUNTIME_MSG_EXECUTION_FINISHED = "\n\n- Η εκτέλεση ολοκληρώθηκε. -\n";
 
     public final static String STR_RUNTIME_ERROR_FILE_NOT_FOUND = "Το αρχείο \"%1$s\" δε βρέθηκε!";
     public final static String STR_RUNTIME_ERROR_EXECUTION_TERMINATED_BY_USER = "Η εκτέλεση τερματίστηκε από το χρήστη.";

@@ -85,7 +85,7 @@ import java.util.Iterator;
 
 @members{
 
-        private static final String COMMAND_EXECUTED = "__cmd_exec__";
+        private static final String EXECUTION_PAUSED = "__exec_paused__";
         private static final String STACK_PUSHED = "__stack_pushed__";
         private static final String STACK_POPPED = "__stack_popped__";
         private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -133,8 +133,8 @@ import java.util.Iterator;
         public void notifyListeners(String msg, Object... params){
             for (Iterator<ASTInterpreterListener> it = listeners.iterator(); it.hasNext();) {
                 ASTInterpreterListener listener = it.next();
-                if(COMMAND_EXECUTED.equals(msg)){
-                    listener.commandExecuted(this, (Boolean)params[0]);
+                if(EXECUTION_PAUSED.equals(msg)){
+                    listener.executionPaused(this, (Integer)params[0], (Boolean)params[1]);
                 }else if(STACK_PUSHED.equals(msg)){
                     listener.stackPushed((SymbolTable)params[0]);
                 }else if(STACK_POPPED.equals(msg)){
@@ -230,12 +230,12 @@ import java.util.Iterator;
         }
 
 
-        public void stmExecuted(boolean wasPrintStatement){
+        public void pauseExecution(int line, boolean wasPrintStatement){
             this.halt=true;
             if(stop){
                 killThread();
             }
-            this.notifyListeners(COMMAND_EXECUTED, Boolean.valueOf(wasPrintStatement));
+            this.notifyListeners(EXECUTION_PAUSED, new Integer(line), Boolean.valueOf(wasPrintStatement));
             while(halt){
                 if(stop){
                     killThread();
@@ -362,9 +362,9 @@ stm	:	^(  PRINT           {
                                         }else{
                                             this.out.println(outputString);
                                         }
-                                        stmExecuted(true);
+                                        pauseExecution($PRINT.line, true);
                                     }
-        |       ^(READ readItem+)   {   stmExecuted(false);  }
+        |       ^(READ readItem+)   {   pauseExecution($READ.line, false); }
 	|	^(ASSIGN ID expr)   {
                                         boolean varAssignment = true;
                                         if(currentSymbolTable instanceof FunctionSymbolTable){
@@ -378,7 +378,8 @@ stm	:	^(  PRINT           {
                                             RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                             var.setValue($expr.result);
                                         }
-                                        stmExecuted(false);
+
+                                        pauseExecution($ASSIGN.line, false);
                                     }
         |       ^(ASSIGN ID         {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -387,7 +388,7 @@ stm	:	^(  PRINT           {
                   expr
                  )                  {
                                         arr.set($arraySubscript.value, $expr.result);
-                                        stmExecuted(false);
+                                        pauseExecution($ASSIGN.line, false);
                                     }
         |       ^(IFNODE
                   ifBlock           {
@@ -400,12 +401,13 @@ stm	:	^(  PRINT           {
                   )*
                   (elseBlock [proceed])?
                                     {
-                                        stmExecuted(false);
+                                        
                                     }
                 )
         |       ^(SWITCH
                   expr              {
                                         boolean proceed = true;
+                                        pauseExecution($SWITCH.line, false);
                                     }
                   (caseBlock [$expr.result, proceed]
                                     {
@@ -414,7 +416,7 @@ stm	:	^(  PRINT           {
                   )*
                   (caseElseBlock [proceed])?
                  )                  {
-                                        stmExecuted(false);
+                                        
                                     }
         |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=.)
                                     {
@@ -448,6 +450,8 @@ stm	:	^(  PRINT           {
                                             }
                                         }
 
+                                        pauseExecution($FOR.line, false);
+
                                         if(InterpreterUtils.greaterThanOrEqual(step, BigInteger.ZERO)){ //step is positive
                                             while(InterpreterUtils.lowerThanOrEqual(counter.getValue(), $toValue.result)){
                                                 input.seek(blkIndex);
@@ -463,7 +467,7 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
-                                        stmExecuted(false);
+                                        
                                     }
         |       ^(FOR ID            {
                                         RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
@@ -502,6 +506,8 @@ stm	:	^(  PRINT           {
                                             }
                                         }
 
+                                        pauseExecution($FOR.line, false);
+
                                         if(InterpreterUtils.greaterThanOrEqual(step, BigInteger.ZERO)){ //step is positive
                                             while(InterpreterUtils.lowerThanOrEqual(arr.get($arraySubscript.value), $toValue.result)){
                                                 input.seek(blkIndex);
@@ -517,7 +523,7 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
-                                        stmExecuted(false);
+                                        
                                     }
         |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=.)
                                     {
@@ -525,15 +531,17 @@ stm	:	^(  PRINT           {
                                             input.seek(conditionIndex);
                                             Boolean exprResult = (Boolean)expr().result;
 
+                                            pauseExecution($WHILE.line, false);
                                             while(  exprResult.equals(Boolean.TRUE)  ){
                                                 input.seek(blkIndex);
                                                 block();
                                                 input.seek(conditionIndex);
                                                 exprResult = (Boolean)expr().result;
+                                                pauseExecution($WHILE.line, false);
                                             }
 
                                             input.seek(resumeAt);
-                                            stmExecuted(false);
+                                            
                                     }
 	|	^(REPEAT {int blkIndex = input.index()+1;} blk=. {int conditionIndex = input.index();} condition=.)
                                     {
@@ -545,13 +553,15 @@ stm	:	^(  PRINT           {
                                                 block();
                                                 input.seek(conditionIndex);
                                                 exprResult = (Boolean)expr().result;
+                                                pauseExecution($REPEAT.line, false);
                                             }
 
                                             input.seek(resumeAt);
-                                            stmExecuted(false);
+                                            
                                     }
         |       ^(CALL ID paramsList)
                                     {
+                                        pauseExecution($CALL.line, false);
                                         ProcedureScope ps = scopeTable.getProcedureScope($ID.text);
                                         if(ps!=null){
                                             ProcedureSymbolTable pst = new ProcedureSymbolTable(ps, $paramsList.parameters);
@@ -569,7 +579,7 @@ stm	:	^(  PRINT           {
                                         }else{
                                             throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
                                         }
-                                        stmExecuted(false);
+                                        
                                     }
         ;
 
@@ -600,6 +610,7 @@ readItem
 ifBlock returns [boolean proceedToNextCondition]
         :       ^(IF expr {int index = input.index();} cmd=.)
                                     {
+                                        pauseExecution($IF.line, false);
                                         if(  ((Boolean) $expr.result).equals(Boolean.TRUE)  ){
                                             int resumeAt = input.index();
                                             $proceedToNextCondition = false;
@@ -615,6 +626,7 @@ ifBlock returns [boolean proceedToNextCondition]
 elseBlock [boolean exec]
 	:	^(ELSE  {int elseIndex = input.index()+1;} cmd=.)
                                     {
+                                        pauseExecution($ELSE.line, false);
                                         if($exec){
                                             int resumeAt = input.index();
                                             input.seek(elseIndex);
@@ -627,6 +639,7 @@ elseBlock [boolean exec]
 elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
 	:	^(ELSE_IF {int conditionIndex = input.index()+1;} e=. {int blkIndex = input.index();}  cmd=.)
                                     {
+                                        pauseExecution($ELSE_IF.line, false);
                                         $proceedToNextCondition = $exec;
                                         if($exec){
                                             int resumeAt = input.index();
@@ -648,6 +661,7 @@ elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
 caseBlock [Object target, boolean proceed] returns [boolean checkNextCaseBlock]
 	:	^(CASE {boolean foundMatch = false;} (caseExprListItem [$target] {foundMatch = foundMatch || $caseExprListItem.success;} )+  {int blkIndex = input.index();} blk=.)
                                     {
+                                        pauseExecution($CASE.line, false);
                                         $checkNextCaseBlock = $proceed;
                                         if($proceed){
                                             int resumeAt = input.index();
@@ -716,6 +730,7 @@ caseExprListItem [Object target] returns [boolean success]
 caseElseBlock [boolean proceed]
 	:	^(CASE_ELSE {int blkIndex = input.index()+1;} blk=.)
                                     {
+                                        pauseExecution($CASE_ELSE.line, false);
                                         if($proceed){
                                             int resumeAt = input.index();
                                             input.seek(blkIndex);
@@ -838,6 +853,7 @@ procedure [boolean exec]
                                     if(exec){
                                         ProcedureSymbolTable pst = (ProcedureSymbolTable)this.currentSymbolTable;
                                         pst.passParameters();
+                                        pauseExecution($PROCEDURE.line, false);
                                         int resumeAt = input.index();
                                         input.seek(blkIndex);
                                         block();
@@ -853,6 +869,7 @@ function [boolean exec]
                                     if(exec){
                                         FunctionSymbolTable fst = (FunctionSymbolTable)this.currentSymbolTable;
                                         fst.passParameters();
+                                        pauseExecution($FUNCTION.line, false);
                                         int resumeAt = input.index();
                                         input.seek(blkIndex);
                                         block();

@@ -56,7 +56,7 @@ import org.antlr.runtime.tree.CommonTree;
 public class Interpreter implements Runnable, ASTInterpreterListener {
 
     private static final String PARSER_AND_ANALYZER_FINISHED = "__parser_and_analyzer_done__";
-    private static final String COMMAND_EXECUTED = "__cmd_exec__";
+    private static final String EXECUTION_PAUSED = "__exec_paused__";
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
     private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -102,8 +102,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     public void notifyListeners(String msg, Object... params) {
         for (Iterator<InterpreterListener> it = listeners.iterator(); it.hasNext();) {
             InterpreterListener listener = it.next();
-            if (COMMAND_EXECUTED.equals(msg)) {
-                listener.commandExecuted(this, (Boolean) params[0]);
+            if (EXECUTION_PAUSED.equals(msg)) {
+                listener.executionPaused(this, (Integer) params[0], (Boolean)params[1]);
             } else if (STACK_PUSHED.equals(msg)) {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
@@ -298,7 +298,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         notifyListeners(STACK_POPPED);
     }
 
-    public void commandExecuted(ASTInterpreter sender, boolean wasPrintStatement) {
-        notifyListeners(COMMAND_EXECUTED, Boolean.valueOf(wasPrintStatement));
+    public void executionPaused(ASTInterpreter sender, Integer line, Boolean wasPrintStatement) {
+        notifyListeners(EXECUTION_PAUSED, line, wasPrintStatement);
     }
 }
