@@ -176,7 +176,7 @@ import java.util.Iterator;
         }
 
         public void pause(){
-            this.halt = true;
+            pauseExecution(-1, false);
         }
 
         public void stop(){

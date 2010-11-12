@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-12 12:42:34
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-12 15:35:11
 
 
 /*
@@ -295,7 +295,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
 
             public void pause(){
-                this.halt = true;
+                pauseExecution(-1, false);
             }
 
             public void stop(){
