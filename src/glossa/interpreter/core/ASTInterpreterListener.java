@@ -36,5 +36,6 @@ public interface  ASTInterpreterListener {
     public void executionStarted(ASTInterpreter sender);
     public void executionPaused(ASTInterpreter sender, Integer line, Boolean wasPrintStatement);
     public void executionStopped(ASTInterpreter sender);
+    public void readStatementExecuted(ASTInterpreter sender, Integer line);
     public void runtimeError();
 }

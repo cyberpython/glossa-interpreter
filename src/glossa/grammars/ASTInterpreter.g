@@ -88,6 +88,7 @@ import java.util.Iterator;
         private static final String EXECUTION_STARTED = "__exec_started__";
         private static final String EXECUTION_PAUSED = "__exec_paused__";
         private static final String EXECUTION_STOPPED = "__exec_stopped__";
+        private static final String READ_STM = "__read_stm__";
         private static final String STACK_PUSHED = "__stack_pushed__";
         private static final String STACK_POPPED = "__stack_popped__";
         private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -141,6 +142,8 @@ import java.util.Iterator;
                     listener.stackPushed((SymbolTable)params[0]);
                 }else if(STACK_POPPED.equals(msg)){
                     listener.stackPopped();
+                }else if(READ_STM.equals(msg)){
+                    listener.readStatementExecuted(this, (Integer)params[0]);
                 }else if(EXECUTION_STARTED.equals(msg)){
                     listener.executionStarted(this);
                 }else if(EXECUTION_STOPPED.equals(msg)){
@@ -175,21 +178,6 @@ import java.util.Iterator;
             notifyListeners(EXECUTION_STOPPED);
         }
 
-        public void pause(){
-            this.halt=true;
-            if(stop){
-                killThread();
-            }
-            while(halt){
-                if(stop){
-                    killThread();
-                }
-                try{
-                    Thread.sleep(500);
-                }catch(InterruptedException ie){
-                }
-            }
-        }
 
         public void stop(){
             stop = true;
@@ -384,7 +372,7 @@ stm	:	^(  PRINT           {
                                         }
                                         pauseExecution($PRINT.line, true);
                                     }
-        |       ^(READ readItem+)   {   pauseExecution($READ.line, false); }
+        |       ^(READ {   this.notifyListeners(READ_STM, new Integer($READ.line));    } readItem+)
 	|	^(ASSIGN ID expr)   {
                                         boolean varAssignment = true;
                                         if(currentSymbolTable instanceof FunctionSymbolTable){
@@ -646,8 +634,8 @@ ifBlock returns [boolean proceedToNextCondition]
 elseBlock [boolean exec]
 	:	^(ELSE  {int elseIndex = input.index()+1;} cmd=.)
                                     {
-                                        pauseExecution($ELSE.line, false);
                                         if($exec){
+                                            pauseExecution($ELSE.line, false);
                                             int resumeAt = input.index();
                                             input.seek(elseIndex);
                                             block();
@@ -659,9 +647,9 @@ elseBlock [boolean exec]
 elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
 	:	^(ELSE_IF {int conditionIndex = input.index()+1;} e=. {int blkIndex = input.index();}  cmd=.)
                                     {
-                                        pauseExecution($ELSE_IF.line, false);
                                         $proceedToNextCondition = $exec;
                                         if($exec){
+                                            pauseExecution($ELSE_IF.line, false);
                                             int resumeAt = input.index();
                                             input.seek(conditionIndex);
                                             Boolean exprResult = (Boolean)expr().result;
@@ -681,9 +669,9 @@ elseIfBlock [boolean exec] returns [boolean proceedToNextCondition]
 caseBlock [Object target, boolean proceed] returns [boolean checkNextCaseBlock]
 	:	^(CASE {boolean foundMatch = false;} (caseExprListItem [$target] {foundMatch = foundMatch || $caseExprListItem.success;} )+  {int blkIndex = input.index();} blk=.)
                                     {
-                                        pauseExecution($CASE.line, false);
                                         $checkNextCaseBlock = $proceed;
                                         if($proceed){
+                                            pauseExecution($CASE.line, false);
                                             int resumeAt = input.index();
 
                                             if(  foundMatch  ){
@@ -750,8 +738,8 @@ caseExprListItem [Object target] returns [boolean success]
 caseElseBlock [boolean proceed]
 	:	^(CASE_ELSE {int blkIndex = input.index()+1;} blk=.)
                                     {
-                                        pauseExecution($CASE_ELSE.line, false);
                                         if($proceed){
+                                            pauseExecution($CASE_ELSE.line, false);
                                             int resumeAt = input.index();
                                             input.seek(blkIndex);
                                             block();

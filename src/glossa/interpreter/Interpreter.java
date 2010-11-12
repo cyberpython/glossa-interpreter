@@ -59,6 +59,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     private static final String EXECUTION_STARTED = "__exec_started__";
     private static final String EXECUTION_PAUSED = "__exec_paused__";
     private static final String EXECUTION_STOPPED = "__exec_stopped__";
+    private static final String READ_STM = "__read_stm__";
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
     private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -110,6 +111,8 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
                 listener.stackPopped();
+            } else if(READ_STM.equals(msg)) {
+                listener.readStatementExecuted(this, (Integer) params[0]);
             } else if (EXECUTION_STARTED.equals(msg)) {
                 listener.executionStarted(this);
             } else if (EXECUTION_STOPPED.equals(msg)) {
@@ -135,14 +138,6 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     public void resume() {
         if (this.interpreter != null) {
             this.interpreter.resume();
-        }
-    }
-
-    public void pause() {
-        if (this.interpreter != null) {
-            if (!interpreter.hasFinished()) {
-                this.interpreter.pause();
-            }
         }
     }
 
@@ -306,6 +301,10 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
 
     public void executionPaused(ASTInterpreter sender, Integer line, Boolean wasPrintStatement) {
         notifyListeners(EXECUTION_PAUSED, line, wasPrintStatement);
+    }
+
+    public void readStatementExecuted(ASTInterpreter sender, Integer line){
+        notifyListeners(READ_STM, line);
     }
 
     public void executionStarted(ASTInterpreter sender) {

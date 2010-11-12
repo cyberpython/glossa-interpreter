@@ -63,6 +63,10 @@ public class CLI implements InterpreterListener {
     public void runtimeError() {
     }
 
+    public void readStatementExecuted(Interpreter sender, Integer line) {
+        
+    }
+
     public void executionPaused(Interpreter sender, Integer line, Boolean wasPrintStatement){
         if (!stepByStep) {
             sender.resume();

@@ -37,5 +37,6 @@ public interface  InterpreterListener {
     public void executionStarted(Interpreter sender);
     public void executionPaused(Interpreter sender, Integer line, Boolean wasPrintStatement);
     public void executionStopped(Interpreter sender);
+    public void readStatementExecuted(Interpreter sender, Integer line);
     public void runtimeError();
 }
