@@ -56,7 +56,9 @@ import org.antlr.runtime.tree.CommonTree;
 public class Interpreter implements Runnable, ASTInterpreterListener {
 
     private static final String PARSER_AND_ANALYZER_FINISHED = "__parser_and_analyzer_done__";
+    private static final String EXECUTION_STARTED = "__exec_started__";
     private static final String EXECUTION_PAUSED = "__exec_paused__";
+    private static final String EXECUTION_STOPPED = "__exec_stopped__";
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
     private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -108,6 +110,10 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
                 listener.stackPushed((SymbolTable) params[0]);
             } else if (STACK_POPPED.equals(msg)) {
                 listener.stackPopped();
+            } else if (EXECUTION_STARTED.equals(msg)) {
+                listener.executionStarted(this);
+            } else if (EXECUTION_STOPPED.equals(msg)) {
+                listener.executionStopped(this);
             } else if (RUNTIME_ERROR.equals(msg)) {
                 listener.runtimeError();
             } else if (PARSER_AND_ANALYZER_FINISHED.equals(msg)) {
@@ -301,4 +307,14 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
     public void executionPaused(ASTInterpreter sender, Integer line, Boolean wasPrintStatement) {
         notifyListeners(EXECUTION_PAUSED, line, wasPrintStatement);
     }
+
+    public void executionStarted(ASTInterpreter sender) {
+        notifyListeners(EXECUTION_STARTED);
+    }
+
+    public void executionStopped(ASTInterpreter sender) {
+        notifyListeners(EXECUTION_STOPPED);
+    }
+
+
 }

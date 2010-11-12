@@ -33,6 +33,8 @@ import glossa.interpreter.symboltable.SymbolTable;
 public interface  ASTInterpreterListener {
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
+    public void executionStarted(ASTInterpreter sender);
     public void executionPaused(ASTInterpreter sender, Integer line, Boolean wasPrintStatement);
+    public void executionStopped(ASTInterpreter sender);
     public void runtimeError();
 }

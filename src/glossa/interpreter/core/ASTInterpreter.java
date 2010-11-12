@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-12 12:06:37
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-12 12:42:34
 
 
 /*
@@ -204,7 +204,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
 
+            private static final String EXECUTION_STARTED = "__exec_started__";
             private static final String EXECUTION_PAUSED = "__exec_paused__";
+            private static final String EXECUTION_STOPPED = "__exec_stopped__";
             private static final String STACK_PUSHED = "__stack_pushed__";
             private static final String STACK_POPPED = "__stack_popped__";
             private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -258,6 +260,10 @@ public class ASTInterpreter extends RunnableTreeParser {
                         listener.stackPushed((SymbolTable)params[0]);
                     }else if(STACK_POPPED.equals(msg)){
                         listener.stackPopped();
+                    }else if(EXECUTION_STARTED.equals(msg)){
+                        listener.executionStarted(this);
+                    }else if(EXECUTION_STOPPED.equals(msg)){
+                        listener.executionStopped(this);
                     }else if (RUNTIME_ERROR.equals(msg)) {
                         listener.runtimeError();
                     }
@@ -266,6 +272,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             public void run(){
                 this.finished = false;
+                notifyListeners(EXECUTION_STARTED);
                 try{
                     unit();
                     out.println(RuntimeMessages.STR_RUNTIME_MSG_EXECUTION_FINISHED);
@@ -284,6 +291,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     notifyListeners(RUNTIME_ERROR);
                 }
                 this.finished = true;
+                notifyListeners(EXECUTION_STOPPED);
             }
 
             public void pause(){
@@ -370,11 +378,11 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "unit"
-    // src/glossa/grammars/ASTInterpreter.g:259:1: unit : program ;
+    // src/glossa/grammars/ASTInterpreter.g:267:1: unit : program ;
     public final void unit() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:259:6: ( program )
-            // src/glossa/grammars/ASTInterpreter.g:259:8: program
+            // src/glossa/grammars/ASTInterpreter.g:267:6: ( program )
+            // src/glossa/grammars/ASTInterpreter.g:267:8: program
             {
             pushFollow(FOLLOW_program_in_unit64);
             program();
@@ -397,14 +405,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "program"
-    // src/glossa/grammars/ASTInterpreter.g:261:1: program : ^( PROGRAM id1= ID declarations block (id2= ID )? ) ;
+    // src/glossa/grammars/ASTInterpreter.g:269:1: program : ^( PROGRAM id1= ID declarations block (id2= ID )? ) ;
     public final void program() throws RecognitionException {
         CommonTree id1=null;
         CommonTree id2=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:261:9: ( ^( PROGRAM id1= ID declarations block (id2= ID )? ) )
-            // src/glossa/grammars/ASTInterpreter.g:261:11: ^( PROGRAM id1= ID declarations block (id2= ID )? )
+            // src/glossa/grammars/ASTInterpreter.g:269:9: ( ^( PROGRAM id1= ID declarations block (id2= ID )? ) )
+            // src/glossa/grammars/ASTInterpreter.g:269:11: ^( PROGRAM id1= ID declarations block (id2= ID )? )
             {
             match(input,PROGRAM,FOLLOW_PROGRAM_in_program75); 
 
@@ -427,7 +435,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:270:21: (id2= ID )?
+            // src/glossa/grammars/ASTInterpreter.g:278:21: (id2= ID )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -436,7 +444,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt1) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:270:22: id2= ID
+                    // src/glossa/grammars/ASTInterpreter.g:278:22: id2= ID
                     {
                     id2=(CommonTree)match(input,ID,FOLLOW_ID_in_program178); 
 
@@ -467,13 +475,13 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "declarations"
-    // src/glossa/grammars/ASTInterpreter.g:278:1: declarations : ( constDecl )? ( varDecl )? ;
+    // src/glossa/grammars/ASTInterpreter.g:286:1: declarations : ( constDecl )? ( varDecl )? ;
     public final void declarations() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:279:2: ( ( constDecl )? ( varDecl )? )
-            // src/glossa/grammars/ASTInterpreter.g:279:4: ( constDecl )? ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:287:2: ( ( constDecl )? ( varDecl )? )
+            // src/glossa/grammars/ASTInterpreter.g:287:4: ( constDecl )? ( varDecl )?
             {
-            // src/glossa/grammars/ASTInterpreter.g:279:4: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:287:4: ( constDecl )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -482,7 +490,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt2) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:279:5: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:287:5: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_declarations238);
                     constDecl();
@@ -495,7 +503,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:279:17: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:287:17: ( varDecl )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -504,7 +512,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:279:18: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:287:18: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_declarations243);
                     varDecl();
@@ -533,17 +541,17 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "constDecl"
-    // src/glossa/grammars/ASTInterpreter.g:282:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:290:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
     public final void constDecl() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:283:2: ( ^( CONSTANTS ( constAssign )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:283:4: ^( CONSTANTS ( constAssign )* )
+            // src/glossa/grammars/ASTInterpreter.g:291:2: ( ^( CONSTANTS ( constAssign )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:291:4: ^( CONSTANTS ( constAssign )* )
             {
             match(input,CONSTANTS,FOLLOW_CONSTANTS_in_constDecl264); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:283:16: ( constAssign )*
+                // src/glossa/grammars/ASTInterpreter.g:291:16: ( constAssign )*
                 loop4:
                 do {
                     int alt4=2;
@@ -556,7 +564,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt4) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:283:16: constAssign
+                	    // src/glossa/grammars/ASTInterpreter.g:291:16: constAssign
                 	    {
                 	    pushFollow(FOLLOW_constAssign_in_constDecl266);
                 	    constAssign();
@@ -591,15 +599,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "constAssign"
-    // src/glossa/grammars/ASTInterpreter.g:286:1: constAssign : ^( EQ ID expr ) ;
+    // src/glossa/grammars/ASTInterpreter.g:294:1: constAssign : ^( EQ ID expr ) ;
     public final void constAssign() throws RecognitionException {
         CommonTree ID1=null;
         ASTInterpreter.expr_return expr2 = null;
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:287:2: ( ^( EQ ID expr ) )
-            // src/glossa/grammars/ASTInterpreter.g:287:5: ^( EQ ID expr )
+            // src/glossa/grammars/ASTInterpreter.g:295:2: ( ^( EQ ID expr ) )
+            // src/glossa/grammars/ASTInterpreter.g:295:5: ^( EQ ID expr )
             {
             match(input,EQ,FOLLOW_EQ_in_constAssign289); 
 
@@ -632,17 +640,17 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "varDecl"
-    // src/glossa/grammars/ASTInterpreter.g:297:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:305:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
     public final void varDecl() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:298:9: ( ^( VARIABLES ( varsDecl )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:298:11: ^( VARIABLES ( varsDecl )* )
+            // src/glossa/grammars/ASTInterpreter.g:306:9: ( ^( VARIABLES ( varsDecl )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:306:11: ^( VARIABLES ( varsDecl )* )
             {
             match(input,VARIABLES,FOLLOW_VARIABLES_in_varDecl327); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:298:23: ( varsDecl )*
+                // src/glossa/grammars/ASTInterpreter.g:306:23: ( varsDecl )*
                 loop5:
                 do {
                     int alt5=2;
@@ -655,7 +663,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt5) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:298:23: varsDecl
+                	    // src/glossa/grammars/ASTInterpreter.g:306:23: varsDecl
                 	    {
                 	    pushFollow(FOLLOW_varsDecl_in_varDecl329);
                 	    varsDecl();
@@ -690,11 +698,11 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "varsDecl"
-    // src/glossa/grammars/ASTInterpreter.g:303:1: varsDecl : ^( varType ( varDeclItem )+ ) ;
+    // src/glossa/grammars/ASTInterpreter.g:311:1: varsDecl : ^( varType ( varDeclItem )+ ) ;
     public final void varsDecl() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:304:2: ( ^( varType ( varDeclItem )+ ) )
-            // src/glossa/grammars/ASTInterpreter.g:304:4: ^( varType ( varDeclItem )+ )
+            // src/glossa/grammars/ASTInterpreter.g:312:2: ( ^( varType ( varDeclItem )+ ) )
+            // src/glossa/grammars/ASTInterpreter.g:312:4: ^( varType ( varDeclItem )+ )
             {
             pushFollow(FOLLOW_varType_in_varsDecl353);
             varType();
@@ -703,7 +711,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:304:14: ( varDeclItem )+
+            // src/glossa/grammars/ASTInterpreter.g:312:14: ( varDeclItem )+
             int cnt6=0;
             loop6:
             do {
@@ -717,7 +725,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:304:14: varDeclItem
+            	    // src/glossa/grammars/ASTInterpreter.g:312:14: varDeclItem
             	    {
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl355);
             	    varDeclItem();
@@ -755,14 +763,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/grammars/ASTInterpreter.g:307:1: varDeclItem : ( ID | ^( ARRAY ID arrayDimension ) );
+    // src/glossa/grammars/ASTInterpreter.g:315:1: varDeclItem : ( ID | ^( ARRAY ID arrayDimension ) );
     public final void varDeclItem() throws RecognitionException {
         CommonTree ID3=null;
         List<Integer> arrayDimension4 = null;
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:308:2: ( ID | ^( ARRAY ID arrayDimension ) )
+            // src/glossa/grammars/ASTInterpreter.g:316:2: ( ID | ^( ARRAY ID arrayDimension ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -780,14 +788,14 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt7) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:308:4: ID
+                    // src/glossa/grammars/ASTInterpreter.g:316:4: ID
                     {
                     match(input,ID,FOLLOW_ID_in_varDeclItem376); 
 
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:309:5: ^( ARRAY ID arrayDimension )
+                    // src/glossa/grammars/ASTInterpreter.g:317:5: ^( ARRAY ID arrayDimension )
                     {
                     match(input,ARRAY,FOLLOW_ARRAY_in_varDeclItem383); 
 
@@ -822,7 +830,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/grammars/ASTInterpreter.g:319:1: arrayDimension returns [List<Integer> value] : ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // src/glossa/grammars/ASTInterpreter.g:327:1: arrayDimension returns [List<Integer> value] : ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final List<Integer> arrayDimension() throws RecognitionException {
         List<Integer> value = null;
 
@@ -830,15 +838,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:320:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/grammars/ASTInterpreter.g:320:4: ^( ARRAY_DIMENSION ( expr )+ )
+            // src/glossa/grammars/ASTInterpreter.g:328:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
+            // src/glossa/grammars/ASTInterpreter.g:328:4: ^( ARRAY_DIMENSION ( expr )+ )
             {
             match(input,ARRAY_DIMENSION,FOLLOW_ARRAY_DIMENSION_in_arrayDimension466); 
 
             List<Integer> result = new ArrayList<Integer>();
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:322:21: ( expr )+
+            // src/glossa/grammars/ASTInterpreter.g:330:21: ( expr )+
             int cnt8=0;
             loop8:
             do {
@@ -852,7 +860,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:322:22: expr
+            	    // src/glossa/grammars/ASTInterpreter.g:330:22: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arrayDimension523);
             	    expr5=expr();
@@ -898,10 +906,10 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "varType"
-    // src/glossa/grammars/ASTInterpreter.g:337:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // src/glossa/grammars/ASTInterpreter.g:345:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final void varType() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:338:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // src/glossa/grammars/ASTInterpreter.g:346:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
             // src/glossa/grammars/ASTInterpreter.g:
             {
             if ( (input.LA(1)>=BOOLEANS && input.LA(1)<=REALS) ) {
@@ -929,17 +937,17 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "block"
-    // src/glossa/grammars/ASTInterpreter.g:344:1: block : ^( BLOCK ( stm )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:352:1: block : ^( BLOCK ( stm )* ) ;
     public final void block() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:344:7: ( ^( BLOCK ( stm )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:344:9: ^( BLOCK ( stm )* )
+            // src/glossa/grammars/ASTInterpreter.g:352:7: ( ^( BLOCK ( stm )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:352:9: ^( BLOCK ( stm )* )
             {
             match(input,BLOCK,FOLLOW_BLOCK_in_block692); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:344:17: ( stm )*
+                // src/glossa/grammars/ASTInterpreter.g:352:17: ( stm )*
                 loop9:
                 do {
                     int alt9=2;
@@ -952,7 +960,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt9) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:344:17: stm
+                	    // src/glossa/grammars/ASTInterpreter.g:352:17: stm
                 	    {
                 	    pushFollow(FOLLOW_stm_in_block694);
                 	    stm();
@@ -987,7 +995,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "stm"
-    // src/glossa/grammars/ASTInterpreter.g:350:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) );
+    // src/glossa/grammars/ASTInterpreter.g:358:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) );
     public final void stm() throws RecognitionException {
         CommonTree PRINT6=null;
         CommonTree READ7=null;
@@ -1034,12 +1042,12 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:350:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) )
+            // src/glossa/grammars/ASTInterpreter.g:358:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) )
             int alt18=11;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:350:7: ^( PRINT (expr1= expr )* )
+                    // src/glossa/grammars/ASTInterpreter.g:358:7: ^( PRINT (expr1= expr )* )
                     {
                     PRINT6=(CommonTree)match(input,PRINT,FOLLOW_PRINT_in_stm720); 
 
@@ -1049,7 +1057,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // src/glossa/grammars/ASTInterpreter.g:353:21: (expr1= expr )*
+                        // src/glossa/grammars/ASTInterpreter.g:361:21: (expr1= expr )*
                         loop10:
                         do {
                             int alt10=2;
@@ -1062,7 +1070,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                             switch (alt10) {
                         	case 1 :
-                        	    // src/glossa/grammars/ASTInterpreter.g:353:22: expr1= expr
+                        	    // src/glossa/grammars/ASTInterpreter.g:361:22: expr1= expr
                         	    {
                         	    pushFollow(FOLLOW_expr_in_stm757);
                         	    expr1=expr();
@@ -1099,12 +1107,12 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:367:17: ^( READ ( readItem )+ )
+                    // src/glossa/grammars/ASTInterpreter.g:375:17: ^( READ ( readItem )+ )
                     {
                     READ7=(CommonTree)match(input,READ,FOLLOW_READ_in_stm820); 
 
                     match(input, Token.DOWN, null); 
-                    // src/glossa/grammars/ASTInterpreter.g:367:24: ( readItem )+
+                    // src/glossa/grammars/ASTInterpreter.g:375:24: ( readItem )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -1118,7 +1126,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // src/glossa/grammars/ASTInterpreter.g:367:24: readItem
+                    	    // src/glossa/grammars/ASTInterpreter.g:375:24: readItem
                     	    {
                     	    pushFollow(FOLLOW_readItem_in_stm822);
                     	    readItem();
@@ -1145,7 +1153,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:368:4: ^( ASSIGN ID expr )
+                    // src/glossa/grammars/ASTInterpreter.g:376:4: ^( ASSIGN ID expr )
                     {
                     ASSIGN10=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm834); 
 
@@ -1178,7 +1186,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:384:17: ^( ASSIGN ID arraySubscript[arr] expr )
+                    // src/glossa/grammars/ASTInterpreter.g:392:17: ^( ASSIGN ID arraySubscript[arr] expr )
                     {
                     ASSIGN14=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm862); 
 
@@ -1207,7 +1215,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:393:17: ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? )
+                    // src/glossa/grammars/ASTInterpreter.g:401:17: ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? )
                     {
                     match(input,IFNODE,FOLLOW_IFNODE_in_stm973); 
 
@@ -1220,7 +1228,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                                                             boolean proceed = ifBlock15;
                                                         
-                    // src/glossa/grammars/ASTInterpreter.g:397:19: ( elseIfBlock[proceed] )*
+                    // src/glossa/grammars/ASTInterpreter.g:405:19: ( elseIfBlock[proceed] )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1233,7 +1241,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // src/glossa/grammars/ASTInterpreter.g:397:20: elseIfBlock[proceed]
+                    	    // src/glossa/grammars/ASTInterpreter.g:405:20: elseIfBlock[proceed]
                     	    {
                     	    pushFollow(FOLLOW_elseIfBlock_in_stm1026);
                     	    elseIfBlock16=elseIfBlock(proceed);
@@ -1252,7 +1260,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/ASTInterpreter.g:402:19: ( elseBlock[proceed] )?
+                    // src/glossa/grammars/ASTInterpreter.g:410:19: ( elseBlock[proceed] )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1261,7 +1269,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:402:20: elseBlock[proceed]
+                            // src/glossa/grammars/ASTInterpreter.g:410:20: elseBlock[proceed]
                             {
                             pushFollow(FOLLOW_elseBlock_in_stm1108);
                             elseBlock(proceed);
@@ -1283,7 +1291,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:407:17: ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? )
+                    // src/glossa/grammars/ASTInterpreter.g:415:17: ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? )
                     {
                     SWITCH17=(CommonTree)match(input,SWITCH,FOLLOW_SWITCH_in_stm1187); 
 
@@ -1297,7 +1305,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                                                             boolean proceed = true;
                                                             pauseExecution((SWITCH17!=null?SWITCH17.getLine():0), false);
                                                         
-                    // src/glossa/grammars/ASTInterpreter.g:412:19: ( caseBlock[$expr.result, proceed] )*
+                    // src/glossa/grammars/ASTInterpreter.g:420:19: ( caseBlock[$expr.result, proceed] )*
                     loop14:
                     do {
                         int alt14=2;
@@ -1310,7 +1318,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // src/glossa/grammars/ASTInterpreter.g:412:20: caseBlock[$expr.result, proceed]
+                    	    // src/glossa/grammars/ASTInterpreter.g:420:20: caseBlock[$expr.result, proceed]
                     	    {
                     	    pushFollow(FOLLOW_caseBlock_in_stm1243);
                     	    caseBlock19=caseBlock((expr18!=null?expr18.result:null), proceed);
@@ -1329,7 +1337,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/ASTInterpreter.g:417:19: ( caseElseBlock[proceed] )?
+                    // src/glossa/grammars/ASTInterpreter.g:425:19: ( caseElseBlock[proceed] )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1338,7 +1346,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:417:20: caseElseBlock[proceed]
+                            // src/glossa/grammars/ASTInterpreter.g:425:20: caseElseBlock[proceed]
                             {
                             pushFollow(FOLLOW_caseElseBlock_in_stm1325);
                             caseElseBlock(proceed);
@@ -1360,7 +1368,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/ASTInterpreter.g:421:17: ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . )
+                    // src/glossa/grammars/ASTInterpreter.g:429:17: ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . )
                     {
                     FOR21=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1386); 
 
@@ -1376,12 +1384,12 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/ASTInterpreter.g:421:54: (stepValue= expr )?
+                    // src/glossa/grammars/ASTInterpreter.g:429:54: (stepValue= expr )?
                     int alt16=2;
                     alt16 = dfa16.predict(input);
                     switch (alt16) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:421:55: stepValue= expr
+                            // src/glossa/grammars/ASTInterpreter.g:429:55: stepValue= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm1401);
                             stepValue=expr();
@@ -1453,7 +1461,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/ASTInterpreter.g:472:17: ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . )
+                    // src/glossa/grammars/ASTInterpreter.g:480:17: ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . )
                     {
                     FOR24=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1467); 
 
@@ -1477,12 +1485,12 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/ASTInterpreter.g:478:19: (stepValue= expr )?
+                    // src/glossa/grammars/ASTInterpreter.g:486:19: (stepValue= expr )?
                     int alt17=2;
                     alt17 = dfa17.predict(input);
                     switch (alt17) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:478:20: stepValue= expr
+                            // src/glossa/grammars/ASTInterpreter.g:486:20: stepValue= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm1571);
                             stepValue=expr();
@@ -1552,7 +1560,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/ASTInterpreter.g:528:17: ^( WHILE condition= . blk= . )
+                    // src/glossa/grammars/ASTInterpreter.g:536:17: ^( WHILE condition= . blk= . )
                     {
                     WHILE25=(CommonTree)match(input,WHILE,FOLLOW_WHILE_in_stm1654); 
 
@@ -1587,7 +1595,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/ASTInterpreter.g:546:4: ^( REPEAT blk= . condition= . )
+                    // src/glossa/grammars/ASTInterpreter.g:554:4: ^( REPEAT blk= . condition= . )
                     {
                     REPEAT26=(CommonTree)match(input,REPEAT,FOLLOW_REPEAT_in_stm1712); 
 
@@ -1620,7 +1628,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/ASTInterpreter.g:562:17: ^( CALL ID paramsList )
+                    // src/glossa/grammars/ASTInterpreter.g:570:17: ^( CALL ID paramsList )
                     {
                     CALL27=(CommonTree)match(input,CALL,FOLLOW_CALL_in_stm1782); 
 
@@ -1672,7 +1680,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/ASTInterpreter.g:586:1: readItem : (arrId= ID arraySubscript[arr] | varId= ID );
+    // src/glossa/grammars/ASTInterpreter.g:594:1: readItem : (arrId= ID arraySubscript[arr] | varId= ID );
     public final void readItem() throws RecognitionException {
         CommonTree arrId=null;
         CommonTree varId=null;
@@ -1680,7 +1688,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:587:9: (arrId= ID arraySubscript[arr] | varId= ID )
+            // src/glossa/grammars/ASTInterpreter.g:595:9: (arrId= ID arraySubscript[arr] | varId= ID )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1708,7 +1716,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt19) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:587:17: arrId= ID arraySubscript[arr]
+                    // src/glossa/grammars/ASTInterpreter.g:595:17: arrId= ID arraySubscript[arr]
                     {
                     arrId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1858); 
 
@@ -1731,7 +1739,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:599:17: varId= ID
+                    // src/glossa/grammars/ASTInterpreter.g:607:17: varId= ID
                     {
                     varId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1949); 
 
@@ -1761,7 +1769,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/ASTInterpreter.g:610:1: ifBlock returns [boolean proceedToNextCondition] : ^( IF expr cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:618:1: ifBlock returns [boolean proceedToNextCondition] : ^( IF expr cmd= . ) ;
     public final boolean ifBlock() throws RecognitionException {
         boolean proceedToNextCondition = false;
 
@@ -1771,8 +1779,8 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:611:9: ( ^( IF expr cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:611:17: ^( IF expr cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:619:9: ( ^( IF expr cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:619:17: ^( IF expr cmd= . )
             {
             IF31=(CommonTree)match(input,IF,FOLLOW_IF_in_ifBlock1998); 
 
@@ -1815,14 +1823,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:626:1: elseBlock[boolean exec] : ^( ELSE cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:634:1: elseBlock[boolean exec] : ^( ELSE cmd= . ) ;
     public final void elseBlock(boolean exec) throws RecognitionException {
         CommonTree ELSE33=null;
         CommonTree cmd=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:627:2: ( ^( ELSE cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:627:4: ^( ELSE cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:635:2: ( ^( ELSE cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:635:4: ^( ELSE cmd= . )
             {
             ELSE33=(CommonTree)match(input,ELSE,FOLLOW_ELSE_in_elseBlock2066); 
 
@@ -1858,7 +1866,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/ASTInterpreter.g:639:1: elseIfBlock[boolean exec] returns [boolean proceedToNextCondition] : ^( ELSE_IF e= . cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:647:1: elseIfBlock[boolean exec] returns [boolean proceedToNextCondition] : ^( ELSE_IF e= . cmd= . ) ;
     public final boolean elseIfBlock(boolean exec) throws RecognitionException {
         boolean proceedToNextCondition = false;
 
@@ -1867,8 +1875,8 @@ public class ASTInterpreter extends RunnableTreeParser {
         CommonTree cmd=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:640:2: ( ^( ELSE_IF e= . cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:640:4: ^( ELSE_IF e= . cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:648:2: ( ^( ELSE_IF e= . cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:648:4: ^( ELSE_IF e= . cmd= . )
             {
             ELSE_IF34=(CommonTree)match(input,ELSE_IF,FOLLOW_ELSE_IF_in_elseIfBlock2137); 
 
@@ -1915,7 +1923,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:661:1: caseBlock[Object target, boolean proceed] returns [boolean checkNextCaseBlock] : ^( CASE ( caseExprListItem[$target] )+ blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:669:1: caseBlock[Object target, boolean proceed] returns [boolean checkNextCaseBlock] : ^( CASE ( caseExprListItem[$target] )+ blk= . ) ;
     public final boolean caseBlock(Object target, boolean proceed) throws RecognitionException {
         boolean checkNextCaseBlock = false;
 
@@ -1925,15 +1933,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:662:2: ( ^( CASE ( caseExprListItem[$target] )+ blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:662:4: ^( CASE ( caseExprListItem[$target] )+ blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:670:2: ( ^( CASE ( caseExprListItem[$target] )+ blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:670:4: ^( CASE ( caseExprListItem[$target] )+ blk= . )
             {
             CASE36=(CommonTree)match(input,CASE,FOLLOW_CASE_in_caseBlock2215); 
 
             boolean foundMatch = false;
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:662:41: ( caseExprListItem[$target] )+
+            // src/glossa/grammars/ASTInterpreter.g:670:41: ( caseExprListItem[$target] )+
             int cnt20=0;
             loop20:
             do {
@@ -1941,7 +1949,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                 alt20 = dfa20.predict(input);
                 switch (alt20) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:662:42: caseExprListItem[$target]
+            	    // src/glossa/grammars/ASTInterpreter.g:670:42: caseExprListItem[$target]
             	    {
             	    pushFollow(FOLLOW_caseExprListItem_in_caseBlock2220);
             	    caseExprListItem35=caseExprListItem(target);
@@ -1998,7 +2006,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/ASTInterpreter.g:680:1: caseExprListItem[Object target] returns [boolean success] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
+    // src/glossa/grammars/ASTInterpreter.g:688:1: caseExprListItem[Object target] returns [boolean success] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
     public final boolean caseExprListItem(Object target) throws RecognitionException {
         boolean success = false;
 
@@ -2008,7 +2016,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:681:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
+            // src/glossa/grammars/ASTInterpreter.g:689:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
             int alt21=6;
             switch ( input.LA(1) ) {
             case NEG:
@@ -2096,7 +2104,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             switch (alt21) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:681:4: a= expr
+                    // src/glossa/grammars/ASTInterpreter.g:689:4: a= expr
                     {
                     pushFollow(FOLLOW_expr_in_caseExprListItem2299);
                     a=expr();
@@ -2114,7 +2122,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:688:10: ^( RANGE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:696:10: ^( RANGE a= expr b= expr )
                     {
                     match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem2326); 
 
@@ -2142,7 +2150,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:696:10: ^( INF_RANGE LT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:704:10: ^( INF_RANGE LT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2385); 
 
@@ -2166,7 +2174,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:704:17: ^( INF_RANGE LE a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:712:17: ^( INF_RANGE LE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2449); 
 
@@ -2190,7 +2198,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:712:17: ^( INF_RANGE GT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:720:17: ^( INF_RANGE GT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2513); 
 
@@ -2214,7 +2222,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:720:17: ^( INF_RANGE GE a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:728:17: ^( INF_RANGE GE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2577); 
 
@@ -2252,14 +2260,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:730:1: caseElseBlock[boolean proceed] : ^( CASE_ELSE blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:738:1: caseElseBlock[boolean proceed] : ^( CASE_ELSE blk= . ) ;
     public final void caseElseBlock(boolean proceed) throws RecognitionException {
         CommonTree CASE_ELSE37=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:731:2: ( ^( CASE_ELSE blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:731:4: ^( CASE_ELSE blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:739:2: ( ^( CASE_ELSE blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:739:4: ^( CASE_ELSE blk= . )
             {
             CASE_ELSE37=(CommonTree)match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock2643); 
 
@@ -2299,7 +2307,7 @@ public class ASTInterpreter extends RunnableTreeParser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/ASTInterpreter.g:745:1: expr returns [Object result, Object resultForParam] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) );
+    // src/glossa/grammars/ASTInterpreter.g:753:1: expr returns [Object result, Object resultForParam] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) );
     public final ASTInterpreter.expr_return expr() throws RecognitionException {
         ASTInterpreter.expr_return retval = new ASTInterpreter.expr_return();
         retval.start = input.LT(1);
@@ -2320,7 +2328,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:746:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) )
+            // src/glossa/grammars/ASTInterpreter.g:754:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) )
             int alt22=25;
             switch ( input.LA(1) ) {
             case AND:
@@ -2457,7 +2465,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             switch (alt22) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:746:4: ^( AND a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:754:4: ^( AND a= expr b= expr )
                     {
                     match(input,AND,FOLLOW_AND_in_expr2713); 
 
@@ -2479,7 +2487,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:747:4: ^( OR a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:755:4: ^( OR a= expr b= expr )
                     {
                     match(input,OR,FOLLOW_OR_in_expr2734); 
 
@@ -2501,7 +2509,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:748:4: ^( EQ a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:756:4: ^( EQ a= expr b= expr )
                     {
                     match(input,EQ,FOLLOW_EQ_in_expr2755); 
 
@@ -2523,7 +2531,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:749:4: ^( NEQ a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:757:4: ^( NEQ a= expr b= expr )
                     {
                     match(input,NEQ,FOLLOW_NEQ_in_expr2776); 
 
@@ -2545,7 +2553,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:750:4: ^( LT a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:758:4: ^( LT a= expr b= expr )
                     {
                     match(input,LT,FOLLOW_LT_in_expr2797); 
 
@@ -2567,7 +2575,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:751:4: ^( LE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:759:4: ^( LE a= expr b= expr )
                     {
                     match(input,LE,FOLLOW_LE_in_expr2818); 
 
@@ -2589,7 +2597,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/ASTInterpreter.g:752:4: ^( GT a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:760:4: ^( GT a= expr b= expr )
                     {
                     match(input,GT,FOLLOW_GT_in_expr2839); 
 
@@ -2611,7 +2619,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/ASTInterpreter.g:753:4: ^( GE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:761:4: ^( GE a= expr b= expr )
                     {
                     match(input,GE,FOLLOW_GE_in_expr2860); 
 
@@ -2633,7 +2641,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/ASTInterpreter.g:754:4: ^( PLUS a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:762:4: ^( PLUS a= expr b= expr )
                     {
                     match(input,PLUS,FOLLOW_PLUS_in_expr2881); 
 
@@ -2655,7 +2663,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/ASTInterpreter.g:755:4: ^( MINUS a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:763:4: ^( MINUS a= expr b= expr )
                     {
                     match(input,MINUS,FOLLOW_MINUS_in_expr2902); 
 
@@ -2677,7 +2685,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/ASTInterpreter.g:756:4: ^( TIMES a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:764:4: ^( TIMES a= expr b= expr )
                     {
                     match(input,TIMES,FOLLOW_TIMES_in_expr2923); 
 
@@ -2699,7 +2707,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 12 :
-                    // src/glossa/grammars/ASTInterpreter.g:757:11: ^( DIA a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:765:11: ^( DIA a= expr b= expr )
                     {
                     match(input,DIA,FOLLOW_DIA_in_expr2951); 
 
@@ -2721,7 +2729,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 13 :
-                    // src/glossa/grammars/ASTInterpreter.g:758:11: ^( DIV a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:766:11: ^( DIV a= expr b= expr )
                     {
                     match(input,DIV,FOLLOW_DIV_in_expr2979); 
 
@@ -2743,7 +2751,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 14 :
-                    // src/glossa/grammars/ASTInterpreter.g:759:4: ^( MOD a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:767:4: ^( MOD a= expr b= expr )
                     {
                     match(input,MOD,FOLLOW_MOD_in_expr3000); 
 
@@ -2765,7 +2773,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 15 :
-                    // src/glossa/grammars/ASTInterpreter.g:760:4: ^( POW a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:768:4: ^( POW a= expr b= expr )
                     {
                     match(input,POW,FOLLOW_POW_in_expr3021); 
 
@@ -2787,7 +2795,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 16 :
-                    // src/glossa/grammars/ASTInterpreter.g:761:4: ^( NEG a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:769:4: ^( NEG a= expr )
                     {
                     match(input,NEG,FOLLOW_NEG_in_expr3042); 
 
@@ -2804,7 +2812,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/grammars/ASTInterpreter.g:762:4: ^( NOT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:770:4: ^( NOT a= expr )
                     {
                     match(input,NOT,FOLLOW_NOT_in_expr3067); 
 
@@ -2821,7 +2829,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/grammars/ASTInterpreter.g:763:4: CONST_TRUE
+                    // src/glossa/grammars/ASTInterpreter.g:771:4: CONST_TRUE
                     {
                     match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr3091); 
                        retval.result = Boolean.valueOf(true);    retval.resultForParam = retval.result;
@@ -2829,7 +2837,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 19 :
-                    // src/glossa/grammars/ASTInterpreter.g:764:4: CONST_FALSE
+                    // src/glossa/grammars/ASTInterpreter.g:772:4: CONST_FALSE
                     {
                     match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr3115); 
                        retval.result = Boolean.valueOf(false);   retval.resultForParam = retval.result;
@@ -2837,7 +2845,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 20 :
-                    // src/glossa/grammars/ASTInterpreter.g:765:4: CONST_STR
+                    // src/glossa/grammars/ASTInterpreter.g:773:4: CONST_STR
                     {
                     CONST_STR38=(CommonTree)match(input,CONST_STR,FOLLOW_CONST_STR_in_expr3138); 
                        retval.result = new String((CONST_STR38!=null?CONST_STR38.getText():null));  retval.resultForParam = retval.result;
@@ -2845,7 +2853,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 21 :
-                    // src/glossa/grammars/ASTInterpreter.g:766:4: CONST_INT
+                    // src/glossa/grammars/ASTInterpreter.g:774:4: CONST_INT
                     {
                     CONST_INT39=(CommonTree)match(input,CONST_INT,FOLLOW_CONST_INT_in_expr3163); 
                        retval.result = new BigInteger((CONST_INT39!=null?CONST_INT39.getText():null));  retval.resultForParam = retval.result;
@@ -2853,7 +2861,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 22 :
-                    // src/glossa/grammars/ASTInterpreter.g:767:4: CONST_REAL
+                    // src/glossa/grammars/ASTInterpreter.g:775:4: CONST_REAL
                     {
                     CONST_REAL40=(CommonTree)match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr3188); 
                        retval.result = new BigDecimal((CONST_REAL40!=null?CONST_REAL40.getText():null), InterpreterUtils.getMathContext()); retval.resultForParam = retval.result;
@@ -2861,7 +2869,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 23 :
-                    // src/glossa/grammars/ASTInterpreter.g:768:4: ID
+                    // src/glossa/grammars/ASTInterpreter.g:776:4: ID
                     {
                     ID41=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3212); 
 
@@ -2875,7 +2883,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 24 :
-                    // src/glossa/grammars/ASTInterpreter.g:775:4: ^( ARRAY_ITEM ID arraySubscript[arr] )
+                    // src/glossa/grammars/ASTInterpreter.g:783:4: ^( ARRAY_ITEM ID arraySubscript[arr] )
                     {
                     match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr3266); 
 
@@ -2899,7 +2907,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 25 :
-                    // src/glossa/grammars/ASTInterpreter.g:786:17: ^( FUNC_CALL ID paramsList )
+                    // src/glossa/grammars/ASTInterpreter.g:794:17: ^( FUNC_CALL ID paramsList )
                     {
                     match(input,FUNC_CALL,FOLLOW_FUNC_CALL_in_expr3418); 
 
@@ -2956,7 +2964,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "paramsList"
-    // src/glossa/grammars/ASTInterpreter.g:814:1: paramsList returns [List<Object> parameters] : ^( PARAMS ( expr )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:822:1: paramsList returns [List<Object> parameters] : ^( PARAMS ( expr )* ) ;
     public final List<Object> paramsList() throws RecognitionException {
         List<Object> parameters = null;
 
@@ -2964,8 +2972,8 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:815:2: ( ^( PARAMS ( expr )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:815:4: ^( PARAMS ( expr )* )
+            // src/glossa/grammars/ASTInterpreter.g:823:2: ( ^( PARAMS ( expr )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:823:4: ^( PARAMS ( expr )* )
             {
             match(input,PARAMS,FOLLOW_PARAMS_in_paramsList3457); 
 
@@ -2973,7 +2981,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:816:19: ( expr )*
+                // src/glossa/grammars/ASTInterpreter.g:824:19: ( expr )*
                 loop23:
                 do {
                     int alt23=2;
@@ -2986,7 +2994,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt23) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:816:20: expr
+                	    // src/glossa/grammars/ASTInterpreter.g:824:20: expr
                 	    {
                 	    pushFollow(FOLLOW_expr_in_paramsList3483);
                 	    expr46=expr();
@@ -3023,7 +3031,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/ASTInterpreter.g:821:1: arraySubscript[RuntimeArray arr] returns [List<Integer> value] : ^( ARRAY_INDEX ( expr )+ ) ;
+    // src/glossa/grammars/ASTInterpreter.g:829:1: arraySubscript[RuntimeArray arr] returns [List<Integer> value] : ^( ARRAY_INDEX ( expr )+ ) ;
     public final List<Integer> arraySubscript(RuntimeArray arr) throws RecognitionException {
         List<Integer> value = null;
 
@@ -3031,15 +3039,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:822:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/ASTInterpreter.g:822:4: ^( ARRAY_INDEX ( expr )+ )
+            // src/glossa/grammars/ASTInterpreter.g:830:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // src/glossa/grammars/ASTInterpreter.g:830:4: ^( ARRAY_INDEX ( expr )+ )
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript3565); 
 
             List<Integer> result = new ArrayList<Integer>();
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:824:21: ( expr )+
+            // src/glossa/grammars/ASTInterpreter.g:832:21: ( expr )+
             int cnt24=0;
             loop24:
             do {
@@ -3053,7 +3061,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                 switch (alt24) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:824:22: expr
+            	    // src/glossa/grammars/ASTInterpreter.g:832:22: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arraySubscript3622);
             	    expr47=expr();
@@ -3112,14 +3120,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/ASTInterpreter.g:850:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:858:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
     public final void procedure(boolean exec) throws RecognitionException {
         CommonTree PROCEDURE48=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:851:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:851:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:859:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:859:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . )
             {
             PROCEDURE48=(CommonTree)match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure3752); 
 
@@ -3130,7 +3138,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:851:36: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:859:36: ( constDecl )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3154,7 +3162,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt25) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:851:36: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:859:36: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_procedure3758);
                     constDecl();
@@ -3167,7 +3175,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:851:47: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:859:47: ( varDecl )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3191,7 +3199,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt26) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:851:47: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:859:47: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_procedure3761);
                     varDecl();
@@ -3237,14 +3245,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "function"
-    // src/glossa/grammars/ASTInterpreter.g:866:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:874:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
     public final void function(boolean exec) throws RecognitionException {
         CommonTree FUNCTION49=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:867:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:867:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:875:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:875:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . )
             {
             FUNCTION49=(CommonTree)match(input,FUNCTION,FOLLOW_FUNCTION_in_function3824); 
 
@@ -3260,7 +3268,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:867:46: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:875:46: ( constDecl )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3284,7 +3292,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:867:46: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:875:46: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_function3832);
                     constDecl();
@@ -3297,7 +3305,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:867:57: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:875:57: ( varDecl )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3321,7 +3329,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:867:57: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:875:57: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_function3835);
                     varDecl();
@@ -3366,10 +3374,10 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/ASTInterpreter.g:881:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
+    // src/glossa/grammars/ASTInterpreter.g:889:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
     public final void returnType() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:882:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // src/glossa/grammars/ASTInterpreter.g:890:2: ( INTEGER | REAL | STRING | BOOLEAN )
             // src/glossa/grammars/ASTInterpreter.g:
             {
             if ( (input.LA(1)>=INTEGER && input.LA(1)<=BOOLEAN) ) {
@@ -3397,19 +3405,19 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/ASTInterpreter.g:891:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:899:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
     public final List<String> formalParamsList() throws RecognitionException {
         List<String> formalParamsNames = null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:892:2: ( ^( FORMAL_PARAMS ( ID )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:892:4: ^( FORMAL_PARAMS ( ID )* )
+            // src/glossa/grammars/ASTInterpreter.g:900:2: ( ^( FORMAL_PARAMS ( ID )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:900:4: ^( FORMAL_PARAMS ( ID )* )
             {
             match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList3936); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:892:21: ( ID )*
+                // src/glossa/grammars/ASTInterpreter.g:900:21: ( ID )*
                 loop29:
                 do {
                     int alt29=2;
@@ -3422,7 +3430,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt29) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:892:22: ID
+                	    // src/glossa/grammars/ASTInterpreter.g:900:22: ID
                 	    {
                 	    match(input,ID,FOLLOW_ID_in_formalParamsList3940); 
 
@@ -3525,7 +3533,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "350:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) );";
+            return "358:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript[arr] expr ) | ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? ) | ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? ) | ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . ) | ^( WHILE condition= . blk= . ) | ^( REPEAT blk= . condition= . ) | ^( CALL ID paramsList ) );";
         }
     }
     static final String DFA16_eotS =
@@ -4871,7 +4879,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "421:54: (stepValue= expr )?";
+            return "429:54: (stepValue= expr )?";
         }
     }
     static final String DFA17_eotS =
@@ -6217,7 +6225,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA17_transition;
         }
         public String getDescription() {
-            return "478:19: (stepValue= expr )?";
+            return "486:19: (stepValue= expr )?";
         }
     }
     static final String DFA20_eotS =
@@ -7771,7 +7779,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 662:41: ( caseExprListItem[$target] )+";
+            return "()+ loopback of 670:41: ( caseExprListItem[$target] )+";
         }
     }
  

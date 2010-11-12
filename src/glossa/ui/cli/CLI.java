@@ -76,6 +76,14 @@ public class CLI implements InterpreterListener {
 
     }
 
+    public void executionStarted(Interpreter sender) {
+
+    }
+
+    public void executionStopped(Interpreter sender) {
+
+    }
+
     public void stackPopped() {
     }
 

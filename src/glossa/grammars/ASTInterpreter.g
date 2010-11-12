@@ -85,7 +85,9 @@ import java.util.Iterator;
 
 @members{
 
+        private static final String EXECUTION_STARTED = "__exec_started__";
         private static final String EXECUTION_PAUSED = "__exec_paused__";
+        private static final String EXECUTION_STOPPED = "__exec_stopped__";
         private static final String STACK_PUSHED = "__stack_pushed__";
         private static final String STACK_POPPED = "__stack_popped__";
         private static final String RUNTIME_ERROR = "__runtime_error__";
@@ -139,6 +141,10 @@ import java.util.Iterator;
                     listener.stackPushed((SymbolTable)params[0]);
                 }else if(STACK_POPPED.equals(msg)){
                     listener.stackPopped();
+                }else if(EXECUTION_STARTED.equals(msg)){
+                    listener.executionStarted(this);
+                }else if(EXECUTION_STOPPED.equals(msg)){
+                    listener.executionStopped(this);
                 }else if (RUNTIME_ERROR.equals(msg)) {
                     listener.runtimeError();
                 }
@@ -147,6 +153,7 @@ import java.util.Iterator;
 
         public void run(){
             this.finished = false;
+            notifyListeners(EXECUTION_STARTED);
             try{
                 unit();
                 out.println(RuntimeMessages.STR_RUNTIME_MSG_EXECUTION_FINISHED);
@@ -165,6 +172,7 @@ import java.util.Iterator;
                 notifyListeners(RUNTIME_ERROR);
             }
             this.finished = true;
+            notifyListeners(EXECUTION_STOPPED);
         }
 
         public void pause(){
