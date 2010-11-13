@@ -70,7 +70,7 @@ public class InterpreterUtils {
     public static boolean isValidArrayIndex(Object o, RuntimeArray arr, int index) {
         if (o instanceof BigInteger) {
             BigInteger bi = (BigInteger) o;
-            if ((bi.compareTo(BigInteger.ZERO) > 0) && (bi.compareTo(new BigInteger(String.valueOf(arr.getDimensions().get(index).intValue()))) < 0)) {
+            if ((bi.compareTo(BigInteger.ZERO) > 0) && (bi.compareTo(new BigInteger(String.valueOf(arr.getDimensions().get(index).intValue()))) <= 0)) {
                 return true;
             }
         }
