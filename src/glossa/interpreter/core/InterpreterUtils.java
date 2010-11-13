@@ -67,6 +67,16 @@ public class InterpreterUtils {
         return false;
     }
 
+    public static boolean isValidArrayIndex(Object o, RuntimeArray arr, int index) {
+        if (o instanceof BigInteger) {
+            BigInteger bi = (BigInteger) o;
+            if ((bi.compareTo(BigInteger.ZERO) > 0) && (bi.compareTo(new BigInteger(String.valueOf(arr.getDimensions().get(index).intValue()))) < 0)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Boolean operations">
     public static Boolean and(Object a, Object b) {
         if ((a instanceof Boolean) && (b instanceof Boolean)) {

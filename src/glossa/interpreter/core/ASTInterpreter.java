@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-12 16:34:47
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-13 12:18:35
 
 
 /*
@@ -871,7 +871,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             	                                        if(InterpreterUtils.isValidArrayDimension((expr5!=null?expr5.result:null))){
             	                                            result.add(new Integer(  ((BigInteger)(expr5!=null?expr5.result:null)).intValue()   ));
             	                                        }else{
-            	                                            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, Integer.MAX_VALUE));
+            	                                            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_DIMENSIONS_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, Integer.MAX_VALUE));
             	                                        }
             	                                    
 
@@ -3045,7 +3045,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript3563); 
 
-            List<Integer> result = new ArrayList<Integer>();
+            List<Integer> result = new ArrayList<Integer>(); int index=0;
 
             match(input, Token.DOWN, null); 
             // src/glossa/grammars/ASTInterpreter.g:832:21: ( expr )+
@@ -3070,11 +3070,12 @@ public class ASTInterpreter extends RunnableTreeParser {
             	    state._fsp--;
 
 
-            	                                        if(InterpreterUtils.isValidArrayDimension((expr47!=null?expr47.result:null))){
+            	                                        if(InterpreterUtils.isValidArrayIndex((expr47!=null?expr47.result:null), arr, index)){
             	                                            result.add(new Integer(  ((BigInteger)(expr47!=null?expr47.result:null)).intValue()   ));
             	                                        }else{
-            	                                            throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE);
+            	                                            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, (index+1), arr.getName(), arr.getDimensions().get(index).intValue()));
             	                                        }
+            	                                        index++;
             	                                    
 
             	    }
@@ -3121,14 +3122,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/ASTInterpreter.g:858:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:859:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
     public final void procedure(boolean exec) throws RecognitionException {
         CommonTree PROCEDURE48=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:859:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:859:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:860:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:860:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . )
             {
             PROCEDURE48=(CommonTree)match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure3750); 
 
@@ -3139,7 +3140,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:859:36: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:860:36: ( constDecl )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3163,7 +3164,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt25) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:859:36: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:860:36: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_procedure3756);
                     constDecl();
@@ -3176,7 +3177,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:859:47: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:860:47: ( varDecl )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3200,7 +3201,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt26) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:859:47: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:860:47: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_procedure3759);
                     varDecl();
@@ -3246,14 +3247,14 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "function"
-    // src/glossa/grammars/ASTInterpreter.g:874:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:875:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) ;
     public final void function(boolean exec) throws RecognitionException {
         CommonTree FUNCTION49=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:875:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:875:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:876:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:876:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . )
             {
             FUNCTION49=(CommonTree)match(input,FUNCTION,FOLLOW_FUNCTION_in_function3822); 
 
@@ -3269,7 +3270,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:875:46: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:876:46: ( constDecl )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3293,7 +3294,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:875:46: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:876:46: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_function3830);
                     constDecl();
@@ -3306,7 +3307,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:875:57: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:876:57: ( varDecl )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3330,7 +3331,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:875:57: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:876:57: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_function3833);
                     varDecl();
@@ -3375,10 +3376,10 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/ASTInterpreter.g:889:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
+    // src/glossa/grammars/ASTInterpreter.g:890:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
     public final void returnType() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:890:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // src/glossa/grammars/ASTInterpreter.g:891:2: ( INTEGER | REAL | STRING | BOOLEAN )
             // src/glossa/grammars/ASTInterpreter.g:
             {
             if ( (input.LA(1)>=INTEGER && input.LA(1)<=BOOLEAN) ) {
@@ -3406,19 +3407,19 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/ASTInterpreter.g:899:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:900:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
     public final List<String> formalParamsList() throws RecognitionException {
         List<String> formalParamsNames = null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:900:2: ( ^( FORMAL_PARAMS ( ID )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:900:4: ^( FORMAL_PARAMS ( ID )* )
+            // src/glossa/grammars/ASTInterpreter.g:901:2: ( ^( FORMAL_PARAMS ( ID )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:901:4: ^( FORMAL_PARAMS ( ID )* )
             {
             match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList3934); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:900:21: ( ID )*
+                // src/glossa/grammars/ASTInterpreter.g:901:21: ( ID )*
                 loop29:
                 do {
                     int alt29=2;
@@ -3431,7 +3432,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt29) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:900:22: ID
+                	    // src/glossa/grammars/ASTInterpreter.g:901:22: ID
                 	    {
                 	    match(input,ID,FOLLOW_ID_in_formalParamsList3938); 
 

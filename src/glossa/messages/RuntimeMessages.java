@@ -92,7 +92,8 @@ public class RuntimeMessages {
     public final static String STR_RUNTIME_ERROR_INVALID_BUILT_IN_FUNCTION = "Ανύπαρκτη ενσωματωμένη συνάρτηση \"%1$s\".";
     public final static String STR_RUNTIME_ERROR_ARRAY_USED_AS_VALUE = "Ο πίνακας %1$s  δε μπορεί να χρησιμοποιηθεί ως τιμή παραμέτρου για τη συνάρτηση %2$s.";
 
-    public final static String STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE = "Οι δείκτες σε στοιχεία πίνακα πρέπει να είναι εκφράσεις ακέραιου τύπου με τιμή στο πεδίο (0, %1$d).";
+    public final static String STR_RUNTIME_ERROR_ARRAY_DIMENSIONS_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE = "Οι διαστάσεις πίνακα πρέπει να είναι εκφράσεις ακέραιου τύπου με τιμή στο κλειστό διάστημα [1, %1$d].";
+    public final static String STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE = "Οι δείκτες σε στοιχεία της %1$dης διάστασης του πίνακα %2$s πρέπει να είναι εκφράσεις ακέραιου τύπου με τιμή στο κλειστό διάστημα [1, %3$d].";
 
     public final static String STR_RUNTIME_ERROR_ARRAY_PARAM_AND_FORMAL_PARAM_DIMENSIONS_MISMATCH = "Οι διαστάσεις του πίνακα παραμέτρου( %1$s ) δε συμφωνούν με αυτές της δήλωσης της τυπικής παραμέτρου ( %2$s ).";
     public final static String STR_RUNTIME_ERROR_CANNOT_ASSIGN_VALUE_TO_ARRAY = "Δε μπορεί να γίνει ανάθεση τιμής σε ολόκληρο πίνακα!";
