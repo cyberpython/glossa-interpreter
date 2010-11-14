@@ -374,13 +374,6 @@ stm	:	^(  PRINT           {
                                         pauseExecution($PRINT.line, true);
                                     }
         |       ^(READ              {
-                                        try{
-                                            int a=0;
-                                            while((a=in.available())>0){
-                                                in.skip(a);
-                                            }
-                                        }catch(Exception e){
-                                        }
                                         this.notifyListeners(READ_STM, new Integer($READ.line));
                                     }
                   readItem+)
