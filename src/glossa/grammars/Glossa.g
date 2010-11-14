@@ -379,7 +379,7 @@ infRangeItem
         ;
 
 caseElseBlock
-	:	CASE ELSE NEWLINE+ block -> ^(CASE_ELSE block);
+	:	CASE ELSE NEWLINE+ block -> ^(CASE_ELSE CASE block);
 forStm	:	FOR^ ID arraySubscript? FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+
         ;
 

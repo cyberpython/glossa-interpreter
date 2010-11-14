@@ -514,7 +514,7 @@ caseExprListItem returns [Type expressionType]
         ;
 
 caseElseBlock
-	:	^(CASE_ELSE block);
+	:	^(CASE_ELSE CASE block);
 
 
 

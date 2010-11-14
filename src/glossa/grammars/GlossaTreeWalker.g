@@ -171,7 +171,7 @@ caseExprListItem
         ;
 
 caseElseBlock
-	:	^(CASE_ELSE block);
+	:	^(CASE_ELSE CASE block);
 
 
 

@@ -26,7 +26,7 @@ tree grammar ASTInterpreter;
 
 options{
         superClass=RunnableTreeParser;
-	tokenVocab = Glossa; //read token types from Expr.tokens file
+	tokenVocab = Glossa; //read token types from tokens file
 	ASTLabelType=CommonTree;
 }
 
@@ -465,12 +465,14 @@ stm	:	^(  PRINT           {
                                                 input.seek(blkIndex);
                                                 block();
                                                 counter.setValue(InterpreterUtils.add(counter.getValue(), step));
+                                                pauseExecution($FOR.line, false);
                                             }
                                         }else{                                                //step is negative
                                             while(InterpreterUtils.greaterThanOrEqual(counter.getValue(), $toValue.result)){
                                                 input.seek(blkIndex);
                                                 block();
                                                 counter.setValue(InterpreterUtils.add(counter.getValue(), step));
+                                                pauseExecution($FOR.line, false);
                                             }
                                         }
 
@@ -521,12 +523,14 @@ stm	:	^(  PRINT           {
                                                 input.seek(blkIndex);
                                                 block();
                                                 arr.set($arraySubscript.value, InterpreterUtils.add(arr.get($arraySubscript.value), step));
+                                                pauseExecution($FOR.line, false);
                                             }
                                         }else{                                                //step is negative
                                             while(InterpreterUtils.greaterThanOrEqual(arr.get($arraySubscript.value), $toValue.result)){
                                                 input.seek(blkIndex);
                                                 block();
                                                 arr.set($arraySubscript.value, InterpreterUtils.add(arr.get($arraySubscript.value), step));
+                                                pauseExecution($FOR.line, false);
                                             }
                                         }
 
@@ -561,7 +565,7 @@ stm	:	^(  PRINT           {
                                                 block();
                                                 input.seek(conditionIndex);
                                                 exprResult = (Boolean)expr().result;
-                                                pauseExecution($REPEAT.line, false);
+                                                pauseExecution($condition.getLine(), false);
                                             }
 
                                             input.seek(resumeAt);
@@ -736,10 +740,10 @@ caseExprListItem [Object target] returns [boolean success]
         ;
 
 caseElseBlock [boolean proceed]
-	:	^(CASE_ELSE {int blkIndex = input.index()+1;} blk=.)
+	:	^(CASE_ELSE CASE {int blkIndex = input.index();} blk=.)
                                     {
                                         if($proceed){
-                                            pauseExecution($CASE_ELSE.line, false);
+                                            pauseExecution($CASE.line, false);
                                             int resumeAt = input.index();
                                             input.seek(blkIndex);
                                             block();
@@ -795,6 +799,7 @@ expr	returns [Object result, Object resultForParam]
                                                             if(BuiltinFunctions.isBuiltinFunctionName($ID.text)){
                                                                 $result = InterpreterUtils.execBuiltinFunction($ID.text, $paramsList.parameters.get(0));
                                                             }else{
+                                                                pauseExecution($ID.line, false);
                                                                 FunctionScope fs = scopeTable.getFunctionScope($ID.text);
                                                                 if(fs!=null){
                                                                     FunctionSymbolTable fst = new FunctionSymbolTable(fs, $paramsList.parameters);
