@@ -289,7 +289,7 @@ program	:	PROGRAM^ id1=ID (NEWLINE!)+
 		declarations
 		BEGIN!  (NEWLINE!)+
 		block
-		END_PROGRAM! (id2=ID)? (NEWLINE!)+;
+		END_PROGRAM (id2=ID)? (NEWLINE!)+;
 		
 declarations
 	:	constDecl? varDecl?;
@@ -347,7 +347,7 @@ assingmentStm
         |       arrId=ID arraySubscript ASSIGN^ arrItemValue=expr (NEWLINE!)+
         ;
 
-ifStm	:	ifBlock elseIfBlock* elseBlock? END_IF (NEWLINE)+ -> ^(IFNODE ifBlock elseIfBlock* elseBlock?);
+ifStm	:	ifBlock elseIfBlock* elseBlock? END_IF (NEWLINE)+ -> ^(IFNODE ifBlock elseIfBlock* elseBlock? END_IF);
 
 ifBlock	:	IF^ expr THEN! (NEWLINE!)+ block;
 
@@ -357,7 +357,7 @@ elseBlock
 elseIfBlock
 	:	ELSE_IF^ expr THEN! (NEWLINE!)+ block;
 
-caseStm	:	SWITCH^ expr (NEWLINE!)+ caseBlock* caseElseBlock? END_SWITCH! (NEWLINE!)+;
+caseStm	:	SWITCH^ expr (NEWLINE!)+ caseBlock* caseElseBlock? END_SWITCH (NEWLINE!)+;
 
 caseBlock
 	:	CASE^ caseExprList (NEWLINE!)+ block;
@@ -380,14 +380,14 @@ infRangeItem
 
 caseElseBlock
 	:	CASE ELSE NEWLINE+ block -> ^(CASE_ELSE CASE block);
-forStm	:	FOR^ ID arraySubscript? FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP! (NEWLINE!)+
+forStm	:	FOR^ ID arraySubscript? FROM! from=expr TO! to=expr (STEP! step=expr)? (NEWLINE!)+ block END_LOOP (NEWLINE!)+
         ;
 
 whileStm
-        :	WHILE^ expr LOOP! (NEWLINE!)+ block END_LOOP! (NEWLINE!)+;
+        :	WHILE^ expr LOOP! (NEWLINE!)+ block END_LOOP (NEWLINE!)+;
 
 repeatStm
-	:	REPEAT^ (NEWLINE!)+ block UNTIL! expr (NEWLINE!)+;
+	:	REPEAT^ (NEWLINE!)+ block UNTIL expr (NEWLINE!)+;
 
 procedureCallStm
 	:	CALL ID LPAR paramsList RPAR NEWLINE+ -> ^(CALL ID paramsList);
@@ -440,14 +440,14 @@ procedure
 		constDecl? varDecl?
 		BEGIN  NEWLINE+
 		block
-		END_PROCEDURE NEWLINE+ -> ^(PROCEDURE ID formalParamsList constDecl? varDecl? block);
+		END_PROCEDURE NEWLINE+ -> ^(PROCEDURE ID formalParamsList constDecl? varDecl? block END_PROCEDURE);
 
 function
 	:	FUNCTION ID LPAR formalParamsList RPAR COLON returnType NEWLINE+
 		constDecl? varDecl?
 		BEGIN  NEWLINE+
 		block
-		END_FUNCTION NEWLINE+ -> ^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block);
+		END_FUNCTION NEWLINE+ -> ^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block END_FUNCTION);
 
 returnType
 	:	INTEGER

@@ -111,6 +111,7 @@ program	:	^(PROGRAM
 			}
 		declarations
 		block
+                END_PROGRAM
 		(id2=ID {
 				if($id1.text.toLowerCase().equals($id2.text.toLowerCase())==false){
 					Messages.programNameMismatchWarning(msgLog, new Point($id2.line, $id2.pos), $id2.text);
@@ -224,20 +225,20 @@ stm	:	^(PRINT (expr1=expr)* )     {
                                             }
 	|	^(ASSIGN ID expr)
         |       ^(ASSIGN ID arraySubscript expr)
-        |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
-        |       ^(SWITCH expr (caseBlock)*(caseElseBlock)?)
+        |       ^(IFNODE ifBlock elseIfBlock* elseBlock? END_IF)
+        |       ^(SWITCH expr (caseBlock)*(caseElseBlock)? END_SWITCH)
         |       ^(FOR ID
                   expr1=expr
                   expr2=expr
                   (expr3=expr)?
-                  block)
+                  block END_LOOP)
         |       ^(FOR ID arraySubscript
                   expr1=expr
                   expr2=expr
                   (expr3=expr)?
-                  block)
-        |       ^(WHILE expr block)
-	|	^(REPEAT block expr)
+                  block END_LOOP)
+        |       ^(WHILE expr block END_LOOP)
+	|	^(REPEAT block UNTIL expr)
         |       ^(CALL ID paramsList)
         ;
 
@@ -331,7 +332,7 @@ procedure
                                     Messages.redeclarationOfFunctionError(msgLog, new Point($ID.line, $ID.pos), $ID.text);
                                 }
                         }
-                  constDecl? varDecl? block )
+                  constDecl? varDecl? block END_PROCEDURE)
                         {
                             inSubprogram = false;
                             currentScope = null;
@@ -360,7 +361,7 @@ function
                                 }
                             }
                         }
-                  constDecl? varDecl? block )
+                  constDecl? varDecl? block END_FUNCTION)
                     {
                         inSubprogram = false;
                         currentScope = null;

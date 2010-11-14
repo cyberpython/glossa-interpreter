@@ -274,9 +274,10 @@ program	:	^(  PROGRAM         {
                                     }
                     id1=ID
                     declarations
-                    block
+                    block END_PROGRAM
                     (id2=ID)?
                 )                   {
+                                        pauseExecution($END_PROGRAM.line, false);
                                         this.stack.pop();
                                         notifyListeners(STACK_POPPED);
                                     }
@@ -372,7 +373,17 @@ stm	:	^(  PRINT           {
                                         }
                                         pauseExecution($PRINT.line, true);
                                     }
-        |       ^(READ {   this.notifyListeners(READ_STM, new Integer($READ.line));    } readItem+)
+        |       ^(READ              {
+                                        try{
+                                            int a=0;
+                                            while((a=in.available())>0){
+                                                in.skip(a);
+                                            }
+                                        }catch(Exception e){
+                                        }
+                                        this.notifyListeners(READ_STM, new Integer($READ.line));
+                                    }
+                  readItem+)
 	|	^(ASSIGN ID expr)   {
                                         boolean varAssignment = true;
                                         if(currentSymbolTable instanceof FunctionSymbolTable){
@@ -411,7 +422,9 @@ stm	:	^(  PRINT           {
                                     {
                                         
                                     }
-                )
+                 END_IF)            {
+                                        pauseExecution($END_IF.line, false);
+                                    }
         |       ^(SWITCH
                   expr              {
                                         boolean proceed = true;
@@ -423,10 +436,10 @@ stm	:	^(  PRINT           {
                                     }
                   )*
                   (caseElseBlock [proceed])?
-                 )                  {
-                                        
+                  END_SWITCH)       {
+                                        pauseExecution($END_SWITCH.line, false);
                                     }
-        |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=.)
+        |       ^(FOR ID fromValue=expr toValue=expr (stepValue=expr)? {int blkIndex = input.index();} blk=. END_LOOP)
                                     {
                                         int resumeAt = input.index();
 
@@ -477,6 +490,7 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
+                                        pauseExecution($END_LOOP.line, false);
                                         
                                     }
         |       ^(FOR ID            {
@@ -486,7 +500,7 @@ stm	:	^(  PRINT           {
                   fromValue=expr
                   toValue=expr
                   (stepValue=expr)?
-                  {int blkIndex = input.index();} blk=.
+                  {int blkIndex = input.index();} blk=. END_LOOP
                  )                  {
                                         int resumeAt = input.index();
                                         Object step = null;
@@ -535,9 +549,9 @@ stm	:	^(  PRINT           {
                                         }
 
                                         input.seek(resumeAt);
-                                        
+                                        pauseExecution($END_LOOP.line, false);
                                     }
-        |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=.)
+        |       ^(WHILE {int conditionIndex = input.index()+1;} condition=. {int blkIndex = input.index();}  blk=. END_LOOP)
                                     {
                                             int resumeAt = input.index();
                                             input.seek(conditionIndex);
@@ -553,19 +567,20 @@ stm	:	^(  PRINT           {
                                             }
 
                                             input.seek(resumeAt);
-                                            
+                                            pauseExecution($END_LOOP.line, false);
                                     }
-	|	^(REPEAT {int blkIndex = input.index()+1;} blk=. {int conditionIndex = input.index();} condition=.)
+	|	^(REPEAT {int blkIndex = input.index()+1;} blk=. UNTIL {int conditionIndex = input.index();} condition=.)
                                     {
                                             int resumeAt = input.index();
                                             Boolean exprResult = Boolean.FALSE;
 
+                                            pauseExecution($REPEAT.line, false);
                                             while(  exprResult.equals(Boolean.FALSE)  ){
                                                 input.seek(blkIndex);
                                                 block();
                                                 input.seek(conditionIndex);
                                                 exprResult = (Boolean)expr().result;
-                                                pauseExecution($condition.getLine(), false);
+                                                pauseExecution($UNTIL.line, false);
                                             }
 
                                             input.seek(resumeAt);
@@ -862,7 +877,7 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
         ;
 
 procedure [boolean exec]
-	:	^(PROCEDURE ID formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. )
+	:	^(PROCEDURE ID formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. END_PROCEDURE)
                                 {
                                     if(exec){
                                         ProcedureSymbolTable pst = (ProcedureSymbolTable)this.currentSymbolTable;
@@ -873,12 +888,13 @@ procedure [boolean exec]
                                         block();
                                         pst.restore();
                                         input.seek(resumeAt);
+                                        pauseExecution($END_PROCEDURE.line, false);
                                     }
                                 }
         ;
 
 function [boolean exec]
-	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. )
+	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? {int blkIndex = input.index();}blk=. END_FUNCTION)
                                 {
                                     if(exec){
                                         FunctionSymbolTable fst = (FunctionSymbolTable)this.currentSymbolTable;
@@ -888,6 +904,7 @@ function [boolean exec]
                                         input.seek(blkIndex);
                                         block();
                                         input.seek(resumeAt);
+                                        pauseExecution($END_FUNCTION.line, false);
                                     }
                                 }
         ;

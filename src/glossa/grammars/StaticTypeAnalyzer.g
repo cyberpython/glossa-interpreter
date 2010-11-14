@@ -116,7 +116,7 @@ program	:	^(PROGRAM
                                 currentScope = scopeTable.getMainProgramScope();
                             }
 		declarations
-		block 
+		block END_PROGRAM
 		(id2=ID)?
 		)           {
                                     currentScope = null;
@@ -248,9 +248,9 @@ stm	:	^(PRINT (expr1=expr)* )
                                                                           $ASSIGN.text, $ASSIGN.line, $ASSIGN.pos,
                                                                           $arraySubscript.indicesCount, $arraySubscript.start.getLine(), $arraySubscript.start.getCharPositionInLine());
                                             }
-        |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
+        |       ^(IFNODE ifBlock elseIfBlock* elseBlock? END_IF)
         |       ^(SWITCH {int numberOfCases = 0;} expr (caseBlock [$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] {numberOfCases++;}  )*
-                  (caseElseBlock{numberOfCases++;})?)
+                  (caseElseBlock{numberOfCases++;})? END_SWITCH)
                                             {
                                                 if(numberOfCases==0){
                                                     Messages.caseStmMustHaveAtLeastOneCaseError(msgLog, new Point($SWITCH.line, $SWITCH.pos));
@@ -265,7 +265,7 @@ stm	:	^(PRINT (expr1=expr)* )
                   expr1=expr
                   expr2=expr
                   (expr3=expr)?
-                  block)
+                  block END_LOOP)
                                             {
                                                 if(s != null){
                                                      if(s instanceof Variable){
@@ -312,7 +312,7 @@ stm	:	^(PRINT (expr1=expr)* )
                   expr1=expr
                   expr2=expr
                   (expr3=expr)?
-                  block)
+                  block END_LOOP)
                                             {
                                                 if(s != null){
                                                      if(s instanceof Array){
@@ -357,7 +357,7 @@ stm	:	^(PRINT (expr1=expr)* )
                                                     }
                                                 }
                                             }
-        |       ^(WHILE expr block)         {
+        |       ^(WHILE expr block END_LOOP){
                                                 if($expr.expressionType!=null){
                                                     if(!$expr.expressionType.equals(Type.BOOLEAN)){
                                                         Messages.whileExpressionMustBeBooleanError(msgLog, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
@@ -366,7 +366,7 @@ stm	:	^(PRINT (expr1=expr)* )
                                                     Messages.whileExpressionMustBeBooleanError(msgLog, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , null);
                                                 }
                                             }
-	|	^(REPEAT block expr)        {
+	|	^(REPEAT block UNTIL expr)  {
                                                 if($expr.expressionType!=null){
                                                     if(!$expr.expressionType.equals(Type.BOOLEAN)){
                                                         Messages.whileExpressionMustBeBooleanError(msgLog, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine()) , $expr.expressionType);
@@ -891,7 +891,8 @@ procedure
                                             }
                                         }
                                     }
-                  block  )          {
+                  block END_PROCEDURE)
+                                    {
                                         inSubprogram = false;
                                         currentScope = null;
                                     }
@@ -925,7 +926,7 @@ function
                                             }
                                         }
                                     }
-                  block
+                  block END_FUNCTION
                 )                   {
                                         if(!fs.isReturnValueSet()){
                                             Messages.functionReturnValueNotSetError(msgLog, new Point($ID.line, $ID.pos), fs.getSubprogramName(), fs.getFormalParameters());

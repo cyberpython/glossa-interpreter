@@ -74,7 +74,7 @@ package glossa.grammars;
 
 unit	:	program (function|procedure)*;
 
-program	:	^(PROGRAM ID declarations block ID?)
+program	:	^(PROGRAM ID declarations block END_PROGRAM ID?)
         ;
 
 declarations
@@ -132,12 +132,12 @@ stm	:	^(PRINT expr*)
         |       ^(READ readItem+)
 	|	^(ASSIGN ID expr)
         |       ^(ASSIGN ID arraySubscript expr)
-        |       ^(IFNODE ifBlock elseIfBlock* elseBlock?)
-        |       ^(SWITCH expr caseBlock* caseElseBlock?)
-        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block)
-        |       ^(FOR ID arraySubscript expr1=expr expr2=expr (expr3=expr)? block)
-        |       ^(WHILE expr block)
-	|	^(REPEAT block expr)
+        |       ^(IFNODE ifBlock elseIfBlock* elseBlock? END_IF)
+        |       ^(SWITCH expr caseBlock* caseElseBlock? END_SWITCH)
+        |       ^(FOR ID expr1=expr expr2=expr (expr3=expr)? block END_LOOP)
+        |       ^(FOR ID arraySubscript expr1=expr expr2=expr (expr3=expr)? block END_LOOP)
+        |       ^(WHILE expr block END_LOOP)
+	|	^(REPEAT block UNTIL expr)
         |       ^(CALL ID paramsList)
         ;
 
@@ -211,11 +211,11 @@ arraySubscript
 	:	^(ARRAY_INDEX (expr)+ );
 
 procedure
-	:	^(PROCEDURE ID formalParamsList constDecl? varDecl? block )
+	:	^(PROCEDURE ID formalParamsList constDecl? varDecl? block END_PROCEDURE)
         ;
 
 function
-	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block )
+	:	^(FUNCTION ID returnType formalParamsList constDecl? varDecl? block END_FUNCTION)
         ;
 
 returnType
