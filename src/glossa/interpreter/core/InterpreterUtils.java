@@ -657,7 +657,11 @@ public class InterpreterUtils {
                 return RuntimeMessages.CONST_STR_FALSE;
             }
         }else if(o instanceof BigDecimal){
-            return ((BigDecimal)o).stripTrailingZeros().toPlainString();
+            BigDecimal d = (BigDecimal)o;
+            if(d.compareTo(BigDecimal.ZERO)== 0 ){
+                return "0";
+            }
+            return (d).stripTrailingZeros().toPlainString();
         }
         return o.toString();
     }
