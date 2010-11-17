@@ -43,11 +43,13 @@ public class RuntimeArray extends RuntimeSymbol {
     private int dimensionsCount;
     private int[] colSizes;
     private Object[] values;
+    private RuntimeArrayListener listener;
 
     public RuntimeArray(Array a) {
         super(a);
         this.dimensionsCount = a.getNumberOfDimensions();
         this.dimensions = null;
+        this.listener = null;
     }
 
     public RuntimeArray(Array a, List<Integer> dimensions) {
@@ -55,6 +57,21 @@ public class RuntimeArray extends RuntimeSymbol {
         this.dimensions = dimensions;
         this.dimensionsCount = this.dimensions.size();
         this.initialize();
+        this.listener = null;
+    }
+
+    public void setListener(RuntimeArrayListener listener) {
+        this.listener = listener;
+    }
+
+    public void removeListener() {
+        this.listener = null;
+    }
+
+    public void notifyListener() {
+        if(this.listener!=null){
+            this.listener.arrayContentsChanged();
+        }
     }
 
     private void initialize() {
@@ -130,6 +147,7 @@ public class RuntimeArray extends RuntimeSymbol {
         } else {
             throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_TYPE_FOR_ASSIGNMENT,  InterpreterUtils.toPrintableString(value), this.getType().toString()));
         }
+        notifyListener();
     }
 
 
@@ -157,6 +175,7 @@ public class RuntimeArray extends RuntimeSymbol {
                 Object value = values[i];
                 this.set(i, value);
             }
+            notifyListener();
         }else{
             throw new RuntimeException(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_LENGTHS_MISMATCH);
         }
