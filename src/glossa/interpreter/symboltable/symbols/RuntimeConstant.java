@@ -24,6 +24,7 @@
 
 package glossa.interpreter.symboltable.symbols;
 
+import glossa.interpreter.core.InterpreterUtils;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Constant;
 
@@ -39,7 +40,7 @@ public class RuntimeConstant extends RuntimeSimpleSymbol{
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_CONSTANT+" "+super.toString()+" = "+super.getValue().toString();
+        return Messages.CONSTS_STR_CONSTANT+" "+super.toString()+" = "+InterpreterUtils.toPrintableString(super.getValue());
     }
 
 }

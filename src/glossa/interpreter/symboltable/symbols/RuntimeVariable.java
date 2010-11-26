@@ -24,6 +24,7 @@
 
 package glossa.interpreter.symboltable.symbols;
 
+import glossa.interpreter.core.InterpreterUtils;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 
@@ -40,7 +41,7 @@ public class RuntimeVariable extends RuntimeSimpleSymbol{
 
     @Override
     public String toString() {
-        return Messages.CONSTS_STR_VARIABLE+" "+super.toString()+" = "+super.getValue().toString();
+        return Messages.CONSTS_STR_VARIABLE+" "+super.toString()+" = "+InterpreterUtils.toPrintableString(super.getValue());
     }
 
 

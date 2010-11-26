@@ -376,7 +376,9 @@ stm	:	^(  PRINT           {
         |       ^(READ              {
                                         this.notifyListeners(READ_STM, new Integer($READ.line));
                                     }
-                  readItem+)
+                  readItem+)        {
+                                        pauseExecution($READ.line, false);
+                                    }
 	|	^(ASSIGN ID expr)   {
                                         boolean varAssignment = true;
                                         if(currentSymbolTable instanceof FunctionSymbolTable){

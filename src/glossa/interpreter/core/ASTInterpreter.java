@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-16 20:42:21
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/ASTInterpreter.g 2010-11-26 09:30:07
 
 
 /*
@@ -1162,16 +1162,19 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     match(input, Token.UP, null); 
 
+                                                            pauseExecution((READ8!=null?READ8.getLine():0), false);
+                                                        
+
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:380:4: ^( ASSIGN ID expr )
+                    // src/glossa/grammars/ASTInterpreter.g:382:4: ^( ASSIGN ID expr )
                     {
-                    ASSIGN11=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm865); 
+                    ASSIGN11=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm874); 
 
                     match(input, Token.DOWN, null); 
-                    ID9=(CommonTree)match(input,ID,FOLLOW_ID_in_stm867); 
-                    pushFollow(FOLLOW_expr_in_stm869);
+                    ID9=(CommonTree)match(input,ID,FOLLOW_ID_in_stm876); 
+                    pushFollow(FOLLOW_expr_in_stm878);
                     expr10=expr();
 
                     state._fsp--;
@@ -1198,21 +1201,21 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:396:17: ^( ASSIGN ID arraySubscript[arr] expr )
+                    // src/glossa/grammars/ASTInterpreter.g:398:17: ^( ASSIGN ID arraySubscript[arr] expr )
                     {
-                    ASSIGN15=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm893); 
+                    ASSIGN15=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm902); 
 
                     match(input, Token.DOWN, null); 
-                    ID12=(CommonTree)match(input,ID,FOLLOW_ID_in_stm895); 
+                    ID12=(CommonTree)match(input,ID,FOLLOW_ID_in_stm904); 
 
                                                             RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol((ID12!=null?ID12.getText():null), new Point((ID12!=null?ID12.getLine():0), (ID12!=null?ID12.getCharPositionInLine():0)));
                                                         
-                    pushFollow(FOLLOW_arraySubscript_in_stm925);
+                    pushFollow(FOLLOW_arraySubscript_in_stm934);
                     arraySubscript13=arraySubscript(arr);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_stm947);
+                    pushFollow(FOLLOW_expr_in_stm956);
                     expr14=expr();
 
                     state._fsp--;
@@ -1227,12 +1230,12 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:405:17: ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? END_IF )
+                    // src/glossa/grammars/ASTInterpreter.g:407:17: ^( IFNODE ifBlock ( elseIfBlock[proceed] )* ( elseBlock[proceed] )? END_IF )
                     {
-                    match(input,IFNODE,FOLLOW_IFNODE_in_stm1004); 
+                    match(input,IFNODE,FOLLOW_IFNODE_in_stm1013); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_ifBlock_in_stm1024);
+                    pushFollow(FOLLOW_ifBlock_in_stm1033);
                     ifBlock16=ifBlock();
 
                     state._fsp--;
@@ -1240,7 +1243,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                                                             boolean proceed = ifBlock16;
                                                         
-                    // src/glossa/grammars/ASTInterpreter.g:409:19: ( elseIfBlock[proceed] )*
+                    // src/glossa/grammars/ASTInterpreter.g:411:19: ( elseIfBlock[proceed] )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1253,9 +1256,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // src/glossa/grammars/ASTInterpreter.g:409:20: elseIfBlock[proceed]
+                    	    // src/glossa/grammars/ASTInterpreter.g:411:20: elseIfBlock[proceed]
                     	    {
-                    	    pushFollow(FOLLOW_elseIfBlock_in_stm1057);
+                    	    pushFollow(FOLLOW_elseIfBlock_in_stm1066);
                     	    elseIfBlock17=elseIfBlock(proceed);
 
                     	    state._fsp--;
@@ -1272,7 +1275,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/ASTInterpreter.g:414:19: ( elseBlock[proceed] )?
+                    // src/glossa/grammars/ASTInterpreter.g:416:19: ( elseBlock[proceed] )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1281,9 +1284,9 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:414:20: elseBlock[proceed]
+                            // src/glossa/grammars/ASTInterpreter.g:416:20: elseBlock[proceed]
                             {
-                            pushFollow(FOLLOW_elseBlock_in_stm1139);
+                            pushFollow(FOLLOW_elseBlock_in_stm1148);
                             elseBlock(proceed);
 
                             state._fsp--;
@@ -1297,7 +1300,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                                                             
                                                         
-                    END_IF18=(CommonTree)match(input,END_IF,FOLLOW_END_IF_in_stm1200); 
+                    END_IF18=(CommonTree)match(input,END_IF,FOLLOW_END_IF_in_stm1209); 
 
                     match(input, Token.UP, null); 
 
@@ -1307,12 +1310,12 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:421:17: ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? END_SWITCH )
+                    // src/glossa/grammars/ASTInterpreter.g:423:17: ^( SWITCH expr ( caseBlock[$expr.result, proceed] )* ( caseElseBlock[proceed] )? END_SWITCH )
                     {
-                    SWITCH19=(CommonTree)match(input,SWITCH,FOLLOW_SWITCH_in_stm1233); 
+                    SWITCH19=(CommonTree)match(input,SWITCH,FOLLOW_SWITCH_in_stm1242); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_stm1253);
+                    pushFollow(FOLLOW_expr_in_stm1262);
                     expr20=expr();
 
                     state._fsp--;
@@ -1321,7 +1324,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                                                             boolean proceed = true;
                                                             pauseExecution((SWITCH19!=null?SWITCH19.getLine():0), false);
                                                         
-                    // src/glossa/grammars/ASTInterpreter.g:426:19: ( caseBlock[$expr.result, proceed] )*
+                    // src/glossa/grammars/ASTInterpreter.g:428:19: ( caseBlock[$expr.result, proceed] )*
                     loop14:
                     do {
                         int alt14=2;
@@ -1334,9 +1337,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // src/glossa/grammars/ASTInterpreter.g:426:20: caseBlock[$expr.result, proceed]
+                    	    // src/glossa/grammars/ASTInterpreter.g:428:20: caseBlock[$expr.result, proceed]
                     	    {
-                    	    pushFollow(FOLLOW_caseBlock_in_stm1289);
+                    	    pushFollow(FOLLOW_caseBlock_in_stm1298);
                     	    caseBlock21=caseBlock((expr20!=null?expr20.result:null), proceed);
 
                     	    state._fsp--;
@@ -1353,7 +1356,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/ASTInterpreter.g:431:19: ( caseElseBlock[proceed] )?
+                    // src/glossa/grammars/ASTInterpreter.g:433:19: ( caseElseBlock[proceed] )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1362,9 +1365,9 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:431:20: caseElseBlock[proceed]
+                            // src/glossa/grammars/ASTInterpreter.g:433:20: caseElseBlock[proceed]
                             {
-                            pushFollow(FOLLOW_caseElseBlock_in_stm1371);
+                            pushFollow(FOLLOW_caseElseBlock_in_stm1380);
                             caseElseBlock(proceed);
 
                             state._fsp--;
@@ -1375,7 +1378,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     }
 
-                    END_SWITCH22=(CommonTree)match(input,END_SWITCH,FOLLOW_END_SWITCH_in_stm1395); 
+                    END_SWITCH22=(CommonTree)match(input,END_SWITCH,FOLLOW_END_SWITCH_in_stm1404); 
 
                     match(input, Token.UP, null); 
 
@@ -1385,30 +1388,30 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/ASTInterpreter.g:435:17: ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . END_LOOP )
+                    // src/glossa/grammars/ASTInterpreter.g:437:17: ^( FOR ID fromValue= expr toValue= expr (stepValue= expr )? blk= . END_LOOP )
                     {
-                    FOR24=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1423); 
+                    FOR24=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1432); 
 
                     match(input, Token.DOWN, null); 
-                    ID23=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1425); 
-                    pushFollow(FOLLOW_expr_in_stm1429);
+                    ID23=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1434); 
+                    pushFollow(FOLLOW_expr_in_stm1438);
                     fromValue=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_stm1433);
+                    pushFollow(FOLLOW_expr_in_stm1442);
                     toValue=expr();
 
                     state._fsp--;
 
-                    // src/glossa/grammars/ASTInterpreter.g:435:54: (stepValue= expr )?
+                    // src/glossa/grammars/ASTInterpreter.g:437:54: (stepValue= expr )?
                     int alt16=2;
                     alt16 = dfa16.predict(input);
                     switch (alt16) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:435:55: stepValue= expr
+                            // src/glossa/grammars/ASTInterpreter.g:437:55: stepValue= expr
                             {
-                            pushFollow(FOLLOW_expr_in_stm1438);
+                            pushFollow(FOLLOW_expr_in_stm1447);
                             stepValue=expr();
 
                             state._fsp--;
@@ -1422,7 +1425,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     int blkIndex = input.index();
                     blk=(CommonTree)input.LT(1);
                     matchAny(input); 
-                    END_LOOP25=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1448); 
+                    END_LOOP25=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1457); 
 
                     match(input, Token.UP, null); 
 
@@ -1482,38 +1485,38 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/ASTInterpreter.g:489:17: ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . END_LOOP )
+                    // src/glossa/grammars/ASTInterpreter.g:491:17: ^( FOR ID arraySubscript[arr] fromValue= expr toValue= expr (stepValue= expr )? blk= . END_LOOP )
                     {
-                    FOR28=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1506); 
+                    FOR28=(CommonTree)match(input,FOR,FOLLOW_FOR_in_stm1515); 
 
                     match(input, Token.DOWN, null); 
-                    ID26=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1508); 
+                    ID26=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1517); 
 
                                                             RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol((ID26!=null?ID26.getText():null), new Point((ID26!=null?ID26.getLine():0), (ID26!=null?ID26.getCharPositionInLine():0)));
                                                         
-                    pushFollow(FOLLOW_arraySubscript_in_stm1541);
+                    pushFollow(FOLLOW_arraySubscript_in_stm1550);
                     arraySubscript27=arraySubscript(arr);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_stm1565);
+                    pushFollow(FOLLOW_expr_in_stm1574);
                     fromValue=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_stm1587);
+                    pushFollow(FOLLOW_expr_in_stm1596);
                     toValue=expr();
 
                     state._fsp--;
 
-                    // src/glossa/grammars/ASTInterpreter.g:495:19: (stepValue= expr )?
+                    // src/glossa/grammars/ASTInterpreter.g:497:19: (stepValue= expr )?
                     int alt17=2;
                     alt17 = dfa17.predict(input);
                     switch (alt17) {
                         case 1 :
-                            // src/glossa/grammars/ASTInterpreter.g:495:20: stepValue= expr
+                            // src/glossa/grammars/ASTInterpreter.g:497:20: stepValue= expr
                             {
-                            pushFollow(FOLLOW_expr_in_stm1610);
+                            pushFollow(FOLLOW_expr_in_stm1619);
                             stepValue=expr();
 
                             state._fsp--;
@@ -1527,7 +1530,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     int blkIndex = input.index();
                     blk=(CommonTree)input.LT(1);
                     matchAny(input); 
-                    END_LOOP29=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1638); 
+                    END_LOOP29=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1647); 
 
                     match(input, Token.UP, null); 
 
@@ -1584,9 +1587,9 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/ASTInterpreter.g:547:17: ^( WHILE condition= . blk= . END_LOOP )
+                    // src/glossa/grammars/ASTInterpreter.g:549:17: ^( WHILE condition= . blk= . END_LOOP )
                     {
-                    WHILE30=(CommonTree)match(input,WHILE,FOLLOW_WHILE_in_stm1695); 
+                    WHILE30=(CommonTree)match(input,WHILE,FOLLOW_WHILE_in_stm1704); 
 
                     int conditionIndex = input.index()+1;
 
@@ -1596,7 +1599,7 @@ public class ASTInterpreter extends RunnableTreeParser {
                     int blkIndex = input.index();
                     blk=(CommonTree)input.LT(1);
                     matchAny(input); 
-                    END_LOOP31=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1710); 
+                    END_LOOP31=(CommonTree)match(input,END_LOOP,FOLLOW_END_LOOP_in_stm1719); 
 
                     match(input, Token.UP, null); 
 
@@ -1620,16 +1623,16 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/ASTInterpreter.g:565:4: ^( REPEAT blk= . UNTIL condition= . )
+                    // src/glossa/grammars/ASTInterpreter.g:567:4: ^( REPEAT blk= . UNTIL condition= . )
                     {
-                    REPEAT32=(CommonTree)match(input,REPEAT,FOLLOW_REPEAT_in_stm1755); 
+                    REPEAT32=(CommonTree)match(input,REPEAT,FOLLOW_REPEAT_in_stm1764); 
 
                     int blkIndex = input.index()+1;
 
                     match(input, Token.DOWN, null); 
                     blk=(CommonTree)input.LT(1);
                     matchAny(input); 
-                    UNTIL33=(CommonTree)match(input,UNTIL,FOLLOW_UNTIL_in_stm1763); 
+                    UNTIL33=(CommonTree)match(input,UNTIL,FOLLOW_UNTIL_in_stm1772); 
                     int conditionIndex = input.index();
                     condition=(CommonTree)input.LT(1);
                     matchAny(input); 
@@ -1655,13 +1658,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/ASTInterpreter.g:582:17: ^( CALL ID paramsList )
+                    // src/glossa/grammars/ASTInterpreter.g:584:17: ^( CALL ID paramsList )
                     {
-                    CALL34=(CommonTree)match(input,CALL,FOLLOW_CALL_in_stm1827); 
+                    CALL34=(CommonTree)match(input,CALL,FOLLOW_CALL_in_stm1836); 
 
                     match(input, Token.DOWN, null); 
-                    ID35=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1829); 
-                    pushFollow(FOLLOW_paramsList_in_stm1831);
+                    ID35=(CommonTree)match(input,ID,FOLLOW_ID_in_stm1838); 
+                    pushFollow(FOLLOW_paramsList_in_stm1840);
                     paramsList36=paramsList();
 
                     state._fsp--;
@@ -1707,7 +1710,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/ASTInterpreter.g:606:1: readItem : (arrId= ID arraySubscript[arr] | varId= ID );
+    // src/glossa/grammars/ASTInterpreter.g:608:1: readItem : (arrId= ID arraySubscript[arr] | varId= ID );
     public final void readItem() throws RecognitionException {
         CommonTree arrId=null;
         CommonTree varId=null;
@@ -1715,7 +1718,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:607:9: (arrId= ID arraySubscript[arr] | varId= ID )
+            // src/glossa/grammars/ASTInterpreter.g:609:9: (arrId= ID arraySubscript[arr] | varId= ID )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1743,13 +1746,13 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt19) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:607:17: arrId= ID arraySubscript[arr]
+                    // src/glossa/grammars/ASTInterpreter.g:609:17: arrId= ID arraySubscript[arr]
                     {
-                    arrId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1903); 
+                    arrId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1912); 
 
                                                             RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol((arrId!=null?arrId.getText():null), new Point((arrId!=null?arrId.getLine():0), (arrId!=null?arrId.getCharPositionInLine():0)));
                                                         
-                    pushFollow(FOLLOW_arraySubscript_in_readItem1934);
+                    pushFollow(FOLLOW_arraySubscript_in_readItem1943);
                     arraySubscript37=arraySubscript(arr);
 
                     state._fsp--;
@@ -1766,9 +1769,9 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:619:17: varId= ID
+                    // src/glossa/grammars/ASTInterpreter.g:621:17: varId= ID
                     {
-                    varId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1994); 
+                    varId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem2003); 
 
                                                             String line = "";
                                                             try{
@@ -1796,7 +1799,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/ASTInterpreter.g:630:1: ifBlock returns [boolean proceedToNextCondition] : ^( IF expr cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:632:1: ifBlock returns [boolean proceedToNextCondition] : ^( IF expr cmd= . ) ;
     public final boolean ifBlock() throws RecognitionException {
         boolean proceedToNextCondition = false;
 
@@ -1806,13 +1809,13 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:631:9: ( ^( IF expr cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:631:17: ^( IF expr cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:633:9: ( ^( IF expr cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:633:17: ^( IF expr cmd= . )
             {
-            IF38=(CommonTree)match(input,IF,FOLLOW_IF_in_ifBlock2043); 
+            IF38=(CommonTree)match(input,IF,FOLLOW_IF_in_ifBlock2052); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_expr_in_ifBlock2045);
+            pushFollow(FOLLOW_expr_in_ifBlock2054);
             expr39=expr();
 
             state._fsp--;
@@ -1850,16 +1853,16 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:646:1: elseBlock[boolean exec] : ^( ELSE cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:648:1: elseBlock[boolean exec] : ^( ELSE cmd= . ) ;
     public final void elseBlock(boolean exec) throws RecognitionException {
         CommonTree ELSE40=null;
         CommonTree cmd=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:647:2: ( ^( ELSE cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:647:4: ^( ELSE cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:649:2: ( ^( ELSE cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:649:4: ^( ELSE cmd= . )
             {
-            ELSE40=(CommonTree)match(input,ELSE,FOLLOW_ELSE_in_elseBlock2111); 
+            ELSE40=(CommonTree)match(input,ELSE,FOLLOW_ELSE_in_elseBlock2120); 
 
             int elseIndex = input.index()+1;
 
@@ -1893,7 +1896,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/ASTInterpreter.g:659:1: elseIfBlock[boolean exec] returns [boolean proceedToNextCondition] : ^( ELSE_IF e= . cmd= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:661:1: elseIfBlock[boolean exec] returns [boolean proceedToNextCondition] : ^( ELSE_IF e= . cmd= . ) ;
     public final boolean elseIfBlock(boolean exec) throws RecognitionException {
         boolean proceedToNextCondition = false;
 
@@ -1902,10 +1905,10 @@ public class ASTInterpreter extends RunnableTreeParser {
         CommonTree cmd=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:660:2: ( ^( ELSE_IF e= . cmd= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:660:4: ^( ELSE_IF e= . cmd= . )
+            // src/glossa/grammars/ASTInterpreter.g:662:2: ( ^( ELSE_IF e= . cmd= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:662:4: ^( ELSE_IF e= . cmd= . )
             {
-            ELSE_IF41=(CommonTree)match(input,ELSE_IF,FOLLOW_ELSE_IF_in_elseIfBlock2182); 
+            ELSE_IF41=(CommonTree)match(input,ELSE_IF,FOLLOW_ELSE_IF_in_elseIfBlock2191); 
 
             int conditionIndex = input.index()+1;
 
@@ -1950,7 +1953,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:681:1: caseBlock[Object target, boolean proceed] returns [boolean checkNextCaseBlock] : ^( CASE ( caseExprListItem[$target] )+ blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:683:1: caseBlock[Object target, boolean proceed] returns [boolean checkNextCaseBlock] : ^( CASE ( caseExprListItem[$target] )+ blk= . ) ;
     public final boolean caseBlock(Object target, boolean proceed) throws RecognitionException {
         boolean checkNextCaseBlock = false;
 
@@ -1960,15 +1963,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:682:2: ( ^( CASE ( caseExprListItem[$target] )+ blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:682:4: ^( CASE ( caseExprListItem[$target] )+ blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:684:2: ( ^( CASE ( caseExprListItem[$target] )+ blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:684:4: ^( CASE ( caseExprListItem[$target] )+ blk= . )
             {
-            CASE43=(CommonTree)match(input,CASE,FOLLOW_CASE_in_caseBlock2260); 
+            CASE43=(CommonTree)match(input,CASE,FOLLOW_CASE_in_caseBlock2269); 
 
             boolean foundMatch = false;
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:682:41: ( caseExprListItem[$target] )+
+            // src/glossa/grammars/ASTInterpreter.g:684:41: ( caseExprListItem[$target] )+
             int cnt20=0;
             loop20:
             do {
@@ -1976,9 +1979,9 @@ public class ASTInterpreter extends RunnableTreeParser {
                 alt20 = dfa20.predict(input);
                 switch (alt20) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:682:42: caseExprListItem[$target]
+            	    // src/glossa/grammars/ASTInterpreter.g:684:42: caseExprListItem[$target]
             	    {
-            	    pushFollow(FOLLOW_caseExprListItem_in_caseBlock2265);
+            	    pushFollow(FOLLOW_caseExprListItem_in_caseBlock2274);
             	    caseExprListItem42=caseExprListItem(target);
 
             	    state._fsp--;
@@ -2033,7 +2036,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/ASTInterpreter.g:700:1: caseExprListItem[Object target] returns [boolean success] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
+    // src/glossa/grammars/ASTInterpreter.g:702:1: caseExprListItem[Object target] returns [boolean success] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
     public final boolean caseExprListItem(Object target) throws RecognitionException {
         boolean success = false;
 
@@ -2043,7 +2046,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:701:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
+            // src/glossa/grammars/ASTInterpreter.g:703:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
             int alt21=6;
             switch ( input.LA(1) ) {
             case NEG:
@@ -2131,9 +2134,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             switch (alt21) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:701:4: a= expr
+                    // src/glossa/grammars/ASTInterpreter.g:703:4: a= expr
                     {
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2344);
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2353);
                     a=expr();
 
                     state._fsp--;
@@ -2149,17 +2152,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:708:10: ^( RANGE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:710:10: ^( RANGE a= expr b= expr )
                     {
-                    match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem2371); 
+                    match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem2380); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2375);
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2384);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2379);
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2388);
                     b=expr();
 
                     state._fsp--;
@@ -2177,13 +2180,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:716:10: ^( INF_RANGE LT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:718:10: ^( INF_RANGE LT a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2430); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2439); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,LT,FOLLOW_LT_in_caseExprListItem2432); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2436);
+                    match(input,LT,FOLLOW_LT_in_caseExprListItem2441); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2445);
                     a=expr();
 
                     state._fsp--;
@@ -2201,13 +2204,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:724:17: ^( INF_RANGE LE a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:726:17: ^( INF_RANGE LE a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2494); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2503); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,LE,FOLLOW_LE_in_caseExprListItem2496); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2500);
+                    match(input,LE,FOLLOW_LE_in_caseExprListItem2505); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2509);
                     a=expr();
 
                     state._fsp--;
@@ -2225,13 +2228,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:732:17: ^( INF_RANGE GT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:734:17: ^( INF_RANGE GT a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2558); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2567); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,GT,FOLLOW_GT_in_caseExprListItem2560); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2564);
+                    match(input,GT,FOLLOW_GT_in_caseExprListItem2569); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2573);
                     a=expr();
 
                     state._fsp--;
@@ -2249,13 +2252,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:740:17: ^( INF_RANGE GE a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:742:17: ^( INF_RANGE GE a= expr )
                     {
-                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2622); 
+                    match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem2631); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,GE,FOLLOW_GE_in_caseExprListItem2624); 
-                    pushFollow(FOLLOW_expr_in_caseExprListItem2628);
+                    match(input,GE,FOLLOW_GE_in_caseExprListItem2633); 
+                    pushFollow(FOLLOW_expr_in_caseExprListItem2637);
                     a=expr();
 
                     state._fsp--;
@@ -2287,19 +2290,19 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/ASTInterpreter.g:750:1: caseElseBlock[boolean proceed] : ^( CASE_ELSE CASE blk= . ) ;
+    // src/glossa/grammars/ASTInterpreter.g:752:1: caseElseBlock[boolean proceed] : ^( CASE_ELSE CASE blk= . ) ;
     public final void caseElseBlock(boolean proceed) throws RecognitionException {
         CommonTree CASE44=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:751:2: ( ^( CASE_ELSE CASE blk= . ) )
-            // src/glossa/grammars/ASTInterpreter.g:751:4: ^( CASE_ELSE CASE blk= . )
+            // src/glossa/grammars/ASTInterpreter.g:753:2: ( ^( CASE_ELSE CASE blk= . ) )
+            // src/glossa/grammars/ASTInterpreter.g:753:4: ^( CASE_ELSE CASE blk= . )
             {
-            match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock2688); 
+            match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock2697); 
 
             match(input, Token.DOWN, null); 
-            CASE44=(CommonTree)match(input,CASE,FOLLOW_CASE_in_caseElseBlock2690); 
+            CASE44=(CommonTree)match(input,CASE,FOLLOW_CASE_in_caseElseBlock2699); 
             int blkIndex = input.index();
             blk=(CommonTree)input.LT(1);
             matchAny(input); 
@@ -2334,7 +2337,7 @@ public class ASTInterpreter extends RunnableTreeParser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/ASTInterpreter.g:765:1: expr returns [Object result, Object resultForParam] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) );
+    // src/glossa/grammars/ASTInterpreter.g:767:1: expr returns [Object result, Object resultForParam] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) );
     public final ASTInterpreter.expr_return expr() throws RecognitionException {
         ASTInterpreter.expr_return retval = new ASTInterpreter.expr_return();
         retval.start = input.LT(1);
@@ -2355,7 +2358,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:766:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) )
+            // src/glossa/grammars/ASTInterpreter.g:768:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript[arr] ) | ^( FUNC_CALL ID paramsList ) )
             int alt22=25;
             switch ( input.LA(1) ) {
             case AND:
@@ -2492,17 +2495,17 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             switch (alt22) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:766:4: ^( AND a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:768:4: ^( AND a= expr b= expr )
                     {
-                    match(input,AND,FOLLOW_AND_in_expr2760); 
+                    match(input,AND,FOLLOW_AND_in_expr2769); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2764);
+                    pushFollow(FOLLOW_expr_in_expr2773);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2770);
+                    pushFollow(FOLLOW_expr_in_expr2779);
                     b=expr();
 
                     state._fsp--;
@@ -2514,17 +2517,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/ASTInterpreter.g:767:4: ^( OR a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:769:4: ^( OR a= expr b= expr )
                     {
-                    match(input,OR,FOLLOW_OR_in_expr2781); 
+                    match(input,OR,FOLLOW_OR_in_expr2790); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2785);
+                    pushFollow(FOLLOW_expr_in_expr2794);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2791);
+                    pushFollow(FOLLOW_expr_in_expr2800);
                     b=expr();
 
                     state._fsp--;
@@ -2536,17 +2539,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/ASTInterpreter.g:768:4: ^( EQ a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:770:4: ^( EQ a= expr b= expr )
                     {
-                    match(input,EQ,FOLLOW_EQ_in_expr2802); 
+                    match(input,EQ,FOLLOW_EQ_in_expr2811); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2806);
+                    pushFollow(FOLLOW_expr_in_expr2815);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2812);
+                    pushFollow(FOLLOW_expr_in_expr2821);
                     b=expr();
 
                     state._fsp--;
@@ -2558,17 +2561,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/ASTInterpreter.g:769:4: ^( NEQ a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:771:4: ^( NEQ a= expr b= expr )
                     {
-                    match(input,NEQ,FOLLOW_NEQ_in_expr2823); 
+                    match(input,NEQ,FOLLOW_NEQ_in_expr2832); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2827);
+                    pushFollow(FOLLOW_expr_in_expr2836);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2833);
+                    pushFollow(FOLLOW_expr_in_expr2842);
                     b=expr();
 
                     state._fsp--;
@@ -2580,17 +2583,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/ASTInterpreter.g:770:4: ^( LT a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:772:4: ^( LT a= expr b= expr )
                     {
-                    match(input,LT,FOLLOW_LT_in_expr2844); 
+                    match(input,LT,FOLLOW_LT_in_expr2853); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2848);
+                    pushFollow(FOLLOW_expr_in_expr2857);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2854);
+                    pushFollow(FOLLOW_expr_in_expr2863);
                     b=expr();
 
                     state._fsp--;
@@ -2602,17 +2605,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/ASTInterpreter.g:771:4: ^( LE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:773:4: ^( LE a= expr b= expr )
                     {
-                    match(input,LE,FOLLOW_LE_in_expr2865); 
+                    match(input,LE,FOLLOW_LE_in_expr2874); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2869);
+                    pushFollow(FOLLOW_expr_in_expr2878);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2875);
+                    pushFollow(FOLLOW_expr_in_expr2884);
                     b=expr();
 
                     state._fsp--;
@@ -2624,17 +2627,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/ASTInterpreter.g:772:4: ^( GT a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:774:4: ^( GT a= expr b= expr )
                     {
-                    match(input,GT,FOLLOW_GT_in_expr2886); 
+                    match(input,GT,FOLLOW_GT_in_expr2895); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2890);
+                    pushFollow(FOLLOW_expr_in_expr2899);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2896);
+                    pushFollow(FOLLOW_expr_in_expr2905);
                     b=expr();
 
                     state._fsp--;
@@ -2646,17 +2649,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/ASTInterpreter.g:773:4: ^( GE a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:775:4: ^( GE a= expr b= expr )
                     {
-                    match(input,GE,FOLLOW_GE_in_expr2907); 
+                    match(input,GE,FOLLOW_GE_in_expr2916); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2911);
+                    pushFollow(FOLLOW_expr_in_expr2920);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2917);
+                    pushFollow(FOLLOW_expr_in_expr2926);
                     b=expr();
 
                     state._fsp--;
@@ -2668,17 +2671,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/ASTInterpreter.g:774:4: ^( PLUS a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:776:4: ^( PLUS a= expr b= expr )
                     {
-                    match(input,PLUS,FOLLOW_PLUS_in_expr2928); 
+                    match(input,PLUS,FOLLOW_PLUS_in_expr2937); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2932);
+                    pushFollow(FOLLOW_expr_in_expr2941);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2938);
+                    pushFollow(FOLLOW_expr_in_expr2947);
                     b=expr();
 
                     state._fsp--;
@@ -2690,17 +2693,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/ASTInterpreter.g:775:4: ^( MINUS a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:777:4: ^( MINUS a= expr b= expr )
                     {
-                    match(input,MINUS,FOLLOW_MINUS_in_expr2949); 
+                    match(input,MINUS,FOLLOW_MINUS_in_expr2958); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2953);
+                    pushFollow(FOLLOW_expr_in_expr2962);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2959);
+                    pushFollow(FOLLOW_expr_in_expr2968);
                     b=expr();
 
                     state._fsp--;
@@ -2712,17 +2715,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/ASTInterpreter.g:776:4: ^( TIMES a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:778:4: ^( TIMES a= expr b= expr )
                     {
-                    match(input,TIMES,FOLLOW_TIMES_in_expr2970); 
+                    match(input,TIMES,FOLLOW_TIMES_in_expr2979); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr2974);
+                    pushFollow(FOLLOW_expr_in_expr2983);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr2980);
+                    pushFollow(FOLLOW_expr_in_expr2989);
                     b=expr();
 
                     state._fsp--;
@@ -2734,17 +2737,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 12 :
-                    // src/glossa/grammars/ASTInterpreter.g:777:11: ^( DIA a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:779:11: ^( DIA a= expr b= expr )
                     {
-                    match(input,DIA,FOLLOW_DIA_in_expr2998); 
+                    match(input,DIA,FOLLOW_DIA_in_expr3007); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3002);
+                    pushFollow(FOLLOW_expr_in_expr3011);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr3008);
+                    pushFollow(FOLLOW_expr_in_expr3017);
                     b=expr();
 
                     state._fsp--;
@@ -2756,17 +2759,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 13 :
-                    // src/glossa/grammars/ASTInterpreter.g:778:11: ^( DIV a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:780:11: ^( DIV a= expr b= expr )
                     {
-                    match(input,DIV,FOLLOW_DIV_in_expr3026); 
+                    match(input,DIV,FOLLOW_DIV_in_expr3035); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3030);
+                    pushFollow(FOLLOW_expr_in_expr3039);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr3036);
+                    pushFollow(FOLLOW_expr_in_expr3045);
                     b=expr();
 
                     state._fsp--;
@@ -2778,17 +2781,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 14 :
-                    // src/glossa/grammars/ASTInterpreter.g:779:4: ^( MOD a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:781:4: ^( MOD a= expr b= expr )
                     {
-                    match(input,MOD,FOLLOW_MOD_in_expr3047); 
+                    match(input,MOD,FOLLOW_MOD_in_expr3056); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3051);
+                    pushFollow(FOLLOW_expr_in_expr3060);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr3057);
+                    pushFollow(FOLLOW_expr_in_expr3066);
                     b=expr();
 
                     state._fsp--;
@@ -2800,17 +2803,17 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 15 :
-                    // src/glossa/grammars/ASTInterpreter.g:780:4: ^( POW a= expr b= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:782:4: ^( POW a= expr b= expr )
                     {
-                    match(input,POW,FOLLOW_POW_in_expr3068); 
+                    match(input,POW,FOLLOW_POW_in_expr3077); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3072);
+                    pushFollow(FOLLOW_expr_in_expr3081);
                     a=expr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expr_in_expr3078);
+                    pushFollow(FOLLOW_expr_in_expr3087);
                     b=expr();
 
                     state._fsp--;
@@ -2822,12 +2825,12 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 16 :
-                    // src/glossa/grammars/ASTInterpreter.g:781:4: ^( NEG a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:783:4: ^( NEG a= expr )
                     {
-                    match(input,NEG,FOLLOW_NEG_in_expr3089); 
+                    match(input,NEG,FOLLOW_NEG_in_expr3098); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3093);
+                    pushFollow(FOLLOW_expr_in_expr3102);
                     a=expr();
 
                     state._fsp--;
@@ -2839,12 +2842,12 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/grammars/ASTInterpreter.g:782:4: ^( NOT a= expr )
+                    // src/glossa/grammars/ASTInterpreter.g:784:4: ^( NOT a= expr )
                     {
-                    match(input,NOT,FOLLOW_NOT_in_expr3114); 
+                    match(input,NOT,FOLLOW_NOT_in_expr3123); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr3118);
+                    pushFollow(FOLLOW_expr_in_expr3127);
                     a=expr();
 
                     state._fsp--;
@@ -2856,49 +2859,49 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/grammars/ASTInterpreter.g:783:4: CONST_TRUE
+                    // src/glossa/grammars/ASTInterpreter.g:785:4: CONST_TRUE
                     {
-                    match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr3138); 
+                    match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr3147); 
                        retval.result = Boolean.valueOf(true);    retval.resultForParam = retval.result;
 
                     }
                     break;
                 case 19 :
-                    // src/glossa/grammars/ASTInterpreter.g:784:4: CONST_FALSE
+                    // src/glossa/grammars/ASTInterpreter.g:786:4: CONST_FALSE
                     {
-                    match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr3162); 
+                    match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr3171); 
                        retval.result = Boolean.valueOf(false);   retval.resultForParam = retval.result;
 
                     }
                     break;
                 case 20 :
-                    // src/glossa/grammars/ASTInterpreter.g:785:4: CONST_STR
+                    // src/glossa/grammars/ASTInterpreter.g:787:4: CONST_STR
                     {
-                    CONST_STR45=(CommonTree)match(input,CONST_STR,FOLLOW_CONST_STR_in_expr3185); 
+                    CONST_STR45=(CommonTree)match(input,CONST_STR,FOLLOW_CONST_STR_in_expr3194); 
                        retval.result = new String((CONST_STR45!=null?CONST_STR45.getText():null));  retval.resultForParam = retval.result;
 
                     }
                     break;
                 case 21 :
-                    // src/glossa/grammars/ASTInterpreter.g:786:4: CONST_INT
+                    // src/glossa/grammars/ASTInterpreter.g:788:4: CONST_INT
                     {
-                    CONST_INT46=(CommonTree)match(input,CONST_INT,FOLLOW_CONST_INT_in_expr3210); 
+                    CONST_INT46=(CommonTree)match(input,CONST_INT,FOLLOW_CONST_INT_in_expr3219); 
                        retval.result = new BigInteger((CONST_INT46!=null?CONST_INT46.getText():null));  retval.resultForParam = retval.result;
 
                     }
                     break;
                 case 22 :
-                    // src/glossa/grammars/ASTInterpreter.g:787:4: CONST_REAL
+                    // src/glossa/grammars/ASTInterpreter.g:789:4: CONST_REAL
                     {
-                    CONST_REAL47=(CommonTree)match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr3235); 
+                    CONST_REAL47=(CommonTree)match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr3244); 
                        retval.result = new BigDecimal((CONST_REAL47!=null?CONST_REAL47.getText():null), InterpreterUtils.getMathContext()); retval.resultForParam = retval.result;
 
                     }
                     break;
                 case 23 :
-                    // src/glossa/grammars/ASTInterpreter.g:788:4: ID
+                    // src/glossa/grammars/ASTInterpreter.g:790:4: ID
                     {
-                    ID48=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3259); 
+                    ID48=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3268); 
 
                                                                     RuntimeSymbol s = (RuntimeSymbol)this.currentSymbolTable.referenceSymbol((ID48!=null?ID48.getText():null), new Point((ID48!=null?ID48.getLine():0), (ID48!=null?ID48.getCharPositionInLine():0)));
                                                                     if(s instanceof RuntimeSimpleSymbol){
@@ -2910,16 +2913,16 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 24 :
-                    // src/glossa/grammars/ASTInterpreter.g:795:4: ^( ARRAY_ITEM ID arraySubscript[arr] )
+                    // src/glossa/grammars/ASTInterpreter.g:797:4: ^( ARRAY_ITEM ID arraySubscript[arr] )
                     {
-                    match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr3313); 
+                    match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr3322); 
 
                     match(input, Token.DOWN, null); 
-                    ID49=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3335); 
+                    ID49=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3344); 
 
                                                                     RuntimeArray arr = (RuntimeArray)this.currentSymbolTable.referenceSymbol((ID49!=null?ID49.getText():null), new Point((ID49!=null?ID49.getLine():0), (ID49!=null?ID49.getCharPositionInLine():0)));
                                                                 
-                    pushFollow(FOLLOW_arraySubscript_in_expr3380);
+                    pushFollow(FOLLOW_arraySubscript_in_expr3389);
                     arraySubscript50=arraySubscript(arr);
 
                     state._fsp--;
@@ -2934,13 +2937,13 @@ public class ASTInterpreter extends RunnableTreeParser {
                     }
                     break;
                 case 25 :
-                    // src/glossa/grammars/ASTInterpreter.g:806:17: ^( FUNC_CALL ID paramsList )
+                    // src/glossa/grammars/ASTInterpreter.g:808:17: ^( FUNC_CALL ID paramsList )
                     {
-                    match(input,FUNC_CALL,FOLLOW_FUNC_CALL_in_expr3465); 
+                    match(input,FUNC_CALL,FOLLOW_FUNC_CALL_in_expr3474); 
 
                     match(input, Token.DOWN, null); 
-                    ID51=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3467); 
-                    pushFollow(FOLLOW_paramsList_in_expr3469);
+                    ID51=(CommonTree)match(input,ID,FOLLOW_ID_in_expr3476); 
+                    pushFollow(FOLLOW_paramsList_in_expr3478);
                     paramsList52=paramsList();
 
                     state._fsp--;
@@ -2992,7 +2995,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "paramsList"
-    // src/glossa/grammars/ASTInterpreter.g:835:1: paramsList returns [List<Object> parameters] : ^( PARAMS ( expr )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:837:1: paramsList returns [List<Object> parameters] : ^( PARAMS ( expr )* ) ;
     public final List<Object> paramsList() throws RecognitionException {
         List<Object> parameters = null;
 
@@ -3000,16 +3003,16 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:836:2: ( ^( PARAMS ( expr )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:836:4: ^( PARAMS ( expr )* )
+            // src/glossa/grammars/ASTInterpreter.g:838:2: ( ^( PARAMS ( expr )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:838:4: ^( PARAMS ( expr )* )
             {
-            match(input,PARAMS,FOLLOW_PARAMS_in_paramsList3504); 
+            match(input,PARAMS,FOLLOW_PARAMS_in_paramsList3513); 
 
             List<Object> result = new ArrayList<Object>();
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:837:19: ( expr )*
+                // src/glossa/grammars/ASTInterpreter.g:839:19: ( expr )*
                 loop23:
                 do {
                     int alt23=2;
@@ -3022,9 +3025,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt23) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:837:20: expr
+                	    // src/glossa/grammars/ASTInterpreter.g:839:20: expr
                 	    {
-                	    pushFollow(FOLLOW_expr_in_paramsList3530);
+                	    pushFollow(FOLLOW_expr_in_paramsList3539);
                 	    expr53=expr();
 
                 	    state._fsp--;
@@ -3059,7 +3062,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/ASTInterpreter.g:842:1: arraySubscript[RuntimeArray arr] returns [List<Integer> value] : ^( ARRAY_INDEX ( expr )+ ) ;
+    // src/glossa/grammars/ASTInterpreter.g:844:1: arraySubscript[RuntimeArray arr] returns [List<Integer> value] : ^( ARRAY_INDEX ( expr )+ ) ;
     public final List<Integer> arraySubscript(RuntimeArray arr) throws RecognitionException {
         List<Integer> value = null;
 
@@ -3067,15 +3070,15 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:843:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/ASTInterpreter.g:843:4: ^( ARRAY_INDEX ( expr )+ )
+            // src/glossa/grammars/ASTInterpreter.g:845:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // src/glossa/grammars/ASTInterpreter.g:845:4: ^( ARRAY_INDEX ( expr )+ )
             {
-            match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript3612); 
+            match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript3621); 
 
             List<Integer> result = new ArrayList<Integer>(); int index=0;
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/ASTInterpreter.g:845:21: ( expr )+
+            // src/glossa/grammars/ASTInterpreter.g:847:21: ( expr )+
             int cnt24=0;
             loop24:
             do {
@@ -3089,9 +3092,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                 switch (alt24) {
             	case 1 :
-            	    // src/glossa/grammars/ASTInterpreter.g:845:22: expr
+            	    // src/glossa/grammars/ASTInterpreter.g:847:22: expr
             	    {
-            	    pushFollow(FOLLOW_expr_in_arraySubscript3669);
+            	    pushFollow(FOLLOW_expr_in_arraySubscript3678);
             	    expr54=expr();
 
             	    state._fsp--;
@@ -3149,26 +3152,26 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/ASTInterpreter.g:872:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE ) ;
+    // src/glossa/grammars/ASTInterpreter.g:874:1: procedure[boolean exec] : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE ) ;
     public final void procedure(boolean exec) throws RecognitionException {
         CommonTree PROCEDURE55=null;
         CommonTree END_PROCEDURE56=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:873:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE ) )
-            // src/glossa/grammars/ASTInterpreter.g:873:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE )
+            // src/glossa/grammars/ASTInterpreter.g:875:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE ) )
+            // src/glossa/grammars/ASTInterpreter.g:875:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? blk= . END_PROCEDURE )
             {
-            PROCEDURE55=(CommonTree)match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure3799); 
+            PROCEDURE55=(CommonTree)match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure3808); 
 
             match(input, Token.DOWN, null); 
-            match(input,ID,FOLLOW_ID_in_procedure3801); 
-            pushFollow(FOLLOW_formalParamsList_in_procedure3803);
+            match(input,ID,FOLLOW_ID_in_procedure3810); 
+            pushFollow(FOLLOW_formalParamsList_in_procedure3812);
             formalParamsList();
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:873:36: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:875:36: ( constDecl )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3192,9 +3195,9 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt25) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:873:36: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:875:36: constDecl
                     {
-                    pushFollow(FOLLOW_constDecl_in_procedure3805);
+                    pushFollow(FOLLOW_constDecl_in_procedure3814);
                     constDecl();
 
                     state._fsp--;
@@ -3205,7 +3208,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:873:47: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:875:47: ( varDecl )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3229,9 +3232,9 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt26) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:873:47: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:875:47: varDecl
                     {
-                    pushFollow(FOLLOW_varDecl_in_procedure3808);
+                    pushFollow(FOLLOW_varDecl_in_procedure3817);
                     varDecl();
 
                     state._fsp--;
@@ -3245,7 +3248,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             int blkIndex = input.index();
             blk=(CommonTree)input.LT(1);
             matchAny(input); 
-            END_PROCEDURE56=(CommonTree)match(input,END_PROCEDURE,FOLLOW_END_PROCEDURE_in_procedure3816); 
+            END_PROCEDURE56=(CommonTree)match(input,END_PROCEDURE,FOLLOW_END_PROCEDURE_in_procedure3825); 
 
             match(input, Token.UP, null); 
 
@@ -3277,31 +3280,31 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "function"
-    // src/glossa/grammars/ASTInterpreter.g:889:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION ) ;
+    // src/glossa/grammars/ASTInterpreter.g:891:1: function[boolean exec] : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION ) ;
     public final void function(boolean exec) throws RecognitionException {
         CommonTree FUNCTION57=null;
         CommonTree END_FUNCTION58=null;
         CommonTree blk=null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:890:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION ) )
-            // src/glossa/grammars/ASTInterpreter.g:890:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION )
+            // src/glossa/grammars/ASTInterpreter.g:892:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION ) )
+            // src/glossa/grammars/ASTInterpreter.g:892:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? blk= . END_FUNCTION )
             {
-            FUNCTION57=(CommonTree)match(input,FUNCTION,FOLLOW_FUNCTION_in_function3872); 
+            FUNCTION57=(CommonTree)match(input,FUNCTION,FOLLOW_FUNCTION_in_function3881); 
 
             match(input, Token.DOWN, null); 
-            match(input,ID,FOLLOW_ID_in_function3874); 
-            pushFollow(FOLLOW_returnType_in_function3876);
+            match(input,ID,FOLLOW_ID_in_function3883); 
+            pushFollow(FOLLOW_returnType_in_function3885);
             returnType();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_formalParamsList_in_function3878);
+            pushFollow(FOLLOW_formalParamsList_in_function3887);
             formalParamsList();
 
             state._fsp--;
 
-            // src/glossa/grammars/ASTInterpreter.g:890:46: ( constDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:892:46: ( constDecl )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3325,9 +3328,9 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:890:46: constDecl
+                    // src/glossa/grammars/ASTInterpreter.g:892:46: constDecl
                     {
-                    pushFollow(FOLLOW_constDecl_in_function3880);
+                    pushFollow(FOLLOW_constDecl_in_function3889);
                     constDecl();
 
                     state._fsp--;
@@ -3338,7 +3341,7 @@ public class ASTInterpreter extends RunnableTreeParser {
 
             }
 
-            // src/glossa/grammars/ASTInterpreter.g:890:57: ( varDecl )?
+            // src/glossa/grammars/ASTInterpreter.g:892:57: ( varDecl )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3362,9 +3365,9 @@ public class ASTInterpreter extends RunnableTreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/ASTInterpreter.g:890:57: varDecl
+                    // src/glossa/grammars/ASTInterpreter.g:892:57: varDecl
                     {
-                    pushFollow(FOLLOW_varDecl_in_function3883);
+                    pushFollow(FOLLOW_varDecl_in_function3892);
                     varDecl();
 
                     state._fsp--;
@@ -3378,7 +3381,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             int blkIndex = input.index();
             blk=(CommonTree)input.LT(1);
             matchAny(input); 
-            END_FUNCTION58=(CommonTree)match(input,END_FUNCTION,FOLLOW_END_FUNCTION_in_function3891); 
+            END_FUNCTION58=(CommonTree)match(input,END_FUNCTION,FOLLOW_END_FUNCTION_in_function3900); 
 
             match(input, Token.UP, null); 
 
@@ -3409,10 +3412,10 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/ASTInterpreter.g:905:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
+    // src/glossa/grammars/ASTInterpreter.g:907:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
     public final void returnType() throws RecognitionException {
         try {
-            // src/glossa/grammars/ASTInterpreter.g:906:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // src/glossa/grammars/ASTInterpreter.g:908:2: ( INTEGER | REAL | STRING | BOOLEAN )
             // src/glossa/grammars/ASTInterpreter.g:
             {
             if ( (input.LA(1)>=INTEGER && input.LA(1)<=BOOLEAN) ) {
@@ -3440,19 +3443,19 @@ public class ASTInterpreter extends RunnableTreeParser {
 
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/ASTInterpreter.g:915:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
+    // src/glossa/grammars/ASTInterpreter.g:917:1: formalParamsList returns [List<String> formalParamsNames] : ^( FORMAL_PARAMS ( ID )* ) ;
     public final List<String> formalParamsList() throws RecognitionException {
         List<String> formalParamsNames = null;
 
         try {
-            // src/glossa/grammars/ASTInterpreter.g:916:2: ( ^( FORMAL_PARAMS ( ID )* ) )
-            // src/glossa/grammars/ASTInterpreter.g:916:4: ^( FORMAL_PARAMS ( ID )* )
+            // src/glossa/grammars/ASTInterpreter.g:918:2: ( ^( FORMAL_PARAMS ( ID )* ) )
+            // src/glossa/grammars/ASTInterpreter.g:918:4: ^( FORMAL_PARAMS ( ID )* )
             {
-            match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList3985); 
+            match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList3994); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/ASTInterpreter.g:916:21: ( ID )*
+                // src/glossa/grammars/ASTInterpreter.g:918:21: ( ID )*
                 loop29:
                 do {
                     int alt29=2;
@@ -3465,9 +3468,9 @@ public class ASTInterpreter extends RunnableTreeParser {
 
                     switch (alt29) {
                 	case 1 :
-                	    // src/glossa/grammars/ASTInterpreter.g:916:22: ID
+                	    // src/glossa/grammars/ASTInterpreter.g:918:22: ID
                 	    {
-                	    match(input,ID,FOLLOW_ID_in_formalParamsList3989); 
+                	    match(input,ID,FOLLOW_ID_in_formalParamsList3998); 
 
                 	    }
                 	    break;
@@ -4916,7 +4919,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "435:54: (stepValue= expr )?";
+            return "437:54: (stepValue= expr )?";
         }
     }
     static final String DFA17_eotS =
@@ -6264,7 +6267,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA17_transition;
         }
         public String getDescription() {
-            return "495:19: (stepValue= expr )?";
+            return "497:19: (stepValue= expr )?";
         }
     }
     static final String DFA20_eotS =
@@ -7818,7 +7821,7 @@ public class ASTInterpreter extends RunnableTreeParser {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 682:41: ( caseExprListItem[$target] )+";
+            return "()+ loopback of 684:41: ( caseExprListItem[$target] )+";
         }
     }
  
@@ -7854,150 +7857,150 @@ public class ASTInterpreter extends RunnableTreeParser {
     public static final BitSet FOLLOW_expr_in_stm759 = new BitSet(new long[]{0xE001E00000888228L,0x0000000000001FFFL});
     public static final BitSet FOLLOW_READ_in_stm822 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_readItem_in_stm857 = new BitSet(new long[]{0x0000000000080008L});
-    public static final BitSet FOLLOW_ASSIGN_in_stm865 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm867 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm869 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ASSIGN_in_stm893 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm895 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_stm925 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm947 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_IFNODE_in_stm1004 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ifBlock_in_stm1024 = new BitSet(new long[]{0x0000019000000000L});
-    public static final BitSet FOLLOW_elseIfBlock_in_stm1057 = new BitSet(new long[]{0x0000019000000000L});
-    public static final BitSet FOLLOW_elseBlock_in_stm1139 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_END_IF_in_stm1200 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_SWITCH_in_stm1233 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_stm1253 = new BitSet(new long[]{0x00000C0000002000L});
-    public static final BitSet FOLLOW_caseBlock_in_stm1289 = new BitSet(new long[]{0x00000C0000002000L});
-    public static final BitSet FOLLOW_caseElseBlock_in_stm1371 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_END_SWITCH_in_stm1395 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FOR_in_stm1423 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm1425 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm1429 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm1433 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_expr_in_stm1438 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_END_LOOP_in_stm1448 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FOR_in_stm1506 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm1508 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_stm1541 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm1565 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_stm1587 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_expr_in_stm1610 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_END_LOOP_in_stm1638 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_WHILE_in_stm1695 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_END_LOOP_in_stm1710 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_REPEAT_in_stm1755 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_UNTIL_in_stm1763 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_CALL_in_stm1827 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_stm1829 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_paramsList_in_stm1831 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ID_in_readItem1903 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_readItem1934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_readItem1994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_ifBlock2043 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_ifBlock2045 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_ELSE_in_elseBlock2111 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ELSE_IF_in_elseIfBlock2182 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_CASE_in_caseBlock2260 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_caseExprListItem_in_caseBlock2265 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RANGE_in_caseExprListItem2371 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2375 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2379 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2430 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LT_in_caseExprListItem2432 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2436 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2494 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LE_in_caseExprListItem2496 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2500 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2558 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_GT_in_caseExprListItem2560 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2564 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2622 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_GE_in_caseExprListItem2624 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_caseExprListItem2628 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CASE_ELSE_in_caseElseBlock2688 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_CASE_in_caseElseBlock2690 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_AND_in_expr2760 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2764 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2770 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_OR_in_expr2781 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2785 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2791 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_EQ_in_expr2802 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2806 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2812 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NEQ_in_expr2823 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2827 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2833 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_LT_in_expr2844 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2848 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2854 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_LE_in_expr2865 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2869 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2875 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_GT_in_expr2886 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2890 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2896 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_GE_in_expr2907 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2911 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2917 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PLUS_in_expr2928 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2932 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2938 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MINUS_in_expr2949 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2953 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2959 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_TIMES_in_expr2970 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr2974 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr2980 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DIA_in_expr2998 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3002 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr3008 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DIV_in_expr3026 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3030 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr3036 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MOD_in_expr3047 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3051 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr3057 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_POW_in_expr3068 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3072 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_expr_in_expr3078 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NEG_in_expr3089 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3093 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NOT_in_expr3114 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr3118 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONST_TRUE_in_expr3138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_FALSE_in_expr3162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_STR_in_expr3185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_INT_in_expr3210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_REAL_in_expr3235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_expr3259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAY_ITEM_in_expr3313 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_expr3335 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_arraySubscript_in_expr3380 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FUNC_CALL_in_expr3465 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_expr3467 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_paramsList_in_expr3469 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PARAMS_in_paramsList3504 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_paramsList3530 = new BitSet(new long[]{0xE001E00000888228L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_ARRAY_INDEX_in_arraySubscript3612 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_arraySubscript3669 = new BitSet(new long[]{0xE001E00000888228L,0x0000000000001FFFL});
-    public static final BitSet FOLLOW_PROCEDURE_in_procedure3799 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_procedure3801 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_formalParamsList_in_procedure3803 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_constDecl_in_procedure3805 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_varDecl_in_procedure3808 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_END_PROCEDURE_in_procedure3816 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FUNCTION_in_function3872 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_function3874 = new BitSet(new long[]{0x0000000000000000L,0x00000000001E0000L});
-    public static final BitSet FOLLOW_returnType_in_function3876 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_formalParamsList_in_function3878 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_constDecl_in_function3880 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_varDecl_in_function3883 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_END_FUNCTION_in_function3891 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ASSIGN_in_stm874 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_stm876 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm878 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ASSIGN_in_stm902 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_stm904 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_arraySubscript_in_stm934 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm956 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_IFNODE_in_stm1013 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ifBlock_in_stm1033 = new BitSet(new long[]{0x0000019000000000L});
+    public static final BitSet FOLLOW_elseIfBlock_in_stm1066 = new BitSet(new long[]{0x0000019000000000L});
+    public static final BitSet FOLLOW_elseBlock_in_stm1148 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_END_IF_in_stm1209 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_SWITCH_in_stm1242 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_stm1262 = new BitSet(new long[]{0x00000C0000002000L});
+    public static final BitSet FOLLOW_caseBlock_in_stm1298 = new BitSet(new long[]{0x00000C0000002000L});
+    public static final BitSet FOLLOW_caseElseBlock_in_stm1380 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_END_SWITCH_in_stm1404 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FOR_in_stm1432 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_stm1434 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm1438 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm1442 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_stm1447 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_END_LOOP_in_stm1457 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FOR_in_stm1515 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_stm1517 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_arraySubscript_in_stm1550 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm1574 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_stm1596 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_stm1619 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_END_LOOP_in_stm1647 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_WHILE_in_stm1704 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_END_LOOP_in_stm1719 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_REPEAT_in_stm1764 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_UNTIL_in_stm1772 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_CALL_in_stm1836 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_stm1838 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_paramsList_in_stm1840 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ID_in_readItem1912 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_arraySubscript_in_readItem1943 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_readItem2003 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_ifBlock2052 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_ifBlock2054 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_ELSE_in_elseBlock2120 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ELSE_IF_in_elseIfBlock2191 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_CASE_in_caseBlock2269 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_caseExprListItem_in_caseBlock2274 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2353 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RANGE_in_caseExprListItem2380 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2384 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2388 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2439 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LT_in_caseExprListItem2441 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2445 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2503 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LE_in_caseExprListItem2505 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2509 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2567 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_GT_in_caseExprListItem2569 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2573 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INF_RANGE_in_caseExprListItem2631 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_GE_in_caseExprListItem2633 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_caseExprListItem2637 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CASE_ELSE_in_caseElseBlock2697 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_CASE_in_caseElseBlock2699 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_AND_in_expr2769 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2773 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2779 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_OR_in_expr2790 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2794 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2800 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_EQ_in_expr2811 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2815 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2821 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NEQ_in_expr2832 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2836 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2842 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_LT_in_expr2853 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2857 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2863 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_LE_in_expr2874 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2878 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2884 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_GT_in_expr2895 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2899 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2905 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_GE_in_expr2916 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2920 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2926 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PLUS_in_expr2937 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2941 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2947 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MINUS_in_expr2958 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2962 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2968 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_TIMES_in_expr2979 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr2983 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr2989 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DIA_in_expr3007 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3011 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr3017 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DIV_in_expr3035 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3039 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr3045 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MOD_in_expr3056 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3060 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr3066 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_POW_in_expr3077 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3081 = new BitSet(new long[]{0xE001E00000888220L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_expr_in_expr3087 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NEG_in_expr3098 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3102 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NOT_in_expr3123 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr3127 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONST_TRUE_in_expr3147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_FALSE_in_expr3171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_STR_in_expr3194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_INT_in_expr3219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_REAL_in_expr3244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_expr3268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAY_ITEM_in_expr3322 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_expr3344 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_arraySubscript_in_expr3389 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FUNC_CALL_in_expr3474 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_expr3476 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_paramsList_in_expr3478 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PARAMS_in_paramsList3513 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_paramsList3539 = new BitSet(new long[]{0xE001E00000888228L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_ARRAY_INDEX_in_arraySubscript3621 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_arraySubscript3678 = new BitSet(new long[]{0xE001E00000888228L,0x0000000000001FFFL});
+    public static final BitSet FOLLOW_PROCEDURE_in_procedure3808 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_procedure3810 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_formalParamsList_in_procedure3812 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_constDecl_in_procedure3814 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDecl_in_procedure3817 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_END_PROCEDURE_in_procedure3825 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FUNCTION_in_function3881 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_function3883 = new BitSet(new long[]{0x0000000000000000L,0x00000000001E0000L});
+    public static final BitSet FOLLOW_returnType_in_function3885 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_formalParamsList_in_function3887 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_constDecl_in_function3889 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDecl_in_function3892 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0xFFFFFFFFFFFFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_END_FUNCTION_in_function3900 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_set_in_returnType0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FORMAL_PARAMS_in_formalParamsList3985 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_formalParamsList3989 = new BitSet(new long[]{0x0000000000080008L});
+    public static final BitSet FOLLOW_FORMAL_PARAMS_in_formalParamsList3994 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_formalParamsList3998 = new BitSet(new long[]{0x0000000000080008L});
 
 }
