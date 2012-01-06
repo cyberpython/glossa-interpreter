@@ -48,11 +48,7 @@ To build the project’s code you will need :
 (*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/
 
 
-Open a terminal and give:
-
-    git clone git://github.com/cyberpython/glossa-interpreter.git
-    cd glossa-interpreter
-    ant jar
+Open the project with Netbeans, right click on it and select "Clean and build".
 
 ##How to run the interpreter
 
