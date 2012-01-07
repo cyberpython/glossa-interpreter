@@ -40,25 +40,33 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
 To build the project’s code you will need :
 
-- [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- [Apache Ant](http://ant.apache.org/) (built-in in Netbeans)
+- [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+You can install it on Ubuntu with:
+
+    [sudo apt-get install openjdk-6-jdk](apt://openjdk-6-jdk)
+- [Apache Ant](http://ant.apache.org/) (built-in in Netbeans).
+You can install it on Ubuntu with:
+
+    [sudo apt-get install ant](apt://ant)
 - [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (*)
 - [JOpt Simple](http://jopt-simple.sourceforge.net/) (*)
 
 (*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/
 
 
-Open the project with Netbeans, right click on it and select "Clean and build".
+Open the project with Netbeans, right click on it and select "Clean and build" or
+open a terminal and give:
+    ant clean jar
 
 ##How to run the interpreter
 
 To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 
-    java -jar dist/glossa-interpreter.jar <input_file>
+    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main <input_file>
 
 e.g.:
 
-    java -jar dist/glossa-interpreter.jar src/glossa/samples/PrintTest.gls
+    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main src/glossa/samples/PrintTest.gls
     
 ![Screenshot][screenshot]
 [screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
@@ -66,7 +74,7 @@ e.g.:
 
 For more information give:
 
-    java -jar dist/glossa-interpreter.jar -h
+    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main -h
 
 Note for Windows users: If the Windows command line (cmd.exe) does not display correctly the interpreter output, you should change the command-line font from "Raster fonts" to "Lucida Console" and give the following command:
 
@@ -83,5 +91,5 @@ There are some example input files in:
 
     src/glossa/samples/
 
-The project is developed using [Netbeans 6.9](http://netbeans.org/).
+The project is developed using [Netbeans 6.8](http://netbeans.org/).
 

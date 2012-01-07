@@ -18,7 +18,7 @@
     <target name="check-jopt">
         <available file="lib/jopt-simple-3.2.jar" property="jopt.present"/>
     </target>
-    
+
     <target name="download-antlr" depends="check-antlr" unless="antlr.present">
         <mkdir dir="lib"/>
         <get src="http://www.antlr.org/download/antlr-3.2.jar" dest="lib/antlr-3.2.jar"/>
@@ -92,11 +92,11 @@
     </target>
 
     <target name="generate-antlr3-recognizers" depends="generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
-        
+
     </target>
 
     <target name="-pre-compile" depends="generate-antlr3-recognizers,download-jopt">
-        
+
     </target>
     <!--
 
