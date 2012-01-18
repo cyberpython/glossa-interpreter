@@ -54,19 +54,18 @@ You can install it on Ubuntu with:
 (*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/
 
 
-Open the project with Netbeans, right click on it and select "Clean and build" or
-open a terminal and give:
-    ant clean jar
+Open a terminal and give:
+    ./build.sh
 
 ##How to run the interpreter
 
 To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 
-    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main <input_file>
+    ./glossa-interpreter <input_file>
 
 e.g.:
 
-    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main src/glossa/samples/PrintTest.gls
+    ./glossa-interpreter src/glossa/samples/PrintTest.gls
     
 ![Screenshot][screenshot]
 [screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
@@ -74,16 +73,7 @@ e.g.:
 
 For more information give:
 
-    java -cp "./lib/antlr-3.2.jar:./lib/jopt-simple-3.2.jar:./dist/Glossa.jar" glossa.Main -h
-
-Note for Windows users: If the Windows command line (cmd.exe) does not display correctly the interpreter output, you should change the command-line font from "Raster fonts" to "Lucida Console" and give the following command:
-
-    chcp 1253
-    
-After that all output should be displayed correctly.
-
-![WinXPScreenshot][winscreenshot]
-[winscreenshot]: http://img713.imageshack.us/img713/2603/screenshotwinxp.png  "Screenshot of the interpreter running a sample input file on Windows XP"
+    ./glossa-interpreter glossa.Main -h
 
 ##Samples
 
