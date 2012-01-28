@@ -31,7 +31,7 @@ import glossa.interpreter.symboltable.SymbolTable;
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
 public interface  InterpreterListener {
-    public void parsingAndSemanticAnalysisFinished(boolean success);
+    public void parsingAndSemanticAnalysisFinished(Interpreter sender, boolean success);
     public void stackPushed(SymbolTable newSymbolTable);
     public void stackPopped();
     public void executionStarted(Interpreter sender);

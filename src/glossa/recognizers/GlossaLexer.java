@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-18 13:12:27
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-19 18:51:08
 
 /*
  *  The MIT License
@@ -39,7 +39,7 @@ public class GlossaLexer extends Lexer {
     public static final int LT=45;
     public static final int END_PROCEDURE=78;
     public static final int WHILE=54;
-    public static final int LETTER=115;
+    public static final int LETTER=116;
     public static final int MOD=69;
     public static final int LAMDA=99;
     public static final int STRINGS=30;
@@ -108,7 +108,7 @@ public class GlossaLexer extends Lexer {
     public static final int ARRAY_DIMENSION=11;
     public static final int IF=37;
     public static final int OMEGA_TONOS=112;
-    public static final int NOT_EOL=116;
+    public static final int NOT_EOL=114;
     public static final int BOOLEAN=84;
     public static final int THEN=38;
     public static final int END_FUNCTION=80;
@@ -119,7 +119,7 @@ public class GlossaLexer extends Lexer {
     public static final int PSI=107;
     public static final int PLUS=64;
     public static final int SIGMA=104;
-    public static final int DIGIT=114;
+    public static final int DIGIT=115;
     public static final int CASE_ELSE=13;
     public static final int RBRACKET=28;
     public static final int IOTA_DIALYTIKA_TONOS=127;
@@ -2426,7 +2426,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_STR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
+            // src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( NOT_EOL )* '\\'' | '\"' ( NOT_EOL )* '\"' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2444,28 +2444,34 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:622:4: '\\'' ( . )* '\\''
+                    // src/glossa/grammars/Glossa.g:622:4: '\\'' ( NOT_EOL )* '\\''
                     {
                     match('\''); 
-                    // src/glossa/grammars/Glossa.g:622:9: ( . )*
+                    // src/glossa/grammars/Glossa.g:622:9: ( NOT_EOL )*
                     loop7:
                     do {
                         int alt7=2;
                         int LA7_0 = input.LA(1);
 
                         if ( (LA7_0=='\'') ) {
-                            alt7=2;
+                            int LA7_1 = input.LA(2);
+
+                            if ( ((LA7_1>='\u0000' && LA7_1<='\t')||(LA7_1>='\u000B' && LA7_1<='\f')||(LA7_1>='\u000E' && LA7_1<='\uFFFF')) ) {
+                                alt7=1;
+                            }
+
+
                         }
-                        else if ( ((LA7_0>='\u0000' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='\uFFFF')) ) {
+                        else if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='\uFFFF')) ) {
                             alt7=1;
                         }
 
 
                         switch (alt7) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:9: .
+                    	    // src/glossa/grammars/Glossa.g:622:9: NOT_EOL
                     	    {
-                    	    matchAny(); 
+                    	    mNOT_EOL(); 
 
                     	    }
                     	    break;
@@ -2480,28 +2486,34 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:622:19: '\"' ( . )* '\"'
+                    // src/glossa/grammars/Glossa.g:622:25: '\"' ( NOT_EOL )* '\"'
                     {
                     match('\"'); 
-                    // src/glossa/grammars/Glossa.g:622:23: ( . )*
+                    // src/glossa/grammars/Glossa.g:622:29: ( NOT_EOL )*
                     loop8:
                     do {
                         int alt8=2;
                         int LA8_0 = input.LA(1);
 
                         if ( (LA8_0=='\"') ) {
-                            alt8=2;
+                            int LA8_1 = input.LA(2);
+
+                            if ( ((LA8_1>='\u0000' && LA8_1<='\t')||(LA8_1>='\u000B' && LA8_1<='\f')||(LA8_1>='\u000E' && LA8_1<='\uFFFF')) ) {
+                                alt8=1;
+                            }
+
+
                         }
-                        else if ( ((LA8_0>='\u0000' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='\uFFFF')) ) {
+                        else if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='\uFFFF')) ) {
                             alt8=1;
                         }
 
 
                         switch (alt8) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:23: .
+                    	    // src/glossa/grammars/Glossa.g:622:29: NOT_EOL
                     	    {
-                    	    matchAny(); 
+                    	    mNOT_EOL(); 
 
                     	    }
                     	    break;

@@ -120,7 +120,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
             } else if (RUNTIME_ERROR.equals(msg)) {
                 listener.runtimeError();
             } else if (PARSER_AND_ANALYZER_FINISHED.equals(msg)) {
-                listener.parsingAndSemanticAnalysisFinished((Boolean)params[0]);
+                listener.parsingAndSemanticAnalysisFinished(this, (Boolean)params[0]);
             }
         }
     }

@@ -65,7 +65,7 @@ public class CLI implements InterpreterListener {
         this.sourceCode = new ArrayList<String>();
     }
 
-    public void parsingAndSemanticAnalysisFinished(boolean success) {
+    public void parsingAndSemanticAnalysisFinished(Interpreter sender, boolean success) {
         
     }
 
