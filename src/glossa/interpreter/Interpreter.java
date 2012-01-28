@@ -53,7 +53,7 @@ import org.antlr.runtime.tree.CommonTree;
  *
  * @author cyberpython
  */
-public class Interpreter implements Runnable, ASTInterpreterListener {
+public class Interpreter implements ASTInterpreterListener {
 
     private static final String PARSER_AND_ANALYZER_FINISHED = "__parser_and_analyzer_done__";
     private static final String EXECUTION_STARTED = "__exec_started__";
@@ -146,12 +146,12 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
             if (!interpreter.hasFinished()) {
                 this.interpreter.stop();
                 interpreterThread.interrupt();
-                while (interpreterThread.isAlive()) {
+                /*while (interpreterThread.isAlive()) {
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException ie) {
                     }
-                }
+                }*/
             }
         }
     }
@@ -257,7 +257,7 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
         return msgLog;
     }
 
-    public void run() {
+    public void exec() {
         stop();
         if (this.scopeTable != null) {
             //scopeTable.printScopes(out);
@@ -267,12 +267,12 @@ public class Interpreter implements Runnable, ASTInterpreterListener {
             Thread thread = new Thread(interpreter);
             this.interpreterThread = thread;
             thread.start();
-            while (thread.isAlive()) {
+            /*while (thread.isAlive()) {
                 try{
                     Thread.sleep(200);
                 }catch(InterruptedException ie){
                 }
-            }
+            }*/
         }
     }
 

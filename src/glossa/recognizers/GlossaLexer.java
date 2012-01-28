@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-19 18:51:08
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-28 20:50:27
 
 /*
  *  The MIT License
@@ -39,7 +39,7 @@ public class GlossaLexer extends Lexer {
     public static final int LT=45;
     public static final int END_PROCEDURE=78;
     public static final int WHILE=54;
-    public static final int LETTER=116;
+    public static final int LETTER=115;
     public static final int MOD=69;
     public static final int LAMDA=99;
     public static final int STRINGS=30;
@@ -64,6 +64,7 @@ public class GlossaLexer extends Lexer {
     public static final int COMMENT=117;
     public static final int ARRAY=8;
     public static final int GREEK_LETTER=121;
+    public static final int NOT_DOUBLE_QUOTE_STR_CHAR=129;
     public static final int END_LOOP=53;
     public static final int GE=48;
     public static final int END_SWITCH=42;
@@ -96,6 +97,7 @@ public class GlossaLexer extends Lexer {
     public static final int PI=92;
     public static final int CALL=58;
     public static final int FROM=50;
+    public static final int NOT_SINGLE_QUOTE_STR_CHAR=130;
     public static final int PHI=123;
     public static final int RHO=93;
     public static final int UPSILON=109;
@@ -108,7 +110,7 @@ public class GlossaLexer extends Lexer {
     public static final int ARRAY_DIMENSION=11;
     public static final int IF=37;
     public static final int OMEGA_TONOS=112;
-    public static final int NOT_EOL=114;
+    public static final int NOT_EOL=116;
     public static final int BOOLEAN=84;
     public static final int THEN=38;
     public static final int END_FUNCTION=80;
@@ -119,7 +121,7 @@ public class GlossaLexer extends Lexer {
     public static final int PSI=107;
     public static final int PLUS=64;
     public static final int SIGMA=104;
-    public static final int DIGIT=115;
+    public static final int DIGIT=114;
     public static final int CASE_ELSE=13;
     public static final int RBRACKET=28;
     public static final int IOTA_DIALYTIKA_TONOS=127;
@@ -2426,7 +2428,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_STR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( NOT_EOL )* '\\'' | '\"' ( NOT_EOL )* '\"' )
+            // src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2444,34 +2446,28 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:622:4: '\\'' ( NOT_EOL )* '\\''
+                    // src/glossa/grammars/Glossa.g:622:4: '\\'' ( . )* '\\''
                     {
                     match('\''); 
-                    // src/glossa/grammars/Glossa.g:622:9: ( NOT_EOL )*
+                    // src/glossa/grammars/Glossa.g:622:9: ( . )*
                     loop7:
                     do {
                         int alt7=2;
                         int LA7_0 = input.LA(1);
 
                         if ( (LA7_0=='\'') ) {
-                            int LA7_1 = input.LA(2);
-
-                            if ( ((LA7_1>='\u0000' && LA7_1<='\t')||(LA7_1>='\u000B' && LA7_1<='\f')||(LA7_1>='\u000E' && LA7_1<='\uFFFF')) ) {
-                                alt7=1;
-                            }
-
-
+                            alt7=2;
                         }
-                        else if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='\uFFFF')) ) {
+                        else if ( ((LA7_0>='\u0000' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='\uFFFF')) ) {
                             alt7=1;
                         }
 
 
                         switch (alt7) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:9: NOT_EOL
+                    	    // src/glossa/grammars/Glossa.g:622:9: .
                     	    {
-                    	    mNOT_EOL(); 
+                    	    matchAny(); 
 
                     	    }
                     	    break;
@@ -2486,34 +2482,28 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:622:25: '\"' ( NOT_EOL )* '\"'
+                    // src/glossa/grammars/Glossa.g:622:19: '\"' ( . )* '\"'
                     {
                     match('\"'); 
-                    // src/glossa/grammars/Glossa.g:622:29: ( NOT_EOL )*
+                    // src/glossa/grammars/Glossa.g:622:23: ( . )*
                     loop8:
                     do {
                         int alt8=2;
                         int LA8_0 = input.LA(1);
 
                         if ( (LA8_0=='\"') ) {
-                            int LA8_1 = input.LA(2);
-
-                            if ( ((LA8_1>='\u0000' && LA8_1<='\t')||(LA8_1>='\u000B' && LA8_1<='\f')||(LA8_1>='\u000E' && LA8_1<='\uFFFF')) ) {
-                                alt8=1;
-                            }
-
-
+                            alt8=2;
                         }
-                        else if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='\uFFFF')) ) {
+                        else if ( ((LA8_0>='\u0000' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='\uFFFF')) ) {
                             alt8=1;
                         }
 
 
                         switch (alt8) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:29: NOT_EOL
+                    	    // src/glossa/grammars/Glossa.g:622:23: .
                     	    {
-                    	    mNOT_EOL(); 
+                    	    matchAny(); 
 
                     	    }
                     	    break;
@@ -3893,11 +3883,250 @@ public class GlossaLexer extends Lexer {
     }
     // $ANTLR end "NOT_EOL"
 
+    // $ANTLR start "NOT_DOUBLE_QUOTE_STR_CHAR"
+    public final void mNOT_DOUBLE_QUOTE_STR_CHAR() throws RecognitionException {
+        try {
+            // src/glossa/grammars/Glossa.g:747:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' ) )
+            int alt18=4;
+            switch ( input.LA(1) ) {
+            case '\u0000':
+            case '\u0001':
+            case '\u0002':
+            case '\u0003':
+            case '\u0004':
+            case '\u0005':
+            case '\u0006':
+            case '\u0007':
+            case '\b':
+            case '\t':
+                {
+                alt18=1;
+                }
+                break;
+            case '\u000B':
+                {
+                alt18=2;
+                }
+                break;
+            case '\f':
+                {
+                alt18=3;
+                }
+                break;
+            case '\u000E':
+            case '\u000F':
+            case '\u0010':
+            case '\u0011':
+            case '\u0012':
+            case '\u0013':
+            case '\u0014':
+            case '\u0015':
+            case '\u0016':
+            case '\u0017':
+            case '\u0018':
+            case '\u0019':
+            case '\u001A':
+            case '\u001B':
+            case '\u001C':
+            case '\u001D':
+            case '\u001E':
+            case '\u001F':
+            case ' ':
+            case '!':
+                {
+                alt18=4;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 18, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt18) {
+                case 1 :
+                    // src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
+                    {
+                    // src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
+                    // src/glossa/grammars/Glossa.g:747:5: '\\u0000' .. '\\u0009'
+                    {
+                    matchRange('\u0000','\t'); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // src/glossa/grammars/Glossa.g:747:27: '\\u000B'
+                    {
+                    match('\u000B'); 
+
+                    }
+                    break;
+                case 3 :
+                    // src/glossa/grammars/Glossa.g:747:38: '\\u000C'
+                    {
+                    match('\f'); 
+
+                    }
+                    break;
+                case 4 :
+                    // src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' )
+                    {
+                    // src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' )
+                    // src/glossa/grammars/Glossa.g:747:49: '\\u000E' .. '\\u0021'
+                    {
+                    matchRange('\u000E','!'); 
+
+                    }
+
+                    // src/glossa/grammars/Glossa.g:747:68: ( '\\u0023' .. '\\uFFFF' )
+                    // src/glossa/grammars/Glossa.g:747:69: '\\u0023' .. '\\uFFFF'
+                    {
+                    matchRange('#','\uFFFF'); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "NOT_DOUBLE_QUOTE_STR_CHAR"
+
+    // $ANTLR start "NOT_SINGLE_QUOTE_STR_CHAR"
+    public final void mNOT_SINGLE_QUOTE_STR_CHAR() throws RecognitionException {
+        try {
+            // src/glossa/grammars/Glossa.g:750:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' ) )
+            int alt19=4;
+            switch ( input.LA(1) ) {
+            case '\u0000':
+            case '\u0001':
+            case '\u0002':
+            case '\u0003':
+            case '\u0004':
+            case '\u0005':
+            case '\u0006':
+            case '\u0007':
+            case '\b':
+            case '\t':
+                {
+                alt19=1;
+                }
+                break;
+            case '\u000B':
+                {
+                alt19=2;
+                }
+                break;
+            case '\f':
+                {
+                alt19=3;
+                }
+                break;
+            case '\u000E':
+            case '\u000F':
+            case '\u0010':
+            case '\u0011':
+            case '\u0012':
+            case '\u0013':
+            case '\u0014':
+            case '\u0015':
+            case '\u0016':
+            case '\u0017':
+            case '\u0018':
+            case '\u0019':
+            case '\u001A':
+            case '\u001B':
+            case '\u001C':
+            case '\u001D':
+            case '\u001E':
+            case '\u001F':
+            case ' ':
+            case '!':
+            case '\"':
+            case '#':
+            case '$':
+            case '%':
+            case '&':
+                {
+                alt19=4;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 19, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt19) {
+                case 1 :
+                    // src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
+                    {
+                    // src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
+                    // src/glossa/grammars/Glossa.g:750:5: '\\u0000' .. '\\u0009'
+                    {
+                    matchRange('\u0000','\t'); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // src/glossa/grammars/Glossa.g:750:27: '\\u000B'
+                    {
+                    match('\u000B'); 
+
+                    }
+                    break;
+                case 3 :
+                    // src/glossa/grammars/Glossa.g:750:38: '\\u000C'
+                    {
+                    match('\f'); 
+
+                    }
+                    break;
+                case 4 :
+                    // src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' )
+                    {
+                    // src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' )
+                    // src/glossa/grammars/Glossa.g:750:49: '\\u000E' .. '\\u0026'
+                    {
+                    matchRange('\u000E','&'); 
+
+                    }
+
+                    // src/glossa/grammars/Glossa.g:750:68: ( '\\u0028' .. '\\uFFFF' )
+                    // src/glossa/grammars/Glossa.g:750:69: '\\u0028' .. '\\uFFFF'
+                    {
+                    matchRange('(','\uFFFF'); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "NOT_SINGLE_QUOTE_STR_CHAR"
+
     public void mTokens() throws RecognitionException {
         // src/glossa/grammars/Glossa.g:1:8: ( ASSIGN | COMMA | COLON | LPAR | RPAR | LBRACKET | RBRACKET | PLUS | MINUS | TIMES | DIA | POW | DIV | MOD | LE | LT | GE | GT | EQ | NEQ | AND | OR | NOT | RANGE | PROGRAM | END_PROGRAM | VARIABLES | CONSTANTS | READ | PRINT | BEGIN | PROCEDURE | END_PROCEDURE | FUNCTION | END_FUNCTION | CALL | IF | THEN | ELSE | ELSE_IF | END_IF | SWITCH | CASE | END_SWITCH | WHILE | LOOP | END_LOOP | REPEAT | UNTIL | FOR | FROM | TO | STEP | INTEGER | INTEGERS | REAL | REALS | STRING | STRINGS | BOOLEAN | BOOLEANS | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | COMMENT | CONT_COMMAND | NEWLINE | WS )
-        int alt18=71;
-        alt18 = dfa18.predict(input);
-        switch (alt18) {
+        int alt20=71;
+        alt20 = dfa20.predict(input);
+        switch (alt20) {
             case 1 :
                 // src/glossa/grammars/Glossa.g:1:10: ASSIGN
                 {
@@ -4401,110 +4630,112 @@ public class GlossaLexer extends Lexer {
     }
 
 
-    protected DFA18 dfa18 = new DFA18(this);
-    static final String DFA18_eotS =
+    protected DFA20 dfa20 = new DFA20(this);
+    static final String DFA20_eotS =
         "\1\uffff\1\53\14\uffff\2\46\1\uffff\1\56\3\uffff\1\46\1\61\1\46"+
         "\1\uffff\13\46\1\uffff\1\110\3\uffff\1\112\2\uffff\2\46\1\uffff"+
-        "\2\46\1\uffff\21\46\1\146\4\46\4\uffff\1\154\1\155\1\156\1\46\1"+
-        "\160\1\161\10\46\1\uffff\4\46\1\176\5\46\1\u0084\1\uffff\5\46\3"+
-        "\uffff\1\46\2\uffff\4\46\1\u008f\7\46\1\uffff\1\46\1\u0099\3\46"+
-        "\1\uffff\12\46\1\uffff\2\46\1\u00a9\4\46\1\u00af\1\46\1\uffff\10"+
-        "\46\1\u00ba\6\46\1\uffff\5\46\1\uffff\2\46\1\u00cd\1\u00cf\3\46"+
-        "\1\u00d3\1\46\1\u00d5\1\uffff\11\46\1\132\3\46\1\u00e2\3\46\1\u00e6"+
-        "\1\uffff\1\46\1\uffff\1\u00e8\2\46\1\uffff\1\u00eb\1\uffff\5\46"+
-        "\1\u00f2\4\46\1\u00f7\1\46\1\uffff\2\46\1\u00fb\1\uffff\1\46\1\uffff"+
-        "\2\46\1\uffff\1\46\1\u0102\1\u0103\3\46\1\uffff\4\46\1\uffff\1\u010b"+
-        "\2\46\1\uffff\1\u010e\1\u010f\3\46\1\u0113\2\uffff\5\46\1\u0119"+
-        "\1\46\1\uffff\1\u011b\1\46\2\uffff\1\u011d\1\u011e\1\u011f\1\uffff"+
-        "\5\46\1\uffff\1\u0125\1\uffff\1\46\3\uffff\5\46\1\uffff\10\46\1"+
-        "\u0134\5\46\1\uffff\3\46\1\u013d\1\u013e\1\u013f\2\46\3\uffff\1"+
-        "\u0142\1\46\1\uffff\1\u0144\1\uffff";
-    static final String DFA18_eofS =
+        "\2\46\1\uffff\20\46\1\145\5\46\4\uffff\1\154\1\155\1\46\1\157\1"+
+        "\160\1\161\10\46\1\uffff\4\46\1\176\4\46\1\u0083\1\uffff\6\46\2"+
+        "\uffff\1\46\3\uffff\4\46\1\u008f\7\46\1\uffff\4\46\1\uffff\1\u009c"+
+        "\12\46\1\uffff\1\u00a7\6\46\1\u00af\4\46\1\uffff\5\46\1\u00ba\4"+
+        "\46\1\uffff\7\46\1\uffff\1\u00ca\1\u00cc\5\46\1\u00d3\1\46\1\u00d5"+
+        "\1\uffff\11\46\1\132\4\46\1\u00e3\1\uffff\1\46\1\uffff\1\46\1\u00e6"+
+        "\2\46\1\u00e9\1\46\1\uffff\1\u00eb\1\uffff\6\46\1\u00f3\3\46\1\u00f7"+
+        "\2\46\1\uffff\1\46\1\u00fb\1\uffff\2\46\1\uffff\1\46\1\uffff\1\46"+
+        "\1\u0102\1\u0103\4\46\1\uffff\3\46\1\uffff\1\u010b\1\46\1\u010d"+
+        "\1\uffff\1\46\1\u010f\3\46\1\u0113\2\uffff\6\46\1\u011a\1\uffff"+
+        "\1\u011b\1\uffff\1\46\1\uffff\1\u011d\1\u011e\1\u011f\1\uffff\5"+
+        "\46\1\u0125\2\uffff\1\46\3\uffff\5\46\1\uffff\12\46\1\u0136\5\46"+
+        "\1\uffff\1\46\1\u013d\2\46\1\u0140\1\u0141\1\uffff\1\46\1\u0143"+
+        "\2\uffff\1\u0144\2\uffff";
+    static final String DFA20_eofS =
         "\u0145\uffff";
-    static final String DFA18_minS =
+    static final String DFA20_minS =
         "\1\11\1\55\14\uffff\1\111\1\117\1\uffff\1\75\3\uffff\1\u0386\1\60"+
         "\1\u03a3\1\uffff\1\u0395\2\u0388\1\u03a4\2\u0399\1\u039a\1\u03a0"+
         "\1\u0391\1\u039f\1\u0395\1\uffff\1\56\2\uffff\1\12\1\46\2\uffff"+
         "\1\126\1\104\1\uffff\1\u0399\1\u039b\1\uffff\1\u0399\1\u039f\1\u038c"+
         "\1\u03a1\1\u039b\1\u03a4\1\11\1\u03a7\1\u0391\1\u039d\1\u0386\1"+
-        "\u0391\1\u0386\1\u03a7\1\u0388\1\u0397\1\u038c\1\60\1\u038a\1\u03a1"+
-        "\1\u0393\1\u03a5\4\uffff\3\60\1\u0395\2\60\2\u0393\1\u038a\1\u039f"+
-        "\1\u0395\1\u0391\1\u0392\1\u03a1\1\uffff\1\u0398\1\u0386\2\u0392"+
-        "\1\60\1\u03a8\1\u0389\1\u03a1\1\u0399\1\u0398\1\60\1\uffff\1\u039b"+
-        "\1\u039d\1\u0391\1\u0399\1\u0394\3\uffff\1\u03a3\2\uffff\1\u039c"+
-        "\1\u03a1\1\u03a0\1\u03a3\1\60\1\u0392\1\u0389\1\u0399\1\u0395\1"+
-        "\u03a1\1\u0391\1\u0399\1\uffff\1\u0395\1\60\1\u0391\1\u038f\1\u0389"+
-        "\1\uffff\1\u0395\1\u0386\2\u039a\1\u0389\1\u0395\2\u0391\1\u03a4"+
-        "\1\137\1\uffff\1\u039b\1\u039c\1\60\1\u03a1\1\u03a4\1\u03a3\1\u039a"+
-        "\1\60\1\u0395\1\uffff\1\u0399\2\u03a3\1\u039e\1\u039b\1\u03a4\1"+
-        "\u0388\1\u03a3\1\60\1\u03a4\1\u039c\1\u03a9\1\u0391\1\u0397\1\u0391"+
-        "\1\uffff\1\137\1\u0388\1\u0397\1\u0395\1\u0391\1\uffff\1\u03a0\1"+
-        "\u0391\2\60\1\u0395\1\u0391\1\u0389\1\60\1\u03a3\1\60\1\uffff\1"+
-        "\u0399\1\u039c\1\u03a3\1\u03a0\1\u03a5\1\u039d\1\u0399\1\u03a1\1"+
-        "\u03a4\1\60\1\u038c\2\u03a3\1\60\1\u03a3\1\u0391\1\u03a3\1\60\1"+
-        "\uffff\1\u0391\1\uffff\1\60\1\u0392\1\u03a1\1\uffff\1\60\1\uffff"+
-        "\1\u039a\1\u0391\1\u0397\1\u0391\1\u039d\1\60\1\u0391\1\u039f\1"+
-        "\u0388\1\u03a4\1\60\1\u0397\1\uffff\1\u038a\1\u039d\1\60\1\uffff"+
-        "\1\u039d\1\uffff\1\u0395\1\u0391\1\uffff\1\u0388\2\60\1\u039d\1"+
-        "\u039b\1\u0386\1\uffff\1\u0394\1\u0393\1\u03a3\1\u039f\1\uffff\1"+
-        "\60\1\u0391\1\u0386\1\uffff\2\60\3\u03a3\1\60\2\uffff\1\u0386\1"+
-        "\u039f\1\u03a1\1\u0399\1\u03a1\1\60\1\u03a5\1\uffff\1\60\1\u039b"+
-        "\2\uffff\3\60\1\uffff\1\u039b\1\u0393\1\u03a4\1\u039a\1\u0386\1"+
-        "\uffff\1\60\1\uffff\1\u0397\3\uffff\1\u0397\1\u038f\1\u0397\1\u0391"+
-        "\1\u039c\1\uffff\2\u03a8\1\u039d\2\u03a3\1\u039c\2\u0397\1\60\1"+
-        "\u0397\1\u038a\1\u0391\2\u03a3\1\uffff\1\u03a3\1\u0391\1\u03a4\3"+
-        "\60\1\u03a3\1\u039f\3\uffff\1\60\1\u03a3\1\uffff\1\60\1\uffff";
-    static final String DFA18_maxS =
+        "\u0391\1\u0386\1\u0397\1\u0388\1\u038c\1\60\1\u03a7\1\u038a\1\u03a1"+
+        "\1\u0393\1\u03a5\4\uffff\2\60\1\u0395\3\60\2\u0393\1\u038a\1\u039f"+
+        "\1\u0395\1\u03a1\1\u0392\1\u0391\1\uffff\1\u0398\1\u0386\2\u0392"+
+        "\1\60\1\u03a8\1\u0399\1\u0398\1\u03a1\1\60\1\uffff\1\u0389\1\u039d"+
+        "\1\u039b\1\u0391\1\u0399\1\u0394\2\uffff\1\u03a3\3\uffff\1\u039c"+
+        "\1\u03a1\1\u03a0\1\u03a3\1\60\1\u0399\1\u0389\1\u0392\1\u0395\1"+
+        "\u03a1\1\u0399\1\u0391\1\uffff\1\u0395\1\u038f\1\u0389\1\u0391\1"+
+        "\uffff\1\60\1\u0386\1\u0395\2\u039a\1\u0389\1\u0395\2\u0391\1\u03a4"+
+        "\1\137\1\uffff\1\60\1\u039c\1\u039b\1\u03a1\1\u03a4\1\u039a\1\u03a3"+
+        "\1\60\2\u03a3\1\u0399\1\u0395\1\uffff\1\u039b\1\u039e\1\u03a4\1"+
+        "\u0388\1\u03a3\1\60\1\u03a4\1\u039c\1\u03a9\1\u0391\1\uffff\1\137"+
+        "\1\u0391\1\u0397\1\u0388\1\u0397\1\u0391\1\u0395\1\uffff\2\60\1"+
+        "\u0391\1\u03a0\1\u0391\1\u0395\1\u0389\1\60\1\u03a3\1\60\1\uffff"+
+        "\1\u0399\1\u039c\1\u03a3\1\u03a1\1\u0399\1\u03a0\1\u039d\1\u03a5"+
+        "\1\u038c\1\60\1\u03a4\3\u03a3\1\60\1\uffff\1\u0391\1\uffff\1\u03a3"+
+        "\1\60\1\u0391\1\u0392\1\60\1\u03a1\1\uffff\1\60\1\uffff\1\u039a"+
+        "\1\u0391\1\u0397\1\u039f\2\u0391\1\60\1\u039d\1\u03a4\1\u0388\1"+
+        "\60\1\u0397\1\u038a\1\uffff\1\u039d\1\60\1\uffff\1\u039d\1\u0395"+
+        "\1\uffff\1\u0391\1\uffff\1\u0388\2\60\1\u0393\1\u0394\1\u039d\1"+
+        "\u039b\1\uffff\1\u0386\1\u039f\1\u03a3\1\uffff\1\60\1\u0391\1\60"+
+        "\1\uffff\1\u0386\1\60\3\u03a3\1\60\2\uffff\1\u03a1\1\u0399\1\u0386"+
+        "\1\u039f\1\u03a1\1\u03a5\1\60\1\uffff\1\60\1\uffff\1\u039b\1\uffff"+
+        "\3\60\1\uffff\1\u0386\1\u039a\1\u039b\1\u0393\1\u03a4\1\60\2\uffff"+
+        "\1\u0397\3\uffff\1\u039c\1\u0391\1\u0397\1\u038f\1\u0397\1\uffff"+
+        "\1\u03a8\1\u039c\1\u03a3\1\u03a8\1\u039d\1\u03a3\1\u0397\1\u0391"+
+        "\1\u038a\1\u0397\1\60\1\u0397\1\u03a3\1\u03a4\1\u0391\1\u03a3\1"+
+        "\uffff\1\u03a3\1\60\1\u039f\1\u03a3\2\60\1\uffff\1\u03a3\1\60\2"+
+        "\uffff\1\60\2\uffff";
+    static final String DFA20_maxS =
         "\1\u2265\1\76\14\uffff\1\151\1\157\1\uffff\1\75\3\uffff\1\u03b1"+
         "\1\u03ce\1\u03c7\1\uffff\1\u03c1\1\u03cc\1\u03b5\1\u03c5\1\u03b9"+
         "\2\u03c1\1\u03c0\1\u03b1\1\u03bf\1\u03b5\1\uffff\1\71\2\uffff\1"+
         "\12\1\46\2\uffff\1\166\1\144\1\uffff\2\u03bb\1\uffff\1\u03b9\1\u03bf"+
         "\1\u03cc\1\u03c1\1\u03bb\1\u03c4\2\u03c7\1\u03b1\1\u03bd\3\u03b1"+
-        "\1\u03c7\1\u03b5\1\u03bb\1\u03cc\1\u03ce\1\u03b9\1\u03c1\1\u03b3"+
-        "\1\u03c5\4\uffff\3\u03ce\1\u03b5\2\u03ce\2\u03b3\1\u03b9\1\u03bf"+
-        "\1\u03b5\1\u03b1\1\u03b2\1\u03c1\1\uffff\1\u03b8\1\u03b1\1\u03b4"+
-        "\1\u03b2\1\u03ce\1\u03c8\1\u03b7\1\u03c1\1\u03b9\1\u03b8\1\u03ce"+
-        "\1\uffff\1\u03bb\1\u03bd\1\u03b1\1\u03b9\1\u03b4\3\uffff\1\u03c3"+
-        "\2\uffff\1\u03bc\1\u03c1\1\u03c0\1\u03c2\1\u03ce\1\u03b2\1\u03b7"+
-        "\1\u03b9\1\u03b5\1\u03c1\1\u03b1\1\u03b9\1\uffff\1\u03b5\1\u03ce"+
-        "\1\u03b1\1\u03ce\1\u03b7\1\uffff\1\u03b5\1\u03b1\2\u03ba\1\u03b7"+
-        "\1\u03b5\2\u03b1\1\u03c4\1\137\1\uffff\1\u03bb\1\u03bc\1\u03ce\1"+
-        "\u03c1\1\u03c4\1\u03c3\1\u03ba\1\u03ce\1\u03b5\1\uffff\1\u03b9\2"+
-        "\u03c2\1\u03be\1\u03bb\1\u03c4\1\u03b7\1\u03c2\1\u03ce\1\u03c4\1"+
-        "\u03bc\1\u03c9\1\u03c3\1\u03b7\1\u03b1\1\uffff\1\137\1\u03b5\1\u03b7"+
-        "\1\u03b5\1\u03b1\1\uffff\1\u03c0\1\u03b5\2\u03ce\1\u03b5\1\u03b1"+
+        "\1\u03bb\1\u03b5\1\u03cc\1\u03ce\1\u03c7\1\u03b9\1\u03c1\1\u03b3"+
+        "\1\u03c5\4\uffff\2\u03ce\1\u03b5\3\u03ce\2\u03b3\1\u03b9\1\u03bf"+
+        "\1\u03b5\1\u03c1\1\u03b2\1\u03b1\1\uffff\1\u03b8\1\u03b1\1\u03b4"+
+        "\1\u03b2\1\u03ce\1\u03c8\1\u03b9\1\u03b8\1\u03c1\1\u03ce\1\uffff"+
+        "\1\u03b7\1\u03bd\1\u03bb\1\u03b1\1\u03b9\1\u03b4\2\uffff\1\u03c3"+
+        "\3\uffff\1\u03bc\1\u03c1\1\u03c0\1\u03c2\1\u03ce\1\u03b9\1\u03b7"+
+        "\1\u03b2\1\u03b5\1\u03c1\1\u03b9\1\u03b1\1\uffff\1\u03b5\1\u03ce"+
+        "\1\u03b7\1\u03b1\1\uffff\1\u03ce\1\u03b1\1\u03b5\2\u03ba\1\u03b7"+
+        "\1\u03b5\2\u03b1\1\u03c4\1\137\1\uffff\1\u03ce\1\u03bc\1\u03bb\1"+
+        "\u03c1\1\u03c4\1\u03ba\1\u03c3\1\u03ce\2\u03c2\1\u03b9\1\u03b5\1"+
+        "\uffff\1\u03bb\1\u03be\1\u03c4\1\u03b7\1\u03c2\1\u03ce\1\u03c4\1"+
+        "\u03bc\1\u03c9\1\u03c3\1\uffff\1\137\1\u03b1\1\u03b7\1\u03b5\1\u03b7"+
+        "\1\u03b1\1\u03b5\1\uffff\2\u03ce\1\u03b5\1\u03c0\1\u03b1\1\u03b5"+
         "\1\u03b7\1\u03ce\1\u03c2\1\u03ce\1\uffff\1\u03b9\1\u03bc\1\u03c3"+
-        "\1\u03c0\1\u03c5\1\u03bd\1\u03b9\1\u03c1\1\u03c4\1\u03ce\1\u03cc"+
-        "\1\u03c2\1\u03c3\1\u03ce\1\u03c3\1\u03b1\1\u03c2\1\u03ce\1\uffff"+
-        "\1\u03b1\1\uffff\1\u03ce\1\u03b2\1\u03c1\1\uffff\1\u03ce\1\uffff"+
-        "\1\u03ba\1\u03b1\1\u03b7\1\u03b9\1\u03bd\1\u03ce\1\u03b1\1\u03bf"+
-        "\1\u03b5\1\u03c4\1\u03ce\1\u03b7\1\uffff\1\u03b9\1\u03bd\1\u03ce"+
-        "\1\uffff\1\u03bd\1\uffff\2\u03b5\1\uffff\1\u03b7\2\u03ce\1\u03bd"+
-        "\1\u03bb\1\u03b1\1\uffff\1\u03b4\1\u03b3\1\u03c2\1\u03bf\1\uffff"+
-        "\1\u03ce\2\u03b1\1\uffff\2\u03ce\3\u03c2\1\u03ce\2\uffff\1\u03b1"+
-        "\1\u03bf\1\u03c1\1\u03b9\1\u03c1\1\u03ce\1\u03c5\1\uffff\1\u03ce"+
-        "\1\u03bb\2\uffff\3\u03ce\1\uffff\1\u03bb\1\u03b3\1\u03c4\1\u03ba"+
-        "\1\u03b1\1\uffff\1\u03ce\1\uffff\1\u03b7\3\uffff\1\u03b7\1\u03ce"+
-        "\1\u03b7\1\u03b1\1\u03bc\1\uffff\2\u03c8\1\u03bd\2\u03c3\1\u03bc"+
-        "\2\u03b7\1\u03ce\1\u03b7\1\u03b9\1\u03b1\2\u03c2\1\uffff\1\u03c2"+
-        "\1\u03b1\1\u03c4\3\u03ce\1\u03c2\1\u03bf\3\uffff\1\u03ce\1\u03c2"+
-        "\1\uffff\1\u03ce\1\uffff";
-    static final String DFA18_acceptS =
+        "\1\u03c1\1\u03b9\1\u03c0\1\u03bd\1\u03c5\1\u03cc\1\u03ce\1\u03c4"+
+        "\1\u03c2\2\u03c3\1\u03ce\1\uffff\1\u03b1\1\uffff\1\u03c2\1\u03ce"+
+        "\1\u03b1\1\u03b2\1\u03ce\1\u03c1\1\uffff\1\u03ce\1\uffff\1\u03ba"+
+        "\1\u03b1\1\u03b7\1\u03bf\1\u03b1\1\u03b9\1\u03ce\1\u03bd\1\u03c4"+
+        "\1\u03b5\1\u03ce\1\u03b7\1\u03b9\1\uffff\1\u03bd\1\u03ce\1\uffff"+
+        "\1\u03bd\1\u03b5\1\uffff\1\u03b5\1\uffff\1\u03b7\2\u03ce\1\u03b3"+
+        "\1\u03b4\1\u03bd\1\u03bb\1\uffff\1\u03b1\1\u03bf\1\u03c2\1\uffff"+
+        "\1\u03ce\1\u03b1\1\u03ce\1\uffff\1\u03b1\1\u03ce\3\u03c2\1\u03ce"+
+        "\2\uffff\1\u03c1\1\u03b9\1\u03b1\1\u03bf\1\u03c1\1\u03c5\1\u03ce"+
+        "\1\uffff\1\u03ce\1\uffff\1\u03bb\1\uffff\3\u03ce\1\uffff\1\u03b1"+
+        "\1\u03ba\1\u03bb\1\u03b3\1\u03c4\1\u03ce\2\uffff\1\u03b7\3\uffff"+
+        "\1\u03bc\1\u03b1\1\u03b7\1\u03ce\1\u03b7\1\uffff\1\u03c8\1\u03bc"+
+        "\1\u03c3\1\u03c8\1\u03bd\1\u03c3\1\u03b7\1\u03b1\1\u03b9\1\u03b7"+
+        "\1\u03ce\1\u03b7\1\u03c2\1\u03c4\1\u03b1\1\u03c2\1\uffff\1\u03c2"+
+        "\1\u03ce\1\u03bf\1\u03c2\2\u03ce\1\uffff\1\u03c2\1\u03ce\2\uffff"+
+        "\1\u03ce\2\uffff";
+    static final String DFA20_acceptS =
         "\2\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\2"+
         "\uffff\1\17\1\uffff\1\21\1\23\1\24\3\uffff\1\30\13\uffff\1\100\1"+
         "\uffff\1\103\1\104\2\uffff\1\107\1\20\2\uffff\1\22\2\uffff\1\26"+
-        "\26\uffff\1\101\1\102\1\106\1\105\16\uffff\1\65\13\uffff\1\45\5"+
-        "\uffff\1\15\1\16\1\25\1\uffff\1\27\1\55\14\uffff\1\62\5\uffff\1"+
-        "\63\12\uffff\1\46\11\uffff\1\37\17\uffff\1\64\5\uffff\1\36\12\uffff"+
-        "\1\44\22\uffff\1\47\1\uffff\1\76\3\uffff\1\74\1\uffff\1\77\14\uffff"+
-        "\1\35\3\uffff\1\66\1\uffff\1\52\2\uffff\1\75\6\uffff\1\51\4\uffff"+
-        "\1\34\3\uffff\1\67\6\uffff\1\31\1\53\7\uffff\1\42\2\uffff\1\50\1"+
-        "\56\3\uffff\1\70\5\uffff\1\33\1\uffff\1\40\1\uffff\1\73\1\72\1\71"+
-        "\5\uffff\1\61\16\uffff\1\54\10\uffff\1\60\1\57\1\43\2\uffff\1\41"+
-        "\1\uffff\1\32";
-    static final String DFA18_specialS =
+        "\26\uffff\1\101\1\102\1\106\1\105\16\uffff\1\65\12\uffff\1\45\6"+
+        "\uffff\1\15\1\16\1\uffff\1\25\1\27\1\55\14\uffff\1\62\4\uffff\1"+
+        "\63\13\uffff\1\46\14\uffff\1\37\12\uffff\1\64\7\uffff\1\36\12\uffff"+
+        "\1\44\17\uffff\1\47\1\uffff\1\76\6\uffff\1\74\1\uffff\1\77\15\uffff"+
+        "\1\35\2\uffff\1\66\2\uffff\1\52\1\uffff\1\75\7\uffff\1\51\3\uffff"+
+        "\1\34\3\uffff\1\67\6\uffff\1\31\1\53\7\uffff\1\42\1\uffff\1\50\1"+
+        "\uffff\1\56\3\uffff\1\70\6\uffff\1\33\1\40\1\uffff\1\73\1\72\1\71"+
+        "\5\uffff\1\61\20\uffff\1\54\6\uffff\1\60\2\uffff\1\57\1\43\1\uffff"+
+        "\1\41\1\32";
+    static final String DFA20_specialS =
         "\u0145\uffff}>";
-    static final String[] DFA18_transitionS = {
+    static final String[] DFA20_transitionS = {
             "\1\52\1\51\2\uffff\1\50\22\uffff\1\52\1\47\1\44\4\uffff\1\44"+
             "\1\5\1\6\1\13\1\11\1\3\1\12\1\30\1\14\12\45\1\4\1\uffff\1\1"+
             "\1\23\1\21\2\uffff\3\46\1\16\10\46\1\17\15\46\1\7\1\uffff\1"+
@@ -4547,8 +4778,8 @@ public class GlossaLexer extends Lexer {
             "\1\72\1\73\36\uffff\1\72\1\73",
             "\1\74\37\uffff\1\74",
             "\1\75\7\uffff\1\76\27\uffff\1\75\7\uffff\1\76",
-            "\1\100\1\101\1\uffff\1\103\2\uffff\1\102\1\77\30\uffff\1\100"+
-            "\1\101\1\uffff\1\103\2\uffff\1\102\1\77",
+            "\1\100\1\77\1\uffff\1\102\2\uffff\1\101\1\103\30\uffff\1\100"+
+            "\1\77\1\uffff\1\102\2\uffff\1\101\1\103",
             "\1\104\37\uffff\1\104",
             "\1\105\37\uffff\1\105",
             "\1\106\37\uffff\1\106",
@@ -4564,8 +4795,8 @@ public class GlossaLexer extends Lexer {
             "\1\114\37\uffff\1\114",
             "\1\115\37\uffff\1\115",
             "",
-            "\1\116\1\uffff\1\117\35\uffff\1\116\1\uffff\1\117",
-            "\1\117\37\uffff\1\117",
+            "\1\117\1\uffff\1\116\35\uffff\1\117\1\uffff\1\116",
+            "\1\116\37\uffff\1\116",
             "",
             "\1\120\37\uffff\1\120",
             "\1\121\37\uffff\1\121",
@@ -4574,22 +4805,22 @@ public class GlossaLexer extends Lexer {
             "\1\124\37\uffff\1\124",
             "\1\125\37\uffff\1\125",
             "\1\126\37\uffff\1\126",
-            "\1\132\26\uffff\1\132\76\uffff\1\130\u0344\uffff\1\127\2\uffff"+
-            "\1\131\34\uffff\1\127\2\uffff\1\131",
-            "\1\131\37\uffff\1\131",
+            "\1\132\26\uffff\1\132\76\uffff\1\130\u0344\uffff\1\131\2\uffff"+
+            "\1\127\34\uffff\1\131\2\uffff\1\127",
+            "\1\127\37\uffff\1\127",
             "\1\133\37\uffff\1\133",
             "\1\134\37\uffff\1\134",
             "\1\136\12\uffff\1\135\32\uffff\1\136\4\uffff\1\135",
             "\1\137\37\uffff\1\137",
             "\1\140\12\uffff\1\140\32\uffff\1\140\4\uffff\1\140",
-            "\1\141\37\uffff\1\141",
-            "\1\142\14\uffff\1\142\27\uffff\1\142\7\uffff\1\142",
-            "\1\144\3\uffff\1\143\33\uffff\1\144\3\uffff\1\143",
-            "\1\145\22\uffff\1\145\37\uffff\1\145\14\uffff\1\145",
+            "\1\142\3\uffff\1\141\33\uffff\1\142\3\uffff\1\141",
+            "\1\143\14\uffff\1\143\27\uffff\1\143\7\uffff\1\143",
+            "\1\144\22\uffff\1\144\37\uffff\1\144\14\uffff\1\144",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\147\6\uffff\1\150\7\uffff\1\147\25\uffff\1\147\1\uffff\1"+
-            "\150\7\uffff\1\147",
+            "\1\146\37\uffff\1\146",
+            "\1\150\6\uffff\1\147\7\uffff\1\150\25\uffff\1\150\1\uffff\1"+
+            "\147\7\uffff\1\150",
             "\1\151\37\uffff\1\151",
             "\1\152\37\uffff\1\152",
             "\1\153\37\uffff\1\153",
@@ -4601,9 +4832,9 @@ public class GlossaLexer extends Lexer {
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "\1\156\37\uffff\1\156",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\157\37\uffff\1\157",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
@@ -4619,18 +4850,18 @@ public class GlossaLexer extends Lexer {
             "",
             "\1\172\37\uffff\1\172",
             "\1\173\12\uffff\1\173\32\uffff\1\173\4\uffff\1\173",
-            "\1\174\1\uffff\1\175\35\uffff\1\174\1\uffff\1\175",
-            "\1\174\37\uffff\1\174",
+            "\1\175\1\uffff\1\174\35\uffff\1\175\1\uffff\1\174",
+            "\1\175\37\uffff\1\175",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\1\177\37\uffff\1\177",
-            "\1\u0080\15\uffff\1\u0080\26\uffff\1\u0080\10\uffff\1\u0080",
+            "\1\u0080\37\uffff\1\u0080",
             "\1\u0081\37\uffff\1\u0081",
             "\1\u0082\37\uffff\1\u0082",
-            "\1\u0083\37\uffff\1\u0083",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "",
+            "\1\u0084\15\uffff\1\u0084\26\uffff\1\u0084\10\uffff\1\u0084",
             "\1\u0085\37\uffff\1\u0085",
             "\1\u0086\37\uffff\1\u0086",
             "\1\u0087\37\uffff\1\u0087",
@@ -4638,8 +4869,8 @@ public class GlossaLexer extends Lexer {
             "\1\u0089\37\uffff\1\u0089",
             "",
             "",
-            "",
             "\1\u008a\37\uffff\1\u008a",
+            "",
             "",
             "",
             "\1\u008b\37\uffff\1\u008b",
@@ -4657,14 +4888,14 @@ public class GlossaLexer extends Lexer {
             "\1\u0096\37\uffff\1\u0096",
             "",
             "\1\u0097\37\uffff\1\u0097",
-            "\12\46\7\uffff\32\46\4\uffff\1\u0098\1\uffff\32\46\u030b\uffff"+
-            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "\1\u0098\31\uffff\1\u0098\37\uffff\1\u0098\4\uffff\1\u0098",
+            "\1\u0099\15\uffff\1\u0099\26\uffff\1\u0099\10\uffff\1\u0099",
             "\1\u009a\37\uffff\1\u009a",
-            "\1\u009b\31\uffff\1\u009b\37\uffff\1\u009b\4\uffff\1\u009b",
-            "\1\u009c\15\uffff\1\u009c\26\uffff\1\u009c\10\uffff\1\u009c",
             "",
-            "\1\u009d\37\uffff\1\u009d",
-            "\1\u009e\12\uffff\1\u009e\32\uffff\1\u009e\4\uffff\1\u009e",
+            "\12\46\7\uffff\32\46\4\uffff\1\u009b\1\uffff\32\46\u030b\uffff"+
+            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "\1\u009d\12\uffff\1\u009d\32\uffff\1\u009d\4\uffff\1\u009d",
+            "\1\u009e\37\uffff\1\u009e",
             "\1\u009f\37\uffff\1\u009f",
             "\1\u00a0\37\uffff\1\u00a0",
             "\1\u00a1\15\uffff\1\u00a1\26\uffff\1\u00a1\10\uffff\1\u00a1",
@@ -4674,22 +4905,22 @@ public class GlossaLexer extends Lexer {
             "\1\u00a5\37\uffff\1\u00a5",
             "\1\u00a6",
             "",
-            "\1\u00a7\37\uffff\1\u00a7",
-            "\1\u00a8\37\uffff\1\u00a8",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
-            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\1\u00aa"+
-            "\36\46\1\u00aa\14\46",
+            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\1\u00a8"+
+            "\36\46\1\u00a8\14\46",
+            "\1\u00a9\37\uffff\1\u00a9",
+            "\1\u00aa\37\uffff\1\u00aa",
             "\1\u00ab\37\uffff\1\u00ab",
             "\1\u00ac\37\uffff\1\u00ac",
             "\1\u00ad\37\uffff\1\u00ad",
             "\1\u00ae\37\uffff\1\u00ae",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u00b0\37\uffff\1\u00b0",
+            "\1\u00b0\36\uffff\1\u00b0",
+            "\1\u00b1\36\uffff\1\u00b1",
+            "\1\u00b2\37\uffff\1\u00b2",
+            "\1\u00b3\37\uffff\1\u00b3",
             "",
-            "\1\u00b1\37\uffff\1\u00b1",
-            "\1\u00b2\36\uffff\1\u00b2",
-            "\1\u00b3\36\uffff\1\u00b3",
             "\1\u00b4\37\uffff\1\u00b4",
             "\1\u00b5\37\uffff\1\u00b5",
             "\1\u00b6\37\uffff\1\u00b6",
@@ -4701,24 +4932,24 @@ public class GlossaLexer extends Lexer {
             "\1\u00bb\37\uffff\1\u00bb",
             "\1\u00bc\37\uffff\1\u00bc",
             "\1\u00bd\37\uffff\1\u00bd",
-            "\1\u00c0\2\uffff\1\u00c1\1\u00be\12\uffff\1\u00c2\2\uffff\1"+
-            "\u00bf\15\uffff\1\u00c0\2\uffff\1\u00c1\1\u00be\12\uffff\1\u00c2"+
-            "\2\uffff\1\u00bf",
-            "\1\u00c3\37\uffff\1\u00c3",
-            "\1\u00c4\37\uffff\1\u00c4",
+            "\1\u00c1\2\uffff\1\u00bf\1\u00c0\12\uffff\1\u00be\2\uffff\1"+
+            "\u00c2\15\uffff\1\u00c1\2\uffff\1\u00bf\1\u00c0\12\uffff\1\u00be"+
+            "\2\uffff\1\u00c2",
             "",
-            "\1\u00c5",
+            "\1\u00c3",
+            "\1\u00c4\37\uffff\1\u00c4",
+            "\1\u00c5\37\uffff\1\u00c5",
             "\1\u00c6\14\uffff\1\u00c6\27\uffff\1\u00c6\7\uffff\1\u00c6",
             "\1\u00c7\37\uffff\1\u00c7",
             "\1\u00c8\37\uffff\1\u00c8",
             "\1\u00c9\37\uffff\1\u00c9",
             "",
-            "\1\u00ca\37\uffff\1\u00ca",
-            "\1\u00cc\3\uffff\1\u00cb\33\uffff\1\u00cc\3\uffff\1\u00cb",
-            "\12\46\7\uffff\32\46\4\uffff\1\u00ce\1\uffff\32\46\u030b\uffff"+
+            "\12\46\7\uffff\32\46\4\uffff\1\u00cb\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "\1\u00ce\3\uffff\1\u00cd\33\uffff\1\u00ce\3\uffff\1\u00cd",
+            "\1\u00cf\37\uffff\1\u00cf",
             "\1\u00d0\37\uffff\1\u00d0",
             "\1\u00d1\37\uffff\1\u00d1",
             "\1\u00d2\15\uffff\1\u00d2\26\uffff\1\u00d2\10\uffff\1\u00d2",
@@ -4736,25 +4967,25 @@ public class GlossaLexer extends Lexer {
             "\1\u00db\37\uffff\1\u00db",
             "\1\u00dc\37\uffff\1\u00dc",
             "\1\u00dd\37\uffff\1\u00dd",
-            "\1\u00de\37\uffff\1\u00de",
+            "\1\u00de\22\uffff\1\u00de\37\uffff\1\u00de\14\uffff\1\u00de",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u00df\22\uffff\1\u00df\37\uffff\1\u00df\14\uffff\1\u00df",
+            "\1\u00df\37\uffff\1\u00df",
             "\1\u00e0\36\uffff\1\u00e0",
             "\1\u00e1\37\uffff\1\u00e1",
+            "\1\u00e2\37\uffff\1\u00e2",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u00e3\37\uffff\1\u00e3",
+            "",
             "\1\u00e4\37\uffff\1\u00e4",
+            "",
             "\1\u00e5\36\uffff\1\u00e5",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "",
             "\1\u00e7\37\uffff\1\u00e7",
-            "",
+            "\1\u00e8\37\uffff\1\u00e8",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u00e9\37\uffff\1\u00e9",
             "\1\u00ea\37\uffff\1\u00ea",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
@@ -4763,26 +4994,26 @@ public class GlossaLexer extends Lexer {
             "\1\u00ec\37\uffff\1\u00ec",
             "\1\u00ed\37\uffff\1\u00ed",
             "\1\u00ee\37\uffff\1\u00ee",
-            "\1\u00ef\7\uffff\1\u00f0\27\uffff\1\u00ef\7\uffff\1\u00f0",
-            "\1\u00f1\37\uffff\1\u00f1",
+            "\1\u00ef\37\uffff\1\u00ef",
+            "\1\u00f0\37\uffff\1\u00f0",
+            "\1\u00f1\7\uffff\1\u00f2\27\uffff\1\u00f1\7\uffff\1\u00f2",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u00f3\37\uffff\1\u00f3",
             "\1\u00f4\37\uffff\1\u00f4",
-            "\1\u00f5\14\uffff\1\u00f5\27\uffff\1\u00f5\7\uffff\1\u00f5",
-            "\1\u00f6\37\uffff\1\u00f6",
+            "\1\u00f5\37\uffff\1\u00f5",
+            "\1\u00f6\14\uffff\1\u00f6\27\uffff\1\u00f6\7\uffff\1\u00f6",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\1\u00f8\37\uffff\1\u00f8",
-            "",
             "\1\u00f9\16\uffff\1\u00f9\25\uffff\1\u00f9\11\uffff\1\u00f9",
+            "",
             "\1\u00fa\37\uffff\1\u00fa",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "",
             "\1\u00fc\37\uffff\1\u00fc",
-            "",
             "\1\u00fd\37\uffff\1\u00fd",
+            "",
             "\1\u00ff\3\uffff\1\u00fe\33\uffff\1\u00ff\3\uffff\1\u00fe",
             "",
             "\1\u0100\1\u0101\13\uffff\1\u0100\1\uffff\1\u0101\25\uffff"+
@@ -4793,20 +5024,20 @@ public class GlossaLexer extends Lexer {
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\1\u0104\37\uffff\1\u0104",
             "\1\u0105\37\uffff\1\u0105",
-            "\1\u0106\12\uffff\1\u0106\32\uffff\1\u0106\4\uffff\1\u0106",
-            "",
+            "\1\u0106\37\uffff\1\u0106",
             "\1\u0107\37\uffff\1\u0107",
-            "\1\u0108\37\uffff\1\u0108",
-            "\1\u0109\36\uffff\1\u0109",
-            "\1\u010a\37\uffff\1\u010a",
+            "",
+            "\1\u0108\12\uffff\1\u0108\32\uffff\1\u0108\4\uffff\1\u0108",
+            "\1\u0109\37\uffff\1\u0109",
+            "\1\u010a\36\uffff\1\u010a",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\1\u010c\37\uffff\1\u010c",
-            "\1\u010d\12\uffff\1\u010d\32\uffff\1\u010d\4\uffff\1\u010d",
-            "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "",
+            "\1\u010e\12\uffff\1\u010e\32\uffff\1\u010e\4\uffff\1\u010e",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\1\u0110\36\uffff\1\u0110",
@@ -4816,20 +5047,20 @@ public class GlossaLexer extends Lexer {
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "",
             "",
-            "\1\u0114\12\uffff\1\u0114\32\uffff\1\u0114\4\uffff\1\u0114",
+            "\1\u0114\37\uffff\1\u0114",
             "\1\u0115\37\uffff\1\u0115",
-            "\1\u0116\37\uffff\1\u0116",
+            "\1\u0116\12\uffff\1\u0116\32\uffff\1\u0116\4\uffff\1\u0116",
             "\1\u0117\37\uffff\1\u0117",
             "\1\u0118\37\uffff\1\u0118",
+            "\1\u0119\37\uffff\1\u0119",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u011a\37\uffff\1\u011a",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "",
             "\1\u011c\37\uffff\1\u011c",
             "",
-            "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
@@ -4837,23 +5068,23 @@ public class GlossaLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "",
-            "\1\u0120\37\uffff\1\u0120",
+            "\1\u0120\12\uffff\1\u0120\32\uffff\1\u0120\4\uffff\1\u0120",
             "\1\u0121\37\uffff\1\u0121",
             "\1\u0122\37\uffff\1\u0122",
             "\1\u0123\37\uffff\1\u0123",
-            "\1\u0124\12\uffff\1\u0124\32\uffff\1\u0124\4\uffff\1\u0124",
-            "",
+            "\1\u0124\37\uffff\1\u0124",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "",
             "",
             "\1\u0126\37\uffff\1\u0126",
             "",
             "",
             "",
             "\1\u0127\37\uffff\1\u0127",
-            "\1\u0128\31\uffff\1\u0128\37\uffff\1\u0128\4\uffff\1\u0128",
+            "\1\u0128\37\uffff\1\u0128",
             "\1\u0129\37\uffff\1\u0129",
-            "\1\u012a\37\uffff\1\u012a",
+            "\1\u012a\31\uffff\1\u012a\37\uffff\1\u012a\4\uffff\1\u012a",
             "\1\u012b\37\uffff\1\u012b",
             "",
             "\1\u012c\37\uffff\1\u012c",
@@ -4864,65 +5095,65 @@ public class GlossaLexer extends Lexer {
             "\1\u0131\37\uffff\1\u0131",
             "\1\u0132\37\uffff\1\u0132",
             "\1\u0133\37\uffff\1\u0133",
+            "\1\u0134\16\uffff\1\u0134\25\uffff\1\u0134\11\uffff\1\u0134",
+            "\1\u0135\37\uffff\1\u0135",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u0135\37\uffff\1\u0135",
-            "\1\u0136\16\uffff\1\u0136\25\uffff\1\u0136\11\uffff\1\u0136",
             "\1\u0137\37\uffff\1\u0137",
             "\1\u0138\36\uffff\1\u0138",
-            "\1\u0139\36\uffff\1\u0139",
+            "\1\u0139\37\uffff\1\u0139",
+            "\1\u013a\37\uffff\1\u013a",
+            "\1\u013b\36\uffff\1\u013b",
             "",
-            "\1\u013a\36\uffff\1\u013a",
-            "\1\u013b\37\uffff\1\u013b",
-            "\1\u013c\37\uffff\1\u013c",
+            "\1\u013c\36\uffff\1\u013c",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
+            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "\1\u013e\37\uffff\1\u013e",
+            "\1\u013f\36\uffff\1\u013f",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "",
+            "\1\u0142\36\uffff\1\u0142",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u0140\36\uffff\1\u0140",
-            "\1\u0141\37\uffff\1\u0141",
             "",
-            "",
-            "",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
-            "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
-            "\1\u0143\36\uffff\1\u0143",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\u030b\uffff"+
             "\1\46\1\uffff\3\46\1\uffff\1\46\1\uffff\24\46\1\uffff\54\46",
+            "",
             ""
     };
 
-    static final short[] DFA18_eot = DFA.unpackEncodedString(DFA18_eotS);
-    static final short[] DFA18_eof = DFA.unpackEncodedString(DFA18_eofS);
-    static final char[] DFA18_min = DFA.unpackEncodedStringToUnsignedChars(DFA18_minS);
-    static final char[] DFA18_max = DFA.unpackEncodedStringToUnsignedChars(DFA18_maxS);
-    static final short[] DFA18_accept = DFA.unpackEncodedString(DFA18_acceptS);
-    static final short[] DFA18_special = DFA.unpackEncodedString(DFA18_specialS);
-    static final short[][] DFA18_transition;
+    static final short[] DFA20_eot = DFA.unpackEncodedString(DFA20_eotS);
+    static final short[] DFA20_eof = DFA.unpackEncodedString(DFA20_eofS);
+    static final char[] DFA20_min = DFA.unpackEncodedStringToUnsignedChars(DFA20_minS);
+    static final char[] DFA20_max = DFA.unpackEncodedStringToUnsignedChars(DFA20_maxS);
+    static final short[] DFA20_accept = DFA.unpackEncodedString(DFA20_acceptS);
+    static final short[] DFA20_special = DFA.unpackEncodedString(DFA20_specialS);
+    static final short[][] DFA20_transition;
 
     static {
-        int numStates = DFA18_transitionS.length;
-        DFA18_transition = new short[numStates][];
+        int numStates = DFA20_transitionS.length;
+        DFA20_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA18_transition[i] = DFA.unpackEncodedString(DFA18_transitionS[i]);
+            DFA20_transition[i] = DFA.unpackEncodedString(DFA20_transitionS[i]);
         }
     }
 
-    class DFA18 extends DFA {
+    class DFA20 extends DFA {
 
-        public DFA18(BaseRecognizer recognizer) {
+        public DFA20(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 18;
-            this.eot = DFA18_eot;
-            this.eof = DFA18_eof;
-            this.min = DFA18_min;
-            this.max = DFA18_max;
-            this.accept = DFA18_accept;
-            this.special = DFA18_special;
-            this.transition = DFA18_transition;
+            this.decisionNumber = 20;
+            this.eot = DFA20_eot;
+            this.eof = DFA20_eof;
+            this.min = DFA20_min;
+            this.max = DFA20_max;
+            this.accept = DFA20_accept;
+            this.special = DFA20_special;
+            this.transition = DFA20_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( ASSIGN | COMMA | COLON | LPAR | RPAR | LBRACKET | RBRACKET | PLUS | MINUS | TIMES | DIA | POW | DIV | MOD | LE | LT | GE | GT | EQ | NEQ | AND | OR | NOT | RANGE | PROGRAM | END_PROGRAM | VARIABLES | CONSTANTS | READ | PRINT | BEGIN | PROCEDURE | END_PROCEDURE | FUNCTION | END_FUNCTION | CALL | IF | THEN | ELSE | ELSE_IF | END_IF | SWITCH | CASE | END_SWITCH | WHILE | LOOP | END_LOOP | REPEAT | UNTIL | FOR | FROM | TO | STEP | INTEGER | INTEGERS | REAL | REALS | STRING | STRINGS | BOOLEAN | BOOLEANS | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | COMMENT | CONT_COMMAND | NEWLINE | WS );";

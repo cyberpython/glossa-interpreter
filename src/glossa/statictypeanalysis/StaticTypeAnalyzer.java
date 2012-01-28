@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2012-01-19 18:51:11
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2012-01-28 20:50:31
 
 
 /*
@@ -48,13 +48,13 @@ import java.util.ArrayList;
 
 public class StaticTypeAnalyzer extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "INF_RANGE", "CASE_ELSE", "PARAMS", "FUNC_CALL", "FORMAL_PARAMS", "NEWLINE", "PROGRAM", "ID", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "SWITCH", "END_SWITCH", "CASE", "RANGE", "LT", "LE", "GT", "GE", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "CALL", "LPAR", "RPAR", "OR", "AND", "NEQ", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "PROCEDURE", "END_PROCEDURE", "FUNCTION", "END_FUNCTION", "INTEGER", "REAL", "STRING", "BOOLEAN", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "UPSILON", "NU", "OMEGA", "OMEGA_TONOS", "XI", "NOT_EOL", "DIGIT", "LETTER", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK", "NEG", "VARSDECL", "IFNODE", "ARRAY", "ARRAY_ITEM", "ARRAY_INDEX", "ARRAY_DIMENSION", "INF_RANGE", "CASE_ELSE", "PARAMS", "FUNC_CALL", "FORMAL_PARAMS", "NEWLINE", "PROGRAM", "ID", "BEGIN", "END_PROGRAM", "CONSTANTS", "EQ", "VARIABLES", "COLON", "COMMA", "LBRACKET", "RBRACKET", "BOOLEANS", "STRINGS", "INTEGERS", "REALS", "PRINT", "READ", "ASSIGN", "END_IF", "IF", "THEN", "ELSE", "ELSE_IF", "SWITCH", "END_SWITCH", "CASE", "RANGE", "LT", "LE", "GT", "GE", "FOR", "FROM", "TO", "STEP", "END_LOOP", "WHILE", "LOOP", "REPEAT", "UNTIL", "CALL", "LPAR", "RPAR", "OR", "AND", "NEQ", "PLUS", "MINUS", "TIMES", "DIA", "DIV", "MOD", "POW", "NOT", "CONST_TRUE", "CONST_FALSE", "CONST_STR", "CONST_INT", "CONST_REAL", "PROCEDURE", "END_PROCEDURE", "FUNCTION", "END_FUNCTION", "INTEGER", "REAL", "STRING", "BOOLEAN", "KAPPA", "ALPHA", "IOTA", "ETA_TONOS", "OMICRON", "OMICRON_TONOS", "CHI", "PI", "RHO", "GAMMA", "MU", "TAU", "EPSILON", "EPSILON_TONOS", "LAMDA", "SIGMA_TELIKO", "ALPHA_TONOS", "BETA", "ETA", "SIGMA", "THETA", "DELTA", "PSI", "IOTA_TONOS", "UPSILON", "NU", "OMEGA", "OMEGA_TONOS", "XI", "DIGIT", "LETTER", "NOT_EOL", "COMMENT", "CONT_COMMAND", "WS", "LATIN_LETTER", "GREEK_LETTER", "ZETA", "PHI", "UPSILON_TONOS", "IOTA_DIALYTIKA", "UPSILON_DIALYTIKA", "IOTA_DIALYTIKA_TONOS", "UPSILON_DIALYTIKA_TONOS", "NOT_DOUBLE_QUOTE_STR_CHAR", "NOT_SINGLE_QUOTE_STR_CHAR"
     };
     public static final int FUNCTION=79;
     public static final int LT=45;
     public static final int END_PROCEDURE=78;
     public static final int WHILE=54;
-    public static final int LETTER=116;
+    public static final int LETTER=115;
     public static final int MOD=69;
     public static final int LAMDA=99;
     public static final int STRINGS=30;
@@ -79,6 +79,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int COMMENT=117;
     public static final int ARRAY=8;
     public static final int GREEK_LETTER=121;
+    public static final int NOT_DOUBLE_QUOTE_STR_CHAR=129;
     public static final int END_LOOP=53;
     public static final int GE=48;
     public static final int END_SWITCH=42;
@@ -111,6 +112,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int PI=92;
     public static final int CALL=58;
     public static final int FROM=50;
+    public static final int NOT_SINGLE_QUOTE_STR_CHAR=130;
     public static final int PHI=123;
     public static final int RHO=93;
     public static final int UPSILON=109;
@@ -123,7 +125,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int ARRAY_DIMENSION=11;
     public static final int IF=37;
     public static final int OMEGA_TONOS=112;
-    public static final int NOT_EOL=114;
+    public static final int NOT_EOL=116;
     public static final int BOOLEAN=84;
     public static final int THEN=38;
     public static final int END_FUNCTION=80;
@@ -134,7 +136,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     public static final int PSI=107;
     public static final int PLUS=64;
     public static final int SIGMA=104;
-    public static final int DIGIT=115;
+    public static final int DIGIT=114;
     public static final int CASE_ELSE=13;
     public static final int RBRACKET=28;
     public static final int IOTA_DIALYTIKA_TONOS=127;

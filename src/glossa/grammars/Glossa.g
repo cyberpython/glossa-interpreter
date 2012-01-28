@@ -619,7 +619,7 @@ CONST_FALSE
 	:	PSI EPSILON UPSILON DELTA (ETA|ETA_TONOS) SIGMA_TELIKO;
 	
 CONST_STR
-	:	'\'' NOT_EOL* '\'' | '"' NOT_EOL* '"' ;
+	:	'\'' .* '\'' | '"' .* '"' ;
 
 CONST_INT
 	:	DIGIT+;
@@ -742,6 +742,12 @@ fragment UPSILON_DIALYTIKA_TONOS
 	
 fragment NOT_EOL
 	:	('\u0000'..'\u0009') | '\u000B' | '\u000C'| ('\u000E'..'\uFFFF') ;
+
+fragment NOT_DOUBLE_QUOTE_STR_CHAR
+	:	('\u0000'..'\u0009') | '\u000B' | '\u000C'| ('\u000E'..'\u0021')('\u0023'..'\uFFFF') ;
+
+fragment NOT_SINGLE_QUOTE_STR_CHAR
+	:	('\u0000'..'\u0009') | '\u000B' | '\u000C'| ('\u000E'..'\u0026')('\u0028'..'\uFFFF') ;
 	
 	
 	
