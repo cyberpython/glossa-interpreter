@@ -379,10 +379,10 @@ returnType returns[Type result]
 
 
 formalParamsList [String subprogramName, boolean inFunctionDecl] returns [List<FormalParameter> formalParams]
-	:	^(FORMAL_PARAMS
-                        {
-                            List<FormalParameter> result = new ArrayList<FormalParameter>();
-                        }
+	:	{
+                    List<FormalParameter> result = new ArrayList<FormalParameter>();
+                }
+		^(FORMAL_PARAMS
                   ( ID  {
                             FormalParameter param = new FormalParameter($ID.line, $ID.pos, $ID.text);
                             if( inFunctionDecl &&  subprogramName.toLowerCase().equals($ID.text.toLowerCase())){
@@ -395,8 +395,8 @@ formalParamsList [String subprogramName, boolean inFunctionDecl] returns [List<F
                             }
                         }
                   )*
-                        {
-                            $formalParams = result;
-                        }
-                  )
+                 )
+	        {
+                    $formalParams = result;
+                }
         ;
