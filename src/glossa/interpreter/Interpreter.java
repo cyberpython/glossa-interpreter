@@ -34,7 +34,7 @@ import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.utils.CharsetDetector;
-import java.awt.Point;
+import glossa.utils.Point;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

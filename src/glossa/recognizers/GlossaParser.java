@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-29 19:36:58
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-29 20:02:02
 
 /*
  *  The MIT License
@@ -26,7 +26,7 @@
 
 package glossa.recognizers;
 import glossa.messages.*;
-import java.awt.Point;
+import glossa.utils.Point;
 
 
 import org.antlr.runtime.*;

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2012-01-29 19:37:06
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2012-01-29 20:02:07
 
 
 /*
@@ -37,7 +37,7 @@ import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.awt.Point;
+import glossa.utils.Point;
 
 
 

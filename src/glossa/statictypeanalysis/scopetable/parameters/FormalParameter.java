@@ -27,7 +27,7 @@ package glossa.statictypeanalysis.scopetable.parameters;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
-import java.awt.Point;
+import glossa.utils.Point;
 
 /**
  *

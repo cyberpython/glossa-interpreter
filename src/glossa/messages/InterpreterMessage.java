@@ -24,7 +24,7 @@
 
 package glossa.messages;
 
-import java.awt.Point;
+import glossa.utils.Point;
 
 /**
  *

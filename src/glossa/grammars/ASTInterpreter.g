@@ -68,7 +68,7 @@ import glossa.statictypeanalysis.scopetable.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
-import java.awt.Point;
+import glossa.utils.Point;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

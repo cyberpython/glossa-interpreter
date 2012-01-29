@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/FirstPass.g 2012-01-29 19:37:03
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/FirstPass.g 2012-01-29 20:02:05
 
 
 /*
@@ -36,7 +36,7 @@ import glossa.statictypeanalysis.scopetable.scopes.*;
 import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
 import java.util.Iterator;
-import java.awt.Point;
+import glossa.utils.Point;
 
 
 

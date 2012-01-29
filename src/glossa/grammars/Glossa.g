@@ -75,7 +75,7 @@ tokens
 
 package glossa.recognizers;
 import glossa.messages.*;
-import java.awt.Point;
+import glossa.utils.Point;
 }
 
 
@@ -206,7 +206,7 @@ import java.awt.Point;
 
 package glossa.recognizers;
 import glossa.messages.*;
-import java.awt.Point;
+import glossa.utils.Point;
 }
 
 

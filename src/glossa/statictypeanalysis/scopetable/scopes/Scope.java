@@ -27,7 +27,7 @@ package glossa.statictypeanalysis.scopetable.scopes;
 import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
-import java.awt.Point;
+import glossa.utils.Point;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Iterator;

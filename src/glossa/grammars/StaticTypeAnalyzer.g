@@ -68,7 +68,7 @@ import glossa.statictypeanalysis.scopetable.symbols.*;
 import glossa.types.*;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.awt.Point;
+import glossa.utils.Point;
 
 }
 

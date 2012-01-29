@@ -32,7 +32,7 @@ import glossa.statictypeanalysis.scopetable.symbols.Array;
 import glossa.statictypeanalysis.scopetable.symbols.Constant;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
-import java.awt.Point;
+import glossa.utils.Point;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Iterator;
