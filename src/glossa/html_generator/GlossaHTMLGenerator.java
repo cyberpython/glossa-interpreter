@@ -25,7 +25,6 @@ package glossa.html_generator;
 
 import glossa.recognizers.GlossaLexer;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRStringStream;
@@ -158,15 +157,15 @@ public class GlossaHTMLGenerator {
 
                 case GlossaLexer.WS:
 
-                    return addClass(CLASS_WHITESPACE, token.getText());
+                    return addClass(CLASS_WHITESPACE, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.NEWLINE:
 
-                    return addClass(CLASS_NEWLINE, token.getText());
+                    return addClass(CLASS_NEWLINE, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.ASSIGN:
 
-                    return addClass(CLASS_ASSIGNMENT_OPERATOR, token.getText());
+                    return addClass(CLASS_ASSIGNMENT_OPERATOR, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.PLUS:
                 case GlossaLexer.MINUS:
@@ -186,7 +185,7 @@ public class GlossaHTMLGenerator {
                 case GlossaLexer.NOT:
 
 
-                    return addClass(CLASS_OPERATOR, token.getText());
+                    return addClass(CLASS_OPERATOR, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.COMMA:
                 case GlossaLexer.COLON:
@@ -197,7 +196,7 @@ public class GlossaHTMLGenerator {
                 case GlossaLexer.CONT_COMMAND:
                 case GlossaLexer.RANGE:
 
-                    return addClass(CLASS_SPECIAL_CHAR, token.getText());
+                    return addClass(CLASS_SPECIAL_CHAR, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.PROGRAM:
                 case GlossaLexer.END_PROGRAM:
@@ -229,25 +228,25 @@ public class GlossaHTMLGenerator {
                 case GlossaLexer.TO:
                 case GlossaLexer.STEP:
 
-                    return addClass(CLASS_KEYWORD, token.getText());
+                    return addClass(CLASS_KEYWORD, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.ID:
 
-                    return addClass(CLASS_IDENTIFIER, token.getText());
+                    return addClass(CLASS_IDENTIFIER, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.CONST_INT:
                 case GlossaLexer.CONST_REAL:
 
-                    return addClass(CLASS_LITERAL_NUM, token.getText());
+                    return addClass(CLASS_LITERAL_NUM, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.CONST_STR:
 
-                    return addClass(CLASS_LITERAL_STRING, token.getText());
+                    return addClass(CLASS_LITERAL_STRING, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.CONST_TRUE:
                 case GlossaLexer.CONST_FALSE:
 
-                    return addClass(CLASS_LITERAL_BOOLEAN, token.getText());
+                    return addClass(CLASS_LITERAL_BOOLEAN, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.INTEGER:
                 case GlossaLexer.INTEGERS:
@@ -258,19 +257,28 @@ public class GlossaHTMLGenerator {
                 case GlossaLexer.BOOLEAN:
                 case GlossaLexer.BOOLEANS:
 
-                    return addClass(CLASS_TYPE, token.getText());
+                    return addClass(CLASS_TYPE, escapeHTMLSpecialChars(token.getText()));
 
                 case GlossaLexer.COMMENT:
 
-                    return addClass(CLASS_COMMENT, token.getText());
+                    return addClass(CLASS_COMMENT, escapeHTMLSpecialChars(token.getText()));
 
 
                 default:
-                    return token.getText();
+                    return escapeHTMLSpecialChars(token.getText());
             }
     }
 
     private String addClass(String classAttr, String text) {
         return "<span class='" + classAttr + "'>" + text + "</span>";
+    }
+
+    private String escapeHTMLSpecialChars(String text){
+        return text.replaceAll("\\&", "&amp;")
+                   .replaceAll("\\\"", "&quot;")
+                   .replaceAll("\\'", "&#39;")
+                   .replaceAll("\\<", "&lt;")
+                   .replaceAll("\\>", "&gt;")
+                   ;
     }
 }
