@@ -91,8 +91,8 @@ public class GlossaHTMLGenerator {
         sb.append("\n");
         sb.append("         <style>\n");
         sb.append("             pre{\n");
-        sb.append("                 font-family: monospaced;\n");
-        sb.append("                 font-size: 12px;\n");
+        sb.append("                 font-family: monospace;\n");
+        sb.append("                 font-size: 14px;\n");
         sb.append("             }\n");
         sb.append("             .keyword{\n");
         sb.append("                 font-weight: bold;\n");
