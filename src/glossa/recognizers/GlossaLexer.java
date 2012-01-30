@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-29 20:02:04
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-30 15:20:46
 
 /*
  *  The MIT License
@@ -2743,7 +2743,7 @@ public class GlossaLexer extends Lexer {
                 }
             } while (true);
 
-            skip();
+            _channel = HIDDEN;
 
             }
 
@@ -2765,7 +2765,7 @@ public class GlossaLexer extends Lexer {
             {
             mNEWLINE(); 
             match('&'); 
-            skip();
+            _channel = HIDDEN;
 
             }
 
@@ -2861,7 +2861,7 @@ public class GlossaLexer extends Lexer {
                 cnt16++;
             } while (true);
 
-            skip();
+            _channel = HIDDEN;
 
             }
 

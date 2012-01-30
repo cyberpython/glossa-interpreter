@@ -629,14 +629,14 @@ CONST_REAL
 
 ID	:	LETTER (LETTER|DIGIT|'_')*;
 
-COMMENT	:	'!' NOT_EOL* {skip();};
+COMMENT	:	'!' NOT_EOL* {$channel = HIDDEN;};
 
 CONT_COMMAND
-	:	NEWLINE '&'{skip();};
+	:	NEWLINE '&'{$channel = HIDDEN;};
 
 NEWLINE	:	'\r'? '\n';
 
-WS	:	(' '|'\t')+ {skip();};
+WS	:	(' '|'\t')+ {$channel = HIDDEN;};
 
 
 
