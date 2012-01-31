@@ -164,7 +164,11 @@ public class CLI implements InterpreterListener {
                 Interpreter inter = new Interpreter(tmpFile, out, err, out, err, in);
                 inter.addListener(this);
                 if (inter.parseAndAnalyzeSemantics(false)) {
-                    inter.exec();
+                    boolean echo = true;
+                    if(this.in == System.in){
+                        echo = false;
+                    }
+                    inter.exec(echo);
                 }
             }
         } catch (FileNotFoundException fnfe) {

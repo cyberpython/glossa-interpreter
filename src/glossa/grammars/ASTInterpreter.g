@@ -102,6 +102,7 @@ import java.util.Iterator;
         private PrintStream err;
         private InputStream in;
         private BufferedReader reader;
+        private boolean echoInput;
 
         List<ASTInterpreterListener> listeners;
 
@@ -109,7 +110,7 @@ import java.util.Iterator;
         private boolean stop;
         private boolean finished;
 
-        public void init(ScopeTable s, PrintStream out, PrintStream err, InputStream in){
+        public void init(ScopeTable s, PrintStream out, PrintStream err, InputStream in, boolean echoInput){
             input.reset();
 
             this.stack = new ArrayDeque<SymbolTable>();
@@ -123,6 +124,7 @@ import java.util.Iterator;
             this.err = err;
             this.in = in;
             this.reader = new BufferedReader(new InputStreamReader(in));
+            this.echoInput = echoInput;
         }
 
         public void addListener(ASTInterpreterListener listener){
@@ -614,6 +616,9 @@ readItem
                                         String line = "";
                                         try{
                                             line = reader.readLine();
+                                            if(this.echoInput){
+                                                this.out.println(line);
+                                            }
                                         }catch(Exception e){
                                         }
                                         arr.set($arraySubscript.value, InterpreterUtils.toValue(line, arr.getType()));
@@ -622,6 +627,9 @@ readItem
                                         String line = "";
                                         try{
                                             line = reader.readLine();
+                                            if(this.echoInput){
+                                                this.out.println(line);
+                                            }
                                         }catch(Exception e){
                                         }
                                         RuntimeVariable var = (RuntimeVariable)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));

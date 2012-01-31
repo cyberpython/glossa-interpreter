@@ -257,12 +257,12 @@ public class Interpreter implements ASTInterpreterListener {
         return msgLog;
     }
 
-    public void exec() {
+    public void exec(boolean echoInput) {
         stop();
         if (this.scopeTable != null) {
             //scopeTable.printScopes(out);
             this.interpreter = new ASTInterpreter(nodes); // create a tree parser
-            interpreter.init(scopeTable, runtimeOut, runtimeErr, runtimeIn);
+            interpreter.init(scopeTable, runtimeOut, runtimeErr, runtimeIn, echoInput);
             interpreter.addListener(this);
             Thread thread = new Thread(interpreter);
             this.interpreterThread = thread;
