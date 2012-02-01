@@ -99,7 +99,7 @@ public class GlossaHTMLGenerator {
         sb.append("             }\n");
         sb.append("             .type{\n");
         sb.append("                 font-weight: bold;\n");
-        sb.append("                 color: #982D9D;\n");
+        sb.append("                 color: #2D4A9D;\n");
         sb.append("             }\n");
         sb.append("             .comment{\n");
         sb.append("                 font-style: italic;\n");

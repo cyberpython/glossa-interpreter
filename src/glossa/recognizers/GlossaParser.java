@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-01-31 15:35:59
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-02-01 20:10:00
 
 /*
  *  The MIT License
@@ -2540,7 +2540,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: END_IF, elseBlock, ifBlock, elseIfBlock
+            // elements: END_IF, elseIfBlock, ifBlock, elseBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3415,7 +3415,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expr1, RANGE, expr2
+            // elements: expr2, expr1, RANGE
             // token labels: 
             // rule labels: retval, expr1, expr2
             // token list labels: 
@@ -3593,7 +3593,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, LE
+                    // elements: LE, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3681,7 +3681,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, GE
+                    // elements: GE, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3810,7 +3810,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, CASE
+            // elements: CASE, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4446,7 +4446,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: CALL, paramsList, ID
+            // elements: ID, paramsList, CALL
             // token labels: 
             // rule labels: retval
             // token list labels: 
