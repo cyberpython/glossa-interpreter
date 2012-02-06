@@ -186,6 +186,7 @@ public class Interpreter implements ASTInterpreterListener {
                     parser.setMessageLog(msgLog);
                     r = parser.unit();
                 } catch (RuntimeException re) {
+                    re.printStackTrace();
                 }
 
                 errors = msgLog.getNumberOfErrors();
@@ -240,6 +241,7 @@ public class Interpreter implements ASTInterpreterListener {
             } catch (Exception e) {
                 msgLog.error(new Point(0, 0), e.getLocalizedMessage());
                 err.println(e.getLocalizedMessage());
+                e.printStackTrace();
             }
         } catch (IOException ioe) {
             err.println(String.format(RuntimeMessages.STR_RUNTIME_ERROR_FILE_NOT_FOUND, filename));
