@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-02-06 16:15:24
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g 2012-02-07 09:52:15
 
 /*
  *  The MIT License
@@ -274,14 +274,14 @@ public class GlossaLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "src/glossa/grammars/Glossa.g"; }
+    public String getGrammarFileName() { return "/home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g"; }
 
     // $ANTLR start "ASSIGN"
     public final void mASSIGN() throws RecognitionException {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:468:2: ( '<-' | '\\u2190' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:468:2: ( '<-' | '\\u2190' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -299,7 +299,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:468:4: '<-'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:468:4: '<-'
                     {
                     match("<-"); 
 
@@ -307,7 +307,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:468:11: '\\u2190'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:468:11: '\\u2190'
                     {
                     match('\u2190'); 
 
@@ -328,8 +328,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:470:7: ( ',' )
-            // src/glossa/grammars/Glossa.g:470:9: ','
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:470:7: ( ',' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:470:9: ','
             {
             match(','); 
 
@@ -348,8 +348,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:472:7: ( ':' )
-            // src/glossa/grammars/Glossa.g:472:9: ':'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:472:7: ( ':' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:472:9: ':'
             {
             match(':'); 
 
@@ -368,8 +368,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LPAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:474:6: ( '(' )
-            // src/glossa/grammars/Glossa.g:474:8: '('
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:474:6: ( '(' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:474:8: '('
             {
             match('('); 
 
@@ -388,8 +388,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RPAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:476:6: ( ')' )
-            // src/glossa/grammars/Glossa.g:476:8: ')'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:476:6: ( ')' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:476:8: ')'
             {
             match(')'); 
 
@@ -408,8 +408,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:478:9: ( '[' )
-            // src/glossa/grammars/Glossa.g:478:11: '['
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:478:9: ( '[' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:478:11: '['
             {
             match('['); 
 
@@ -428,8 +428,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:480:9: ( ']' )
-            // src/glossa/grammars/Glossa.g:480:11: ']'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:480:9: ( ']' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:480:11: ']'
             {
             match(']'); 
 
@@ -448,8 +448,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:482:6: ( '+' )
-            // src/glossa/grammars/Glossa.g:482:8: '+'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:482:6: ( '+' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:482:8: '+'
             {
             match('+'); 
 
@@ -468,8 +468,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:484:7: ( '-' )
-            // src/glossa/grammars/Glossa.g:484:9: '-'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:484:7: ( '-' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:484:9: '-'
             {
             match('-'); 
 
@@ -488,8 +488,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = TIMES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:486:7: ( '*' )
-            // src/glossa/grammars/Glossa.g:486:9: '*'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:486:7: ( '*' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:486:9: '*'
             {
             match('*'); 
 
@@ -508,8 +508,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = DIA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:488:5: ( '/' )
-            // src/glossa/grammars/Glossa.g:488:7: '/'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:488:5: ( '/' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:488:7: '/'
             {
             match('/'); 
 
@@ -528,8 +528,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = POW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:490:5: ( '^' )
-            // src/glossa/grammars/Glossa.g:490:7: '^'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:490:5: ( '^' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:490:7: '^'
             {
             match('^'); 
 
@@ -548,8 +548,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = DIV;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:492:5: ( ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' ) )
-            // src/glossa/grammars/Glossa.g:492:7: ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:492:5: ( ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:492:7: ( 'D' | 'd' ) ( 'I' | 'i' ) ( 'V' | 'v' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
                 input.consume();
@@ -594,8 +594,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = MOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:494:5: ( ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' ) )
-            // src/glossa/grammars/Glossa.g:494:7: ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:494:5: ( ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:494:7: ( 'M' | 'm' ) ( 'O' | 'o' ) ( 'D' | 'd' )
             {
             if ( input.LA(1)=='M'||input.LA(1)=='m' ) {
                 input.consume();
@@ -640,7 +640,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:496:4: ( '<=' | '\\u2264' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:496:4: ( '<=' | '\\u2264' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -658,7 +658,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:496:6: '<='
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:496:6: '<='
                     {
                     match("<="); 
 
@@ -666,7 +666,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:496:13: '\\u2264'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:496:13: '\\u2264'
                     {
                     match('\u2264'); 
 
@@ -687,8 +687,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:498:4: ( '<' )
-            // src/glossa/grammars/Glossa.g:498:6: '<'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:498:4: ( '<' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:498:6: '<'
             {
             match('<'); 
 
@@ -707,7 +707,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = GE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:500:4: ( '>=' | '\\u2265' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:500:4: ( '>=' | '\\u2265' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -725,7 +725,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:500:6: '>='
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:500:6: '>='
                     {
                     match(">="); 
 
@@ -733,7 +733,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:500:13: '\\u2265'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:500:13: '\\u2265'
                     {
                     match('\u2265'); 
 
@@ -754,8 +754,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:502:4: ( '>' )
-            // src/glossa/grammars/Glossa.g:502:6: '>'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:502:4: ( '>' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:502:6: '>'
             {
             match('>'); 
 
@@ -774,8 +774,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:504:4: ( '=' )
-            // src/glossa/grammars/Glossa.g:504:6: '='
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:504:4: ( '=' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:504:6: '='
             {
             match('='); 
 
@@ -794,7 +794,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:506:5: ( '<>' | '\\u2260' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:506:5: ( '<>' | '\\u2260' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -812,7 +812,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:506:7: '<>'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:506:7: '<>'
                     {
                     match("<>"); 
 
@@ -820,7 +820,7 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:506:14: '\\u2260'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:506:14: '\\u2260'
                     {
                     match('\u2260'); 
 
@@ -841,8 +841,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:509:5: ( KAPPA ALPHA IOTA )
-            // src/glossa/grammars/Glossa.g:509:7: KAPPA ALPHA IOTA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:509:5: ( KAPPA ALPHA IOTA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:509:7: KAPPA ALPHA IOTA
             {
             mKAPPA(); 
             mALPHA(); 
@@ -863,8 +863,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:511:4: ( ETA_TONOS )
-            // src/glossa/grammars/Glossa.g:511:6: ETA_TONOS
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:511:4: ( ETA_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:511:6: ETA_TONOS
             {
             mETA_TONOS(); 
 
@@ -883,8 +883,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:513:5: ( ( OMICRON | OMICRON_TONOS ) CHI IOTA )
-            // src/glossa/grammars/Glossa.g:513:7: ( OMICRON | OMICRON_TONOS ) CHI IOTA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:513:5: ( ( OMICRON | OMICRON_TONOS ) CHI IOTA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:513:7: ( OMICRON | OMICRON_TONOS ) CHI IOTA
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
                 input.consume();
@@ -913,8 +913,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = RANGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:515:9: ( '..' )
-            // src/glossa/grammars/Glossa.g:515:17: '..'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:515:9: ( '..' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:515:17: '..'
             {
             match(".."); 
 
@@ -934,8 +934,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PROGRAM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:518:9: ( PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA )
-            // src/glossa/grammars/Glossa.g:518:12: PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:518:9: ( PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:518:12: PI RHO ( OMICRON | OMICRON_TONOS ) GAMMA RHO ALPHA MU MU ALPHA
             {
             mPI(); 
             mRHO(); 
@@ -970,8 +970,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_PROGRAM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:521:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:521:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:521:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:521:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' PI RHO OMICRON GAMMA RHO ( ALPHA | ALPHA_TONOS ) MU MU ALPHA TAU OMICRON SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1023,8 +1023,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = VARIABLES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:524:2: ( MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:524:4: MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:524:2: ( MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:524:4: MU EPSILON TAU ALPHA BETA LAMDA ETA TAU ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mMU(); 
             mEPSILON(); 
@@ -1060,8 +1060,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONSTANTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:527:2: ( SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:527:4: SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:527:2: ( SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:527:4: SIGMA TAU ALPHA THETA EPSILON RHO ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mSIGMA(); 
             mTAU(); 
@@ -1095,8 +1095,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = READ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:529:6: ( DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON )
-            // src/glossa/grammars/Glossa.g:529:8: DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:529:6: ( DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:529:8: DELTA IOTA ( ALPHA | ALPHA_TONOS ) BETA ALPHA SIGMA EPSILON
             {
             mDELTA(); 
             mIOTA(); 
@@ -1129,8 +1129,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PRINT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:531:7: ( GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON )
-            // src/glossa/grammars/Glossa.g:531:9: GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:531:7: ( GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:531:9: GAMMA RHO ( ALPHA | ALPHA_TONOS ) PSI EPSILON
             {
             mGAMMA(); 
             mRHO(); 
@@ -1161,8 +1161,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BEGIN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:533:7: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:533:9: ALPHA RHO CHI ( ETA | ETA_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:533:7: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:533:9: ALPHA RHO CHI ( ETA | ETA_TONOS )
             {
             mALPHA(); 
             mRHO(); 
@@ -1192,8 +1192,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = PROCEDURE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:536:2: ( DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA )
-            // src/glossa/grammars/Glossa.g:536:4: DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:536:2: ( DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:536:4: DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA
             {
             mDELTA(); 
             mIOTA(); 
@@ -1229,8 +1229,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_PROCEDURE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:539:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:539:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:539:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:539:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' DELTA IOTA ALPHA DELTA IOTA KAPPA ALPHA SIGMA ( IOTA | IOTA_TONOS ) ALPHA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1281,8 +1281,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:541:9: ( SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA )
-            // src/glossa/grammars/Glossa.g:541:11: SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:541:9: ( SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:541:11: SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA
             {
             mSIGMA(); 
             mUPSILON(); 
@@ -1317,8 +1317,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:544:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:544:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:544:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:544:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' SIGMA UPSILON NU ( ALPHA | ALPHA_TONOS ) RHO TAU ETA SIGMA ETA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1368,8 +1368,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CALL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:546:6: ( KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON )
-            // src/glossa/grammars/Glossa.g:546:8: KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:546:6: ( KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:546:8: KAPPA ( ALPHA | ALPHA_TONOS ) LAMDA EPSILON SIGMA EPSILON
             {
             mKAPPA(); 
             if ( input.LA(1)=='\u0386'||input.LA(1)=='\u0391'||input.LA(1)=='\u03AC'||input.LA(1)=='\u03B1' ) {
@@ -1401,8 +1401,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:549:4: ( ALPHA NU )
-            // src/glossa/grammars/Glossa.g:549:6: ALPHA NU
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:549:4: ( ALPHA NU )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:549:6: ALPHA NU
             {
             mALPHA(); 
             mNU(); 
@@ -1422,8 +1422,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = THEN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:551:6: ( TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON )
-            // src/glossa/grammars/Glossa.g:551:8: TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:551:6: ( TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:551:8: TAU ( OMICRON | OMICRON_TONOS ) TAU EPSILON
             {
             mTAU(); 
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
@@ -1453,8 +1453,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:553:6: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:553:8: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:553:6: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:553:8: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO
             {
             mALPHA(); 
             mLAMDA(); 
@@ -1486,8 +1486,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ELSE_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:555:9: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU )
-            // src/glossa/grammars/Glossa.g:555:11: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:555:9: ( ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:555:11: ALPHA LAMDA LAMDA IOTA ( OMEGA | OMEGA_TONOS ) SIGMA_TELIKO '_' ALPHA NU
             {
             mALPHA(); 
             mLAMDA(); 
@@ -1522,8 +1522,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:557:8: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU )
-            // src/glossa/grammars/Glossa.g:557:10: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:557:8: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:557:10: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' ALPHA NU
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1557,8 +1557,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:562:8: ( EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON )
-            // src/glossa/grammars/Glossa.g:562:10: EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:562:8: ( EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:562:10: EPSILON PI ( IOTA | IOTA_TONOS ) LAMDA EPSILON XI EPSILON
             {
             mEPSILON(); 
             mPI(); 
@@ -1591,8 +1591,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:564:6: ( PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA )
-            // src/glossa/grammars/Glossa.g:564:8: PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:564:6: ( PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:564:8: PI EPSILON RHO ( IOTA | IOTA_TONOS ) PI TAU OMEGA SIGMA ETA
             {
             mPI(); 
             mEPSILON(); 
@@ -1627,8 +1627,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:567:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU )
-            // src/glossa/grammars/Glossa.g:567:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:567:2: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:567:4: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI IOTA LAMDA OMICRON GAMMA ( OMEGA | OMEGA_TONOS ) NU
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1676,8 +1676,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:571:7: ( ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON )
-            // src/glossa/grammars/Glossa.g:571:9: ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:571:7: ( ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:571:9: ( OMICRON | OMICRON_TONOS ) SIGMA OMICRON
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u039F'||input.LA(1)=='\u03BF'||input.LA(1)=='\u03CC' ) {
                 input.consume();
@@ -1706,8 +1706,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = LOOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:573:6: ( EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON )
-            // src/glossa/grammars/Glossa.g:573:8: EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:573:6: ( EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:573:8: EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ALPHA BETA EPSILON
             {
             mEPSILON(); 
             mPI(); 
@@ -1742,8 +1742,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = END_LOOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:575:9: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:575:11: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:575:9: ( TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:575:11: TAU ( EPSILON | EPSILON_TONOS ) LAMDA OMICRON SIGMA_TELIKO '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
             {
             mTAU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1793,8 +1793,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REPEAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:579:8: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:579:10: ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:579:8: ( ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:579:10: ALPHA RHO CHI ( ETA | ETA_TONOS ) '_' EPSILON PI ALPHA NU ( ALPHA | ALPHA_TONOS ) LAMDA ETA PSI ETA SIGMA_TELIKO
             {
             mALPHA(); 
             mRHO(); 
@@ -1843,8 +1843,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = UNTIL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:581:7: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON )
-            // src/glossa/grammars/Glossa.g:581:9: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:581:7: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:581:9: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA SIGMA_TELIKO '_' ( OMICRON | OMICRON_TONOS ) TAU OMICRON UPSILON
             {
             mMU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1889,8 +1889,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:584:5: ( GAMMA IOTA ALPHA )
-            // src/glossa/grammars/Glossa.g:584:7: GAMMA IOTA ALPHA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:584:5: ( GAMMA IOTA ALPHA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:584:7: GAMMA IOTA ALPHA
             {
             mGAMMA(); 
             mIOTA(); 
@@ -1911,8 +1911,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = FROM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:586:6: ( ALPHA PI ( OMICRON | OMICRON_TONOS ) )
-            // src/glossa/grammars/Glossa.g:586:8: ALPHA PI ( OMICRON | OMICRON_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:586:6: ( ALPHA PI ( OMICRON | OMICRON_TONOS ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:586:8: ALPHA PI ( OMICRON | OMICRON_TONOS )
             {
             mALPHA(); 
             mPI(); 
@@ -1941,8 +1941,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = TO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:588:4: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA )
-            // src/glossa/grammars/Glossa.g:588:6: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:588:4: ( MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:588:6: MU ( EPSILON | EPSILON_TONOS ) CHI RHO IOTA
             {
             mMU(); 
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u0395'||input.LA(1)=='\u03AD'||input.LA(1)=='\u03B5' ) {
@@ -1973,12 +1973,12 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STEP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:590:6: ( MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA )
-            // src/glossa/grammars/Glossa.g:590:8: MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:6: ( MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:8: MU EPSILON ( '_' | ( ' ' | '\\t' )+ ) BETA ( ETA | ETA_TONOS ) MU ALPHA
             {
             mMU(); 
             mEPSILON(); 
-            // src/glossa/grammars/Glossa.g:590:19: ( '_' | ( ' ' | '\\t' )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:19: ( '_' | ( ' ' | '\\t' )+ )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1996,16 +1996,16 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:590:21: '_'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:21: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:590:27: ( ' ' | '\\t' )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:27: ( ' ' | '\\t' )+
                     {
-                    // src/glossa/grammars/Glossa.g:590:27: ( ' ' | '\\t' )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:590:27: ( ' ' | '\\t' )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -2019,7 +2019,7 @@ public class GlossaLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
                     	    {
                     	    if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                     	        input.consume();
@@ -2077,8 +2077,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:594:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA )
-            // src/glossa/grammars/Glossa.g:594:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:594:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:594:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA ALPHA
             {
             mALPHA(); 
             mKAPPA(); 
@@ -2111,8 +2111,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = INTEGERS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:596:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:596:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:596:9: ( ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:596:11: ALPHA KAPPA ( EPSILON | EPSILON_TONOS ) RHO ALPHA IOTA EPSILON SIGMA_TELIKO
             {
             mALPHA(); 
             mKAPPA(); 
@@ -2146,8 +2146,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:598:6: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:598:8: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:598:6: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:598:8: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( ETA | ETA_TONOS )
             {
             mPI(); 
             mRHO(); 
@@ -2183,8 +2183,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = REALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:600:7: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:600:9: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:600:7: ( PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:600:9: PI RHO ALPHA GAMMA MU ALPHA TAU IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mPI(); 
             mRHO(); 
@@ -2221,8 +2221,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:602:8: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:602:10: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:602:8: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:602:10: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO ALPHA SIGMA_TELIKO
             {
             mCHI(); 
             mALPHA(); 
@@ -2258,8 +2258,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = STRINGS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:604:9: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:604:11: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:604:9: ( CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:604:11: CHI ALPHA RHO ALPHA KAPPA TAU ( ETA | ETA_TONOS ) RHO EPSILON SIGMA_TELIKO
             {
             mCHI(); 
             mALPHA(); 
@@ -2295,8 +2295,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:606:9: ( LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS ) )
-            // src/glossa/grammars/Glossa.g:606:11: LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:606:9: ( LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:606:11: LAMDA OMICRON GAMMA IOTA KAPPA ( ETA | ETA_TONOS )
             {
             mLAMDA(); 
             mOMICRON(); 
@@ -2328,8 +2328,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = BOOLEANS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:608:10: ( LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:608:12: LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:608:10: ( LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:608:12: LAMDA OMICRON GAMMA IOTA KAPPA ( EPSILON | EPSILON_TONOS ) SIGMA_TELIKO
             {
             mLAMDA(); 
             mOMICRON(); 
@@ -2362,8 +2362,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:616:2: ( ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:616:4: ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:616:2: ( ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:616:4: ALPHA LAMDA ETA THETA ( ETA | ETA_TONOS ) SIGMA_TELIKO
             {
             mALPHA(); 
             mLAMDA(); 
@@ -2395,8 +2395,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:619:2: ( PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
-            // src/glossa/grammars/Glossa.g:619:4: PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:619:2: ( PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:619:4: PSI EPSILON UPSILON DELTA ( ETA | ETA_TONOS ) SIGMA_TELIKO
             {
             mPSI(); 
             mEPSILON(); 
@@ -2428,7 +2428,7 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_STR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:2: ( '\\'' ( . )* '\\'' | '\"' ( . )* '\"' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2446,10 +2446,10 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:622:4: '\\'' ( . )* '\\''
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:4: '\\'' ( . )* '\\''
                     {
                     match('\''); 
-                    // src/glossa/grammars/Glossa.g:622:9: ( . )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:9: ( . )*
                     loop7:
                     do {
                         int alt7=2;
@@ -2465,7 +2465,7 @@ public class GlossaLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:9: .
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:9: .
                     	    {
                     	    matchAny(); 
 
@@ -2482,10 +2482,10 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:622:19: '\"' ( . )* '\"'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:19: '\"' ( . )* '\"'
                     {
                     match('\"'); 
-                    // src/glossa/grammars/Glossa.g:622:23: ( . )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:23: ( . )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2501,7 +2501,7 @@ public class GlossaLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:622:23: .
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:622:23: .
                     	    {
                     	    matchAny(); 
 
@@ -2532,10 +2532,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:625:2: ( ( DIGIT )+ )
-            // src/glossa/grammars/Glossa.g:625:4: ( DIGIT )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:625:2: ( ( DIGIT )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:625:4: ( DIGIT )+
             {
-            // src/glossa/grammars/Glossa.g:625:4: ( DIGIT )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:625:4: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
@@ -2549,7 +2549,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:625:4: DIGIT
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:625:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2581,10 +2581,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONST_REAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:628:2: ( ( DIGIT )+ '.' ( DIGIT )+ )
-            // src/glossa/grammars/Glossa.g:628:4: ( DIGIT )+ '.' ( DIGIT )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:2: ( ( DIGIT )+ '.' ( DIGIT )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:4: ( DIGIT )+ '.' ( DIGIT )+
             {
-            // src/glossa/grammars/Glossa.g:628:4: ( DIGIT )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:4: ( DIGIT )+
             int cnt11=0;
             loop11:
             do {
@@ -2598,7 +2598,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:628:4: DIGIT
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2615,7 +2615,7 @@ public class GlossaLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // src/glossa/grammars/Glossa.g:628:15: ( DIGIT )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:15: ( DIGIT )+
             int cnt12=0;
             loop12:
             do {
@@ -2629,7 +2629,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:628:15: DIGIT
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:628:15: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2661,11 +2661,11 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:630:4: ( LETTER ( LETTER | DIGIT | '_' )* )
-            // src/glossa/grammars/Glossa.g:630:6: LETTER ( LETTER | DIGIT | '_' )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:630:4: ( LETTER ( LETTER | DIGIT | '_' )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:630:6: LETTER ( LETTER | DIGIT | '_' )*
             {
             mLETTER(); 
-            // src/glossa/grammars/Glossa.g:630:13: ( LETTER | DIGIT | '_' )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:630:13: ( LETTER | DIGIT | '_' )*
             loop13:
             do {
                 int alt13=2;
@@ -2678,7 +2678,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||input.LA(1)=='\u0386'||(input.LA(1)>='\u0388' && input.LA(1)<='\u038A')||input.LA(1)=='\u038C'||(input.LA(1)>='\u038E' && input.LA(1)<='\u03A1')||(input.LA(1)>='\u03A3' && input.LA(1)<='\u03CE') ) {
             	        input.consume();
@@ -2714,11 +2714,11 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:632:9: ( '!' ( NOT_EOL )* )
-            // src/glossa/grammars/Glossa.g:632:11: '!' ( NOT_EOL )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:632:9: ( '!' ( NOT_EOL )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:632:11: '!' ( NOT_EOL )*
             {
             match('!'); 
-            // src/glossa/grammars/Glossa.g:632:15: ( NOT_EOL )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:632:15: ( NOT_EOL )*
             loop14:
             do {
                 int alt14=2;
@@ -2731,7 +2731,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:632:15: NOT_EOL
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:632:15: NOT_EOL
             	    {
             	    mNOT_EOL(); 
 
@@ -2760,8 +2760,8 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = CONT_COMMAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:635:2: ( NEWLINE '&' )
-            // src/glossa/grammars/Glossa.g:635:4: NEWLINE '&'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:635:2: ( NEWLINE '&' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:635:4: NEWLINE '&'
             {
             mNEWLINE(); 
             match('&'); 
@@ -2782,10 +2782,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:637:9: ( ( '\\r' )? '\\n' )
-            // src/glossa/grammars/Glossa.g:637:11: ( '\\r' )? '\\n'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:637:9: ( ( '\\r' )? '\\n' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:637:11: ( '\\r' )? '\\n'
             {
-            // src/glossa/grammars/Glossa.g:637:11: ( '\\r' )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:637:11: ( '\\r' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2794,7 +2794,7 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:637:11: '\\r'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:637:11: '\\r'
                     {
                     match('\r'); 
 
@@ -2820,10 +2820,10 @@ public class GlossaLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // src/glossa/grammars/Glossa.g:639:4: ( ( ' ' | '\\t' )+ )
-            // src/glossa/grammars/Glossa.g:639:6: ( ' ' | '\\t' )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:639:4: ( ( ' ' | '\\t' )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:639:6: ( ' ' | '\\t' )+
             {
-            // src/glossa/grammars/Glossa.g:639:6: ( ' ' | '\\t' )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:639:6: ( ' ' | '\\t' )+
             int cnt16=0;
             loop16:
             do {
@@ -2837,7 +2837,7 @@ public class GlossaLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             	    {
             	    if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -2876,8 +2876,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:651:2: ( '0' .. '9' )
-            // src/glossa/grammars/Glossa.g:651:4: '0' .. '9'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:651:2: ( '0' .. '9' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:651:4: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -2892,8 +2892,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:654:2: ( LATIN_LETTER | GREEK_LETTER )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:654:2: ( LATIN_LETTER | GREEK_LETTER )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z')||input.LA(1)=='\u0386'||(input.LA(1)>='\u0388' && input.LA(1)<='\u038A')||input.LA(1)=='\u038C'||(input.LA(1)>='\u038E' && input.LA(1)<='\u03A1')||(input.LA(1)>='\u03A3' && input.LA(1)<='\u03CE') ) {
                 input.consume();
@@ -2916,8 +2916,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LATIN_LETTER"
     public final void mLATIN_LETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:658:2: ( 'a' .. 'z' | 'A' .. 'Z' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:658:2: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2940,8 +2940,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "GREEK_LETTER"
     public final void mGREEK_LETTER() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:662:2: ( ALPHA | BETA | GAMMA | DELTA | EPSILON | ZETA | ETA | THETA | IOTA | KAPPA | LAMDA | MU | NU | XI | OMICRON | PI | RHO | SIGMA | TAU | UPSILON | PHI | CHI | PSI | OMEGA | SIGMA_TELIKO | ALPHA_TONOS | EPSILON_TONOS | ETA_TONOS | IOTA_TONOS | UPSILON_TONOS | OMICRON_TONOS | OMEGA_TONOS | IOTA_DIALYTIKA | UPSILON_DIALYTIKA | IOTA_DIALYTIKA_TONOS | UPSILON_DIALYTIKA_TONOS )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:662:2: ( ALPHA | BETA | GAMMA | DELTA | EPSILON | ZETA | ETA | THETA | IOTA | KAPPA | LAMDA | MU | NU | XI | OMICRON | PI | RHO | SIGMA | TAU | UPSILON | PHI | CHI | PSI | OMEGA | SIGMA_TELIKO | ALPHA_TONOS | EPSILON_TONOS | ETA_TONOS | IOTA_TONOS | UPSILON_TONOS | OMICRON_TONOS | OMEGA_TONOS | IOTA_DIALYTIKA | UPSILON_DIALYTIKA | IOTA_DIALYTIKA_TONOS | UPSILON_DIALYTIKA_TONOS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0386'||(input.LA(1)>='\u0388' && input.LA(1)<='\u038A')||input.LA(1)=='\u038C'||(input.LA(1)>='\u038E' && input.LA(1)<='\u03A1')||(input.LA(1)>='\u03A3' && input.LA(1)<='\u03CE') ) {
                 input.consume();
@@ -2964,8 +2964,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:670:2: ( '\\u03B1' | '\\u0391' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:670:2: ( '\\u03B1' | '\\u0391' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0391'||input.LA(1)=='\u03B1' ) {
                 input.consume();
@@ -2988,8 +2988,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "BETA"
     public final void mBETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:672:2: ( '\\u03B2' | '\\u0392' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:672:2: ( '\\u03B2' | '\\u0392' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0392'||input.LA(1)=='\u03B2' ) {
                 input.consume();
@@ -3012,8 +3012,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "GAMMA"
     public final void mGAMMA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:674:2: ( '\\u03B3' | '\\u0393' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:674:2: ( '\\u03B3' | '\\u0393' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0393'||input.LA(1)=='\u03B3' ) {
                 input.consume();
@@ -3036,8 +3036,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "DELTA"
     public final void mDELTA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:676:2: ( '\\u03B4' | '\\u0394' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:676:2: ( '\\u03B4' | '\\u0394' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0394'||input.LA(1)=='\u03B4' ) {
                 input.consume();
@@ -3060,8 +3060,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "EPSILON"
     public final void mEPSILON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:678:2: ( '\\u03B5' | '\\u0395' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:678:2: ( '\\u03B5' | '\\u0395' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0395'||input.LA(1)=='\u03B5' ) {
                 input.consume();
@@ -3084,8 +3084,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ZETA"
     public final void mZETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:680:2: ( '\\u03B6' | '\\u0396' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:680:2: ( '\\u03B6' | '\\u0396' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0396'||input.LA(1)=='\u03B6' ) {
                 input.consume();
@@ -3108,8 +3108,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ETA"
     public final void mETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:682:2: ( '\\u03B7' | '\\u0397' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:682:2: ( '\\u03B7' | '\\u0397' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0397'||input.LA(1)=='\u03B7' ) {
                 input.consume();
@@ -3132,8 +3132,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "THETA"
     public final void mTHETA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:684:2: ( '\\u03B8' | '\\u0398' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:684:2: ( '\\u03B8' | '\\u0398' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0398'||input.LA(1)=='\u03B8' ) {
                 input.consume();
@@ -3156,8 +3156,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA"
     public final void mIOTA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:686:2: ( '\\u03B9' | '\\u0399' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:686:2: ( '\\u03B9' | '\\u0399' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0399'||input.LA(1)=='\u03B9' ) {
                 input.consume();
@@ -3180,8 +3180,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "KAPPA"
     public final void mKAPPA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:688:2: ( '\\u03BA' | '\\u039A' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:688:2: ( '\\u03BA' | '\\u039A' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039A'||input.LA(1)=='\u03BA' ) {
                 input.consume();
@@ -3204,8 +3204,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "LAMDA"
     public final void mLAMDA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:690:2: ( '\\u03BB' | '\\u039B' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:690:2: ( '\\u03BB' | '\\u039B' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039B'||input.LA(1)=='\u03BB' ) {
                 input.consume();
@@ -3228,8 +3228,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "MU"
     public final void mMU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:692:2: ( '\\u03BC' | '\\u039C' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:692:2: ( '\\u03BC' | '\\u039C' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039C'||input.LA(1)=='\u03BC' ) {
                 input.consume();
@@ -3252,8 +3252,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NU"
     public final void mNU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:694:2: ( '\\u03BD' | '\\u039D' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:694:2: ( '\\u03BD' | '\\u039D' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039D'||input.LA(1)=='\u03BD' ) {
                 input.consume();
@@ -3276,8 +3276,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "XI"
     public final void mXI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:696:2: ( '\\u03BE' | '\\u039E' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:696:2: ( '\\u03BE' | '\\u039E' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039E'||input.LA(1)=='\u03BE' ) {
                 input.consume();
@@ -3300,8 +3300,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMICRON"
     public final void mOMICRON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:698:2: ( '\\u03BF' | '\\u039F' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:698:2: ( '\\u03BF' | '\\u039F' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u039F'||input.LA(1)=='\u03BF' ) {
                 input.consume();
@@ -3324,8 +3324,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PI"
     public final void mPI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:700:2: ( '\\u03C0' | '\\u03A0' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:700:2: ( '\\u03C0' | '\\u03A0' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A0'||input.LA(1)=='\u03C0' ) {
                 input.consume();
@@ -3348,8 +3348,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "RHO"
     public final void mRHO() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:702:2: ( '\\u03C1' | '\\u03A1' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:702:2: ( '\\u03C1' | '\\u03A1' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A1'||input.LA(1)=='\u03C1' ) {
                 input.consume();
@@ -3372,8 +3372,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "SIGMA"
     public final void mSIGMA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:704:2: ( '\\u03C3' | '\\u03A3' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:704:2: ( '\\u03C3' | '\\u03A3' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A3'||input.LA(1)=='\u03C3' ) {
                 input.consume();
@@ -3396,8 +3396,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "TAU"
     public final void mTAU() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:706:2: ( '\\u03C4' | '\\u03A4' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:706:2: ( '\\u03C4' | '\\u03A4' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A4'||input.LA(1)=='\u03C4' ) {
                 input.consume();
@@ -3420,8 +3420,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON"
     public final void mUPSILON() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:708:2: ( '\\u03C5' | '\\u03A5' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:708:2: ( '\\u03C5' | '\\u03A5' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A5'||input.LA(1)=='\u03C5' ) {
                 input.consume();
@@ -3444,8 +3444,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PHI"
     public final void mPHI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:710:2: ( '\\u03C6' | '\\u03A6' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:710:2: ( '\\u03C6' | '\\u03A6' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A6'||input.LA(1)=='\u03C6' ) {
                 input.consume();
@@ -3468,8 +3468,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "CHI"
     public final void mCHI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:712:2: ( '\\u03C7' | '\\u03A7' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:712:2: ( '\\u03C7' | '\\u03A7' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A7'||input.LA(1)=='\u03C7' ) {
                 input.consume();
@@ -3492,8 +3492,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "PSI"
     public final void mPSI() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:714:2: ( '\\u03C8' | '\\u03A8' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:714:2: ( '\\u03C8' | '\\u03A8' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A8'||input.LA(1)=='\u03C8' ) {
                 input.consume();
@@ -3516,8 +3516,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMEGA"
     public final void mOMEGA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:716:2: ( '\\u03C9' | '\\u03A9' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:716:2: ( '\\u03C9' | '\\u03A9' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A9'||input.LA(1)=='\u03C9' ) {
                 input.consume();
@@ -3540,8 +3540,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "SIGMA_TELIKO"
     public final void mSIGMA_TELIKO() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:718:2: ( '\\u03C2' | '\\u03A3' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:718:2: ( '\\u03C2' | '\\u03A3' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03A3'||input.LA(1)=='\u03C2' ) {
                 input.consume();
@@ -3564,8 +3564,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ALPHA_TONOS"
     public final void mALPHA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:720:2: ( '\\u03AC' | '\\u0386' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:720:2: ( '\\u03AC' | '\\u0386' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0386'||input.LA(1)=='\u03AC' ) {
                 input.consume();
@@ -3588,8 +3588,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "EPSILON_TONOS"
     public final void mEPSILON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:722:2: ( '\\u03AD' | '\\u0388' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:722:2: ( '\\u03AD' | '\\u0388' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0388'||input.LA(1)=='\u03AD' ) {
                 input.consume();
@@ -3612,8 +3612,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "ETA_TONOS"
     public final void mETA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:724:2: ( '\\u03AE' | '\\u0389' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:724:2: ( '\\u03AE' | '\\u0389' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u0389'||input.LA(1)=='\u03AE' ) {
                 input.consume();
@@ -3636,8 +3636,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_TONOS"
     public final void mIOTA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:726:2: ( '\\u03AF' | '\\u038A' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:726:2: ( '\\u03AF' | '\\u038A' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038A'||input.LA(1)=='\u03AF' ) {
                 input.consume();
@@ -3660,8 +3660,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_TONOS"
     public final void mUPSILON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:728:2: ( '\\u03CD' | '\\u038E' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:728:2: ( '\\u03CD' | '\\u038E' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038E'||input.LA(1)=='\u03CD' ) {
                 input.consume();
@@ -3684,8 +3684,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMICRON_TONOS"
     public final void mOMICRON_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:730:2: ( '\\u03CC' | '\\u038C' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:730:2: ( '\\u03CC' | '\\u038C' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038C'||input.LA(1)=='\u03CC' ) {
                 input.consume();
@@ -3708,8 +3708,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "OMEGA_TONOS"
     public final void mOMEGA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:732:2: ( '\\u03CE' | '\\u038F' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:732:2: ( '\\u03CE' | '\\u038F' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u038F'||input.LA(1)=='\u03CE' ) {
                 input.consume();
@@ -3732,8 +3732,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_DIALYTIKA"
     public final void mIOTA_DIALYTIKA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:734:2: ( '\\u03CA' | '\\u03AA' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:734:2: ( '\\u03CA' | '\\u03AA' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03AA'||input.LA(1)=='\u03CA' ) {
                 input.consume();
@@ -3756,8 +3756,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_DIALYTIKA"
     public final void mUPSILON_DIALYTIKA() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:736:2: ( '\\u03CB' | '\\u03AB' )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:736:2: ( '\\u03CB' | '\\u03AB' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             if ( input.LA(1)=='\u03AB'||input.LA(1)=='\u03CB' ) {
                 input.consume();
@@ -3780,8 +3780,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "IOTA_DIALYTIKA_TONOS"
     public final void mIOTA_DIALYTIKA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:738:2: ( '\\u0390' )
-            // src/glossa/grammars/Glossa.g:738:4: '\\u0390'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:738:2: ( '\\u0390' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:738:4: '\\u0390'
             {
             match('\u0390'); 
 
@@ -3796,8 +3796,8 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "UPSILON_DIALYTIKA_TONOS"
     public final void mUPSILON_DIALYTIKA_TONOS() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:740:2: ( '\\u03B0' )
-            // src/glossa/grammars/Glossa.g:740:4: '\\u03B0'
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:740:2: ( '\\u03B0' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:740:4: '\\u03B0'
             {
             match('\u03B0'); 
 
@@ -3812,7 +3812,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NOT_EOL"
     public final void mNOT_EOL() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:744:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\uFFFF' ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\uFFFF' ) )
             int alt17=4;
             int LA17_0 = input.LA(1);
 
@@ -3836,10 +3836,10 @@ public class GlossaLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:744:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:4: ( '\\u0000' .. '\\u0009' )
                     {
-                    // src/glossa/grammars/Glossa.g:744:4: ( '\\u0000' .. '\\u0009' )
-                    // src/glossa/grammars/Glossa.g:744:5: '\\u0000' .. '\\u0009'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:5: '\\u0000' .. '\\u0009'
                     {
                     matchRange('\u0000','\t'); 
 
@@ -3849,24 +3849,24 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:744:27: '\\u000B'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:27: '\\u000B'
                     {
                     match('\u000B'); 
 
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:744:38: '\\u000C'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:38: '\\u000C'
                     {
                     match('\f'); 
 
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:744:48: ( '\\u000E' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:48: ( '\\u000E' .. '\\uFFFF' )
                     {
-                    // src/glossa/grammars/Glossa.g:744:48: ( '\\u000E' .. '\\uFFFF' )
-                    // src/glossa/grammars/Glossa.g:744:49: '\\u000E' .. '\\uFFFF'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:48: ( '\\u000E' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:744:49: '\\u000E' .. '\\uFFFF'
                     {
                     matchRange('\u000E','\uFFFF'); 
 
@@ -3886,7 +3886,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NOT_DOUBLE_QUOTE_STR_CHAR"
     public final void mNOT_DOUBLE_QUOTE_STR_CHAR() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:747:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' ) )
             int alt18=4;
             switch ( input.LA(1) ) {
             case '\u0000':
@@ -3946,10 +3946,10 @@ public class GlossaLexer extends Lexer {
 
             switch (alt18) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
                     {
-                    // src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
-                    // src/glossa/grammars/Glossa.g:747:5: '\\u0000' .. '\\u0009'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:5: '\\u0000' .. '\\u0009'
                     {
                     matchRange('\u0000','\t'); 
 
@@ -3959,31 +3959,31 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:747:27: '\\u000B'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:27: '\\u000B'
                     {
                     match('\u000B'); 
 
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:747:38: '\\u000C'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:38: '\\u000C'
                     {
                     match('\f'); 
 
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' ) ( '\\u0023' .. '\\uFFFF' )
                     {
-                    // src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' )
-                    // src/glossa/grammars/Glossa.g:747:49: '\\u000E' .. '\\u0021'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:48: ( '\\u000E' .. '\\u0021' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:49: '\\u000E' .. '\\u0021'
                     {
                     matchRange('\u000E','!'); 
 
                     }
 
-                    // src/glossa/grammars/Glossa.g:747:68: ( '\\u0023' .. '\\uFFFF' )
-                    // src/glossa/grammars/Glossa.g:747:69: '\\u0023' .. '\\uFFFF'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:68: ( '\\u0023' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:747:69: '\\u0023' .. '\\uFFFF'
                     {
                     matchRange('#','\uFFFF'); 
 
@@ -4003,7 +4003,7 @@ public class GlossaLexer extends Lexer {
     // $ANTLR start "NOT_SINGLE_QUOTE_STR_CHAR"
     public final void mNOT_SINGLE_QUOTE_STR_CHAR() throws RecognitionException {
         try {
-            // src/glossa/grammars/Glossa.g:750:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:2: ( ( '\\u0000' .. '\\u0009' ) | '\\u000B' | '\\u000C' | ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' ) )
             int alt19=4;
             switch ( input.LA(1) ) {
             case '\u0000':
@@ -4068,10 +4068,10 @@ public class GlossaLexer extends Lexer {
 
             switch (alt19) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
                     {
-                    // src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
-                    // src/glossa/grammars/Glossa.g:750:5: '\\u0000' .. '\\u0009'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:4: ( '\\u0000' .. '\\u0009' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:5: '\\u0000' .. '\\u0009'
                     {
                     matchRange('\u0000','\t'); 
 
@@ -4081,31 +4081,31 @@ public class GlossaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:750:27: '\\u000B'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:27: '\\u000B'
                     {
                     match('\u000B'); 
 
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:750:38: '\\u000C'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:38: '\\u000C'
                     {
                     match('\f'); 
 
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' ) ( '\\u0028' .. '\\uFFFF' )
                     {
-                    // src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' )
-                    // src/glossa/grammars/Glossa.g:750:49: '\\u000E' .. '\\u0026'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:48: ( '\\u000E' .. '\\u0026' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:49: '\\u000E' .. '\\u0026'
                     {
                     matchRange('\u000E','&'); 
 
                     }
 
-                    // src/glossa/grammars/Glossa.g:750:68: ( '\\u0028' .. '\\uFFFF' )
-                    // src/glossa/grammars/Glossa.g:750:69: '\\u0028' .. '\\uFFFF'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:68: ( '\\u0028' .. '\\uFFFF' )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:750:69: '\\u0028' .. '\\uFFFF'
                     {
                     matchRange('(','\uFFFF'); 
 
@@ -4123,502 +4123,502 @@ public class GlossaLexer extends Lexer {
     // $ANTLR end "NOT_SINGLE_QUOTE_STR_CHAR"
 
     public void mTokens() throws RecognitionException {
-        // src/glossa/grammars/Glossa.g:1:8: ( ASSIGN | COMMA | COLON | LPAR | RPAR | LBRACKET | RBRACKET | PLUS | MINUS | TIMES | DIA | POW | DIV | MOD | LE | LT | GE | GT | EQ | NEQ | AND | OR | NOT | RANGE | PROGRAM | END_PROGRAM | VARIABLES | CONSTANTS | READ | PRINT | BEGIN | PROCEDURE | END_PROCEDURE | FUNCTION | END_FUNCTION | CALL | IF | THEN | ELSE | ELSE_IF | END_IF | SWITCH | CASE | END_SWITCH | WHILE | LOOP | END_LOOP | REPEAT | UNTIL | FOR | FROM | TO | STEP | INTEGER | INTEGERS | REAL | REALS | STRING | STRINGS | BOOLEAN | BOOLEANS | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | COMMENT | CONT_COMMAND | NEWLINE | WS )
+        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:8: ( ASSIGN | COMMA | COLON | LPAR | RPAR | LBRACKET | RBRACKET | PLUS | MINUS | TIMES | DIA | POW | DIV | MOD | LE | LT | GE | GT | EQ | NEQ | AND | OR | NOT | RANGE | PROGRAM | END_PROGRAM | VARIABLES | CONSTANTS | READ | PRINT | BEGIN | PROCEDURE | END_PROCEDURE | FUNCTION | END_FUNCTION | CALL | IF | THEN | ELSE | ELSE_IF | END_IF | SWITCH | CASE | END_SWITCH | WHILE | LOOP | END_LOOP | REPEAT | UNTIL | FOR | FROM | TO | STEP | INTEGER | INTEGERS | REAL | REALS | STRING | STRINGS | BOOLEAN | BOOLEANS | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | COMMENT | CONT_COMMAND | NEWLINE | WS )
         int alt20=71;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
-                // src/glossa/grammars/Glossa.g:1:10: ASSIGN
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:10: ASSIGN
                 {
                 mASSIGN(); 
 
                 }
                 break;
             case 2 :
-                // src/glossa/grammars/Glossa.g:1:17: COMMA
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:17: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
             case 3 :
-                // src/glossa/grammars/Glossa.g:1:23: COLON
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:23: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
             case 4 :
-                // src/glossa/grammars/Glossa.g:1:29: LPAR
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:29: LPAR
                 {
                 mLPAR(); 
 
                 }
                 break;
             case 5 :
-                // src/glossa/grammars/Glossa.g:1:34: RPAR
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:34: RPAR
                 {
                 mRPAR(); 
 
                 }
                 break;
             case 6 :
-                // src/glossa/grammars/Glossa.g:1:39: LBRACKET
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:39: LBRACKET
                 {
                 mLBRACKET(); 
 
                 }
                 break;
             case 7 :
-                // src/glossa/grammars/Glossa.g:1:48: RBRACKET
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:48: RBRACKET
                 {
                 mRBRACKET(); 
 
                 }
                 break;
             case 8 :
-                // src/glossa/grammars/Glossa.g:1:57: PLUS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:57: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
             case 9 :
-                // src/glossa/grammars/Glossa.g:1:62: MINUS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:62: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
             case 10 :
-                // src/glossa/grammars/Glossa.g:1:68: TIMES
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:68: TIMES
                 {
                 mTIMES(); 
 
                 }
                 break;
             case 11 :
-                // src/glossa/grammars/Glossa.g:1:74: DIA
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:74: DIA
                 {
                 mDIA(); 
 
                 }
                 break;
             case 12 :
-                // src/glossa/grammars/Glossa.g:1:78: POW
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:78: POW
                 {
                 mPOW(); 
 
                 }
                 break;
             case 13 :
-                // src/glossa/grammars/Glossa.g:1:82: DIV
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:82: DIV
                 {
                 mDIV(); 
 
                 }
                 break;
             case 14 :
-                // src/glossa/grammars/Glossa.g:1:86: MOD
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:86: MOD
                 {
                 mMOD(); 
 
                 }
                 break;
             case 15 :
-                // src/glossa/grammars/Glossa.g:1:90: LE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:90: LE
                 {
                 mLE(); 
 
                 }
                 break;
             case 16 :
-                // src/glossa/grammars/Glossa.g:1:93: LT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:93: LT
                 {
                 mLT(); 
 
                 }
                 break;
             case 17 :
-                // src/glossa/grammars/Glossa.g:1:96: GE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:96: GE
                 {
                 mGE(); 
 
                 }
                 break;
             case 18 :
-                // src/glossa/grammars/Glossa.g:1:99: GT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:99: GT
                 {
                 mGT(); 
 
                 }
                 break;
             case 19 :
-                // src/glossa/grammars/Glossa.g:1:102: EQ
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:102: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
             case 20 :
-                // src/glossa/grammars/Glossa.g:1:105: NEQ
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:105: NEQ
                 {
                 mNEQ(); 
 
                 }
                 break;
             case 21 :
-                // src/glossa/grammars/Glossa.g:1:109: AND
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:109: AND
                 {
                 mAND(); 
 
                 }
                 break;
             case 22 :
-                // src/glossa/grammars/Glossa.g:1:113: OR
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:113: OR
                 {
                 mOR(); 
 
                 }
                 break;
             case 23 :
-                // src/glossa/grammars/Glossa.g:1:116: NOT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:116: NOT
                 {
                 mNOT(); 
 
                 }
                 break;
             case 24 :
-                // src/glossa/grammars/Glossa.g:1:120: RANGE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:120: RANGE
                 {
                 mRANGE(); 
 
                 }
                 break;
             case 25 :
-                // src/glossa/grammars/Glossa.g:1:126: PROGRAM
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:126: PROGRAM
                 {
                 mPROGRAM(); 
 
                 }
                 break;
             case 26 :
-                // src/glossa/grammars/Glossa.g:1:134: END_PROGRAM
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:134: END_PROGRAM
                 {
                 mEND_PROGRAM(); 
 
                 }
                 break;
             case 27 :
-                // src/glossa/grammars/Glossa.g:1:146: VARIABLES
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:146: VARIABLES
                 {
                 mVARIABLES(); 
 
                 }
                 break;
             case 28 :
-                // src/glossa/grammars/Glossa.g:1:156: CONSTANTS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:156: CONSTANTS
                 {
                 mCONSTANTS(); 
 
                 }
                 break;
             case 29 :
-                // src/glossa/grammars/Glossa.g:1:166: READ
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:166: READ
                 {
                 mREAD(); 
 
                 }
                 break;
             case 30 :
-                // src/glossa/grammars/Glossa.g:1:171: PRINT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:171: PRINT
                 {
                 mPRINT(); 
 
                 }
                 break;
             case 31 :
-                // src/glossa/grammars/Glossa.g:1:177: BEGIN
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:177: BEGIN
                 {
                 mBEGIN(); 
 
                 }
                 break;
             case 32 :
-                // src/glossa/grammars/Glossa.g:1:183: PROCEDURE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:183: PROCEDURE
                 {
                 mPROCEDURE(); 
 
                 }
                 break;
             case 33 :
-                // src/glossa/grammars/Glossa.g:1:193: END_PROCEDURE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:193: END_PROCEDURE
                 {
                 mEND_PROCEDURE(); 
 
                 }
                 break;
             case 34 :
-                // src/glossa/grammars/Glossa.g:1:207: FUNCTION
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:207: FUNCTION
                 {
                 mFUNCTION(); 
 
                 }
                 break;
             case 35 :
-                // src/glossa/grammars/Glossa.g:1:216: END_FUNCTION
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:216: END_FUNCTION
                 {
                 mEND_FUNCTION(); 
 
                 }
                 break;
             case 36 :
-                // src/glossa/grammars/Glossa.g:1:229: CALL
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:229: CALL
                 {
                 mCALL(); 
 
                 }
                 break;
             case 37 :
-                // src/glossa/grammars/Glossa.g:1:234: IF
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:234: IF
                 {
                 mIF(); 
 
                 }
                 break;
             case 38 :
-                // src/glossa/grammars/Glossa.g:1:237: THEN
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:237: THEN
                 {
                 mTHEN(); 
 
                 }
                 break;
             case 39 :
-                // src/glossa/grammars/Glossa.g:1:242: ELSE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:242: ELSE
                 {
                 mELSE(); 
 
                 }
                 break;
             case 40 :
-                // src/glossa/grammars/Glossa.g:1:247: ELSE_IF
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:247: ELSE_IF
                 {
                 mELSE_IF(); 
 
                 }
                 break;
             case 41 :
-                // src/glossa/grammars/Glossa.g:1:255: END_IF
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:255: END_IF
                 {
                 mEND_IF(); 
 
                 }
                 break;
             case 42 :
-                // src/glossa/grammars/Glossa.g:1:262: SWITCH
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:262: SWITCH
                 {
                 mSWITCH(); 
 
                 }
                 break;
             case 43 :
-                // src/glossa/grammars/Glossa.g:1:269: CASE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:269: CASE
                 {
                 mCASE(); 
 
                 }
                 break;
             case 44 :
-                // src/glossa/grammars/Glossa.g:1:274: END_SWITCH
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:274: END_SWITCH
                 {
                 mEND_SWITCH(); 
 
                 }
                 break;
             case 45 :
-                // src/glossa/grammars/Glossa.g:1:285: WHILE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:285: WHILE
                 {
                 mWHILE(); 
 
                 }
                 break;
             case 46 :
-                // src/glossa/grammars/Glossa.g:1:291: LOOP
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:291: LOOP
                 {
                 mLOOP(); 
 
                 }
                 break;
             case 47 :
-                // src/glossa/grammars/Glossa.g:1:296: END_LOOP
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:296: END_LOOP
                 {
                 mEND_LOOP(); 
 
                 }
                 break;
             case 48 :
-                // src/glossa/grammars/Glossa.g:1:305: REPEAT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:305: REPEAT
                 {
                 mREPEAT(); 
 
                 }
                 break;
             case 49 :
-                // src/glossa/grammars/Glossa.g:1:312: UNTIL
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:312: UNTIL
                 {
                 mUNTIL(); 
 
                 }
                 break;
             case 50 :
-                // src/glossa/grammars/Glossa.g:1:318: FOR
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:318: FOR
                 {
                 mFOR(); 
 
                 }
                 break;
             case 51 :
-                // src/glossa/grammars/Glossa.g:1:322: FROM
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:322: FROM
                 {
                 mFROM(); 
 
                 }
                 break;
             case 52 :
-                // src/glossa/grammars/Glossa.g:1:327: TO
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:327: TO
                 {
                 mTO(); 
 
                 }
                 break;
             case 53 :
-                // src/glossa/grammars/Glossa.g:1:330: STEP
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:330: STEP
                 {
                 mSTEP(); 
 
                 }
                 break;
             case 54 :
-                // src/glossa/grammars/Glossa.g:1:335: INTEGER
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:335: INTEGER
                 {
                 mINTEGER(); 
 
                 }
                 break;
             case 55 :
-                // src/glossa/grammars/Glossa.g:1:343: INTEGERS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:343: INTEGERS
                 {
                 mINTEGERS(); 
 
                 }
                 break;
             case 56 :
-                // src/glossa/grammars/Glossa.g:1:352: REAL
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:352: REAL
                 {
                 mREAL(); 
 
                 }
                 break;
             case 57 :
-                // src/glossa/grammars/Glossa.g:1:357: REALS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:357: REALS
                 {
                 mREALS(); 
 
                 }
                 break;
             case 58 :
-                // src/glossa/grammars/Glossa.g:1:363: STRING
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:363: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 59 :
-                // src/glossa/grammars/Glossa.g:1:370: STRINGS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:370: STRINGS
                 {
                 mSTRINGS(); 
 
                 }
                 break;
             case 60 :
-                // src/glossa/grammars/Glossa.g:1:378: BOOLEAN
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:378: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
             case 61 :
-                // src/glossa/grammars/Glossa.g:1:386: BOOLEANS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:386: BOOLEANS
                 {
                 mBOOLEANS(); 
 
                 }
                 break;
             case 62 :
-                // src/glossa/grammars/Glossa.g:1:395: CONST_TRUE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:395: CONST_TRUE
                 {
                 mCONST_TRUE(); 
 
                 }
                 break;
             case 63 :
-                // src/glossa/grammars/Glossa.g:1:406: CONST_FALSE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:406: CONST_FALSE
                 {
                 mCONST_FALSE(); 
 
                 }
                 break;
             case 64 :
-                // src/glossa/grammars/Glossa.g:1:418: CONST_STR
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:418: CONST_STR
                 {
                 mCONST_STR(); 
 
                 }
                 break;
             case 65 :
-                // src/glossa/grammars/Glossa.g:1:428: CONST_INT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:428: CONST_INT
                 {
                 mCONST_INT(); 
 
                 }
                 break;
             case 66 :
-                // src/glossa/grammars/Glossa.g:1:438: CONST_REAL
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:438: CONST_REAL
                 {
                 mCONST_REAL(); 
 
                 }
                 break;
             case 67 :
-                // src/glossa/grammars/Glossa.g:1:449: ID
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:449: ID
                 {
                 mID(); 
 
                 }
                 break;
             case 68 :
-                // src/glossa/grammars/Glossa.g:1:452: COMMENT
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:452: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 69 :
-                // src/glossa/grammars/Glossa.g:1:460: CONT_COMMAND
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:460: CONT_COMMAND
                 {
                 mCONT_COMMAND(); 
 
                 }
                 break;
             case 70 :
-                // src/glossa/grammars/Glossa.g:1:473: NEWLINE
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:473: NEWLINE
                 {
                 mNEWLINE(); 
 
                 }
                 break;
             case 71 :
-                // src/glossa/grammars/Glossa.g:1:481: WS
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:1:481: WS
                 {
                 mWS(); 
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/FirstPass.g 2012-02-06 16:15:25
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g 2012-02-07 09:52:17
 
 
 /*
@@ -192,7 +192,7 @@ public class FirstPass extends TreeParser {
         
 
     public String[] getTokenNames() { return FirstPass.tokenNames; }
-    public String getGrammarFileName() { return "src/glossa/grammars/FirstPass.g"; }
+    public String getGrammarFileName() { return "/home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g"; }
 
 
             private MessageLog msgLog;
@@ -218,18 +218,18 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "unit"
-    // src/glossa/grammars/FirstPass.g:103:1: unit : program ( function | procedure )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:1: unit : program ( function | procedure )* ;
     public final void unit() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:103:6: ( program ( function | procedure )* )
-            // src/glossa/grammars/FirstPass.g:103:8: program ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:6: ( program ( function | procedure )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:8: program ( function | procedure )*
             {
             pushFollow(FOLLOW_program_in_unit50);
             program();
 
             state._fsp--;
 
-            // src/glossa/grammars/FirstPass.g:103:16: ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:16: ( function | procedure )*
             loop1:
             do {
                 int alt1=3;
@@ -245,7 +245,7 @@ public class FirstPass extends TreeParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // src/glossa/grammars/FirstPass.g:103:17: function
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:17: function
             	    {
             	    pushFollow(FOLLOW_function_in_unit53);
             	    function();
@@ -256,7 +256,7 @@ public class FirstPass extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/FirstPass.g:103:26: procedure
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:103:26: procedure
             	    {
             	    pushFollow(FOLLOW_procedure_in_unit55);
             	    procedure();
@@ -288,14 +288,14 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "program"
-    // src/glossa/grammars/FirstPass.g:105:1: program : ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:105:1: program : ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) ;
     public final void program() throws RecognitionException {
         CommonTree id1=null;
         CommonTree id2=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:105:9: ( ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) )
-            // src/glossa/grammars/FirstPass.g:105:11: ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:105:9: ( ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:105:11: ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? )
             {
             match(input,PROGRAM,FOLLOW_PROGRAM_in_program66); 
 
@@ -318,7 +318,7 @@ public class FirstPass extends TreeParser {
             state._fsp--;
 
             match(input,END_PROGRAM,FOLLOW_END_PROGRAM_in_program100); 
-            // src/glossa/grammars/FirstPass.g:115:3: (id2= ID )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:115:3: (id2= ID )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -327,7 +327,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt2) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:115:4: id2= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:115:4: id2= ID
                     {
                     id2=(CommonTree)match(input,ID,FOLLOW_ID_in_program107); 
 
@@ -360,13 +360,13 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "declarations"
-    // src/glossa/grammars/FirstPass.g:124:1: declarations : ( constDecl )? ( varDecl )? ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:124:1: declarations : ( constDecl )? ( varDecl )? ;
     public final void declarations() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:125:2: ( ( constDecl )? ( varDecl )? )
-            // src/glossa/grammars/FirstPass.g:125:4: ( constDecl )? ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:2: ( ( constDecl )? ( varDecl )? )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:4: ( constDecl )? ( varDecl )?
             {
-            // src/glossa/grammars/FirstPass.g:125:4: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:4: ( constDecl )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -375,7 +375,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:125:4: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:4: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_declarations153);
                     constDecl();
@@ -388,7 +388,7 @@ public class FirstPass extends TreeParser {
 
             }
 
-            // src/glossa/grammars/FirstPass.g:125:15: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:15: ( varDecl )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -397,7 +397,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt4) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:125:15: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:125:15: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_declarations156);
                     varDecl();
@@ -426,17 +426,17 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "constDecl"
-    // src/glossa/grammars/FirstPass.g:127:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:127:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
     public final void constDecl() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:128:2: ( ^( CONSTANTS ( constAssign )* ) )
-            // src/glossa/grammars/FirstPass.g:128:4: ^( CONSTANTS ( constAssign )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:128:2: ( ^( CONSTANTS ( constAssign )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:128:4: ^( CONSTANTS ( constAssign )* )
             {
             match(input,CONSTANTS,FOLLOW_CONSTANTS_in_constDecl167); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/FirstPass.g:129:3: ( constAssign )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:129:3: ( constAssign )*
                 loop5:
                 do {
                     int alt5=2;
@@ -449,7 +449,7 @@ public class FirstPass extends TreeParser {
 
                     switch (alt5) {
                 	case 1 :
-                	    // src/glossa/grammars/FirstPass.g:129:3: constAssign
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:129:3: constAssign
                 	    {
                 	    pushFollow(FOLLOW_constAssign_in_constDecl171);
                 	    constAssign();
@@ -484,13 +484,13 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "constAssign"
-    // src/glossa/grammars/FirstPass.g:132:1: constAssign : ^( EQ ID expr ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:132:1: constAssign : ^( EQ ID expr ) ;
     public final void constAssign() throws RecognitionException {
         CommonTree ID1=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:133:2: ( ^( EQ ID expr ) )
-            // src/glossa/grammars/FirstPass.g:133:5: ^( EQ ID expr )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:133:2: ( ^( EQ ID expr ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:133:5: ^( EQ ID expr )
             {
             match(input,EQ,FOLLOW_EQ_in_constAssign193); 
 
@@ -530,17 +530,17 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "varDecl"
-    // src/glossa/grammars/FirstPass.g:150:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:150:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
     public final void varDecl() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:150:9: ( ^( VARIABLES ( varsDecl )* ) )
-            // src/glossa/grammars/FirstPass.g:150:11: ^( VARIABLES ( varsDecl )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:150:9: ( ^( VARIABLES ( varsDecl )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:150:11: ^( VARIABLES ( varsDecl )* )
             {
             match(input,VARIABLES,FOLLOW_VARIABLES_in_varDecl223); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/FirstPass.g:151:3: ( varsDecl )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:151:3: ( varsDecl )*
                 loop6:
                 do {
                     int alt6=2;
@@ -553,7 +553,7 @@ public class FirstPass extends TreeParser {
 
                     switch (alt6) {
                 	case 1 :
-                	    // src/glossa/grammars/FirstPass.g:151:3: varsDecl
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:151:3: varsDecl
                 	    {
                 	    pushFollow(FOLLOW_varsDecl_in_varDecl227);
                 	    varsDecl();
@@ -588,14 +588,14 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "varsDecl"
-    // src/glossa/grammars/FirstPass.g:156:1: varsDecl : ^( varType ( varDeclItem[$varType.result] )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:156:1: varsDecl : ^( varType ( varDeclItem[$varType.result] )+ ) ;
     public final void varsDecl() throws RecognitionException {
         Type varType2 = null;
 
 
         try {
-            // src/glossa/grammars/FirstPass.g:157:2: ( ^( varType ( varDeclItem[$varType.result] )+ ) )
-            // src/glossa/grammars/FirstPass.g:157:4: ^( varType ( varDeclItem[$varType.result] )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:157:2: ( ^( varType ( varDeclItem[$varType.result] )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:157:4: ^( varType ( varDeclItem[$varType.result] )+ )
             {
             pushFollow(FOLLOW_varType_in_varsDecl271);
             varType2=varType();
@@ -604,7 +604,7 @@ public class FirstPass extends TreeParser {
 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/FirstPass.g:159:21: ( varDeclItem[$varType.result] )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:159:21: ( varDeclItem[$varType.result] )+
             int cnt7=0;
             loop7:
             do {
@@ -618,7 +618,7 @@ public class FirstPass extends TreeParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // src/glossa/grammars/FirstPass.g:159:23: varDeclItem[$varType.result]
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:159:23: varDeclItem[$varType.result]
             	    {
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl295);
             	    varDeclItem(varType2);
@@ -656,13 +656,13 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/grammars/FirstPass.g:162:1: varDeclItem[Type t] : ( ID | ^( ARRAY ID arrayDimension ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:162:1: varDeclItem[Type t] : ( ID | ^( ARRAY ID arrayDimension ) );
     public final void varDeclItem(Type t) throws RecognitionException {
         CommonTree ID3=null;
         CommonTree ID4=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:163:2: ( ID | ^( ARRAY ID arrayDimension ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:163:2: ( ID | ^( ARRAY ID arrayDimension ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -680,7 +680,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt8) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:163:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:163:4: ID
                     {
                     ID3=(CommonTree)match(input,ID,FOLLOW_ID_in_varDeclItem329); 
 
@@ -701,7 +701,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:177:5: ^( ARRAY ID arrayDimension )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:177:5: ^( ARRAY ID arrayDimension )
                     {
                     match(input,ARRAY,FOLLOW_ARRAY_in_varDeclItem363); 
 
@@ -748,16 +748,16 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/grammars/FirstPass.g:197:1: arrayDimension : ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:197:1: arrayDimension : ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final void arrayDimension() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:198:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/grammars/FirstPass.g:198:4: ^( ARRAY_DIMENSION ( expr )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:198:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:198:4: ^( ARRAY_DIMENSION ( expr )+ )
             {
             match(input,ARRAY_DIMENSION,FOLLOW_ARRAY_DIMENSION_in_arrayDimension413); 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/FirstPass.g:200:21: ( expr )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:200:21: ( expr )+
             int cnt9=0;
             loop9:
             do {
@@ -771,7 +771,7 @@ public class FirstPass extends TreeParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // src/glossa/grammars/FirstPass.g:200:22: expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:200:22: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arrayDimension436);
             	    expr();
@@ -809,12 +809,12 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "varType"
-    // src/glossa/grammars/FirstPass.g:205:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:205:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final Type varType() throws RecognitionException {
         Type result = null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:206:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:206:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
             int alt10=4;
             switch ( input.LA(1) ) {
             case BOOLEANS:
@@ -846,7 +846,7 @@ public class FirstPass extends TreeParser {
 
             switch (alt10) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:206:11: BOOLEANS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:206:11: BOOLEANS
                     {
                     match(input,BOOLEANS,FOLLOW_BOOLEANS_in_varType479); 
                     result = Type.BOOLEAN;
@@ -854,7 +854,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:207:4: STRINGS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:207:4: STRINGS
                     {
                     match(input,STRINGS,FOLLOW_STRINGS_in_varType486); 
                     result = Type.STRING;
@@ -862,7 +862,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/FirstPass.g:208:4: INTEGERS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:208:4: INTEGERS
                     {
                     match(input,INTEGERS,FOLLOW_INTEGERS_in_varType493); 
                     result = Type.INTEGER;
@@ -870,7 +870,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/FirstPass.g:209:4: REALS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:209:4: REALS
                     {
                     match(input,REALS,FOLLOW_REALS_in_varType500); 
                     result = Type.REAL;
@@ -892,17 +892,17 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "block"
-    // src/glossa/grammars/FirstPass.g:211:1: block : ^( BLOCK ( stm )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:211:1: block : ^( BLOCK ( stm )* ) ;
     public final void block() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:211:7: ( ^( BLOCK ( stm )* ) )
-            // src/glossa/grammars/FirstPass.g:211:9: ^( BLOCK ( stm )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:211:7: ( ^( BLOCK ( stm )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:211:9: ^( BLOCK ( stm )* )
             {
             match(input,BLOCK,FOLLOW_BLOCK_in_block511); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/FirstPass.g:211:17: ( stm )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:211:17: ( stm )*
                 loop11:
                 do {
                     int alt11=2;
@@ -915,7 +915,7 @@ public class FirstPass extends TreeParser {
 
                     switch (alt11) {
                 	case 1 :
-                	    // src/glossa/grammars/FirstPass.g:211:17: stm
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:211:17: stm
                 	    {
                 	    pushFollow(FOLLOW_stm_in_block513);
                 	    stm();
@@ -950,24 +950,24 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "stm"
-    // src/glossa/grammars/FirstPass.g:216:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:216:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) );
     public final void stm() throws RecognitionException {
         CommonTree PRINT5=null;
         CommonTree READ6=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:216:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:216:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) )
             int alt20=11;
             alt20 = dfa20.predict(input);
             switch (alt20) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:216:7: ^( PRINT (expr1= expr )* )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:216:7: ^( PRINT (expr1= expr )* )
                     {
                     PRINT5=(CommonTree)match(input,PRINT,FOLLOW_PRINT_in_stm527); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // src/glossa/grammars/FirstPass.g:216:15: (expr1= expr )*
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:216:15: (expr1= expr )*
                         loop12:
                         do {
                             int alt12=2;
@@ -980,7 +980,7 @@ public class FirstPass extends TreeParser {
 
                             switch (alt12) {
                         	case 1 :
-                        	    // src/glossa/grammars/FirstPass.g:216:16: expr1= expr
+                        	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:216:16: expr1= expr
                         	    {
                         	    pushFollow(FOLLOW_expr_in_stm532);
                         	    expr();
@@ -1008,12 +1008,12 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:221:17: ^( READ ( readItem )+ )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:221:17: ^( READ ( readItem )+ )
                     {
                     READ6=(CommonTree)match(input,READ,FOLLOW_READ_in_stm561); 
 
                     match(input, Token.DOWN, null); 
-                    // src/glossa/grammars/FirstPass.g:221:24: ( readItem )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:221:24: ( readItem )+
                     int cnt13=0;
                     loop13:
                     do {
@@ -1027,7 +1027,7 @@ public class FirstPass extends TreeParser {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // src/glossa/grammars/FirstPass.g:221:24: readItem
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:221:24: readItem
                     	    {
                     	    pushFollow(FOLLOW_readItem_in_stm563);
                     	    readItem();
@@ -1058,7 +1058,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/FirstPass.g:226:4: ^( ASSIGN ID expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:226:4: ^( ASSIGN ID expr )
                     {
                     match(input,ASSIGN,FOLLOW_ASSIGN_in_stm583); 
 
@@ -1075,7 +1075,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/FirstPass.g:227:17: ^( ASSIGN ID arraySubscript expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:227:17: ^( ASSIGN ID arraySubscript expr )
                     {
                     match(input,ASSIGN,FOLLOW_ASSIGN_in_stm607); 
 
@@ -1097,7 +1097,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/FirstPass.g:228:17: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:228:17: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
                     {
                     match(input,IFNODE,FOLLOW_IFNODE_in_stm633); 
 
@@ -1107,7 +1107,7 @@ public class FirstPass extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/FirstPass.g:228:34: ( elseIfBlock )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:228:34: ( elseIfBlock )*
                     loop14:
                     do {
                         int alt14=2;
@@ -1120,7 +1120,7 @@ public class FirstPass extends TreeParser {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // src/glossa/grammars/FirstPass.g:228:34: elseIfBlock
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:228:34: elseIfBlock
                     	    {
                     	    pushFollow(FOLLOW_elseIfBlock_in_stm637);
                     	    elseIfBlock();
@@ -1136,7 +1136,7 @@ public class FirstPass extends TreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/FirstPass.g:228:47: ( elseBlock )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:228:47: ( elseBlock )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1145,7 +1145,7 @@ public class FirstPass extends TreeParser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // src/glossa/grammars/FirstPass.g:228:47: elseBlock
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:228:47: elseBlock
                             {
                             pushFollow(FOLLOW_elseBlock_in_stm640);
                             elseBlock();
@@ -1165,7 +1165,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/FirstPass.g:229:17: ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:229:17: ^( SWITCH expr ( caseBlock )* ( caseElseBlock )? END_SWITCH )
                     {
                     match(input,SWITCH,FOLLOW_SWITCH_in_stm663); 
 
@@ -1175,7 +1175,7 @@ public class FirstPass extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/FirstPass.g:229:31: ( caseBlock )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:229:31: ( caseBlock )*
                     loop16:
                     do {
                         int alt16=2;
@@ -1188,7 +1188,7 @@ public class FirstPass extends TreeParser {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // src/glossa/grammars/FirstPass.g:229:32: caseBlock
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:229:32: caseBlock
                     	    {
                     	    pushFollow(FOLLOW_caseBlock_in_stm668);
                     	    caseBlock();
@@ -1204,7 +1204,7 @@ public class FirstPass extends TreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/FirstPass.g:229:43: ( caseElseBlock )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:229:43: ( caseElseBlock )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1213,7 +1213,7 @@ public class FirstPass extends TreeParser {
                     }
                     switch (alt17) {
                         case 1 :
-                            // src/glossa/grammars/FirstPass.g:229:44: caseElseBlock
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:229:44: caseElseBlock
                             {
                             pushFollow(FOLLOW_caseElseBlock_in_stm672);
                             caseElseBlock();
@@ -1233,7 +1233,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/FirstPass.g:230:17: ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:230:17: ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
                     {
                     match(input,FOR,FOLLOW_FOR_in_stm696); 
 
@@ -1249,7 +1249,7 @@ public class FirstPass extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/FirstPass.g:233:19: (expr3= expr )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:233:19: (expr3= expr )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1258,7 +1258,7 @@ public class FirstPass extends TreeParser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // src/glossa/grammars/FirstPass.g:233:20: expr3= expr
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:233:20: expr3= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm765);
                             expr();
@@ -1283,7 +1283,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/FirstPass.g:235:17: ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:235:17: ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
                     {
                     match(input,FOR,FOLLOW_FOR_in_stm809); 
 
@@ -1304,7 +1304,7 @@ public class FirstPass extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/FirstPass.g:238:19: (expr3= expr )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:238:19: (expr3= expr )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1313,7 +1313,7 @@ public class FirstPass extends TreeParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // src/glossa/grammars/FirstPass.g:238:20: expr3= expr
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:238:20: expr3= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm880);
                             expr();
@@ -1338,7 +1338,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/FirstPass.g:240:17: ^( WHILE expr block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:240:17: ^( WHILE expr block END_LOOP )
                     {
                     match(input,WHILE,FOLLOW_WHILE_in_stm924); 
 
@@ -1360,7 +1360,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/FirstPass.g:241:4: ^( REPEAT block UNTIL expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:241:4: ^( REPEAT block UNTIL expr )
                     {
                     match(input,REPEAT,FOLLOW_REPEAT_in_stm937); 
 
@@ -1382,7 +1382,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/FirstPass.g:242:17: ^( CALL ID paramsList )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:242:17: ^( CALL ID paramsList )
                     {
                     match(input,CALL,FOLLOW_CALL_in_stm963); 
 
@@ -1413,13 +1413,13 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/FirstPass.g:245:1: readItem : (arrId= ID arraySubscript | varId= ID );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:245:1: readItem : (arrId= ID arraySubscript | varId= ID );
     public final void readItem() throws RecognitionException {
         CommonTree arrId=null;
         CommonTree varId=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:245:9: (arrId= ID arraySubscript | varId= ID )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:245:9: (arrId= ID arraySubscript | varId= ID )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1447,7 +1447,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt21) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:245:17: arrId= ID arraySubscript
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:245:17: arrId= ID arraySubscript
                     {
                     arrId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem992); 
                     pushFollow(FOLLOW_arraySubscript_in_readItem994);
@@ -1459,7 +1459,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:246:17: varId= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:246:17: varId= ID
                     {
                     varId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1014); 
 
@@ -1480,11 +1480,11 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/FirstPass.g:249:1: ifBlock : ^( IF expr block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:249:1: ifBlock : ^( IF expr block ) ;
     public final void ifBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:249:9: ( ^( IF expr block ) )
-            // src/glossa/grammars/FirstPass.g:249:17: ^( IF expr block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:249:9: ( ^( IF expr block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:249:17: ^( IF expr block )
             {
             match(input,IF,FOLLOW_IF_in_ifBlock1038); 
 
@@ -1517,11 +1517,11 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/FirstPass.g:252:1: elseBlock : ^( ELSE block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:252:1: elseBlock : ^( ELSE block ) ;
     public final void elseBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:253:2: ( ^( ELSE block ) )
-            // src/glossa/grammars/FirstPass.g:253:4: ^( ELSE block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:253:2: ( ^( ELSE block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:253:4: ^( ELSE block )
             {
             match(input,ELSE,FOLLOW_ELSE_in_elseBlock1062); 
 
@@ -1549,11 +1549,11 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/FirstPass.g:256:1: elseIfBlock : ^( ELSE_IF expr block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:256:1: elseIfBlock : ^( ELSE_IF expr block ) ;
     public final void elseIfBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:257:2: ( ^( ELSE_IF expr block ) )
-            // src/glossa/grammars/FirstPass.g:257:4: ^( ELSE_IF expr block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:257:2: ( ^( ELSE_IF expr block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:257:4: ^( ELSE_IF expr block )
             {
             match(input,ELSE_IF,FOLLOW_ELSE_IF_in_elseIfBlock1084); 
 
@@ -1586,16 +1586,16 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/FirstPass.g:261:1: caseBlock : ^( CASE ( caseExprListItem )+ block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:261:1: caseBlock : ^( CASE ( caseExprListItem )+ block ) ;
     public final void caseBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:262:2: ( ^( CASE ( caseExprListItem )+ block ) )
-            // src/glossa/grammars/FirstPass.g:262:4: ^( CASE ( caseExprListItem )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:262:2: ( ^( CASE ( caseExprListItem )+ block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:262:4: ^( CASE ( caseExprListItem )+ block )
             {
             match(input,CASE,FOLLOW_CASE_in_caseBlock1109); 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/FirstPass.g:262:11: ( caseExprListItem )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:262:11: ( caseExprListItem )+
             int cnt22=0;
             loop22:
             do {
@@ -1609,7 +1609,7 @@ public class FirstPass extends TreeParser {
 
                 switch (alt22) {
             	case 1 :
-            	    // src/glossa/grammars/FirstPass.g:262:12: caseExprListItem
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:262:12: caseExprListItem
             	    {
             	    pushFollow(FOLLOW_caseExprListItem_in_caseBlock1112);
             	    caseExprListItem();
@@ -1652,10 +1652,10 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/FirstPass.g:265:1: caseExprListItem : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:265:1: caseExprListItem : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
     public final void caseExprListItem() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:266:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:266:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
             int alt23=6;
             switch ( input.LA(1) ) {
             case NEG:
@@ -1743,7 +1743,7 @@ public class FirstPass extends TreeParser {
 
             switch (alt23) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:266:4: a= expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:266:4: a= expr
                     {
                     pushFollow(FOLLOW_expr_in_caseExprListItem1146);
                     expr();
@@ -1754,7 +1754,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:267:10: ^( RANGE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:267:10: ^( RANGE a= expr b= expr )
                     {
                     match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem1158); 
 
@@ -1775,7 +1775,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/FirstPass.g:268:10: ^( INF_RANGE LT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:268:10: ^( INF_RANGE LT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1179); 
 
@@ -1792,7 +1792,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/FirstPass.g:269:17: ^( INF_RANGE LE a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:269:17: ^( INF_RANGE LE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1205); 
 
@@ -1809,7 +1809,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/FirstPass.g:270:17: ^( INF_RANGE GT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:270:17: ^( INF_RANGE GT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1231); 
 
@@ -1826,7 +1826,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/FirstPass.g:271:17: ^( INF_RANGE GE a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:271:17: ^( INF_RANGE GE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1257); 
 
@@ -1857,11 +1857,11 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/FirstPass.g:274:1: caseElseBlock : ^( CASE_ELSE CASE block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:274:1: caseElseBlock : ^( CASE_ELSE CASE block ) ;
     public final void caseElseBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:275:2: ( ^( CASE_ELSE CASE block ) )
-            // src/glossa/grammars/FirstPass.g:275:4: ^( CASE_ELSE CASE block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:275:2: ( ^( CASE_ELSE CASE block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:275:4: ^( CASE_ELSE CASE block )
             {
             match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock1283); 
 
@@ -1890,10 +1890,10 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/FirstPass.g:279:1: expr : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:279:1: expr : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) );
     public final void expr() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:280:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:280:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) )
             int alt24=25;
             switch ( input.LA(1) ) {
             case AND:
@@ -2030,7 +2030,7 @@ public class FirstPass extends TreeParser {
 
             switch (alt24) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:280:4: ^( AND a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:280:4: ^( AND a= expr b= expr )
                     {
                     match(input,AND,FOLLOW_AND_in_expr1300); 
 
@@ -2051,7 +2051,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:281:4: ^( OR a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:281:4: ^( OR a= expr b= expr )
                     {
                     match(input,OR,FOLLOW_OR_in_expr1317); 
 
@@ -2072,7 +2072,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/FirstPass.g:282:4: ^( EQ a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:282:4: ^( EQ a= expr b= expr )
                     {
                     match(input,EQ,FOLLOW_EQ_in_expr1334); 
 
@@ -2093,7 +2093,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/FirstPass.g:283:4: ^( NEQ a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:283:4: ^( NEQ a= expr b= expr )
                     {
                     match(input,NEQ,FOLLOW_NEQ_in_expr1351); 
 
@@ -2114,7 +2114,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/FirstPass.g:284:4: ^( LT a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:284:4: ^( LT a= expr b= expr )
                     {
                     match(input,LT,FOLLOW_LT_in_expr1368); 
 
@@ -2135,7 +2135,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/FirstPass.g:285:4: ^( LE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:285:4: ^( LE a= expr b= expr )
                     {
                     match(input,LE,FOLLOW_LE_in_expr1385); 
 
@@ -2156,7 +2156,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/FirstPass.g:286:4: ^( GT a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:286:4: ^( GT a= expr b= expr )
                     {
                     match(input,GT,FOLLOW_GT_in_expr1402); 
 
@@ -2177,7 +2177,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/FirstPass.g:287:4: ^( GE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:287:4: ^( GE a= expr b= expr )
                     {
                     match(input,GE,FOLLOW_GE_in_expr1419); 
 
@@ -2198,7 +2198,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/FirstPass.g:288:4: ^( PLUS a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:288:4: ^( PLUS a= expr b= expr )
                     {
                     match(input,PLUS,FOLLOW_PLUS_in_expr1436); 
 
@@ -2219,7 +2219,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/FirstPass.g:289:4: ^( MINUS a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:289:4: ^( MINUS a= expr b= expr )
                     {
                     match(input,MINUS,FOLLOW_MINUS_in_expr1453); 
 
@@ -2240,7 +2240,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/FirstPass.g:290:4: ^( TIMES a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:290:4: ^( TIMES a= expr b= expr )
                     {
                     match(input,TIMES,FOLLOW_TIMES_in_expr1470); 
 
@@ -2261,7 +2261,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 12 :
-                    // src/glossa/grammars/FirstPass.g:291:4: ^( DIA a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:291:4: ^( DIA a= expr b= expr )
                     {
                     match(input,DIA,FOLLOW_DIA_in_expr1487); 
 
@@ -2282,7 +2282,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 13 :
-                    // src/glossa/grammars/FirstPass.g:292:4: ^( DIV a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:292:4: ^( DIV a= expr b= expr )
                     {
                     match(input,DIV,FOLLOW_DIV_in_expr1504); 
 
@@ -2303,7 +2303,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 14 :
-                    // src/glossa/grammars/FirstPass.g:293:4: ^( MOD a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:293:4: ^( MOD a= expr b= expr )
                     {
                     match(input,MOD,FOLLOW_MOD_in_expr1521); 
 
@@ -2324,7 +2324,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 15 :
-                    // src/glossa/grammars/FirstPass.g:294:4: ^( POW a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:294:4: ^( POW a= expr b= expr )
                     {
                     match(input,POW,FOLLOW_POW_in_expr1538); 
 
@@ -2345,7 +2345,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 16 :
-                    // src/glossa/grammars/FirstPass.g:295:4: ^( NEG a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:295:4: ^( NEG a= expr )
                     {
                     match(input,NEG,FOLLOW_NEG_in_expr1555); 
 
@@ -2361,7 +2361,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/grammars/FirstPass.g:296:4: ^( NOT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:296:4: ^( NOT a= expr )
                     {
                     match(input,NOT,FOLLOW_NOT_in_expr1566); 
 
@@ -2377,49 +2377,49 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/grammars/FirstPass.g:297:4: CONST_TRUE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:297:4: CONST_TRUE
                     {
                     match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr1576); 
 
                     }
                     break;
                 case 19 :
-                    // src/glossa/grammars/FirstPass.g:298:4: CONST_FALSE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:298:4: CONST_FALSE
                     {
                     match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr1581); 
 
                     }
                     break;
                 case 20 :
-                    // src/glossa/grammars/FirstPass.g:299:4: CONST_STR
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:299:4: CONST_STR
                     {
                     match(input,CONST_STR,FOLLOW_CONST_STR_in_expr1586); 
 
                     }
                     break;
                 case 21 :
-                    // src/glossa/grammars/FirstPass.g:300:4: CONST_INT
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:300:4: CONST_INT
                     {
                     match(input,CONST_INT,FOLLOW_CONST_INT_in_expr1591); 
 
                     }
                     break;
                 case 22 :
-                    // src/glossa/grammars/FirstPass.g:301:4: CONST_REAL
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:301:4: CONST_REAL
                     {
                     match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr1596); 
 
                     }
                     break;
                 case 23 :
-                    // src/glossa/grammars/FirstPass.g:302:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:302:4: ID
                     {
                     match(input,ID,FOLLOW_ID_in_expr1601); 
 
                     }
                     break;
                 case 24 :
-                    // src/glossa/grammars/FirstPass.g:303:4: ^( ARRAY_ITEM ID arraySubscript )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:303:4: ^( ARRAY_ITEM ID arraySubscript )
                     {
                     match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr1607); 
 
@@ -2436,7 +2436,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 25 :
-                    // src/glossa/grammars/FirstPass.g:304:17: ^( FUNC_CALL ID paramsList )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:304:17: ^( FUNC_CALL ID paramsList )
                     {
                     match(input,FUNC_CALL,FOLLOW_FUNC_CALL_in_expr1631); 
 
@@ -2467,17 +2467,17 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "paramsList"
-    // src/glossa/grammars/FirstPass.g:307:1: paramsList : ^( PARAMS ( expr )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:307:1: paramsList : ^( PARAMS ( expr )* ) ;
     public final void paramsList() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:308:2: ( ^( PARAMS ( expr )* ) )
-            // src/glossa/grammars/FirstPass.g:308:4: ^( PARAMS ( expr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:308:2: ( ^( PARAMS ( expr )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:308:4: ^( PARAMS ( expr )* )
             {
             match(input,PARAMS,FOLLOW_PARAMS_in_paramsList1655); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/FirstPass.g:309:19: ( expr )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:309:19: ( expr )*
                 loop25:
                 do {
                     int alt25=2;
@@ -2490,7 +2490,7 @@ public class FirstPass extends TreeParser {
 
                     switch (alt25) {
                 	case 1 :
-                	    // src/glossa/grammars/FirstPass.g:309:20: expr
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:309:20: expr
                 	    {
                 	    pushFollow(FOLLOW_expr_in_paramsList1676);
                 	    expr();
@@ -2525,16 +2525,16 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/FirstPass.g:313:1: arraySubscript : ^( ARRAY_INDEX ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:313:1: arraySubscript : ^( ARRAY_INDEX ( expr )+ ) ;
     public final void arraySubscript() throws RecognitionException {
         try {
-            // src/glossa/grammars/FirstPass.g:314:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/FirstPass.g:314:4: ^( ARRAY_INDEX ( expr )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:314:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:314:4: ^( ARRAY_INDEX ( expr )+ )
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript1715); 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/FirstPass.g:314:18: ( expr )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:314:18: ( expr )+
             int cnt26=0;
             loop26:
             do {
@@ -2548,7 +2548,7 @@ public class FirstPass extends TreeParser {
 
                 switch (alt26) {
             	case 1 :
-            	    // src/glossa/grammars/FirstPass.g:314:19: expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:314:19: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arraySubscript1718);
             	    expr();
@@ -2586,15 +2586,15 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/FirstPass.g:316:1: procedure : ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:316:1: procedure : ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
     public final void procedure() throws RecognitionException {
         CommonTree ID7=null;
         List<FormalParameter> formalParamsList8 = null;
 
 
         try {
-            // src/glossa/grammars/FirstPass.g:317:2: ( ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
-            // src/glossa/grammars/FirstPass.g:317:4: ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:317:2: ( ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:317:4: ^( PROCEDURE ID formalParamsList[$ID.text, false] ( constDecl )? ( varDecl )? block END_PROCEDURE )
             {
             match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure1732); 
 
@@ -2623,7 +2623,7 @@ public class FirstPass extends TreeParser {
                                                 Messages.redeclarationOfFunctionError(msgLog, new Point((ID7!=null?ID7.getLine():0), (ID7!=null?ID7.getCharPositionInLine():0)), (ID7!=null?ID7.getText():null));
                                             }
                                     
-            // src/glossa/grammars/FirstPass.g:335:19: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:335:19: ( constDecl )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2632,7 +2632,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:335:19: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:335:19: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_procedure1808);
                     constDecl();
@@ -2645,7 +2645,7 @@ public class FirstPass extends TreeParser {
 
             }
 
-            // src/glossa/grammars/FirstPass.g:335:30: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:335:30: ( varDecl )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2654,7 +2654,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:335:30: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:335:30: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_procedure1811);
                     varDecl();
@@ -2695,7 +2695,7 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "function"
-    // src/glossa/grammars/FirstPass.g:342:1: function : ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:342:1: function : ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
     public final void function() throws RecognitionException {
         CommonTree ID9=null;
         List<FormalParameter> formalParamsList10 = null;
@@ -2704,8 +2704,8 @@ public class FirstPass extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/FirstPass.g:343:2: ( ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION ) )
-            // src/glossa/grammars/FirstPass.g:343:4: ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:343:2: ( ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:343:4: ^( FUNCTION ID returnType formalParamsList[$ID.text, true] ( constDecl )? ( varDecl )? block END_FUNCTION )
             {
             match(input,FUNCTION,FOLLOW_FUNCTION_in_function1862); 
 
@@ -2742,7 +2742,7 @@ public class FirstPass extends TreeParser {
                                             }
                                         }
                                     
-            // src/glossa/grammars/FirstPass.g:364:19: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:364:19: ( constDecl )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -2751,7 +2751,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt29) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:364:19: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:364:19: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_function1937);
                     constDecl();
@@ -2764,7 +2764,7 @@ public class FirstPass extends TreeParser {
 
             }
 
-            // src/glossa/grammars/FirstPass.g:364:30: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:364:30: ( varDecl )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -2773,7 +2773,7 @@ public class FirstPass extends TreeParser {
             }
             switch (alt30) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:364:30: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:364:30: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_function1940);
                     varDecl();
@@ -2814,12 +2814,12 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/FirstPass.g:371:1: returnType returns [Type result] : ( INTEGER | REAL | STRING | BOOLEAN );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:371:1: returnType returns [Type result] : ( INTEGER | REAL | STRING | BOOLEAN );
     public final Type returnType() throws RecognitionException {
         Type result = null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:372:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:372:2: ( INTEGER | REAL | STRING | BOOLEAN )
             int alt31=4;
             switch ( input.LA(1) ) {
             case INTEGER:
@@ -2851,7 +2851,7 @@ public class FirstPass extends TreeParser {
 
             switch (alt31) {
                 case 1 :
-                    // src/glossa/grammars/FirstPass.g:372:4: INTEGER
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:372:4: INTEGER
                     {
                     match(input,INTEGER,FOLLOW_INTEGER_in_returnType1989); 
                     result =Type.INTEGER;
@@ -2859,7 +2859,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/FirstPass.g:373:4: REAL
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:373:4: REAL
                     {
                     match(input,REAL,FOLLOW_REAL_in_returnType2000); 
                     result =Type.REAL;
@@ -2867,7 +2867,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/FirstPass.g:374:4: STRING
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:374:4: STRING
                     {
                     match(input,STRING,FOLLOW_STRING_in_returnType2014); 
                     result =Type.STRING;
@@ -2875,7 +2875,7 @@ public class FirstPass extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/FirstPass.g:375:4: BOOLEAN
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:375:4: BOOLEAN
                     {
                     match(input,BOOLEAN,FOLLOW_BOOLEAN_in_returnType2026); 
                     result =Type.BOOLEAN;
@@ -2897,15 +2897,15 @@ public class FirstPass extends TreeParser {
 
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/FirstPass.g:381:1: formalParamsList[String subprogramName, boolean inFunctionDecl] returns [List<FormalParameter> formalParams] : ^( FORMAL_PARAMS ( ID )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:381:1: formalParamsList[String subprogramName, boolean inFunctionDecl] returns [List<FormalParameter> formalParams] : ^( FORMAL_PARAMS ( ID )* ) ;
     public final List<FormalParameter> formalParamsList(String subprogramName, boolean inFunctionDecl) throws RecognitionException {
         List<FormalParameter> formalParams = null;
 
         CommonTree ID12=null;
 
         try {
-            // src/glossa/grammars/FirstPass.g:382:2: ( ^( FORMAL_PARAMS ( ID )* ) )
-            // src/glossa/grammars/FirstPass.g:382:4: ^( FORMAL_PARAMS ( ID )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:382:2: ( ^( FORMAL_PARAMS ( ID )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:382:4: ^( FORMAL_PARAMS ( ID )* )
             {
 
                                 List<FormalParameter> result = new ArrayList<FormalParameter>();
@@ -2914,7 +2914,7 @@ public class FirstPass extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/FirstPass.g:386:19: ( ID )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:386:19: ( ID )*
                 loop32:
                 do {
                     int alt32=2;
@@ -2927,7 +2927,7 @@ public class FirstPass extends TreeParser {
 
                     switch (alt32) {
                 	case 1 :
-                	    // src/glossa/grammars/FirstPass.g:386:21: ID
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g:386:21: ID
                 	    {
                 	    ID12=(CommonTree)match(input,ID,FOLLOW_ID_in_formalParamsList2085); 
 

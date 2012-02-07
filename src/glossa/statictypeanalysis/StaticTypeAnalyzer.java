@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/StaticTypeAnalyzer.g 2012-02-06 16:15:27
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g 2012-02-07 09:52:18
 
 
 /*
@@ -193,7 +193,7 @@ public class StaticTypeAnalyzer extends TreeParser {
         
 
     public String[] getTokenNames() { return StaticTypeAnalyzer.tokenNames; }
-    public String getGrammarFileName() { return "src/glossa/grammars/StaticTypeAnalyzer.g"; }
+    public String getGrammarFileName() { return "/home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g"; }
 
 
             private MessageLog msgLog;
@@ -227,18 +227,18 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "unit"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:112:1: unit : program ( function | procedure )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:1: unit : program ( function | procedure )* ;
     public final void unit() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:112:6: ( program ( function | procedure )* )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:112:8: program ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:6: ( program ( function | procedure )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:8: program ( function | procedure )*
             {
             pushFollow(FOLLOW_program_in_unit50);
             program();
 
             state._fsp--;
 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:112:16: ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:16: ( function | procedure )*
             loop1:
             do {
                 int alt1=3;
@@ -254,7 +254,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:112:17: function
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:17: function
             	    {
             	    pushFollow(FOLLOW_function_in_unit53);
             	    function();
@@ -265,7 +265,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:112:26: procedure
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:112:26: procedure
             	    {
             	    pushFollow(FOLLOW_procedure_in_unit55);
             	    procedure();
@@ -297,14 +297,14 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "program"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:114:1: program : ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:114:1: program : ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) ;
     public final void program() throws RecognitionException {
         CommonTree id1=null;
         CommonTree id2=null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:114:9: ( ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:114:11: ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:114:9: ( ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:114:11: ^( PROGRAM id1= ID declarations block END_PROGRAM (id2= ID )? )
             {
             match(input,PROGRAM,FOLLOW_PROGRAM_in_program67); 
 
@@ -324,7 +324,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             state._fsp--;
 
             match(input,END_PROGRAM,FOLLOW_END_PROGRAM_in_program90); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:120:3: (id2= ID )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:120:3: (id2= ID )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -333,7 +333,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt2) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:120:4: id2= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:120:4: id2= ID
                     {
                     id2=(CommonTree)match(input,ID,FOLLOW_ID_in_program97); 
 
@@ -363,13 +363,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "declarations"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:126:1: declarations : ( constDecl )? ( varDecl )? ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:126:1: declarations : ( constDecl )? ( varDecl )? ;
     public final void declarations() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:127:2: ( ( constDecl )? ( varDecl )? )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:127:4: ( constDecl )? ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:2: ( ( constDecl )? ( varDecl )? )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:4: ( constDecl )? ( varDecl )?
             {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:127:4: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:4: ( constDecl )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -378,7 +378,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt3) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:127:4: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:4: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_declarations135);
                     constDecl();
@@ -391,7 +391,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             }
 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:127:15: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:15: ( varDecl )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -400,7 +400,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt4) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:127:15: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:127:15: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_declarations138);
                     varDecl();
@@ -429,13 +429,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "constDecl"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:129:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:129:1: constDecl : ^( CONSTANTS ( constAssign )* ) ;
     public final void constDecl() throws RecognitionException {
         CommonTree CONSTANTS1=null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:130:2: ( ^( CONSTANTS ( constAssign )* ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:130:4: ^( CONSTANTS ( constAssign )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:130:2: ( ^( CONSTANTS ( constAssign )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:130:4: ^( CONSTANTS ( constAssign )* )
             {
             CONSTANTS1=(CommonTree)match(input,CONSTANTS,FOLLOW_CONSTANTS_in_constDecl151); 
 
@@ -451,7 +451,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/StaticTypeAnalyzer.g:139:3: ( constAssign )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:139:3: ( constAssign )*
                 loop5:
                 do {
                     int alt5=2;
@@ -464,7 +464,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     switch (alt5) {
                 	case 1 :
-                	    // src/glossa/grammars/StaticTypeAnalyzer.g:139:3: constAssign
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:139:3: constAssign
                 	    {
                 	    pushFollow(FOLLOW_constAssign_in_constDecl157);
                 	    constAssign();
@@ -502,15 +502,15 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "constAssign"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:145:1: constAssign : ^( EQ ID expr ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:145:1: constAssign : ^( EQ ID expr ) ;
     public final void constAssign() throws RecognitionException {
         CommonTree ID2=null;
         StaticTypeAnalyzer.expr_return expr3 = null;
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:146:2: ( ^( EQ ID expr ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:146:5: ^( EQ ID expr )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:146:2: ( ^( EQ ID expr ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:146:5: ^( EQ ID expr )
             {
             match(input,EQ,FOLLOW_EQ_in_constAssign213); 
 
@@ -545,13 +545,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "varDecl"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:158:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:158:1: varDecl : ^( VARIABLES ( varsDecl )* ) ;
     public final void varDecl() throws RecognitionException {
         CommonTree VARIABLES4=null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:158:9: ( ^( VARIABLES ( varsDecl )* ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:158:11: ^( VARIABLES ( varsDecl )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:158:9: ( ^( VARIABLES ( varsDecl )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:158:11: ^( VARIABLES ( varsDecl )* )
             {
             VARIABLES4=(CommonTree)match(input,VARIABLES,FOLLOW_VARIABLES_in_varDecl248); 
 
@@ -567,7 +567,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/StaticTypeAnalyzer.g:167:3: ( varsDecl )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:167:3: ( varsDecl )*
                 loop6:
                 do {
                     int alt6=2;
@@ -580,7 +580,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     switch (alt6) {
                 	case 1 :
-                	    // src/glossa/grammars/StaticTypeAnalyzer.g:167:3: varsDecl
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:167:3: varsDecl
                 	    {
                 	    pushFollow(FOLLOW_varsDecl_in_varDecl254);
                 	    varsDecl();
@@ -618,7 +618,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "varsDecl"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:174:1: varsDecl : ^( varType ( varDeclItem[$varType.result] )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:174:1: varsDecl : ^( varType ( varDeclItem[$varType.result] )+ ) ;
     public final void varsDecl() throws RecognitionException {
         Type varType5 = null;
 
@@ -626,8 +626,8 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:175:2: ( ^( varType ( varDeclItem[$varType.result] )+ ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:175:4: ^( varType ( varDeclItem[$varType.result] )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:175:2: ( ^( varType ( varDeclItem[$varType.result] )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:175:4: ^( varType ( varDeclItem[$varType.result] )+ )
             {
             pushFollow(FOLLOW_varType_in_varsDecl309);
             varType5=varType();
@@ -636,7 +636,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:177:21: ( varDeclItem[$varType.result] )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:177:21: ( varDeclItem[$varType.result] )+
             int cnt7=0;
             loop7:
             do {
@@ -650,7 +650,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:177:22: varDeclItem[$varType.result]
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:177:22: varDeclItem[$varType.result]
             	    {
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl332);
             	    varDeclItem6=varDeclItem(varType5);
@@ -692,7 +692,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:184:1: varDeclItem[Type t] returns [Symbol variable] : ( ID | ^( ARRAY ID arrayDimension ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:184:1: varDeclItem[Type t] returns [Symbol variable] : ( ID | ^( ARRAY ID arrayDimension ) );
     public final Symbol varDeclItem(Type t) throws RecognitionException {
         Symbol variable = null;
 
@@ -702,7 +702,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:185:2: ( ID | ^( ARRAY ID arrayDimension ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:185:2: ( ID | ^( ARRAY ID arrayDimension ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -720,7 +720,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt8) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:185:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:185:4: ID
                     {
                     ID7=(CommonTree)match(input,ID,FOLLOW_ID_in_varDeclItem395); 
 
@@ -730,7 +730,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:188:5: ^( ARRAY ID arrayDimension )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:188:5: ^( ARRAY ID arrayDimension )
                     {
                     match(input,ARRAY,FOLLOW_ARRAY_in_varDeclItem429); 
 
@@ -764,7 +764,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:195:1: arrayDimension returns [int indicesCount] : ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:195:1: arrayDimension returns [int indicesCount] : ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final int arrayDimension() throws RecognitionException {
         int indicesCount = 0;
 
@@ -772,8 +772,8 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:196:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:196:4: ^( ARRAY_DIMENSION ( expr )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:196:2: ( ^( ARRAY_DIMENSION ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:196:4: ^( ARRAY_DIMENSION ( expr )+ )
             {
             match(input,ARRAY_DIMENSION,FOLLOW_ARRAY_DIMENSION_in_arrayDimension483); 
 
@@ -782,7 +782,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                                                 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:200:21: ( expr )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:200:21: ( expr )+
             int cnt9=0;
             loop9:
             do {
@@ -796,7 +796,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:200:22: expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:200:22: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arrayDimension508);
             	    expr10=expr();
@@ -842,12 +842,12 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "varType"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:213:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:213:1: varType returns [Type result] : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final Type varType() throws RecognitionException {
         Type result = null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:214:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:214:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
             int alt10=4;
             switch ( input.LA(1) ) {
             case BOOLEANS:
@@ -879,7 +879,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             switch (alt10) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:214:11: BOOLEANS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:214:11: BOOLEANS
                     {
                     match(input,BOOLEANS,FOLLOW_BOOLEANS_in_varType623); 
                     result = Type.BOOLEAN;
@@ -887,7 +887,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:215:4: STRINGS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:215:4: STRINGS
                     {
                     match(input,STRINGS,FOLLOW_STRINGS_in_varType630); 
                     result = Type.STRING;
@@ -895,7 +895,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:216:4: INTEGERS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:216:4: INTEGERS
                     {
                     match(input,INTEGERS,FOLLOW_INTEGERS_in_varType637); 
                     result = Type.INTEGER;
@@ -903,7 +903,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:217:4: REALS
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:217:4: REALS
                     {
                     match(input,REALS,FOLLOW_REALS_in_varType644); 
                     result = Type.REAL;
@@ -925,17 +925,17 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "block"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:219:1: block : ^( BLOCK ( stm )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:219:1: block : ^( BLOCK ( stm )* ) ;
     public final void block() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:219:7: ( ^( BLOCK ( stm )* ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:219:9: ^( BLOCK ( stm )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:219:7: ( ^( BLOCK ( stm )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:219:9: ^( BLOCK ( stm )* )
             {
             match(input,BLOCK,FOLLOW_BLOCK_in_block657); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/StaticTypeAnalyzer.g:219:17: ( stm )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:219:17: ( stm )*
                 loop11:
                 do {
                     int alt11=2;
@@ -948,7 +948,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     switch (alt11) {
                 	case 1 :
-                	    // src/glossa/grammars/StaticTypeAnalyzer.g:219:17: stm
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:219:17: stm
                 	    {
                 	    pushFollow(FOLLOW_stm_in_block659);
                 	    stm();
@@ -983,7 +983,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "stm"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:224:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:224:1: stm : ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) );
     public final void stm() throws RecognitionException {
         CommonTree ID11=null;
         CommonTree ASSIGN13=null;
@@ -1017,18 +1017,18 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:224:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:224:5: ( ^( PRINT (expr1= expr )* ) | ^( READ ( readItem )+ ) | ^( ASSIGN ID expr ) | ^( ASSIGN ID arraySubscript expr ) | ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) | ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH ) | ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP ) | ^( WHILE expr block END_LOOP ) | ^( REPEAT block UNTIL expr ) | ^( CALL ID paramsList ) )
             int alt20=11;
             alt20 = dfa20.predict(input);
             switch (alt20) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:224:7: ^( PRINT (expr1= expr )* )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:224:7: ^( PRINT (expr1= expr )* )
                     {
                     match(input,PRINT,FOLLOW_PRINT_in_stm673); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // src/glossa/grammars/StaticTypeAnalyzer.g:224:15: (expr1= expr )*
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:224:15: (expr1= expr )*
                         loop12:
                         do {
                             int alt12=2;
@@ -1041,7 +1041,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                             switch (alt12) {
                         	case 1 :
-                        	    // src/glossa/grammars/StaticTypeAnalyzer.g:224:16: expr1= expr
+                        	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:224:16: expr1= expr
                         	    {
                         	    pushFollow(FOLLOW_expr_in_stm678);
                         	    expr1=expr();
@@ -1064,12 +1064,12 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:225:17: ^( READ ( readItem )+ )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:225:17: ^( READ ( readItem )+ )
                     {
                     match(input,READ,FOLLOW_READ_in_stm701); 
 
                     match(input, Token.DOWN, null); 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:225:24: ( readItem )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:225:24: ( readItem )+
                     int cnt13=0;
                     loop13:
                     do {
@@ -1083,7 +1083,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // src/glossa/grammars/StaticTypeAnalyzer.g:225:24: readItem
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:225:24: readItem
                     	    {
                     	    pushFollow(FOLLOW_readItem_in_stm703);
                     	    readItem();
@@ -1109,7 +1109,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:226:4: ^( ASSIGN ID expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:226:4: ^( ASSIGN ID expr )
                     {
                     ASSIGN13=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm711); 
 
@@ -1144,7 +1144,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:244:17: ^( ASSIGN ID arraySubscript expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:244:17: ^( ASSIGN ID arraySubscript expr )
                     {
                     ASSIGN16=(CommonTree)match(input,ASSIGN,FOLLOW_ASSIGN_in_stm747); 
 
@@ -1172,7 +1172,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:251:17: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:251:17: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
                     {
                     match(input,IFNODE,FOLLOW_IFNODE_in_stm819); 
 
@@ -1182,7 +1182,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:251:34: ( elseIfBlock )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:251:34: ( elseIfBlock )*
                     loop14:
                     do {
                         int alt14=2;
@@ -1195,7 +1195,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // src/glossa/grammars/StaticTypeAnalyzer.g:251:34: elseIfBlock
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:251:34: elseIfBlock
                     	    {
                     	    pushFollow(FOLLOW_elseIfBlock_in_stm823);
                     	    elseIfBlock();
@@ -1211,7 +1211,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:251:47: ( elseBlock )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:251:47: ( elseBlock )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1220,7 +1220,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // src/glossa/grammars/StaticTypeAnalyzer.g:251:47: elseBlock
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:251:47: elseBlock
                             {
                             pushFollow(FOLLOW_elseBlock_in_stm826);
                             elseBlock();
@@ -1240,7 +1240,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:252:17: ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:252:17: ^( SWITCH expr ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )* ( caseElseBlock )? END_SWITCH )
                     {
                     SWITCH19=(CommonTree)match(input,SWITCH,FOLLOW_SWITCH_in_stm849); 
 
@@ -1252,7 +1252,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:252:56: ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:252:56: ( caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())] )*
                     loop16:
                     do {
                         int alt16=2;
@@ -1265,7 +1265,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // src/glossa/grammars/StaticTypeAnalyzer.g:252:57: caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())]
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:252:57: caseBlock[$expr.expressionType, new Point($expr.start.getLine(), $expr.start.getCharPositionInLine())]
                     	    {
                     	    pushFollow(FOLLOW_caseBlock_in_stm856);
                     	    caseBlock((expr18!=null?expr18.expressionType:null), new Point((expr18!=null?((CommonTree)expr18.start):null).getLine(), (expr18!=null?((CommonTree)expr18.start):null).getCharPositionInLine()));
@@ -1282,7 +1282,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                         }
                     } while (true);
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:253:19: ( caseElseBlock )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:253:19: ( caseElseBlock )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1291,7 +1291,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     switch (alt17) {
                         case 1 :
-                            // src/glossa/grammars/StaticTypeAnalyzer.g:253:20: caseElseBlock
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:253:20: caseElseBlock
                             {
                             pushFollow(FOLLOW_caseElseBlock_in_stm885);
                             caseElseBlock();
@@ -1317,7 +1317,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:259:17: ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:259:17: ^( FOR ID expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
                     {
                     match(input,FOR,FOLLOW_FOR_in_stm956); 
 
@@ -1339,7 +1339,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:267:19: (expr3= expr )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:267:19: (expr3= expr )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1348,7 +1348,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // src/glossa/grammars/StaticTypeAnalyzer.g:267:20: expr3= expr
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:267:20: expr3= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm1046);
                             expr3=expr();
@@ -1410,7 +1410,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:306:17: ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:306:17: ^( FOR ID arraySubscript expr1= expr expr2= expr (expr3= expr )? block END_LOOP )
                     {
                     match(input,FOR,FOLLOW_FOR_in_stm1136); 
 
@@ -1437,7 +1437,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     state._fsp--;
 
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:314:19: (expr3= expr )?
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:314:19: (expr3= expr )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1446,7 +1446,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // src/glossa/grammars/StaticTypeAnalyzer.g:314:20: expr3= expr
+                            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:314:20: expr3= expr
                             {
                             pushFollow(FOLLOW_expr_in_stm1213);
                             expr3=expr();
@@ -1515,7 +1515,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:360:17: ^( WHILE expr block END_LOOP )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:360:17: ^( WHILE expr block END_LOOP )
                     {
                     match(input,WHILE,FOLLOW_WHILE_in_stm1303); 
 
@@ -1546,7 +1546,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:369:4: ^( REPEAT block UNTIL expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:369:4: ^( REPEAT block UNTIL expr )
                     {
                     match(input,REPEAT,FOLLOW_REPEAT_in_stm1317); 
 
@@ -1577,7 +1577,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:378:17: ^( CALL ID paramsList )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:378:17: ^( CALL ID paramsList )
                     {
                     match(input,CALL,FOLLOW_CALL_in_stm1346); 
 
@@ -1611,7 +1611,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:383:1: readItem : (arrId= ID arraySubscript | varId= ID );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:383:1: readItem : (arrId= ID arraySubscript | varId= ID );
     public final void readItem() throws RecognitionException {
         CommonTree arrId=null;
         CommonTree varId=null;
@@ -1619,7 +1619,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:383:9: (arrId= ID arraySubscript | varId= ID )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:383:9: (arrId= ID arraySubscript | varId= ID )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1647,7 +1647,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt21) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:383:17: arrId= ID arraySubscript
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:383:17: arrId= ID arraySubscript
                     {
                     arrId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1383); 
                     pushFollow(FOLLOW_arraySubscript_in_readItem1385);
@@ -1680,7 +1680,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:404:17: varId= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:404:17: varId= ID
                     {
                     varId=(CommonTree)match(input,ID,FOLLOW_ID_in_readItem1409); 
 
@@ -1716,14 +1716,14 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:421:1: ifBlock : ^( IF expr block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:421:1: ifBlock : ^( IF expr block ) ;
     public final void ifBlock() throws RecognitionException {
         StaticTypeAnalyzer.expr_return expr28 = null;
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:421:9: ( ^( IF expr block ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:421:17: ^( IF expr block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:421:9: ( ^( IF expr block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:421:17: ^( IF expr block )
             {
             match(input,IF,FOLLOW_IF_in_ifBlock1454); 
 
@@ -1765,11 +1765,11 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:432:1: elseBlock : ^( ELSE block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:432:1: elseBlock : ^( ELSE block ) ;
     public final void elseBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:433:2: ( ^( ELSE block ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:433:4: ^( ELSE block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:433:2: ( ^( ELSE block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:433:4: ^( ELSE block )
             {
             match(input,ELSE,FOLLOW_ELSE_in_elseBlock1491); 
 
@@ -1797,14 +1797,14 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:436:1: elseIfBlock : ^( ELSE_IF expr block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:436:1: elseIfBlock : ^( ELSE_IF expr block ) ;
     public final void elseIfBlock() throws RecognitionException {
         StaticTypeAnalyzer.expr_return expr29 = null;
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:437:2: ( ^( ELSE_IF expr block ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:437:4: ^( ELSE_IF expr block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:437:2: ( ^( ELSE_IF expr block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:437:4: ^( ELSE_IF expr block )
             {
             match(input,ELSE_IF,FOLLOW_ELSE_IF_in_elseIfBlock1513); 
 
@@ -1848,7 +1848,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     };
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:449:1: caseBlock[Type exprType, Point exprPoint] : ^( CASE ( caseExprListItem )+ block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:449:1: caseBlock[Type exprType, Point exprPoint] : ^( CASE ( caseExprListItem )+ block ) ;
     public final StaticTypeAnalyzer.caseBlock_return caseBlock(Type exprType, Point exprPoint) throws RecognitionException {
         StaticTypeAnalyzer.caseBlock_return retval = new StaticTypeAnalyzer.caseBlock_return();
         retval.start = input.LT(1);
@@ -1857,13 +1857,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:450:2: ( ^( CASE ( caseExprListItem )+ block ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:450:4: ^( CASE ( caseExprListItem )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:450:2: ( ^( CASE ( caseExprListItem )+ block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:450:4: ^( CASE ( caseExprListItem )+ block )
             {
             match(input,CASE,FOLLOW_CASE_in_caseBlock1548); 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:450:11: ( caseExprListItem )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:450:11: ( caseExprListItem )+
             int cnt22=0;
             loop22:
             do {
@@ -1877,7 +1877,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt22) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:450:12: caseExprListItem
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:450:12: caseExprListItem
             	    {
             	    pushFollow(FOLLOW_caseExprListItem_in_caseBlock1551);
             	    caseExprListItem30=caseExprListItem();
@@ -1927,7 +1927,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     };
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:456:1: caseExprListItem returns [Type expressionType] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:456:1: caseExprListItem returns [Type expressionType] : (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) );
     public final StaticTypeAnalyzer.caseExprListItem_return caseExprListItem() throws RecognitionException {
         StaticTypeAnalyzer.caseExprListItem_return retval = new StaticTypeAnalyzer.caseExprListItem_return();
         retval.start = input.LT(1);
@@ -1939,7 +1939,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:457:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:457:2: (a= expr | ^( RANGE a= expr b= expr ) | ^( INF_RANGE LT a= expr ) | ^( INF_RANGE LE a= expr ) | ^( INF_RANGE GT a= expr ) | ^( INF_RANGE GE a= expr ) )
             int alt23=6;
             switch ( input.LA(1) ) {
             case NEG:
@@ -2027,7 +2027,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             switch (alt23) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:457:4: a= expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:457:4: a= expr
                     {
                     pushFollow(FOLLOW_expr_in_caseExprListItem1590);
                     a=expr();
@@ -2041,7 +2041,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:460:10: ^( RANGE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:460:10: ^( RANGE a= expr b= expr )
                     {
                     RANGE31=(CommonTree)match(input,RANGE,FOLLOW_RANGE_in_caseExprListItem1621); 
 
@@ -2072,7 +2072,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:470:10: ^( INF_RANGE LT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:470:10: ^( INF_RANGE LT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1645); 
 
@@ -2100,7 +2100,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:481:17: ^( INF_RANGE LE a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:481:17: ^( INF_RANGE LE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1674); 
 
@@ -2128,7 +2128,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:492:17: ^( INF_RANGE GT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:492:17: ^( INF_RANGE GT a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1703); 
 
@@ -2156,7 +2156,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:503:17: ^( INF_RANGE GE a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:503:17: ^( INF_RANGE GE a= expr )
                     {
                     match(input,INF_RANGE,FOLLOW_INF_RANGE_in_caseExprListItem1732); 
 
@@ -2198,11 +2198,11 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:516:1: caseElseBlock : ^( CASE_ELSE CASE block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:516:1: caseElseBlock : ^( CASE_ELSE CASE block ) ;
     public final void caseElseBlock() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:517:2: ( ^( CASE_ELSE CASE block ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:517:4: ^( CASE_ELSE CASE block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:517:2: ( ^( CASE_ELSE CASE block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:517:4: ^( CASE_ELSE CASE block )
             {
             match(input,CASE_ELSE,FOLLOW_CASE_ELSE_in_caseElseBlock1761); 
 
@@ -2235,7 +2235,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:521:1: expr returns [Type expressionType, ExpressionResultForm resultForm] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:521:1: expr returns [Type expressionType, ExpressionResultForm resultForm] : ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) );
     public final StaticTypeAnalyzer.expr_return expr() throws RecognitionException {
         StaticTypeAnalyzer.expr_return retval = new StaticTypeAnalyzer.expr_return();
         retval.start = input.LT(1);
@@ -2268,7 +2268,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:522:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:522:2: ( ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( EQ a= expr b= expr ) | ^( NEQ a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( LE a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( GE a= expr b= expr ) | ^( PLUS a= expr b= expr ) | ^( MINUS a= expr b= expr ) | ^( TIMES a= expr b= expr ) | ^( DIA a= expr b= expr ) | ^( DIV a= expr b= expr ) | ^( MOD a= expr b= expr ) | ^( POW a= expr b= expr ) | ^( NEG a= expr ) | ^( NOT a= expr ) | CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | ID | ^( ARRAY_ITEM ID arraySubscript ) | ^( FUNC_CALL ID paramsList ) )
             int alt24=25;
             switch ( input.LA(1) ) {
             case AND:
@@ -2405,7 +2405,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             switch (alt24) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:522:4: ^( AND a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:522:4: ^( AND a= expr b= expr )
                     {
                     AND32=(CommonTree)match(input,AND,FOLLOW_AND_in_expr1782); 
 
@@ -2441,7 +2441,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:537:4: ^( OR a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:537:4: ^( OR a= expr b= expr )
                     {
                     OR33=(CommonTree)match(input,OR,FOLLOW_OR_in_expr1803); 
 
@@ -2477,7 +2477,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:552:4: ^( EQ a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:552:4: ^( EQ a= expr b= expr )
                     {
                     EQ34=(CommonTree)match(input,EQ,FOLLOW_EQ_in_expr1824); 
 
@@ -2513,7 +2513,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:567:4: ^( NEQ a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:567:4: ^( NEQ a= expr b= expr )
                     {
                     NEQ35=(CommonTree)match(input,NEQ,FOLLOW_NEQ_in_expr1845); 
 
@@ -2549,7 +2549,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:582:4: ^( LT a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:582:4: ^( LT a= expr b= expr )
                     {
                     LT36=(CommonTree)match(input,LT,FOLLOW_LT_in_expr1866); 
 
@@ -2585,7 +2585,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:597:4: ^( LE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:597:4: ^( LE a= expr b= expr )
                     {
                     LE37=(CommonTree)match(input,LE,FOLLOW_LE_in_expr1887); 
 
@@ -2621,7 +2621,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:612:4: ^( GT a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:612:4: ^( GT a= expr b= expr )
                     {
                     GT38=(CommonTree)match(input,GT,FOLLOW_GT_in_expr1908); 
 
@@ -2657,7 +2657,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:627:4: ^( GE a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:627:4: ^( GE a= expr b= expr )
                     {
                     GE39=(CommonTree)match(input,GE,FOLLOW_GE_in_expr1929); 
 
@@ -2693,7 +2693,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:642:4: ^( PLUS a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:642:4: ^( PLUS a= expr b= expr )
                     {
                     PLUS40=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expr1950); 
 
@@ -2729,7 +2729,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 10 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:657:4: ^( MINUS a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:657:4: ^( MINUS a= expr b= expr )
                     {
                     MINUS41=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expr1971); 
 
@@ -2765,7 +2765,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 11 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:672:4: ^( TIMES a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:672:4: ^( TIMES a= expr b= expr )
                     {
                     TIMES42=(CommonTree)match(input,TIMES,FOLLOW_TIMES_in_expr1992); 
 
@@ -2801,7 +2801,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 12 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:687:4: ^( DIA a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:687:4: ^( DIA a= expr b= expr )
                     {
                     DIA43=(CommonTree)match(input,DIA,FOLLOW_DIA_in_expr2013); 
 
@@ -2837,7 +2837,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 13 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:702:4: ^( DIV a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:702:4: ^( DIV a= expr b= expr )
                     {
                     DIV44=(CommonTree)match(input,DIV,FOLLOW_DIV_in_expr2034); 
 
@@ -2873,7 +2873,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 14 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:717:4: ^( MOD a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:717:4: ^( MOD a= expr b= expr )
                     {
                     MOD45=(CommonTree)match(input,MOD,FOLLOW_MOD_in_expr2055); 
 
@@ -2909,7 +2909,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 15 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:732:4: ^( POW a= expr b= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:732:4: ^( POW a= expr b= expr )
                     {
                     POW46=(CommonTree)match(input,POW,FOLLOW_POW_in_expr2076); 
 
@@ -2949,7 +2949,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 16 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:751:4: ^( NEG a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:751:4: ^( NEG a= expr )
                     {
                     match(input,NEG,FOLLOW_NEG_in_expr2097); 
 
@@ -2977,7 +2977,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 17 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:763:4: ^( NOT a= expr )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:763:4: ^( NOT a= expr )
                     {
                     match(input,NOT,FOLLOW_NOT_in_expr2122); 
 
@@ -3005,7 +3005,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 18 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:775:4: CONST_TRUE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:775:4: CONST_TRUE
                     {
                     match(input,CONST_TRUE,FOLLOW_CONST_TRUE_in_expr2146); 
                     retval.expressionType = Type.BOOLEAN; retval.resultForm =ExpressionResultForm.VALUE;
@@ -3013,7 +3013,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 19 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:776:4: CONST_FALSE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:776:4: CONST_FALSE
                     {
                     match(input,CONST_FALSE,FOLLOW_CONST_FALSE_in_expr2153); 
                     retval.expressionType = Type.BOOLEAN; retval.resultForm =ExpressionResultForm.VALUE;
@@ -3021,7 +3021,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 20 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:777:4: CONST_STR
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:777:4: CONST_STR
                     {
                     match(input,CONST_STR,FOLLOW_CONST_STR_in_expr2160); 
                     retval.expressionType = Type.STRING; retval.resultForm =ExpressionResultForm.VALUE;
@@ -3029,7 +3029,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 21 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:778:4: CONST_INT
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:778:4: CONST_INT
                     {
                     match(input,CONST_INT,FOLLOW_CONST_INT_in_expr2167); 
                     retval.expressionType = Type.INTEGER; retval.resultForm =ExpressionResultForm.VALUE;
@@ -3037,7 +3037,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 22 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:779:4: CONST_REAL
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:779:4: CONST_REAL
                     {
                     match(input,CONST_REAL,FOLLOW_CONST_REAL_in_expr2174); 
                     retval.expressionType = Type.REAL; retval.resultForm =ExpressionResultForm.VALUE;
@@ -3045,7 +3045,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 23 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:780:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:780:4: ID
                     {
                     ID47=(CommonTree)match(input,ID,FOLLOW_ID_in_expr2181); 
 
@@ -3072,7 +3072,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 24 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:800:4: ^( ARRAY_ITEM ID arraySubscript )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:800:4: ^( ARRAY_ITEM ID arraySubscript )
                     {
                     match(input,ARRAY_ITEM,FOLLOW_ARRAY_ITEM_in_expr2190); 
 
@@ -3110,7 +3110,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                     }
                     break;
                 case 25 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:821:17: ^( FUNC_CALL ID paramsList )
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:821:17: ^( FUNC_CALL ID paramsList )
                     {
                     match(input,FUNC_CALL,FOLLOW_FUNC_CALL_in_expr2219); 
 
@@ -3158,7 +3158,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "paramsList"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:840:1: paramsList returns [List<ActualParameter> params] : ^( PARAMS ( expr )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:840:1: paramsList returns [List<ActualParameter> params] : ^( PARAMS ( expr )* ) ;
     public final List<ActualParameter> paramsList() throws RecognitionException {
         List<ActualParameter> params = null;
 
@@ -3166,8 +3166,8 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:841:2: ( ^( PARAMS ( expr )* ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:841:4: ^( PARAMS ( expr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:841:2: ( ^( PARAMS ( expr )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:841:4: ^( PARAMS ( expr )* )
             {
             match(input,PARAMS,FOLLOW_PARAMS_in_paramsList2258); 
 
@@ -3175,7 +3175,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/StaticTypeAnalyzer.g:842:19: ( expr )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:842:19: ( expr )*
                 loop25:
                 do {
                     int alt25=2;
@@ -3188,7 +3188,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     switch (alt25) {
                 	case 1 :
-                	    // src/glossa/grammars/StaticTypeAnalyzer.g:842:20: expr
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:842:20: expr
                 	    {
                 	    pushFollow(FOLLOW_expr_in_paramsList2284);
                 	    expr52=expr();
@@ -3228,7 +3228,7 @@ public class StaticTypeAnalyzer extends TreeParser {
     };
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:847:1: arraySubscript returns [int indicesCount] : ^( ARRAY_INDEX ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:847:1: arraySubscript returns [int indicesCount] : ^( ARRAY_INDEX ( expr )+ ) ;
     public final StaticTypeAnalyzer.arraySubscript_return arraySubscript() throws RecognitionException {
         StaticTypeAnalyzer.arraySubscript_return retval = new StaticTypeAnalyzer.arraySubscript_return();
         retval.start = input.LT(1);
@@ -3237,8 +3237,8 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:848:2: ( ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:848:4: ^( ARRAY_INDEX ( expr )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:848:2: ( ^( ARRAY_INDEX ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:848:4: ^( ARRAY_INDEX ( expr )+ )
             {
             match(input,ARRAY_INDEX,FOLLOW_ARRAY_INDEX_in_arraySubscript2365); 
 
@@ -3247,7 +3247,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                                                 
 
             match(input, Token.DOWN, null); 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:851:19: ( expr )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:851:19: ( expr )+
             int cnt26=0;
             loop26:
             do {
@@ -3261,7 +3261,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                 switch (alt26) {
             	case 1 :
-            	    // src/glossa/grammars/StaticTypeAnalyzer.g:851:20: expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:851:20: expr
             	    {
             	    pushFollow(FOLLOW_expr_in_arraySubscript2394);
             	    expr53=expr();
@@ -3311,13 +3311,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:866:1: procedure : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:866:1: procedure : ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
     public final void procedure() throws RecognitionException {
         CommonTree ID54=null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:867:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:867:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:867:2: ( ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:867:4: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE )
             {
             match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure2496); 
 
@@ -3336,7 +3336,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                                                     ProcedureScope ps = scopeTable.getProcedureScope((ID54!=null?ID54.getText():null));
                                                     currentScope = ps;
                                                 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:875:19: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:875:19: ( constDecl )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3345,7 +3345,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:875:19: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:875:19: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_procedure2586);
                     constDecl();
@@ -3358,7 +3358,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             }
 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:876:19: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:876:19: ( varDecl )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3367,7 +3367,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:876:19: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:876:19: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_procedure2607);
                     varDecl();
@@ -3426,13 +3426,13 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "function"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:901:1: function : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:901:1: function : ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
     public final void function() throws RecognitionException {
         CommonTree ID55=null;
 
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:902:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:902:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:902:2: ( ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:902:4: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION )
             {
             match(input,FUNCTION,FOLLOW_FUNCTION_in_function2699); 
 
@@ -3456,7 +3456,7 @@ public class StaticTypeAnalyzer extends TreeParser {
                                                     FunctionScope fs = scopeTable.getFunctionScope((ID55!=null?ID55.getText():null));
                                                     currentScope = fs;
                                                 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:910:19: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:910:19: ( constDecl )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -3465,7 +3465,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt29) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:910:19: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:910:19: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_function2792);
                     constDecl();
@@ -3478,7 +3478,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
             }
 
-            // src/glossa/grammars/StaticTypeAnalyzer.g:911:19: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:911:19: ( varDecl )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -3487,7 +3487,7 @@ public class StaticTypeAnalyzer extends TreeParser {
             }
             switch (alt30) {
                 case 1 :
-                    // src/glossa/grammars/StaticTypeAnalyzer.g:911:19: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:911:19: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_function2813);
                     varDecl();
@@ -3549,11 +3549,11 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:939:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:939:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
     public final void returnType() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:940:2: ( INTEGER | REAL | STRING | BOOLEAN )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:940:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:
             {
             if ( (input.LA(1)>=INTEGER && input.LA(1)<=BOOLEAN) ) {
                 input.consume();
@@ -3580,17 +3580,17 @@ public class StaticTypeAnalyzer extends TreeParser {
 
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/StaticTypeAnalyzer.g:949:1: formalParamsList : ^( FORMAL_PARAMS ( ID )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:949:1: formalParamsList : ^( FORMAL_PARAMS ( ID )* ) ;
     public final void formalParamsList() throws RecognitionException {
         try {
-            // src/glossa/grammars/StaticTypeAnalyzer.g:950:2: ( ^( FORMAL_PARAMS ( ID )* ) )
-            // src/glossa/grammars/StaticTypeAnalyzer.g:950:4: ^( FORMAL_PARAMS ( ID )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:950:2: ( ^( FORMAL_PARAMS ( ID )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:950:4: ^( FORMAL_PARAMS ( ID )* )
             {
             match(input,FORMAL_PARAMS,FOLLOW_FORMAL_PARAMS_in_formalParamsList2940); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // src/glossa/grammars/StaticTypeAnalyzer.g:950:20: ( ID )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:950:20: ( ID )*
                 loop31:
                 do {
                     int alt31=2;
@@ -3603,7 +3603,7 @@ public class StaticTypeAnalyzer extends TreeParser {
 
                     switch (alt31) {
                 	case 1 :
-                	    // src/glossa/grammars/StaticTypeAnalyzer.g:950:21: ID
+                	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/StaticTypeAnalyzer.g:950:21: ID
                 	    {
                 	    match(input,ID,FOLLOW_ID_in_formalParamsList2943); 
 

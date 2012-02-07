@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 src/glossa/grammars/Glossa.g 2012-02-06 16:15:22
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g 2012-02-07 09:52:14
 
 /*
  *  The MIT License
@@ -193,7 +193,7 @@ public class GlossaParser extends Parser {
     }
 
     public String[] getTokenNames() { return GlossaParser.tokenNames; }
-    public String getGrammarFileName() { return "src/glossa/grammars/Glossa.g"; }
+    public String getGrammarFileName() { return "/home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g"; }
 
 
 
@@ -268,7 +268,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "unit"
-    // src/glossa/grammars/Glossa.g:286:1: unit : ( NEWLINE )* program ( function | procedure )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:1: unit : ( NEWLINE )* program ( function | procedure )* ;
     public final GlossaParser.unit_return unit() throws RecognitionException {
         GlossaParser.unit_return retval = new GlossaParser.unit_return();
         retval.start = input.LT(1);
@@ -286,12 +286,12 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE1_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:286:6: ( ( NEWLINE )* program ( function | procedure )* )
-            // src/glossa/grammars/Glossa.g:286:8: ( NEWLINE )* program ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:6: ( ( NEWLINE )* program ( function | procedure )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:8: ( NEWLINE )* program ( function | procedure )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // src/glossa/grammars/Glossa.g:286:8: ( NEWLINE )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:8: ( NEWLINE )*
             loop1:
             do {
                 int alt1=2;
@@ -304,7 +304,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:286:9: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:9: NEWLINE
             	    {
             	    NEWLINE1=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_unit153); if (state.failed) return retval;
 
@@ -322,7 +322,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, program2.getTree());
-            // src/glossa/grammars/Glossa.g:286:28: ( function | procedure )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:28: ( function | procedure )*
             loop2:
             do {
                 int alt2=3;
@@ -338,7 +338,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:286:29: function
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:29: function
             	    {
             	    pushFollow(FOLLOW_function_in_unit161);
             	    function3=function();
@@ -350,7 +350,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:286:38: procedure
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:286:38: procedure
             	    {
             	    pushFollow(FOLLOW_procedure_in_unit163);
             	    procedure4=procedure();
@@ -396,7 +396,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "program"
-    // src/glossa/grammars/Glossa.g:288:1: program : PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:288:1: program : PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ ;
     public final GlossaParser.program_return program() throws RecognitionException {
         GlossaParser.program_return retval = new GlossaParser.program_return();
         retval.start = input.LT(1);
@@ -426,8 +426,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE12_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:288:9: ( PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:288:11: PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:288:9: ( PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:288:11: PROGRAM id1= ID ( NEWLINE )+ declarations BEGIN ( NEWLINE )+ block END_PROGRAM (id2= ID )? ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -441,7 +441,7 @@ public class GlossaParser extends Parser {
             id1_tree = (CommonTree)adaptor.create(id1);
             adaptor.addChild(root_0, id1_tree);
             }
-            // src/glossa/grammars/Glossa.g:288:27: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:288:27: ( NEWLINE )+
             int cnt3=0;
             loop3:
             do {
@@ -455,7 +455,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:288:28: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:288:28: NEWLINE
             	    {
             	    NEWLINE6=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program181); if (state.failed) return retval;
 
@@ -479,7 +479,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, declarations7.getTree());
             BEGIN8=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_program192); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:290:11: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:290:11: ( NEWLINE )+
             int cnt4=0;
             loop4:
             do {
@@ -493,7 +493,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:290:12: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:290:12: NEWLINE
             	    {
             	    NEWLINE9=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program197); if (state.failed) return retval;
 
@@ -521,7 +521,7 @@ public class GlossaParser extends Parser {
             END_PROGRAM11_tree = (CommonTree)adaptor.create(END_PROGRAM11);
             adaptor.addChild(root_0, END_PROGRAM11_tree);
             }
-            // src/glossa/grammars/Glossa.g:292:15: (id2= ID )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:292:15: (id2= ID )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -530,7 +530,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:292:16: id2= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:292:16: id2= ID
                     {
                     id2=(Token)match(input,ID,FOLLOW_ID_in_program213); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
@@ -543,7 +543,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:292:25: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:292:25: ( NEWLINE )+
             int cnt6=0;
             loop6:
             do {
@@ -557,7 +557,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:292:26: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:292:26: NEWLINE
             	    {
             	    NEWLINE12=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_program218); if (state.failed) return retval;
 
@@ -603,7 +603,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "declarations"
-    // src/glossa/grammars/Glossa.g:294:1: declarations : ( constDecl )? ( varDecl )? ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:294:1: declarations : ( constDecl )? ( varDecl )? ;
     public final GlossaParser.declarations_return declarations() throws RecognitionException {
         GlossaParser.declarations_return retval = new GlossaParser.declarations_return();
         retval.start = input.LT(1);
@@ -617,12 +617,12 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:295:2: ( ( constDecl )? ( varDecl )? )
-            // src/glossa/grammars/Glossa.g:295:4: ( constDecl )? ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:295:2: ( ( constDecl )? ( varDecl )? )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:295:4: ( constDecl )? ( varDecl )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // src/glossa/grammars/Glossa.g:295:4: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:295:4: ( constDecl )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -631,7 +631,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_declarations232);
                     constDecl13=constDecl();
@@ -645,7 +645,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:295:15: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:295:15: ( varDecl )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -654,7 +654,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_declarations235);
                     varDecl14=varDecl();
@@ -697,7 +697,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "constDecl"
-    // src/glossa/grammars/Glossa.g:297:1: constDecl : CONSTANTS ( NEWLINE )+ ( constAssign )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:297:1: constDecl : CONSTANTS ( NEWLINE )+ ( constAssign )* ;
     public final GlossaParser.constDecl_return constDecl() throws RecognitionException {
         GlossaParser.constDecl_return retval = new GlossaParser.constDecl_return();
         retval.start = input.LT(1);
@@ -713,8 +713,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE16_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:298:2: ( CONSTANTS ( NEWLINE )+ ( constAssign )* )
-            // src/glossa/grammars/Glossa.g:298:4: CONSTANTS ( NEWLINE )+ ( constAssign )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:298:2: ( CONSTANTS ( NEWLINE )+ ( constAssign )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:298:4: CONSTANTS ( NEWLINE )+ ( constAssign )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -723,7 +723,7 @@ public class GlossaParser extends Parser {
             CONSTANTS15_tree = (CommonTree)adaptor.create(CONSTANTS15);
             root_0 = (CommonTree)adaptor.becomeRoot(CONSTANTS15_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:298:15: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:298:15: ( NEWLINE )+
             int cnt9=0;
             loop9:
             do {
@@ -737,7 +737,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt9) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:298:16: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:298:16: NEWLINE
             	    {
             	    NEWLINE16=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_constDecl251); if (state.failed) return retval;
 
@@ -754,7 +754,7 @@ public class GlossaParser extends Parser {
                 cnt9++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:298:27: ( constAssign )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:298:27: ( constAssign )*
             loop10:
             do {
                 int alt10=2;
@@ -767,7 +767,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt10) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: constAssign
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: constAssign
             	    {
             	    pushFollow(FOLLOW_constAssign_in_constDecl256);
             	    constAssign17=constAssign();
@@ -813,7 +813,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "constAssign"
-    // src/glossa/grammars/Glossa.g:300:1: constAssign : ID EQ expr ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:300:1: constAssign : ID EQ expr ( NEWLINE )+ ;
     public final GlossaParser.constAssign_return constAssign() throws RecognitionException {
         GlossaParser.constAssign_return retval = new GlossaParser.constAssign_return();
         retval.start = input.LT(1);
@@ -831,8 +831,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE21_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:301:2: ( ID EQ expr ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:301:4: ID EQ expr ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:301:2: ( ID EQ expr ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:301:4: ID EQ expr ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -852,7 +852,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr20.getTree());
-            // src/glossa/grammars/Glossa.g:301:16: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:301:16: ( NEWLINE )+
             int cnt11=0;
             loop11:
             do {
@@ -866,7 +866,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:301:17: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:301:17: NEWLINE
             	    {
             	    NEWLINE21=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_constAssign274); if (state.failed) return retval;
 
@@ -912,7 +912,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varDecl"
-    // src/glossa/grammars/Glossa.g:303:1: varDecl : VARIABLES ( NEWLINE )+ ( varsDecl )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:1: varDecl : VARIABLES ( NEWLINE )+ ( varsDecl )* ;
     public final GlossaParser.varDecl_return varDecl() throws RecognitionException {
         GlossaParser.varDecl_return retval = new GlossaParser.varDecl_return();
         retval.start = input.LT(1);
@@ -928,8 +928,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE23_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:303:9: ( VARIABLES ( NEWLINE )+ ( varsDecl )* )
-            // src/glossa/grammars/Glossa.g:303:11: VARIABLES ( NEWLINE )+ ( varsDecl )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:9: ( VARIABLES ( NEWLINE )+ ( varsDecl )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:11: VARIABLES ( NEWLINE )+ ( varsDecl )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -938,7 +938,7 @@ public class GlossaParser extends Parser {
             VARIABLES22_tree = (CommonTree)adaptor.create(VARIABLES22);
             root_0 = (CommonTree)adaptor.becomeRoot(VARIABLES22_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:303:22: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:22: ( NEWLINE )+
             int cnt12=0;
             loop12:
             do {
@@ -952,7 +952,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:303:23: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:23: NEWLINE
             	    {
             	    NEWLINE23=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_varDecl290); if (state.failed) return retval;
 
@@ -969,7 +969,7 @@ public class GlossaParser extends Parser {
                 cnt12++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:303:34: ( varsDecl )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:303:34: ( varsDecl )*
             loop13:
             do {
                 int alt13=2;
@@ -982,7 +982,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: varsDecl
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: varsDecl
             	    {
             	    pushFollow(FOLLOW_varsDecl_in_varDecl295);
             	    varsDecl24=varsDecl();
@@ -1028,7 +1028,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varsDecl"
-    // src/glossa/grammars/Glossa.g:305:1: varsDecl : varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:305:1: varsDecl : varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ ;
     public final GlossaParser.varsDecl_return varsDecl() throws RecognitionException {
         GlossaParser.varsDecl_return retval = new GlossaParser.varsDecl_return();
         retval.start = input.LT(1);
@@ -1050,8 +1050,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE30_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:306:2: ( varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:306:4: varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:2: ( varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:4: varType COLON varDeclItem ( COMMA varDeclItem )* ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1068,7 +1068,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclItem27.getTree());
-            // src/glossa/grammars/Glossa.g:306:32: ( COMMA varDeclItem )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:32: ( COMMA varDeclItem )*
             loop14:
             do {
                 int alt14=2;
@@ -1081,7 +1081,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt14) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:306:33: COMMA varDeclItem
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:33: COMMA varDeclItem
             	    {
             	    COMMA28=(Token)match(input,COMMA,FOLLOW_COMMA_in_varsDecl315); if (state.failed) return retval;
             	    pushFollow(FOLLOW_varDeclItem_in_varsDecl318);
@@ -1099,7 +1099,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:306:54: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:54: ( NEWLINE )+
             int cnt15=0;
             loop15:
             do {
@@ -1113,7 +1113,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt15) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:306:55: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:306:55: NEWLINE
             	    {
             	    NEWLINE30=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_varsDecl323); if (state.failed) return retval;
 
@@ -1159,7 +1159,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varDeclItem"
-    // src/glossa/grammars/Glossa.g:308:1: varDeclItem : ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:308:1: varDeclItem : ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) );
     public final GlossaParser.varDeclItem_return varDeclItem() throws RecognitionException {
         GlossaParser.varDeclItem_return retval = new GlossaParser.varDeclItem_return();
         retval.start = input.LT(1);
@@ -1176,7 +1176,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_arrayDimension=new RewriteRuleSubtreeStream(adaptor,"rule arrayDimension");
         try {
-            // src/glossa/grammars/Glossa.g:309:2: ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:309:2: ( ID | ID arrayDimension -> ^( ARRAY ID arrayDimension ) )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1206,7 +1206,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt16) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:309:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:309:4: ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1219,7 +1219,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:310:5: ID arrayDimension
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:310:5: ID arrayDimension
                     {
                     ID32=(Token)match(input,ID,FOLLOW_ID_in_varDeclItem342); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(ID32);
@@ -1233,7 +1233,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayDimension, ID
+                    // elements: ID, arrayDimension
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1246,7 +1246,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 310:23: -> ^( ARRAY ID arrayDimension )
                     {
-                        // src/glossa/grammars/Glossa.g:310:26: ^( ARRAY ID arrayDimension )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:310:26: ^( ARRAY ID arrayDimension )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY, "ARRAY"), root_1);
@@ -1290,7 +1290,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arrayDimension"
-    // src/glossa/grammars/Glossa.g:312:1: arrayDimension : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:312:1: arrayDimension : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) ;
     public final GlossaParser.arrayDimension_return arrayDimension() throws RecognitionException {
         GlossaParser.arrayDimension_return retval = new GlossaParser.arrayDimension_return();
         retval.start = input.LT(1);
@@ -1310,14 +1310,14 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:313:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) )
-            // src/glossa/grammars/Glossa.g:313:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_DIMENSION ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
             {
             LBRACKET34=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arrayDimension363); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET34);
 
-            // src/glossa/grammars/Glossa.g:313:13: (dimension+= expr )
-            // src/glossa/grammars/Glossa.g:313:14: dimension+= expr
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:13: (dimension+= expr )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:14: dimension+= expr
             {
             pushFollow(FOLLOW_expr_in_arrayDimension368);
             dimension=expr();
@@ -1331,7 +1331,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:313:31: ( COMMA dimension+= expr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:31: ( COMMA dimension+= expr )*
             loop17:
             do {
                 int alt17=2;
@@ -1344,7 +1344,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt17) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:313:32: COMMA dimension+= expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:32: COMMA dimension+= expr
             	    {
             	    COMMA35=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayDimension372); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA35);
@@ -1386,7 +1386,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 313:65: -> ^( ARRAY_DIMENSION ( expr )+ )
             {
-                // src/glossa/grammars/Glossa.g:313:68: ^( ARRAY_DIMENSION ( expr )+ )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:313:68: ^( ARRAY_DIMENSION ( expr )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_DIMENSION, "ARRAY_DIMENSION"), root_1);
@@ -1434,7 +1434,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "varType"
-    // src/glossa/grammars/Glossa.g:315:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:315:1: varType : ( BOOLEANS | STRINGS | INTEGERS | REALS );
     public final GlossaParser.varType_return varType() throws RecognitionException {
         GlossaParser.varType_return retval = new GlossaParser.varType_return();
         retval.start = input.LT(1);
@@ -1446,8 +1446,8 @@ public class GlossaParser extends Parser {
         CommonTree set37_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:315:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:315:9: ( BOOLEANS | STRINGS | INTEGERS | REALS )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1492,7 +1492,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "block"
-    // src/glossa/grammars/Glossa.g:320:1: block : ( stm )* -> ^( BLOCK ( stm )* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:1: block : ( stm )* -> ^( BLOCK ( stm )* ) ;
     public final GlossaParser.block_return block() throws RecognitionException {
         GlossaParser.block_return retval = new GlossaParser.block_return();
         retval.start = input.LT(1);
@@ -1504,10 +1504,10 @@ public class GlossaParser extends Parser {
 
         RewriteRuleSubtreeStream stream_stm=new RewriteRuleSubtreeStream(adaptor,"rule stm");
         try {
-            // src/glossa/grammars/Glossa.g:320:7: ( ( stm )* -> ^( BLOCK ( stm )* ) )
-            // src/glossa/grammars/Glossa.g:320:9: ( stm )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:7: ( ( stm )* -> ^( BLOCK ( stm )* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:9: ( stm )*
             {
-            // src/glossa/grammars/Glossa.g:320:9: ( stm )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:9: ( stm )*
             loop18:
             do {
                 int alt18=2;
@@ -1520,7 +1520,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt18) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: stm
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: stm
             	    {
             	    pushFollow(FOLLOW_stm_in_block423);
             	    stm38=stm();
@@ -1553,12 +1553,12 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 320:15: -> ^( BLOCK ( stm )* )
             {
-                // src/glossa/grammars/Glossa.g:320:18: ^( BLOCK ( stm )* )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:18: ^( BLOCK ( stm )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(BLOCK, "BLOCK"), root_1);
 
-                // src/glossa/grammars/Glossa.g:320:26: ( stm )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:320:26: ( stm )*
                 while ( stream_stm.hasNext() ) {
                     adaptor.addChild(root_1, stream_stm.nextTree());
 
@@ -1599,7 +1599,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "stm"
-    // src/glossa/grammars/Glossa.g:322:1: stm : ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm | procedureCallStm );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:322:1: stm : ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm | procedureCallStm );
     public final GlossaParser.stm_return stm() throws RecognitionException {
         GlossaParser.stm_return retval = new GlossaParser.stm_return();
         retval.start = input.LT(1);
@@ -1627,7 +1627,7 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:322:5: ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm | procedureCallStm )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:322:5: ( printStm | readStm | assingmentStm | ifStm | caseStm | forStm | whileStm | repeatStm | procedureCallStm )
             int alt19=9;
             switch ( input.LA(1) ) {
             case PRINT:
@@ -1685,7 +1685,7 @@ public class GlossaParser extends Parser {
 
             switch (alt19) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:322:7: printStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:322:7: printStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1699,7 +1699,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:323:17: readStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:323:17: readStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1713,7 +1713,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:324:4: assingmentStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:324:4: assingmentStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1727,7 +1727,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:325:17: ifStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:325:17: ifStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1741,7 +1741,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/Glossa.g:326:17: caseStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:326:17: caseStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1755,7 +1755,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/Glossa.g:327:17: forStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:327:17: forStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1769,7 +1769,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/Glossa.g:328:17: whileStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:328:17: whileStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1783,7 +1783,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/Glossa.g:329:17: repeatStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:329:17: repeatStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1797,7 +1797,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/Glossa.g:330:11: procedureCallStm
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:330:11: procedureCallStm
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1838,7 +1838,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "printStm"
-    // src/glossa/grammars/Glossa.g:333:1: printStm : PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:333:1: printStm : PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ ;
     public final GlossaParser.printStm_return printStm() throws RecognitionException {
         GlossaParser.printStm_return retval = new GlossaParser.printStm_return();
         retval.start = input.LT(1);
@@ -1858,8 +1858,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE52_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:334:9: ( PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:334:11: PRINT ( expr ( ',' expr )* )? ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:9: ( PRINT ( expr ( ',' expr )* )? ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:11: PRINT ( expr ( ',' expr )* )? ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1868,7 +1868,7 @@ public class GlossaParser extends Parser {
             PRINT48_tree = (CommonTree)adaptor.create(PRINT48);
             root_0 = (CommonTree)adaptor.becomeRoot(PRINT48_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:334:18: ( expr ( ',' expr )* )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:18: ( expr ( ',' expr )* )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1877,7 +1877,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:334:19: expr ( ',' expr )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:19: expr ( ',' expr )*
                     {
                     pushFollow(FOLLOW_expr_in_printStm597);
                     expr49=expr();
@@ -1885,7 +1885,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expr49.getTree());
-                    // src/glossa/grammars/Glossa.g:334:24: ( ',' expr )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:24: ( ',' expr )*
                     loop20:
                     do {
                         int alt20=2;
@@ -1898,7 +1898,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt20) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:334:26: ',' expr
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:26: ',' expr
                     	    {
                     	    char_literal50=(Token)match(input,COMMA,FOLLOW_COMMA_in_printStm601); if (state.failed) return retval;
                     	    pushFollow(FOLLOW_expr_in_printStm604);
@@ -1922,7 +1922,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:334:41: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:41: ( NEWLINE )+
             int cnt22=0;
             loop22:
             do {
@@ -1936,7 +1936,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt22) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:334:42: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:334:42: NEWLINE
             	    {
             	    NEWLINE52=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_printStm612); if (state.failed) return retval;
 
@@ -1982,7 +1982,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "readStm"
-    // src/glossa/grammars/Glossa.g:336:1: readStm : READ readItem ( COMMA readItem )* ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:336:1: readStm : READ readItem ( COMMA readItem )* ( NEWLINE )+ ;
     public final GlossaParser.readStm_return readStm() throws RecognitionException {
         GlossaParser.readStm_return retval = new GlossaParser.readStm_return();
         retval.start = input.LT(1);
@@ -2002,8 +2002,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE57_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:336:9: ( READ readItem ( COMMA readItem )* ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:337:17: READ readItem ( COMMA readItem )* ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:336:9: ( READ readItem ( COMMA readItem )* ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:337:17: READ readItem ( COMMA readItem )* ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2018,7 +2018,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, readItem54.getTree());
-            // src/glossa/grammars/Glossa.g:337:32: ( COMMA readItem )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:337:32: ( COMMA readItem )*
             loop23:
             do {
                 int alt23=2;
@@ -2031,7 +2031,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt23) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:337:33: COMMA readItem
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:337:33: COMMA readItem
             	    {
             	    COMMA55=(Token)match(input,COMMA,FOLLOW_COMMA_in_readStm645); if (state.failed) return retval;
             	    pushFollow(FOLLOW_readItem_in_readStm648);
@@ -2049,7 +2049,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:337:51: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:337:51: ( NEWLINE )+
             int cnt24=0;
             loop24:
             do {
@@ -2063,7 +2063,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt24) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:337:52: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:337:52: NEWLINE
             	    {
             	    NEWLINE57=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_readStm653); if (state.failed) return retval;
 
@@ -2109,7 +2109,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "readItem"
-    // src/glossa/grammars/Glossa.g:340:1: readItem : (arrId= ID arraySubscript | varId= ID );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:340:1: readItem : (arrId= ID arraySubscript | varId= ID );
     public final GlossaParser.readItem_return readItem() throws RecognitionException {
         GlossaParser.readItem_return retval = new GlossaParser.readItem_return();
         retval.start = input.LT(1);
@@ -2125,7 +2125,7 @@ public class GlossaParser extends Parser {
         CommonTree varId_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:340:9: (arrId= ID arraySubscript | varId= ID )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:340:9: (arrId= ID arraySubscript | varId= ID )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -2155,7 +2155,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:341:17: arrId= ID arraySubscript
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:341:17: arrId= ID arraySubscript
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2174,7 +2174,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:342:17: varId= ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:342:17: varId= ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2214,7 +2214,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "assingmentStm"
-    // src/glossa/grammars/Glossa.g:345:1: assingmentStm : (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:345:1: assingmentStm : (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ );
     public final GlossaParser.assingmentStm_return assingmentStm() throws RecognitionException {
         GlossaParser.assingmentStm_return retval = new GlossaParser.assingmentStm_return();
         retval.start = input.LT(1);
@@ -2242,7 +2242,7 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE63_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:346:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:346:2: (varId= ID ASSIGN varValue= expr ( NEWLINE )+ | arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+ )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2272,7 +2272,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt28) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:346:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:346:4: varId= ID ASSIGN varValue= expr ( NEWLINE )+
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2292,7 +2292,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, varValue.getTree());
-                    // src/glossa/grammars/Glossa.g:346:35: ( NEWLINE )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:346:35: ( NEWLINE )+
                     int cnt26=0;
                     loop26:
                     do {
@@ -2306,7 +2306,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt26) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:346:36: NEWLINE
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:346:36: NEWLINE
                     	    {
                     	    NEWLINE60=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm743); if (state.failed) return retval;
 
@@ -2327,7 +2327,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:347:17: arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:347:17: arrId= ID arraySubscript ASSIGN arrItemValue= expr ( NEWLINE )+
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2353,7 +2353,7 @@ public class GlossaParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, arrItemValue.getTree());
-                    // src/glossa/grammars/Glossa.g:347:67: ( NEWLINE )+
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:347:67: ( NEWLINE )+
                     int cnt27=0;
                     loop27:
                     do {
@@ -2367,7 +2367,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt27) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:347:68: NEWLINE
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:347:68: NEWLINE
                     	    {
                     	    NEWLINE63=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_assingmentStm778); if (state.failed) return retval;
 
@@ -2415,7 +2415,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "ifStm"
-    // src/glossa/grammars/Glossa.g:350:1: ifStm : ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:1: ifStm : ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) ;
     public final GlossaParser.ifStm_return ifStm() throws RecognitionException {
         GlossaParser.ifStm_return retval = new GlossaParser.ifStm_return();
         retval.start = input.LT(1);
@@ -2439,8 +2439,8 @@ public class GlossaParser extends Parser {
         RewriteRuleSubtreeStream stream_ifBlock=new RewriteRuleSubtreeStream(adaptor,"rule ifBlock");
         RewriteRuleSubtreeStream stream_elseBlock=new RewriteRuleSubtreeStream(adaptor,"rule elseBlock");
         try {
-            // src/glossa/grammars/Glossa.g:350:7: ( ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) )
-            // src/glossa/grammars/Glossa.g:350:9: ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:7: ( ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+ -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:9: ifBlock ( elseIfBlock )* ( elseBlock )? END_IF ( NEWLINE )+
             {
             pushFollow(FOLLOW_ifBlock_in_ifStm798);
             ifBlock64=ifBlock();
@@ -2448,7 +2448,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_ifBlock.add(ifBlock64.getTree());
-            // src/glossa/grammars/Glossa.g:350:17: ( elseIfBlock )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:17: ( elseIfBlock )*
             loop29:
             do {
                 int alt29=2;
@@ -2461,7 +2461,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt29) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: elseIfBlock
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: elseIfBlock
             	    {
             	    pushFollow(FOLLOW_elseIfBlock_in_ifStm800);
             	    elseIfBlock65=elseIfBlock();
@@ -2478,7 +2478,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:350:30: ( elseBlock )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:30: ( elseBlock )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -2487,7 +2487,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt30) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: elseBlock
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: elseBlock
                     {
                     pushFollow(FOLLOW_elseBlock_in_ifStm803);
                     elseBlock66=elseBlock();
@@ -2504,7 +2504,7 @@ public class GlossaParser extends Parser {
             END_IF67=(Token)match(input,END_IF,FOLLOW_END_IF_in_ifStm806); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_END_IF.add(END_IF67);
 
-            // src/glossa/grammars/Glossa.g:350:48: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:48: ( NEWLINE )+
             int cnt31=0;
             loop31:
             do {
@@ -2518,7 +2518,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt31) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:350:49: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:49: NEWLINE
             	    {
             	    NEWLINE68=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_ifStm809); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE68);
@@ -2540,7 +2540,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: elseBlock, elseIfBlock, END_IF, ifBlock
+            // elements: elseBlock, END_IF, elseIfBlock, ifBlock
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2553,19 +2553,19 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 350:59: -> ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
             {
-                // src/glossa/grammars/Glossa.g:350:62: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:62: ^( IFNODE ifBlock ( elseIfBlock )* ( elseBlock )? END_IF )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(IFNODE, "IFNODE"), root_1);
 
                 adaptor.addChild(root_1, stream_ifBlock.nextTree());
-                // src/glossa/grammars/Glossa.g:350:79: ( elseIfBlock )*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:79: ( elseIfBlock )*
                 while ( stream_elseIfBlock.hasNext() ) {
                     adaptor.addChild(root_1, stream_elseIfBlock.nextTree());
 
                 }
                 stream_elseIfBlock.reset();
-                // src/glossa/grammars/Glossa.g:350:92: ( elseBlock )?
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:350:92: ( elseBlock )?
                 if ( stream_elseBlock.hasNext() ) {
                     adaptor.addChild(root_1, stream_elseBlock.nextTree());
 
@@ -2607,7 +2607,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "ifBlock"
-    // src/glossa/grammars/Glossa.g:352:1: ifBlock : IF expr THEN ( NEWLINE )+ block ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:352:1: ifBlock : IF expr THEN ( NEWLINE )+ block ;
     public final GlossaParser.ifBlock_return ifBlock() throws RecognitionException {
         GlossaParser.ifBlock_return retval = new GlossaParser.ifBlock_return();
         retval.start = input.LT(1);
@@ -2627,8 +2627,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE72_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:352:9: ( IF expr THEN ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:352:11: IF expr THEN ( NEWLINE )+ block
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:352:9: ( IF expr THEN ( NEWLINE )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:352:11: IF expr THEN ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2644,7 +2644,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr70.getTree());
             THEN71=(Token)match(input,THEN,FOLLOW_THEN_in_ifBlock840); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:352:26: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:352:26: ( NEWLINE )+
             int cnt32=0;
             loop32:
             do {
@@ -2658,7 +2658,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt32) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:352:27: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:352:27: NEWLINE
             	    {
             	    NEWLINE72=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_ifBlock844); if (state.failed) return retval;
 
@@ -2710,7 +2710,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "elseBlock"
-    // src/glossa/grammars/Glossa.g:354:1: elseBlock : ELSE ( NEWLINE )+ block ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:354:1: elseBlock : ELSE ( NEWLINE )+ block ;
     public final GlossaParser.elseBlock_return elseBlock() throws RecognitionException {
         GlossaParser.elseBlock_return retval = new GlossaParser.elseBlock_return();
         retval.start = input.LT(1);
@@ -2726,8 +2726,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE75_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:355:2: ( ELSE ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:355:4: ELSE ( NEWLINE )+ block
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:355:2: ( ELSE ( NEWLINE )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:355:4: ELSE ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2736,7 +2736,7 @@ public class GlossaParser extends Parser {
             ELSE74_tree = (CommonTree)adaptor.create(ELSE74);
             root_0 = (CommonTree)adaptor.becomeRoot(ELSE74_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:355:10: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:355:10: ( NEWLINE )+
             int cnt33=0;
             loop33:
             do {
@@ -2750,7 +2750,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt33) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:355:11: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:355:11: NEWLINE
             	    {
             	    NEWLINE75=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_elseBlock862); if (state.failed) return retval;
 
@@ -2802,7 +2802,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "elseIfBlock"
-    // src/glossa/grammars/Glossa.g:357:1: elseIfBlock : ELSE_IF expr THEN ( NEWLINE )+ block ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:357:1: elseIfBlock : ELSE_IF expr THEN ( NEWLINE )+ block ;
     public final GlossaParser.elseIfBlock_return elseIfBlock() throws RecognitionException {
         GlossaParser.elseIfBlock_return retval = new GlossaParser.elseIfBlock_return();
         retval.start = input.LT(1);
@@ -2822,8 +2822,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE80_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:358:2: ( ELSE_IF expr THEN ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:358:4: ELSE_IF expr THEN ( NEWLINE )+ block
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:358:2: ( ELSE_IF expr THEN ( NEWLINE )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:358:4: ELSE_IF expr THEN ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2839,7 +2839,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr78.getTree());
             THEN79=(Token)match(input,THEN,FOLLOW_THEN_in_elseIfBlock881); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:358:24: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:358:24: ( NEWLINE )+
             int cnt34=0;
             loop34:
             do {
@@ -2853,7 +2853,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt34) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:358:25: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:358:25: NEWLINE
             	    {
             	    NEWLINE80=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_elseIfBlock885); if (state.failed) return retval;
 
@@ -2905,7 +2905,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseStm"
-    // src/glossa/grammars/Glossa.g:360:1: caseStm : SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:1: caseStm : SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ ;
     public final GlossaParser.caseStm_return caseStm() throws RecognitionException {
         GlossaParser.caseStm_return retval = new GlossaParser.caseStm_return();
         retval.start = input.LT(1);
@@ -2929,8 +2929,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE88_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:360:9: ( SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:360:11: SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:9: ( SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:11: SWITCH expr ( NEWLINE )+ ( caseBlock )* ( caseElseBlock )? END_SWITCH ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2945,7 +2945,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr83.getTree());
-            // src/glossa/grammars/Glossa.g:360:24: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:24: ( NEWLINE )+
             int cnt35=0;
             loop35:
             do {
@@ -2959,7 +2959,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt35) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:360:25: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:25: NEWLINE
             	    {
             	    NEWLINE84=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseStm904); if (state.failed) return retval;
 
@@ -2976,7 +2976,7 @@ public class GlossaParser extends Parser {
                 cnt35++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:360:36: ( caseBlock )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:36: ( caseBlock )*
             loop36:
             do {
                 int alt36=2;
@@ -2995,7 +2995,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt36) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: caseBlock
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: caseBlock
             	    {
             	    pushFollow(FOLLOW_caseBlock_in_caseStm909);
             	    caseBlock85=caseBlock();
@@ -3012,7 +3012,7 @@ public class GlossaParser extends Parser {
                 }
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:360:47: ( caseElseBlock )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:47: ( caseElseBlock )?
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -3021,7 +3021,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: caseElseBlock
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: caseElseBlock
                     {
                     pushFollow(FOLLOW_caseElseBlock_in_caseStm912);
                     caseElseBlock86=caseElseBlock();
@@ -3040,7 +3040,7 @@ public class GlossaParser extends Parser {
             END_SWITCH87_tree = (CommonTree)adaptor.create(END_SWITCH87);
             adaptor.addChild(root_0, END_SWITCH87_tree);
             }
-            // src/glossa/grammars/Glossa.g:360:73: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:73: ( NEWLINE )+
             int cnt38=0;
             loop38:
             do {
@@ -3054,7 +3054,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt38) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:360:74: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:360:74: NEWLINE
             	    {
             	    NEWLINE88=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseStm918); if (state.failed) return retval;
 
@@ -3100,7 +3100,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseBlock"
-    // src/glossa/grammars/Glossa.g:362:1: caseBlock : CASE caseExprList ( NEWLINE )+ block ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:362:1: caseBlock : CASE caseExprList ( NEWLINE )+ block ;
     public final GlossaParser.caseBlock_return caseBlock() throws RecognitionException {
         GlossaParser.caseBlock_return retval = new GlossaParser.caseBlock_return();
         retval.start = input.LT(1);
@@ -3118,8 +3118,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE91_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:363:2: ( CASE caseExprList ( NEWLINE )+ block )
-            // src/glossa/grammars/Glossa.g:363:4: CASE caseExprList ( NEWLINE )+ block
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:363:2: ( CASE caseExprList ( NEWLINE )+ block )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:363:4: CASE caseExprList ( NEWLINE )+ block
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3134,7 +3134,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, caseExprList90.getTree());
-            // src/glossa/grammars/Glossa.g:363:23: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:363:23: ( NEWLINE )+
             int cnt39=0;
             loop39:
             do {
@@ -3148,7 +3148,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt39) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:363:24: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:363:24: NEWLINE
             	    {
             	    NEWLINE91=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseBlock936); if (state.failed) return retval;
 
@@ -3200,7 +3200,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseExprList"
-    // src/glossa/grammars/Glossa.g:365:1: caseExprList : caseExprListItem ( COMMA caseExprListItem )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:365:1: caseExprList : caseExprListItem ( COMMA caseExprListItem )* ;
     public final GlossaParser.caseExprList_return caseExprList() throws RecognitionException {
         GlossaParser.caseExprList_return retval = new GlossaParser.caseExprList_return();
         retval.start = input.LT(1);
@@ -3216,8 +3216,8 @@ public class GlossaParser extends Parser {
         CommonTree COMMA94_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:366:2: ( caseExprListItem ( COMMA caseExprListItem )* )
-            // src/glossa/grammars/Glossa.g:366:4: caseExprListItem ( COMMA caseExprListItem )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:366:2: ( caseExprListItem ( COMMA caseExprListItem )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:366:4: caseExprListItem ( COMMA caseExprListItem )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3227,7 +3227,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, caseExprListItem93.getTree());
-            // src/glossa/grammars/Glossa.g:366:21: ( COMMA caseExprListItem )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:366:21: ( COMMA caseExprListItem )*
             loop40:
             do {
                 int alt40=2;
@@ -3240,7 +3240,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:366:22: COMMA caseExprListItem
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:366:22: COMMA caseExprListItem
             	    {
             	    COMMA94=(Token)match(input,COMMA,FOLLOW_COMMA_in_caseExprList953); if (state.failed) return retval;
             	    pushFollow(FOLLOW_caseExprListItem_in_caseExprList956);
@@ -3287,7 +3287,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseExprListItem"
-    // src/glossa/grammars/Glossa.g:368:1: caseExprListItem : ( rangeItem | expr | infRangeItem );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:368:1: caseExprListItem : ( rangeItem | expr | infRangeItem );
     public final GlossaParser.caseExprListItem_return caseExprListItem() throws RecognitionException {
         GlossaParser.caseExprListItem_return retval = new GlossaParser.caseExprListItem_return();
         retval.start = input.LT(1);
@@ -3303,12 +3303,12 @@ public class GlossaParser extends Parser {
 
 
         try {
-            // src/glossa/grammars/Glossa.g:369:2: ( rangeItem | expr | infRangeItem )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:2: ( rangeItem | expr | infRangeItem )
             int alt41=3;
             alt41 = dfa41.predict(input);
             switch (alt41) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:369:5: rangeItem
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:5: rangeItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3322,7 +3322,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:369:17: expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:17: expr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3336,7 +3336,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:369:24: infRangeItem
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:24: infRangeItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3377,7 +3377,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "rangeItem"
-    // src/glossa/grammars/Glossa.g:371:1: rangeItem : expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:371:1: rangeItem : expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) ;
     public final GlossaParser.rangeItem_return rangeItem() throws RecognitionException {
         GlossaParser.rangeItem_return retval = new GlossaParser.rangeItem_return();
         retval.start = input.LT(1);
@@ -3394,8 +3394,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_RANGE=new RewriteRuleTokenStream(adaptor,"token RANGE");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:372:9: (expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) )
-            // src/glossa/grammars/Glossa.g:372:17: expr1= expr RANGE expr2= expr
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:372:9: (expr1= expr RANGE expr2= expr -> ^( RANGE $expr1 $expr2) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:372:17: expr1= expr RANGE expr2= expr
             {
             pushFollow(FOLLOW_expr_in_rangeItem1000);
             expr1=expr();
@@ -3430,7 +3430,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 372:45: -> ^( RANGE $expr1 $expr2)
             {
-                // src/glossa/grammars/Glossa.g:372:48: ^( RANGE $expr1 $expr2)
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:372:48: ^( RANGE $expr1 $expr2)
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_RANGE.nextNode(), root_1);
@@ -3472,7 +3472,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "infRangeItem"
-    // src/glossa/grammars/Glossa.g:374:1: infRangeItem : ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:374:1: infRangeItem : ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) );
     public final GlossaParser.infRangeItem_return infRangeItem() throws RecognitionException {
         GlossaParser.infRangeItem_return retval = new GlossaParser.infRangeItem_return();
         retval.start = input.LT(1);
@@ -3502,7 +3502,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_LE=new RewriteRuleTokenStream(adaptor,"token LE");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:375:9: ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:375:9: ( LT expr -> ^( INF_RANGE LT expr ) | LE expr -> ^( INF_RANGE LE expr ) | GT expr -> ^( INF_RANGE GT expr ) | GE expr -> ^( INF_RANGE GE expr ) )
             int alt42=4;
             switch ( input.LA(1) ) {
             case LT:
@@ -3535,7 +3535,7 @@ public class GlossaParser extends Parser {
 
             switch (alt42) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:375:17: LT expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:375:17: LT expr
                     {
                     LT100=(Token)match(input,LT,FOLLOW_LT_in_infRangeItem1040); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LT.add(LT100);
@@ -3562,7 +3562,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 375:25: -> ^( INF_RANGE LT expr )
                     {
-                        // src/glossa/grammars/Glossa.g:375:28: ^( INF_RANGE LT expr )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:375:28: ^( INF_RANGE LT expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3579,7 +3579,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:376:17: LE expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:376:17: LE expr
                     {
                     LE102=(Token)match(input,LE,FOLLOW_LE_in_infRangeItem1070); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LE.add(LE102);
@@ -3606,7 +3606,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 376:25: -> ^( INF_RANGE LE expr )
                     {
-                        // src/glossa/grammars/Glossa.g:376:28: ^( INF_RANGE LE expr )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:376:28: ^( INF_RANGE LE expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3623,7 +3623,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:377:17: GT expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:377:17: GT expr
                     {
                     GT104=(Token)match(input,GT,FOLLOW_GT_in_infRangeItem1100); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_GT.add(GT104);
@@ -3650,7 +3650,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 377:25: -> ^( INF_RANGE GT expr )
                     {
-                        // src/glossa/grammars/Glossa.g:377:28: ^( INF_RANGE GT expr )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:377:28: ^( INF_RANGE GT expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3667,7 +3667,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:378:17: GE expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:378:17: GE expr
                     {
                     GE106=(Token)match(input,GE,FOLLOW_GE_in_infRangeItem1130); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_GE.add(GE106);
@@ -3694,7 +3694,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 378:25: -> ^( INF_RANGE GE expr )
                     {
-                        // src/glossa/grammars/Glossa.g:378:28: ^( INF_RANGE GE expr )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:378:28: ^( INF_RANGE GE expr )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INF_RANGE, "INF_RANGE"), root_1);
@@ -3738,7 +3738,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "caseElseBlock"
-    // src/glossa/grammars/Glossa.g:381:1: caseElseBlock : CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE CASE block ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:381:1: caseElseBlock : CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE CASE block ) ;
     public final GlossaParser.caseElseBlock_return caseElseBlock() throws RecognitionException {
         GlossaParser.caseElseBlock_return retval = new GlossaParser.caseElseBlock_return();
         retval.start = input.LT(1);
@@ -3759,8 +3759,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_CASE=new RewriteRuleTokenStream(adaptor,"token CASE");
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
-            // src/glossa/grammars/Glossa.g:382:2: ( CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE CASE block ) )
-            // src/glossa/grammars/Glossa.g:382:4: CASE ELSE ( NEWLINE )+ block
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:382:2: ( CASE ELSE ( NEWLINE )+ block -> ^( CASE_ELSE CASE block ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:382:4: CASE ELSE ( NEWLINE )+ block
             {
             CASE108=(Token)match(input,CASE,FOLLOW_CASE_in_caseElseBlock1160); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CASE.add(CASE108);
@@ -3768,7 +3768,7 @@ public class GlossaParser extends Parser {
             ELSE109=(Token)match(input,ELSE,FOLLOW_ELSE_in_caseElseBlock1162); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ELSE.add(ELSE109);
 
-            // src/glossa/grammars/Glossa.g:382:14: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:382:14: ( NEWLINE )+
             int cnt43=0;
             loop43:
             do {
@@ -3782,7 +3782,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt43) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE110=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_caseElseBlock1164); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE110);
@@ -3823,7 +3823,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 382:29: -> ^( CASE_ELSE CASE block )
             {
-                // src/glossa/grammars/Glossa.g:382:32: ^( CASE_ELSE CASE block )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:382:32: ^( CASE_ELSE CASE block )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(CASE_ELSE, "CASE_ELSE"), root_1);
@@ -3865,7 +3865,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "forStm"
-    // src/glossa/grammars/Glossa.g:383:1: forStm : FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:1: forStm : FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
     public final GlossaParser.forStm_return forStm() throws RecognitionException {
         GlossaParser.forStm_return retval = new GlossaParser.forStm_return();
         retval.start = input.LT(1);
@@ -3901,8 +3901,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE121_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:383:8: ( FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:383:10: FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:8: ( FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:10: FOR ID ( arraySubscript )? FROM from= expr TO to= expr ( STEP step= expr )? ( NEWLINE )+ block END_LOOP ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -3916,7 +3916,7 @@ public class GlossaParser extends Parser {
             ID113_tree = (CommonTree)adaptor.create(ID113);
             adaptor.addChild(root_0, ID113_tree);
             }
-            // src/glossa/grammars/Glossa.g:383:18: ( arraySubscript )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:18: ( arraySubscript )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -3925,7 +3925,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt44) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: arraySubscript
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: arraySubscript
                     {
                     pushFollow(FOLLOW_arraySubscript_in_forStm1189);
                     arraySubscript114=arraySubscript();
@@ -3953,7 +3953,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, to.getTree());
-            // src/glossa/grammars/Glossa.g:383:62: ( STEP step= expr )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:62: ( STEP step= expr )?
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -3962,7 +3962,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt45) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:383:63: STEP step= expr
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:63: STEP step= expr
                     {
                     STEP117=(Token)match(input,STEP,FOLLOW_STEP_in_forStm1207); if (state.failed) return retval;
                     pushFollow(FOLLOW_expr_in_forStm1212);
@@ -3977,7 +3977,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:383:81: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:81: ( NEWLINE )+
             int cnt46=0;
             loop46:
             do {
@@ -3991,7 +3991,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt46) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:383:82: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:82: NEWLINE
             	    {
             	    NEWLINE118=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_forStm1217); if (state.failed) return retval;
 
@@ -4019,7 +4019,7 @@ public class GlossaParser extends Parser {
             END_LOOP120_tree = (CommonTree)adaptor.create(END_LOOP120);
             adaptor.addChild(root_0, END_LOOP120_tree);
             }
-            // src/glossa/grammars/Glossa.g:383:108: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:108: ( NEWLINE )+
             int cnt47=0;
             loop47:
             do {
@@ -4033,7 +4033,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt47) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:383:109: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:383:109: NEWLINE
             	    {
             	    NEWLINE121=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_forStm1227); if (state.failed) return retval;
 
@@ -4079,7 +4079,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "whileStm"
-    // src/glossa/grammars/Glossa.g:386:1: whileStm : WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:386:1: whileStm : WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ ;
     public final GlossaParser.whileStm_return whileStm() throws RecognitionException {
         GlossaParser.whileStm_return retval = new GlossaParser.whileStm_return();
         retval.start = input.LT(1);
@@ -4103,8 +4103,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE128_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:387:9: ( WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:387:11: WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:9: ( WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:11: WHILE expr LOOP ( NEWLINE )+ block END_LOOP ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4120,7 +4120,7 @@ public class GlossaParser extends Parser {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr123.getTree());
             LOOP124=(Token)match(input,LOOP,FOLLOW_LOOP_in_whileStm1260); if (state.failed) return retval;
-            // src/glossa/grammars/Glossa.g:387:29: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:29: ( NEWLINE )+
             int cnt48=0;
             loop48:
             do {
@@ -4134,7 +4134,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt48) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:387:30: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:30: NEWLINE
             	    {
             	    NEWLINE125=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_whileStm1264); if (state.failed) return retval;
 
@@ -4162,7 +4162,7 @@ public class GlossaParser extends Parser {
             END_LOOP127_tree = (CommonTree)adaptor.create(END_LOOP127);
             adaptor.addChild(root_0, END_LOOP127_tree);
             }
-            // src/glossa/grammars/Glossa.g:387:56: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:56: ( NEWLINE )+
             int cnt49=0;
             loop49:
             do {
@@ -4176,7 +4176,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt49) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:387:57: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:387:57: NEWLINE
             	    {
             	    NEWLINE128=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_whileStm1274); if (state.failed) return retval;
 
@@ -4222,7 +4222,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "repeatStm"
-    // src/glossa/grammars/Glossa.g:389:1: repeatStm : REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:389:1: repeatStm : REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ ;
     public final GlossaParser.repeatStm_return repeatStm() throws RecognitionException {
         GlossaParser.repeatStm_return retval = new GlossaParser.repeatStm_return();
         retval.start = input.LT(1);
@@ -4244,8 +4244,8 @@ public class GlossaParser extends Parser {
         CommonTree NEWLINE134_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:390:2: ( REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ )
-            // src/glossa/grammars/Glossa.g:390:4: REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:2: ( REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+ )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:4: REPEAT ( NEWLINE )+ block UNTIL expr ( NEWLINE )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4254,7 +4254,7 @@ public class GlossaParser extends Parser {
             REPEAT129_tree = (CommonTree)adaptor.create(REPEAT129);
             root_0 = (CommonTree)adaptor.becomeRoot(REPEAT129_tree, root_0);
             }
-            // src/glossa/grammars/Glossa.g:390:12: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:12: ( NEWLINE )+
             int cnt50=0;
             loop50:
             do {
@@ -4268,7 +4268,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt50) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:390:13: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:13: NEWLINE
             	    {
             	    NEWLINE130=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_repeatStm1290); if (state.failed) return retval;
 
@@ -4302,7 +4302,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr133.getTree());
-            // src/glossa/grammars/Glossa.g:390:41: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:41: ( NEWLINE )+
             int cnt51=0;
             loop51:
             do {
@@ -4316,7 +4316,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt51) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:390:42: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:390:42: NEWLINE
             	    {
             	    NEWLINE134=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_repeatStm1302); if (state.failed) return retval;
 
@@ -4362,7 +4362,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "procedureCallStm"
-    // src/glossa/grammars/Glossa.g:392:1: procedureCallStm : CALL ID LPAR paramsList RPAR ( NEWLINE )+ -> ^( CALL ID paramsList ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:392:1: procedureCallStm : CALL ID LPAR paramsList RPAR ( NEWLINE )+ -> ^( CALL ID paramsList ) ;
     public final GlossaParser.procedureCallStm_return procedureCallStm() throws RecognitionException {
         GlossaParser.procedureCallStm_return retval = new GlossaParser.procedureCallStm_return();
         retval.start = input.LT(1);
@@ -4389,8 +4389,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_paramsList=new RewriteRuleSubtreeStream(adaptor,"rule paramsList");
         try {
-            // src/glossa/grammars/Glossa.g:393:2: ( CALL ID LPAR paramsList RPAR ( NEWLINE )+ -> ^( CALL ID paramsList ) )
-            // src/glossa/grammars/Glossa.g:393:4: CALL ID LPAR paramsList RPAR ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:393:2: ( CALL ID LPAR paramsList RPAR ( NEWLINE )+ -> ^( CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:393:4: CALL ID LPAR paramsList RPAR ( NEWLINE )+
             {
             CALL135=(Token)match(input,CALL,FOLLOW_CALL_in_procedureCallStm1314); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CALL.add(CALL135);
@@ -4410,7 +4410,7 @@ public class GlossaParser extends Parser {
             RPAR139=(Token)match(input,RPAR,FOLLOW_RPAR_in_procedureCallStm1322); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAR.add(RPAR139);
 
-            // src/glossa/grammars/Glossa.g:393:33: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:393:33: ( NEWLINE )+
             int cnt52=0;
             loop52:
             do {
@@ -4424,7 +4424,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt52) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE140=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_procedureCallStm1324); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE140);
@@ -4459,7 +4459,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 393:42: -> ^( CALL ID paramsList )
             {
-                // src/glossa/grammars/Glossa.g:393:45: ^( CALL ID paramsList )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:393:45: ^( CALL ID paramsList )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_CALL.nextNode(), root_1);
@@ -4501,7 +4501,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "paramsList"
-    // src/glossa/grammars/Glossa.g:395:1: paramsList : (params+= expr ( COMMA params+= expr )* )? -> ^( PARAMS ( $params)* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:395:1: paramsList : (params+= expr ( COMMA params+= expr )* )? -> ^( PARAMS ( $params)* ) ;
     public final GlossaParser.paramsList_return paramsList() throws RecognitionException {
         GlossaParser.paramsList_return retval = new GlossaParser.paramsList_return();
         retval.start = input.LT(1);
@@ -4515,10 +4515,10 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:396:2: ( (params+= expr ( COMMA params+= expr )* )? -> ^( PARAMS ( $params)* ) )
-            // src/glossa/grammars/Glossa.g:396:4: (params+= expr ( COMMA params+= expr )* )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:2: ( (params+= expr ( COMMA params+= expr )* )? -> ^( PARAMS ( $params)* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:4: (params+= expr ( COMMA params+= expr )* )?
             {
-            // src/glossa/grammars/Glossa.g:396:4: (params+= expr ( COMMA params+= expr )* )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:4: (params+= expr ( COMMA params+= expr )* )?
             int alt54=2;
             int LA54_0 = input.LA(1);
 
@@ -4527,7 +4527,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt54) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:396:5: params+= expr ( COMMA params+= expr )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:5: params+= expr ( COMMA params+= expr )*
                     {
                     pushFollow(FOLLOW_expr_in_paramsList1347);
                     params=expr();
@@ -4538,7 +4538,7 @@ public class GlossaParser extends Parser {
                     if (list_params==null) list_params=new ArrayList();
                     list_params.add(params.getTree());
 
-                    // src/glossa/grammars/Glossa.g:396:18: ( COMMA params+= expr )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:18: ( COMMA params+= expr )*
                     loop53:
                     do {
                         int alt53=2;
@@ -4551,7 +4551,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt53) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:396:19: COMMA params+= expr
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:19: COMMA params+= expr
                     	    {
                     	    COMMA141=(Token)match(input,COMMA,FOLLOW_COMMA_in_paramsList1350); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA141);
@@ -4596,12 +4596,12 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 396:42: -> ^( PARAMS ( $params)* )
             {
-                // src/glossa/grammars/Glossa.g:396:45: ^( PARAMS ( $params)* )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:45: ^( PARAMS ( $params)* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PARAMS, "PARAMS"), root_1);
 
-                // src/glossa/grammars/Glossa.g:396:54: ( $params)*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:396:54: ( $params)*
                 while ( stream_params.hasNext() ) {
                     adaptor.addChild(root_1, stream_params.nextTree());
 
@@ -4642,7 +4642,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "expr"
-    // src/glossa/grammars/Glossa.g:398:1: expr : andExpr ( OR andExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:398:1: expr : andExpr ( OR andExpr )* ;
     public final GlossaParser.expr_return expr() throws RecognitionException {
         GlossaParser.expr_return retval = new GlossaParser.expr_return();
         retval.start = input.LT(1);
@@ -4658,8 +4658,8 @@ public class GlossaParser extends Parser {
         CommonTree OR143_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:398:6: ( andExpr ( OR andExpr )* )
-            // src/glossa/grammars/Glossa.g:398:8: andExpr ( OR andExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:398:6: ( andExpr ( OR andExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:398:8: andExpr ( OR andExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4669,7 +4669,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpr142.getTree());
-            // src/glossa/grammars/Glossa.g:398:16: ( OR andExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:398:16: ( OR andExpr )*
             loop55:
             do {
                 int alt55=2;
@@ -4682,7 +4682,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt55) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:398:18: OR andExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:398:18: OR andExpr
             	    {
             	    OR143=(Token)match(input,OR,FOLLOW_OR_in_expr1380); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4733,7 +4733,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "andExpr"
-    // src/glossa/grammars/Glossa.g:400:1: andExpr : eqExpr ( AND eqExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:400:1: andExpr : eqExpr ( AND eqExpr )* ;
     public final GlossaParser.andExpr_return andExpr() throws RecognitionException {
         GlossaParser.andExpr_return retval = new GlossaParser.andExpr_return();
         retval.start = input.LT(1);
@@ -4749,8 +4749,8 @@ public class GlossaParser extends Parser {
         CommonTree AND146_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:400:9: ( eqExpr ( AND eqExpr )* )
-            // src/glossa/grammars/Glossa.g:400:17: eqExpr ( AND eqExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:400:9: ( eqExpr ( AND eqExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:400:17: eqExpr ( AND eqExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4760,7 +4760,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, eqExpr145.getTree());
-            // src/glossa/grammars/Glossa.g:400:24: ( AND eqExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:400:24: ( AND eqExpr )*
             loop56:
             do {
                 int alt56=2;
@@ -4773,7 +4773,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt56) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:400:25: AND eqExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:400:25: AND eqExpr
             	    {
             	    AND146=(Token)match(input,AND,FOLLOW_AND_in_andExpr1402); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4824,7 +4824,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "eqExpr"
-    // src/glossa/grammars/Glossa.g:402:1: eqExpr : compExpr ( EQ compExpr | NEQ compExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:1: eqExpr : compExpr ( EQ compExpr | NEQ compExpr )* ;
     public final GlossaParser.eqExpr_return eqExpr() throws RecognitionException {
         GlossaParser.eqExpr_return retval = new GlossaParser.eqExpr_return();
         retval.start = input.LT(1);
@@ -4844,8 +4844,8 @@ public class GlossaParser extends Parser {
         CommonTree NEQ151_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:402:8: ( compExpr ( EQ compExpr | NEQ compExpr )* )
-            // src/glossa/grammars/Glossa.g:402:10: compExpr ( EQ compExpr | NEQ compExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:8: ( compExpr ( EQ compExpr | NEQ compExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:10: compExpr ( EQ compExpr | NEQ compExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4855,7 +4855,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, compExpr148.getTree());
-            // src/glossa/grammars/Glossa.g:402:19: ( EQ compExpr | NEQ compExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:19: ( EQ compExpr | NEQ compExpr )*
             loop57:
             do {
                 int alt57=3;
@@ -4871,7 +4871,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt57) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:402:20: EQ compExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:20: EQ compExpr
             	    {
             	    EQ149=(Token)match(input,EQ,FOLLOW_EQ_in_eqExpr1418); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4888,7 +4888,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:402:35: NEQ compExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:402:35: NEQ compExpr
             	    {
             	    NEQ151=(Token)match(input,NEQ,FOLLOW_NEQ_in_eqExpr1425); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4939,7 +4939,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "compExpr"
-    // src/glossa/grammars/Glossa.g:404:1: compExpr : addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:1: compExpr : addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* ;
     public final GlossaParser.compExpr_return compExpr() throws RecognitionException {
         GlossaParser.compExpr_return retval = new GlossaParser.compExpr_return();
         retval.start = input.LT(1);
@@ -4967,8 +4967,8 @@ public class GlossaParser extends Parser {
         CommonTree GE160_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:404:9: ( addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* )
-            // src/glossa/grammars/Glossa.g:404:11: addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:9: ( addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:11: addExpr ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -4978,7 +4978,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, addExpr153.getTree());
-            // src/glossa/grammars/Glossa.g:404:19: ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:19: ( LT addExpr | LE addExpr | GT addExpr | GE addExpr )*
             loop58:
             do {
                 int alt58=5;
@@ -5008,7 +5008,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt58) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:404:20: LT addExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:20: LT addExpr
             	    {
             	    LT154=(Token)match(input,LT,FOLLOW_LT_in_compExpr1442); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5025,7 +5025,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:404:34: LE addExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:34: LE addExpr
             	    {
             	    LE156=(Token)match(input,LE,FOLLOW_LE_in_compExpr1449); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5042,7 +5042,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // src/glossa/grammars/Glossa.g:404:48: GT addExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:48: GT addExpr
             	    {
             	    GT158=(Token)match(input,GT,FOLLOW_GT_in_compExpr1456); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5059,7 +5059,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 4 :
-            	    // src/glossa/grammars/Glossa.g:404:62: GE addExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:404:62: GE addExpr
             	    {
             	    GE160=(Token)match(input,GE,FOLLOW_GE_in_compExpr1463); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5110,7 +5110,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "addExpr"
-    // src/glossa/grammars/Glossa.g:406:1: addExpr : multExpr ( PLUS multExpr | MINUS multExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:1: addExpr : multExpr ( PLUS multExpr | MINUS multExpr )* ;
     public final GlossaParser.addExpr_return addExpr() throws RecognitionException {
         GlossaParser.addExpr_return retval = new GlossaParser.addExpr_return();
         retval.start = input.LT(1);
@@ -5130,8 +5130,8 @@ public class GlossaParser extends Parser {
         CommonTree MINUS165_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:406:9: ( multExpr ( PLUS multExpr | MINUS multExpr )* )
-            // src/glossa/grammars/Glossa.g:406:11: multExpr ( PLUS multExpr | MINUS multExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:9: ( multExpr ( PLUS multExpr | MINUS multExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:11: multExpr ( PLUS multExpr | MINUS multExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -5141,7 +5141,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, multExpr162.getTree());
-            // src/glossa/grammars/Glossa.g:406:20: ( PLUS multExpr | MINUS multExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:20: ( PLUS multExpr | MINUS multExpr )*
             loop59:
             do {
                 int alt59=3;
@@ -5157,7 +5157,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt59) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:406:21: PLUS multExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:21: PLUS multExpr
             	    {
             	    PLUS163=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr1482); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5174,7 +5174,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:406:38: MINUS multExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:406:38: MINUS multExpr
             	    {
             	    MINUS165=(Token)match(input,MINUS,FOLLOW_MINUS_in_addExpr1489); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5225,7 +5225,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "multExpr"
-    // src/glossa/grammars/Glossa.g:408:1: multExpr : powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:1: multExpr : powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* ;
     public final GlossaParser.multExpr_return multExpr() throws RecognitionException {
         GlossaParser.multExpr_return retval = new GlossaParser.multExpr_return();
         retval.start = input.LT(1);
@@ -5253,8 +5253,8 @@ public class GlossaParser extends Parser {
         CommonTree MOD174_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:408:10: ( powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* )
-            // src/glossa/grammars/Glossa.g:408:12: powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:10: ( powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:12: powExpr ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -5264,7 +5264,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, powExpr167.getTree());
-            // src/glossa/grammars/Glossa.g:408:20: ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:20: ( TIMES powExpr | DIA powExpr | DIV powExpr | MOD powExpr )*
             loop60:
             do {
                 int alt60=5;
@@ -5294,7 +5294,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt60) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:408:21: TIMES powExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:21: TIMES powExpr
             	    {
             	    TIMES168=(Token)match(input,TIMES,FOLLOW_TIMES_in_multExpr1507); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5311,7 +5311,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // src/glossa/grammars/Glossa.g:408:38: DIA powExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:38: DIA powExpr
             	    {
             	    DIA170=(Token)match(input,DIA,FOLLOW_DIA_in_multExpr1514); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5328,7 +5328,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // src/glossa/grammars/Glossa.g:408:53: DIV powExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:53: DIV powExpr
             	    {
             	    DIV172=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr1521); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5345,7 +5345,7 @@ public class GlossaParser extends Parser {
             	    }
             	    break;
             	case 4 :
-            	    // src/glossa/grammars/Glossa.g:408:68: MOD powExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:408:68: MOD powExpr
             	    {
             	    MOD174=(Token)match(input,MOD,FOLLOW_MOD_in_multExpr1528); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5396,7 +5396,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "powExpr"
-    // src/glossa/grammars/Glossa.g:410:1: powExpr : unaryExpr ( POW unaryExpr )* ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:410:1: powExpr : unaryExpr ( POW unaryExpr )* ;
     public final GlossaParser.powExpr_return powExpr() throws RecognitionException {
         GlossaParser.powExpr_return retval = new GlossaParser.powExpr_return();
         retval.start = input.LT(1);
@@ -5412,8 +5412,8 @@ public class GlossaParser extends Parser {
         CommonTree POW177_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:410:9: ( unaryExpr ( POW unaryExpr )* )
-            // src/glossa/grammars/Glossa.g:410:11: unaryExpr ( POW unaryExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:410:9: ( unaryExpr ( POW unaryExpr )* )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:410:11: unaryExpr ( POW unaryExpr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -5423,7 +5423,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpr176.getTree());
-            // src/glossa/grammars/Glossa.g:410:21: ( POW unaryExpr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:410:21: ( POW unaryExpr )*
             loop61:
             do {
                 int alt61=2;
@@ -5436,7 +5436,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt61) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:410:22: POW unaryExpr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:410:22: POW unaryExpr
             	    {
             	    POW177=(Token)match(input,POW,FOLLOW_POW_in_powExpr1546); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5487,7 +5487,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "unaryExpr"
-    // src/glossa/grammars/Glossa.g:412:1: unaryExpr : ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:412:1: unaryExpr : ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom );
     public final GlossaParser.unaryExpr_return unaryExpr() throws RecognitionException {
         GlossaParser.unaryExpr_return retval = new GlossaParser.unaryExpr_return();
         retval.start = input.LT(1);
@@ -5513,7 +5513,7 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_MINUS=new RewriteRuleTokenStream(adaptor,"token MINUS");
         RewriteRuleSubtreeStream stream_atom=new RewriteRuleSubtreeStream(adaptor,"rule atom");
         try {
-            // src/glossa/grammars/Glossa.g:413:2: ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:413:2: ( PLUS atom | MINUS atom -> ^( NEG atom ) | NOT atom -> ^( NOT atom ) | atom )
             int alt62=4;
             switch ( input.LA(1) ) {
             case PLUS:
@@ -5552,7 +5552,7 @@ public class GlossaParser extends Parser {
 
             switch (alt62) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:413:4: PLUS atom
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:413:4: PLUS atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5567,7 +5567,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:414:4: MINUS atom
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:414:4: MINUS atom
                     {
                     MINUS181=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpr1568); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_MINUS.add(MINUS181);
@@ -5594,7 +5594,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 414:15: -> ^( NEG atom )
                     {
-                        // src/glossa/grammars/Glossa.g:414:18: ^( NEG atom )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:414:18: ^( NEG atom )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(NEG, "NEG"), root_1);
@@ -5610,7 +5610,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:415:4: NOT atom
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:415:4: NOT atom
                     {
                     NOT183=(Token)match(input,NOT,FOLLOW_NOT_in_unaryExpr1583); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NOT.add(NOT183);
@@ -5624,7 +5624,7 @@ public class GlossaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: atom, NOT
+                    // elements: NOT, atom
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5637,7 +5637,7 @@ public class GlossaParser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 415:13: -> ^( NOT atom )
                     {
-                        // src/glossa/grammars/Glossa.g:415:16: ^( NOT atom )
+                        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:415:16: ^( NOT atom )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(stream_NOT.nextNode(), root_1);
@@ -5653,7 +5653,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:416:4: atom
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:416:4: atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5694,7 +5694,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "atom"
-    // src/glossa/grammars/Glossa.g:419:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | functionCall | '(' expr ')' );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:419:1: atom : ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | functionCall | '(' expr ')' );
     public final GlossaParser.atom_return atom() throws RecognitionException {
         GlossaParser.atom_return retval = new GlossaParser.atom_return();
         retval.start = input.LT(1);
@@ -5726,12 +5726,12 @@ public class GlossaParser extends Parser {
         CommonTree char_literal196_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:419:6: ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | functionCall | '(' expr ')' )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:419:6: ( CONST_TRUE | CONST_FALSE | CONST_STR | CONST_INT | CONST_REAL | arrayItem | ID | functionCall | '(' expr ')' )
             int alt63=9;
             alt63 = dfa63.predict(input);
             switch (alt63) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:419:8: CONST_TRUE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:419:8: CONST_TRUE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5744,7 +5744,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/glossa/grammars/Glossa.g:420:4: CONST_FALSE
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:420:4: CONST_FALSE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5757,7 +5757,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/glossa/grammars/Glossa.g:421:4: CONST_STR
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:421:4: CONST_STR
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5770,7 +5770,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/glossa/grammars/Glossa.g:422:4: CONST_INT
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:422:4: CONST_INT
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5783,7 +5783,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // src/glossa/grammars/Glossa.g:423:4: CONST_REAL
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:423:4: CONST_REAL
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5796,7 +5796,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // src/glossa/grammars/Glossa.g:424:4: arrayItem
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:424:4: arrayItem
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5810,7 +5810,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // src/glossa/grammars/Glossa.g:425:4: ID
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:425:4: ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5823,7 +5823,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // src/glossa/grammars/Glossa.g:426:11: functionCall
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:426:11: functionCall
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5837,7 +5837,7 @@ public class GlossaParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // src/glossa/grammars/Glossa.g:427:4: '(' expr ')'
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:427:4: '(' expr ')'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -5880,7 +5880,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "functionCall"
-    // src/glossa/grammars/Glossa.g:429:1: functionCall : ID LPAR paramsList RPAR -> ^( FUNC_CALL ID paramsList ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:429:1: functionCall : ID LPAR paramsList RPAR -> ^( FUNC_CALL ID paramsList ) ;
     public final GlossaParser.functionCall_return functionCall() throws RecognitionException {
         GlossaParser.functionCall_return retval = new GlossaParser.functionCall_return();
         retval.start = input.LT(1);
@@ -5901,8 +5901,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_paramsList=new RewriteRuleSubtreeStream(adaptor,"rule paramsList");
         try {
-            // src/glossa/grammars/Glossa.g:430:2: ( ID LPAR paramsList RPAR -> ^( FUNC_CALL ID paramsList ) )
-            // src/glossa/grammars/Glossa.g:430:4: ID LPAR paramsList RPAR
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:430:2: ( ID LPAR paramsList RPAR -> ^( FUNC_CALL ID paramsList ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:430:4: ID LPAR paramsList RPAR
             {
             ID197=(Token)match(input,ID,FOLLOW_ID_in_functionCall1669); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID197);
@@ -5922,7 +5922,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, paramsList
+            // elements: paramsList, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5935,7 +5935,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 430:28: -> ^( FUNC_CALL ID paramsList )
             {
-                // src/glossa/grammars/Glossa.g:430:31: ^( FUNC_CALL ID paramsList )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:430:31: ^( FUNC_CALL ID paramsList )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(FUNC_CALL, "FUNC_CALL"), root_1);
@@ -5977,7 +5977,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arrayItem"
-    // src/glossa/grammars/Glossa.g:432:1: arrayItem : ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:432:1: arrayItem : ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) ;
     public final GlossaParser.arrayItem_return arrayItem() throws RecognitionException {
         GlossaParser.arrayItem_return retval = new GlossaParser.arrayItem_return();
         retval.start = input.LT(1);
@@ -5992,8 +5992,8 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_arraySubscript=new RewriteRuleSubtreeStream(adaptor,"rule arraySubscript");
         try {
-            // src/glossa/grammars/Glossa.g:433:2: ( ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) )
-            // src/glossa/grammars/Glossa.g:433:4: ID arraySubscript
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:433:2: ( ID arraySubscript -> ^( ARRAY_ITEM ID arraySubscript ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:433:4: ID arraySubscript
             {
             ID201=(Token)match(input,ID,FOLLOW_ID_in_arrayItem1695); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID201);
@@ -6007,7 +6007,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, arraySubscript
+            // elements: arraySubscript, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6020,7 +6020,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 433:22: -> ^( ARRAY_ITEM ID arraySubscript )
             {
-                // src/glossa/grammars/Glossa.g:433:25: ^( ARRAY_ITEM ID arraySubscript )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:433:25: ^( ARRAY_ITEM ID arraySubscript )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_ITEM, "ARRAY_ITEM"), root_1);
@@ -6062,7 +6062,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "arraySubscript"
-    // src/glossa/grammars/Glossa.g:435:1: arraySubscript : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:435:1: arraySubscript : LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) ;
     public final GlossaParser.arraySubscript_return arraySubscript() throws RecognitionException {
         GlossaParser.arraySubscript_return retval = new GlossaParser.arraySubscript_return();
         retval.start = input.LT(1);
@@ -6082,14 +6082,14 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // src/glossa/grammars/Glossa.g:436:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) )
-            // src/glossa/grammars/Glossa.g:436:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:2: ( LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET -> ^( ARRAY_INDEX ( expr )+ ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:4: LBRACKET (dimension+= expr ) ( COMMA dimension+= expr )* RBRACKET
             {
             LBRACKET203=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arraySubscript1717); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET203);
 
-            // src/glossa/grammars/Glossa.g:436:13: (dimension+= expr )
-            // src/glossa/grammars/Glossa.g:436:14: dimension+= expr
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:13: (dimension+= expr )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:14: dimension+= expr
             {
             pushFollow(FOLLOW_expr_in_arraySubscript1722);
             dimension=expr();
@@ -6103,7 +6103,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:436:31: ( COMMA dimension+= expr )*
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:31: ( COMMA dimension+= expr )*
             loop64:
             do {
                 int alt64=2;
@@ -6116,7 +6116,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt64) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:436:32: COMMA dimension+= expr
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:32: COMMA dimension+= expr
             	    {
             	    COMMA204=(Token)match(input,COMMA,FOLLOW_COMMA_in_arraySubscript1726); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA204);
@@ -6158,7 +6158,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 436:65: -> ^( ARRAY_INDEX ( expr )+ )
             {
-                // src/glossa/grammars/Glossa.g:436:68: ^( ARRAY_INDEX ( expr )+ )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:436:68: ^( ARRAY_INDEX ( expr )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ARRAY_INDEX, "ARRAY_INDEX"), root_1);
@@ -6206,7 +6206,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "procedure"
-    // src/glossa/grammars/Glossa.g:438:1: procedure : PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+ -> ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:438:1: procedure : PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+ -> ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) ;
     public final GlossaParser.procedure_return procedure() throws RecognitionException {
         GlossaParser.procedure_return retval = new GlossaParser.procedure_return();
         retval.start = input.LT(1);
@@ -6252,8 +6252,8 @@ public class GlossaParser extends Parser {
         RewriteRuleSubtreeStream stream_varDecl=new RewriteRuleSubtreeStream(adaptor,"rule varDecl");
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
-            // src/glossa/grammars/Glossa.g:439:2: ( PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+ -> ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
-            // src/glossa/grammars/Glossa.g:439:4: PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:439:2: ( PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+ -> ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:439:4: PROCEDURE ID LPAR formalParamsList RPAR ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_PROCEDURE ( NEWLINE )+
             {
             PROCEDURE206=(Token)match(input,PROCEDURE,FOLLOW_PROCEDURE_in_procedure1752); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_PROCEDURE.add(PROCEDURE206);
@@ -6273,7 +6273,7 @@ public class GlossaParser extends Parser {
             RPAR210=(Token)match(input,RPAR,FOLLOW_RPAR_in_procedure1760); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAR.add(RPAR210);
 
-            // src/glossa/grammars/Glossa.g:439:44: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:439:44: ( NEWLINE )+
             int cnt65=0;
             loop65:
             do {
@@ -6287,7 +6287,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt65) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE211=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_procedure1762); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE211);
@@ -6306,7 +6306,7 @@ public class GlossaParser extends Parser {
                 cnt65++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:440:3: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:440:3: ( constDecl )?
             int alt66=2;
             int LA66_0 = input.LA(1);
 
@@ -6315,7 +6315,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt66) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_procedure1767);
                     constDecl212=constDecl();
@@ -6329,7 +6329,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:440:14: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:440:14: ( varDecl )?
             int alt67=2;
             int LA67_0 = input.LA(1);
 
@@ -6338,7 +6338,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt67) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_procedure1770);
                     varDecl213=varDecl();
@@ -6355,7 +6355,7 @@ public class GlossaParser extends Parser {
             BEGIN214=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_procedure1775); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_BEGIN.add(BEGIN214);
 
-            // src/glossa/grammars/Glossa.g:441:10: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:441:10: ( NEWLINE )+
             int cnt68=0;
             loop68:
             do {
@@ -6369,7 +6369,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt68) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE215=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_procedure1778); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE215);
@@ -6397,7 +6397,7 @@ public class GlossaParser extends Parser {
             END_PROCEDURE217=(Token)match(input,END_PROCEDURE,FOLLOW_END_PROCEDURE_in_procedure1787); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_END_PROCEDURE.add(END_PROCEDURE217);
 
-            // src/glossa/grammars/Glossa.g:443:17: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:443:17: ( NEWLINE )+
             int cnt69=0;
             loop69:
             do {
@@ -6411,7 +6411,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt69) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE218=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_procedure1789); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE218);
@@ -6433,7 +6433,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, formalParamsList, PROCEDURE, END_PROCEDURE, ID, varDecl, constDecl
+            // elements: PROCEDURE, constDecl, block, varDecl, formalParamsList, ID, END_PROCEDURE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6446,20 +6446,20 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 443:26: -> ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE )
             {
-                // src/glossa/grammars/Glossa.g:443:29: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:443:29: ^( PROCEDURE ID formalParamsList ( constDecl )? ( varDecl )? block END_PROCEDURE )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_PROCEDURE.nextNode(), root_1);
 
                 adaptor.addChild(root_1, stream_ID.nextNode());
                 adaptor.addChild(root_1, stream_formalParamsList.nextTree());
-                // src/glossa/grammars/Glossa.g:443:61: ( constDecl )?
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:443:61: ( constDecl )?
                 if ( stream_constDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_constDecl.nextTree());
 
                 }
                 stream_constDecl.reset();
-                // src/glossa/grammars/Glossa.g:443:72: ( varDecl )?
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:443:72: ( varDecl )?
                 if ( stream_varDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_varDecl.nextTree());
 
@@ -6502,7 +6502,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "function"
-    // src/glossa/grammars/Glossa.g:445:1: function : FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+ -> ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:445:1: function : FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+ -> ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) ;
     public final GlossaParser.function_return function() throws RecognitionException {
         GlossaParser.function_return retval = new GlossaParser.function_return();
         retval.start = input.LT(1);
@@ -6554,8 +6554,8 @@ public class GlossaParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         RewriteRuleSubtreeStream stream_returnType=new RewriteRuleSubtreeStream(adaptor,"rule returnType");
         try {
-            // src/glossa/grammars/Glossa.g:446:2: ( FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+ -> ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) )
-            // src/glossa/grammars/Glossa.g:446:4: FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:446:2: ( FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+ -> ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:446:4: FUNCTION ID LPAR formalParamsList RPAR COLON returnType ( NEWLINE )+ ( constDecl )? ( varDecl )? BEGIN ( NEWLINE )+ block END_FUNCTION ( NEWLINE )+
             {
             FUNCTION219=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_function1819); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION219);
@@ -6584,7 +6584,7 @@ public class GlossaParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_returnType.add(returnType225.getTree());
-            // src/glossa/grammars/Glossa.g:446:60: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:446:60: ( NEWLINE )+
             int cnt70=0;
             loop70:
             do {
@@ -6598,7 +6598,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt70) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE226=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_function1833); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE226);
@@ -6617,7 +6617,7 @@ public class GlossaParser extends Parser {
                 cnt70++;
             } while (true);
 
-            // src/glossa/grammars/Glossa.g:447:3: ( constDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:447:3: ( constDecl )?
             int alt71=2;
             int LA71_0 = input.LA(1);
 
@@ -6626,7 +6626,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt71) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: constDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: constDecl
                     {
                     pushFollow(FOLLOW_constDecl_in_function1838);
                     constDecl227=constDecl();
@@ -6640,7 +6640,7 @@ public class GlossaParser extends Parser {
 
             }
 
-            // src/glossa/grammars/Glossa.g:447:14: ( varDecl )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:447:14: ( varDecl )?
             int alt72=2;
             int LA72_0 = input.LA(1);
 
@@ -6649,7 +6649,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt72) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:0:0: varDecl
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: varDecl
                     {
                     pushFollow(FOLLOW_varDecl_in_function1841);
                     varDecl228=varDecl();
@@ -6666,7 +6666,7 @@ public class GlossaParser extends Parser {
             BEGIN229=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_function1846); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_BEGIN.add(BEGIN229);
 
-            // src/glossa/grammars/Glossa.g:448:10: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:448:10: ( NEWLINE )+
             int cnt73=0;
             loop73:
             do {
@@ -6680,7 +6680,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt73) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE230=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_function1849); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE230);
@@ -6708,7 +6708,7 @@ public class GlossaParser extends Parser {
             END_FUNCTION232=(Token)match(input,END_FUNCTION,FOLLOW_END_FUNCTION_in_function1858); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_END_FUNCTION.add(END_FUNCTION232);
 
-            // src/glossa/grammars/Glossa.g:450:16: ( NEWLINE )+
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:450:16: ( NEWLINE )+
             int cnt74=0;
             loop74:
             do {
@@ -6722,7 +6722,7 @@ public class GlossaParser extends Parser {
 
                 switch (alt74) {
             	case 1 :
-            	    // src/glossa/grammars/Glossa.g:0:0: NEWLINE
+            	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:0:0: NEWLINE
             	    {
             	    NEWLINE233=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_function1860); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_NEWLINE.add(NEWLINE233);
@@ -6744,7 +6744,7 @@ public class GlossaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: formalParamsList, varDecl, constDecl, FUNCTION, END_FUNCTION, block, returnType, ID
+            // elements: block, FUNCTION, END_FUNCTION, varDecl, returnType, constDecl, formalParamsList, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6757,7 +6757,7 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 450:25: -> ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION )
             {
-                // src/glossa/grammars/Glossa.g:450:28: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:450:28: ^( FUNCTION ID returnType formalParamsList ( constDecl )? ( varDecl )? block END_FUNCTION )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
@@ -6765,13 +6765,13 @@ public class GlossaParser extends Parser {
                 adaptor.addChild(root_1, stream_ID.nextNode());
                 adaptor.addChild(root_1, stream_returnType.nextTree());
                 adaptor.addChild(root_1, stream_formalParamsList.nextTree());
-                // src/glossa/grammars/Glossa.g:450:70: ( constDecl )?
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:450:70: ( constDecl )?
                 if ( stream_constDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_constDecl.nextTree());
 
                 }
                 stream_constDecl.reset();
-                // src/glossa/grammars/Glossa.g:450:81: ( varDecl )?
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:450:81: ( varDecl )?
                 if ( stream_varDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_varDecl.nextTree());
 
@@ -6814,7 +6814,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "returnType"
-    // src/glossa/grammars/Glossa.g:452:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:452:1: returnType : ( INTEGER | REAL | STRING | BOOLEAN );
     public final GlossaParser.returnType_return returnType() throws RecognitionException {
         GlossaParser.returnType_return retval = new GlossaParser.returnType_return();
         retval.start = input.LT(1);
@@ -6826,8 +6826,8 @@ public class GlossaParser extends Parser {
         CommonTree set234_tree=null;
 
         try {
-            // src/glossa/grammars/Glossa.g:453:2: ( INTEGER | REAL | STRING | BOOLEAN )
-            // src/glossa/grammars/Glossa.g:
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:453:2: ( INTEGER | REAL | STRING | BOOLEAN )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -6872,7 +6872,7 @@ public class GlossaParser extends Parser {
     };
 
     // $ANTLR start "formalParamsList"
-    // src/glossa/grammars/Glossa.g:458:1: formalParamsList : (params+= ID ( COMMA params+= ID )* )? -> ^( FORMAL_PARAMS ( $params)* ) ;
+    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:458:1: formalParamsList : (params+= ID ( COMMA params+= ID )* )? -> ^( FORMAL_PARAMS ( $params)* ) ;
     public final GlossaParser.formalParamsList_return formalParamsList() throws RecognitionException {
         GlossaParser.formalParamsList_return retval = new GlossaParser.formalParamsList_return();
         retval.start = input.LT(1);
@@ -6889,10 +6889,10 @@ public class GlossaParser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
 
         try {
-            // src/glossa/grammars/Glossa.g:459:2: ( (params+= ID ( COMMA params+= ID )* )? -> ^( FORMAL_PARAMS ( $params)* ) )
-            // src/glossa/grammars/Glossa.g:459:4: (params+= ID ( COMMA params+= ID )* )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:2: ( (params+= ID ( COMMA params+= ID )* )? -> ^( FORMAL_PARAMS ( $params)* ) )
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:4: (params+= ID ( COMMA params+= ID )* )?
             {
-            // src/glossa/grammars/Glossa.g:459:4: (params+= ID ( COMMA params+= ID )* )?
+            // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:4: (params+= ID ( COMMA params+= ID )* )?
             int alt76=2;
             int LA76_0 = input.LA(1);
 
@@ -6901,7 +6901,7 @@ public class GlossaParser extends Parser {
             }
             switch (alt76) {
                 case 1 :
-                    // src/glossa/grammars/Glossa.g:459:5: params+= ID ( COMMA params+= ID )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:5: params+= ID ( COMMA params+= ID )*
                     {
                     params=(Token)match(input,ID,FOLLOW_ID_in_formalParamsList1919); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(params);
@@ -6909,7 +6909,7 @@ public class GlossaParser extends Parser {
                     if (list_params==null) list_params=new ArrayList();
                     list_params.add(params);
 
-                    // src/glossa/grammars/Glossa.g:459:16: ( COMMA params+= ID )*
+                    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:16: ( COMMA params+= ID )*
                     loop75:
                     do {
                         int alt75=2;
@@ -6922,7 +6922,7 @@ public class GlossaParser extends Parser {
 
                         switch (alt75) {
                     	case 1 :
-                    	    // src/glossa/grammars/Glossa.g:459:17: COMMA params+= ID
+                    	    // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:17: COMMA params+= ID
                     	    {
                     	    COMMA235=(Token)match(input,COMMA,FOLLOW_COMMA_in_formalParamsList1922); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA235);
@@ -6965,12 +6965,12 @@ public class GlossaParser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 459:38: -> ^( FORMAL_PARAMS ( $params)* )
             {
-                // src/glossa/grammars/Glossa.g:459:41: ^( FORMAL_PARAMS ( $params)* )
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:41: ^( FORMAL_PARAMS ( $params)* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(FORMAL_PARAMS, "FORMAL_PARAMS"), root_1);
 
-                // src/glossa/grammars/Glossa.g:459:57: ( $params)*
+                // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:459:57: ( $params)*
                 while ( stream_params.hasNext() ) {
                     adaptor.addChild(root_1, stream_params.nextNode());
 
@@ -7007,8 +7007,8 @@ public class GlossaParser extends Parser {
 
     // $ANTLR start synpred52_Glossa
     public final void synpred52_Glossa_fragment() throws RecognitionException {   
-        // src/glossa/grammars/Glossa.g:369:5: ( rangeItem )
-        // src/glossa/grammars/Glossa.g:369:5: rangeItem
+        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:5: ( rangeItem )
+        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:5: rangeItem
         {
         pushFollow(FOLLOW_rangeItem_in_synpred52_Glossa968);
         rangeItem();
@@ -7022,8 +7022,8 @@ public class GlossaParser extends Parser {
 
     // $ANTLR start synpred53_Glossa
     public final void synpred53_Glossa_fragment() throws RecognitionException {   
-        // src/glossa/grammars/Glossa.g:369:17: ( expr )
-        // src/glossa/grammars/Glossa.g:369:17: expr
+        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:17: ( expr )
+        // /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/Glossa.g:369:17: expr
         {
         pushFollow(FOLLOW_expr_in_synpred53_Glossa972);
         expr();
