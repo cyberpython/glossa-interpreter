@@ -454,22 +454,10 @@ is divided into following sections:
         <j2seproject1:jar manifest="${manifest.file}"/>
     </target>
     <target depends="init,compile,-pre-pre-jar,-pre-jar" if="manifest.available+main.class" name="-do-jar-with-mainclass" unless="manifest.available+main.class+mkdist.available">
-        <property location="${build.classes.dir}" name="build.classes.dir.resolved"/>
-        <pathconvert property="run.classpath.without.build.classes.dir">
-            <path path="${run.classpath}"/>
-            <map from="${build.classes.dir.resolved}" to=""/>
-        </pathconvert>
-        <pathconvert pathsep=" " property="jar.classpath">
-            <path path="${run.classpath.without.build.classes.dir}"/>
-            <chainedmapper>
-                <flattenmapper/>
-                <globmapper from="*" to="lib/*"/>
-            </chainedmapper>
-        </pathconvert>
         <j2seproject1:jar manifest="${manifest.file}">
             <j2seproject1:manifest>
                 <j2seproject1:attribute name="Main-Class" value="${main.class}"/>
-                 <j2seproject1:attribute name="Class-Path" value="${jar.classpath}"/>
+                <j2seproject1:attribute name="Class-Path" value="${file.reference.antlr3.jar} ${file.reference.joptsimple.jar}"/>
             </j2seproject1:manifest>
         </j2seproject1:jar>
         <echo>To run this application from the command line without Ant, try:</echo>
@@ -499,7 +487,8 @@ is divided into following sections:
             <fileset dir="${build.classes.dir}"/>
             <manifest>
                 <attribute name="Main-Class" value="${main.class}"/>
-                <attribute name="Class-Path" value="${jar.classpath}"/>
+                <!-- attribute name="Class-Path" value="${jar.classpath}"/ -->
+                <attribute name="Class-Path" value="${file.reference.antlr3.jar} ${file.reference.joptsimple.jar}"/>
             </manifest>
         </copylibs>
         <echo>To run this application from the command line without Ant, try:</echo>

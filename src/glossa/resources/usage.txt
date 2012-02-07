@@ -1,8 +1,8 @@
 
 Τρόπος χρήσης:
-    ./glossa-interpreter παράμετροι τοποθεσία_αρχείου_πηγαίου_κώδικα
+    glossa-interpreter παράμετροι τοποθεσία_αρχείου_πηγαίου_κώδικα
 π.χ.
-    ./glossa-interpreter /home/user/Documents/Hello_World.gls
+    glossa-interpreter /home/user/Documents/Hello_World.gls
 
 Παράμετροι
     Όλες οι παράμετροι είναι προαιρετικές.

@@ -49,13 +49,23 @@ You can install it on Ubuntu with:
 
     [sudo apt-get install ant](apt://ant)
 - [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (*)
+
+    [sudo apt-get install antlr3](apt://antlr3)
 - [JOpt Simple](http://jopt-simple.sourceforge.net/) (*)
 
-(*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/
+    [sudo apt-get install libjoptsimple-java](apt://libjoptsimple-java)
+
+(*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/ (on Linux systems you can use the make file and use the installed libraries instead).
 
 
 Open a terminal and give:
-    ./build.sh
+    ant clean jar
+
+*On Linux systems you should use the included makefile:*
+    make
+
+*and to install the application:*
+    sudo make install
 
 ##How to run the interpreter
 
@@ -66,7 +76,13 @@ To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
 e.g.:
 
     ./glossa-interpreter src/glossa/samples/PrintTest.gls
-    
+
+If you are on a Linux system and have installed the application as per the instructions above, you can use the command:
+
+    glossa-interpreter <input_file>
+
+from any directory.
+
 ![Screenshot][screenshot]
 [screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
 
