@@ -1,4 +1,4 @@
-// $ANTLR !Unknown version! /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g 2012-02-07 12:21:53
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/cyberpython/development/glossa-interpreter/src/glossa/grammars/FirstPass.g 2012-02-18 15:40:22
 
 
 /*

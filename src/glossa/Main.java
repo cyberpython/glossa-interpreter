@@ -42,7 +42,7 @@ import joptsimple.OptionSet;
 public class Main {
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
-    private static final String VERSION = "Έκδοση: 1.0.1";
+    private static final String VERSION = "Έκδοση: 1.0.2";
     private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
     private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
 

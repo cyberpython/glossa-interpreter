@@ -24,7 +24,6 @@
 
 package glossa.interpreter.symboltable.symbols;
 
-import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
 

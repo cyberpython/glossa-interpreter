@@ -27,17 +27,14 @@ import glossa.interpreter.Interpreter;
 import glossa.interpreter.InterpreterListener;
 import glossa.interpreter.symboltable.SymbolTable;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +60,16 @@ public class CLI implements InterpreterListener {
         this.err = System.err;
         this.in = System.in;
         this.sourceCode = new ArrayList<String>();
+    }
+
+    private static Charset getInputCharset(String filename) throws IOException {
+        String[] charsetsToTest = {"UTF-8", "windows-1253", "ISO-8859-7"};
+        File file = new File(filename);
+        Charset charset = new CharsetDetector().detectCharset(file, charsetsToTest);
+        if (charset == null) {
+            charset = Charset.forName("UTF-8");
+        }
+        return charset;
     }
 
     public void parsingAndSemanticAnalysisFinished(Interpreter sender, boolean success) {
@@ -126,29 +133,33 @@ public class CLI implements InterpreterListener {
     public void execute(File sourceCodeFile, PrintStream out, PrintStream err, InputStream in) {
 
         this.sourceCode.clear();
+        
+        String filename = sourceCodeFile.getAbsolutePath();
 
-        File tmpFile = null;
+        Charset charset;
+        try {
+            charset = getInputCharset(filename);
+        } catch (IOException ioe) {
+            charset = Charset.defaultCharset();
+        }
 
         try {
-            BufferedReader r = new BufferedReader(new FileReader(sourceCodeFile));
-            String name = sourceCodeFile.getName();
-            name = name.split("\\.")[0];
-            tmpFile = File.createTempFile(name, ".gls");
-            OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(tmpFile), "UTF-8");
-            BufferedWriter bw = new BufferedWriter(w);
-
+            BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(sourceCodeFile),charset));
+            
             String sourceCodeline = "";
+            StringBuilder sb = new StringBuilder();
             try {
                 while ((sourceCodeline = r.readLine()) != null) {
-                    bw.write(sourceCodeline+"\n");
+                    sb.append(sourceCodeline);
+                    sb.append("\n");
                     sourceCode.add(sourceCodeline.trim());
                 }
-                bw.write("\n");
-                bw.flush();
-                bw.close();
-                w.close();
+                sb.append("\n");
+
             } catch (IOException ioe) {
                 sourceCode.clear();
+                sb = new StringBuilder();
+                ioe.printStackTrace();
             } finally {
                 try {
                     r.close();
@@ -160,17 +171,16 @@ public class CLI implements InterpreterListener {
             this.err = err;
             this.in = in;
 
-            if (tmpFile != null) {
-                Interpreter inter = new Interpreter(tmpFile, out, err, out, err, in);
-                inter.addListener(this);
-                if (inter.parseAndAnalyzeSemantics(false)) {
-                    boolean echo = true;
-                    if(this.in == System.in){
-                        echo = false;
-                    }
-                    inter.exec(echo);
+            Interpreter inter = new Interpreter(sb.toString(), out, err, out, err, in);
+            inter.addListener(this);
+            if (inter.parseAndAnalyzeSemantics(false)) {
+                boolean echo = true;
+                if(this.in == System.in){
+                    echo = false;
                 }
+                inter.exec(echo);
             }
+            
         } catch (FileNotFoundException fnfe) {
             err.println(String.format(FILE_NOT_FOUND_ERROR, sourceCodeFile.getAbsolutePath()));
         } catch (IOException ioe) {

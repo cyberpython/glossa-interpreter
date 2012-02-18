@@ -37,7 +37,6 @@ public class RuntimeMessages {
 
     public final static String STR_RUNTIME_MSG_EXECUTION_FINISHED = "\n\n- Η εκτέλεση ολοκληρώθηκε. -\n";
 
-    public final static String STR_RUNTIME_ERROR_FILE_NOT_FOUND = "Το αρχείο \"%1$s\" δε βρέθηκε!";
     public final static String STR_RUNTIME_ERROR_EXECUTION_TERMINATED_BY_USER = "Η εκτέλεση τερματίστηκε από το χρήστη.";
     public final static String STR_RUNTIME_ERROR_STACk_OVERFLOW = "Ο χώρος στη στοίβα της εικονικής μηχανής Java δεν επαρκεί.\n Μπορείτε να καθορίσετε το μέγεθος της στοίβας σε MB με την παράμετρο:\n\t -Xss<πλήθος_MB>Μ\n π.χ.\n\t java -Xss16M -jar ...";
     public final static String STR_RUNTIME_ERROR_JVM_ERROR = "Σοβαρό σφάλμα κατά τη λειτουργία της εικονικής μηχανής Java : %1$s";
