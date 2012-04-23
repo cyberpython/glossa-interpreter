@@ -442,7 +442,7 @@ public class InterpreterUtils {
         if (b.equals(BigInteger.ZERO)) {
             throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_DIVISION_BY_ZERO));
         }
-        return (new BigDecimal(a)).divide(new BigDecimal(b));
+        return (new BigDecimal(a)).divide(new BigDecimal(b), mc);
     }
 
     public static BigDecimal divide(BigDecimal a, BigInteger b) {
