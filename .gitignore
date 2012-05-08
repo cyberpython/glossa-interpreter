@@ -1,0 +1,10 @@
+*.tokens
+binaries
+build
+dist
+lib
+src/glossa/recognizers/GlossaLexer.java
+src/glossa/recognizers/GlossaParser.java
+src/glossa/statictypeanalysis/FirstPass.java
+src/glossa/statictypeanalysis/StaticTypeAnalyzer.java
+src/glossa/interpreter/core/ASTInterpreter.java
