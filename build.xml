@@ -98,6 +98,12 @@
     <target name="-pre-compile" depends="generate-antlr3-recognizers,download-jopt">
 
     </target>
+    
+    <target name="-post-jar">
+        <copy todir="dist/lib">
+            <fileset dir="lib"/>
+        </copy>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 

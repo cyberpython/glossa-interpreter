@@ -36,6 +36,7 @@ uninstall:
 	
 install:
 	mkdir -p $(DESTDIR)/usr/share/java
+	mkdir -p $(DESTDIR)/usr/bin/
 	cp dist/glossa-interpreter.jar $(DESTDIR)/usr/share/java/glossa-interpreter.jar
 	cp glossa-interpreter $(DESTDIR)/usr/bin/glossa-interpreter
 	chmod ugo+x $(DESTDIR)/usr/bin/glossa-interpreter
