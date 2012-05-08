@@ -165,7 +165,7 @@ public class Interpreter implements ASTInterpreterListener {
                 parser.setMessageLog(msgLog);
                 r = parser.unit();
             } catch (RuntimeException re) {
-                re.printStackTrace();
+                //re.printStackTrace();
             }
 
             errors = msgLog.getNumberOfErrors();

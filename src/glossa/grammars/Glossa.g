@@ -619,7 +619,7 @@ CONST_FALSE
 	:	PSI EPSILON UPSILON DELTA (ETA|ETA_TONOS) SIGMA_TELIKO;
 	
 CONST_STR
-	:	'\'' .* '\'' | '"' .* '"' ;
+	:	'\'' (~( '\'' | '\r' | '\n' ))* '\'' | '"' (~( '"' | '\r' | '\n' ))* '"' ;
 
 CONST_INT
 	:	DIGIT+;
