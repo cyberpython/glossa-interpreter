@@ -43,6 +43,7 @@ public class Main {
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
     private static final String VERSION = "Έκδοση: 1.0.4";
+    private static final String LICENSE_NAME = "Άδεια χρήσης MIT (MIT LICENSE)";
     private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
     private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
 
@@ -102,7 +103,8 @@ public class Main {
     }
 
     private static void printLicense(PrintStream out) {
-        printFile("/glossa/resources/license.txt", out);
+        out.println(LICENSE_NAME);
+        //printFile("/glossa/resources/license.txt", out);
     }
 
     private static void printFile(String fileURL, PrintStream out) {
@@ -119,6 +121,5 @@ public class Main {
     private static void printVersionInfo(PrintStream out) {
         out.println(APP_NAME);
         out.println(VERSION);
-        out.println();
     }
 }
