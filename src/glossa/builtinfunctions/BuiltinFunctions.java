@@ -50,8 +50,7 @@ public class BuiltinFunctions {
         }
         String funcId = functionName.toUpperCase();
         if (funcId.equals("ΗΜ") || funcId.equals("ΣΥΝ") || funcId.equals("ΕΦ")
-                || funcId.equals("Τ_Ρ") || funcId.equals("ΛΟΓ") || funcId.equals("Ε")
-                || funcId.equals("Α_Μ") ){
+                || funcId.equals("Τ_Ρ") || funcId.equals("ΛΟΓ") || funcId.equals("Ε") ){
             if(parameterType.equals(Type.INTEGER) || parameterType.equals(Type.REAL) ){
                 return Type.REAL;
             }else{
@@ -62,6 +61,12 @@ public class BuiltinFunctions {
                 return Type.INTEGER;
             }else if(parameterType.equals(Type.REAL)){
                 return Type.REAL;
+            }else{
+                return null;
+            }
+        }else if (funcId.equals("Α_Μ")){
+            if(parameterType.equals(Type.INTEGER) || parameterType.equals(Type.REAL)){
+                return Type.INTEGER;
             }else{
                 return null;
             }
