@@ -11,7 +11,33 @@
     <description>Builds, tests, and runs the project Glossa.</description>
     <import file="nbproject/build-impl.xml"/>
 
-    <target name="generate-parser">
+
+    <target name="check-parser">
+        <checksum file="${src.dir}/glossa/grammars/Glossa.g" property="parser.checksum" />
+        <echo message="${parser.checksum}" file="${src.dir}/glossa/grammars/Glossa.g.new.md5" force="true" />
+        
+        <condition property="parser.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/Glossa.g.new.md5" file2="${src.dir}/glossa/grammars/Glossa.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/Glossa.g.new.md5" tofile="${src.dir}/glossa/grammars/Glossa.g.old.md5"/>
+        
+        <condition property="parser.generate" value="true">
+            <or>
+                <not>
+                    <and>
+                        <available file="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
+                        <available file="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                    </and>
+                </not>
+                <equals arg1="${parser.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+
+    <target name="generate-parser" if="parser.generate">
         <exec executable="antlr3">
           <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
         </exec>
@@ -23,7 +49,29 @@
         </move>
     </target>
 
-    <target name="generate-firts-pass-treeparser">
+    <target name="check-firts-pass-treeparser">
+        <checksum file="${src.dir}/glossa/grammars/FirstPass.g" property="firts-pass-treeparser.checksum" />
+        <echo message="${firts-pass-treeparser.checksum}" file="${src.dir}/glossa/grammars/FirstPass.g.new.md5" force="true" />
+        
+        <condition property="firts-pass-treeparser.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/FirstPass.g.new.md5" file2="${src.dir}/glossa/grammars/FirstPass.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/FirstPass.g.new.md5" tofile="${src.dir}/glossa/grammars/FirstPass.g.old.md5"/>
+        
+        <condition property="firts-pass-treeparser.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                </not>
+                <equals arg1="${firts-pass-treeparser.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    <target name="generate-firts-pass-treeparser" if="firts-pass-treeparser.generate">
         <exec executable="antlr3">
           <arg value="${src.dir}/glossa/grammars/FirstPass.g"/>
         </exec>
@@ -34,7 +82,29 @@
         </move>
     </target>
 
-    <target name="generate-type-analyzer">
+    <target name="check-type-analyzer">
+        <checksum file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g" property="type-analyzer.checksum" />
+        <echo message="${type-analyzer.checksum}" file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" force="true" />
+        
+        <condition property="type-analyzer.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" file2="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" tofile="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.old.md5"/>
+        
+        <condition property="type-analyzer.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                </not>
+                <equals arg1="${type-analyzer.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    <target name="generate-type-analyzer" if="type-analyzer.generate">
         <exec executable="antlr3">
           <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
         </exec>
@@ -45,7 +115,29 @@
         </move>
     </target>
 
-    <target name="generate-AST-interpreter">
+    <target name="check-AST-interpreter">
+        <checksum file="${src.dir}/glossa/grammars/ASTInterpreter.g" property="AST-interpreter.checksum" />
+        <echo message="${AST-interpreter.checksum}" file="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" force="true" />
+        
+        <condition property="AST-interpreter.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" file2="${src.dir}/glossa/grammars/ASTInterpreter.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" tofile="${src.dir}/glossa/grammars/ASTInterpreter.g.old.md5"/>
+        
+        <condition property="AST-interpreter.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                </not>
+                <equals arg1="${AST-interpreter.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    <target name="generate-AST-interpreter" if="AST-interpreter.generate">
         <exec executable="antlr3">
           <arg value="${src.dir}/glossa/grammars/ASTInterpreter.g"/>
         </exec>
@@ -56,7 +148,7 @@
         </move>
     </target>
 
-    <target name="generate-antlr3-recognizers" depends="generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
+    <target name="generate-antlr3-recognizers" depends="check-parser,check-firts-pass-treeparser,check-type-analyzer,check-AST-interpreter,generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
 
     </target>
 

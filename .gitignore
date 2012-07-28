@@ -1,4 +1,5 @@
 *.tokens
+*.md5
 binaries
 build
 dist

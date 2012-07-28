@@ -29,8 +29,35 @@
         <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2.jar" dest="lib/jopt-simple-3.2.jar"/>
         <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2-javadoc.jar" dest="lib/jopt-simple-3.2-javadoc.jar"/>
     </target>
-
-    <target name="generate-parser" depends="download-antlr">
+    
+    <target name="check-parser">
+        <checksum file="${src.dir}/glossa/grammars/Glossa.g" property="parser.checksum" />
+        <echo message="${parser.checksum}" file="${src.dir}/glossa/grammars/Glossa.g.new.md5" force="true" />
+        
+        <condition property="parser.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/Glossa.g.new.md5" file2="${src.dir}/glossa/grammars/Glossa.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/Glossa.g.new.md5" tofile="${src.dir}/glossa/grammars/Glossa.g.old.md5"/>
+        
+        <condition property="parser.generate" value="true">
+            <or>
+                <not>
+                    <and>
+                        <available file="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
+                        <available file="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                    </and>
+                </not>
+                <equals arg1="${parser.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    
+    <target name="generate-parser" depends="download-antlr" if="parser.generate">
+        <echo message="parser.generate: ${parser.generate}" />
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
             <classpath>
@@ -45,8 +72,30 @@
             </fileset>
         </move>
     </target>
+    
+    <target name="check-firts-pass-treeparser">
+        <checksum file="${src.dir}/glossa/grammars/FirstPass.g" property="firts-pass-treeparser.checksum" />
+        <echo message="${firts-pass-treeparser.checksum}" file="${src.dir}/glossa/grammars/FirstPass.g.new.md5" force="true" />
+        
+        <condition property="firts-pass-treeparser.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/FirstPass.g.new.md5" file2="${src.dir}/glossa/grammars/FirstPass.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/FirstPass.g.new.md5" tofile="${src.dir}/glossa/grammars/FirstPass.g.old.md5"/>
+        
+        <condition property="firts-pass-treeparser.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                </not>
+                <equals arg1="${firts-pass-treeparser.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
 
-    <target name="generate-firts-pass-treeparser" depends="download-antlr">
+    <target name="generate-firts-pass-treeparser" depends="download-antlr" if="firts-pass-treeparser.generate">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/FirstPass.g"/>
             <classpath>
@@ -61,7 +110,29 @@
         </move>
     </target>
 
-    <target name="generate-type-analyzer" depends="download-antlr">
+    <target name="check-type-analyzer">
+        <checksum file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g" property="type-analyzer.checksum" />
+        <echo message="${type-analyzer.checksum}" file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" force="true" />
+        
+        <condition property="type-analyzer.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" file2="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.new.md5" tofile="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g.old.md5"/>
+        
+        <condition property="type-analyzer.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                </not>
+                <equals arg1="${type-analyzer.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    <target name="generate-type-analyzer" depends="download-antlr" if="type-analyzer.generate">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
             <classpath>
@@ -76,7 +147,29 @@
         </move>
     </target>
 
-    <target name="generate-AST-interpreter" depends="download-antlr">
+    <target name="check-AST-interpreter">
+        <checksum file="${src.dir}/glossa/grammars/ASTInterpreter.g" property="AST-interpreter.checksum" />
+        <echo message="${AST-interpreter.checksum}" file="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" force="true" />
+        
+        <condition property="AST-interpreter.modified" value="true" else="false">
+            <not>
+                <filesmatch file1="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" file2="${src.dir}/glossa/grammars/ASTInterpreter.g.old.md5" />
+            </not>
+        </condition>
+        
+        <copy file="${src.dir}/glossa/grammars/ASTInterpreter.g.new.md5" tofile="${src.dir}/glossa/grammars/ASTInterpreter.g.old.md5"/>
+        
+        <condition property="AST-interpreter.generate" value="true">
+            <or>
+                <not>
+                    <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                </not>
+                <equals arg1="${AST-interpreter.modified}" arg2="true" />
+            </or>
+        </condition>
+    </target>
+    
+    <target name="generate-AST-interpreter" depends="download-antlr" if="AST-interpreter.generate">
         <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/ASTInterpreter.g"/>
             <classpath>
@@ -91,7 +184,7 @@
         </move>
     </target>
 
-    <target name="generate-antlr3-recognizers" depends="generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
+    <target name="generate-antlr3-recognizers" depends="check-parser,check-firts-pass-treeparser,check-type-analyzer,check-AST-interpreter,generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
 
     </target>
 
