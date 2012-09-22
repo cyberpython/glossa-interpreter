@@ -25,6 +25,7 @@ package glossa.interpreter.core;
 
 import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
+import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeSimpleSymbol;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
 import glossa.messages.RuntimeMessages;
@@ -533,6 +534,9 @@ public class InterpreterUtils {
                 }else{
                     throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_USED_AS_VALUE, ((RuntimeArray)param).getName(), functionName));
                 }
+            }else if(param instanceof RuntimeArrayItemWrapper){
+                RuntimeArrayItemWrapper raiw = (RuntimeArrayItemWrapper) param;
+                parameter = raiw.getArray().get(raiw.getIndex());
             }else{
                 parameter = param;
             }
