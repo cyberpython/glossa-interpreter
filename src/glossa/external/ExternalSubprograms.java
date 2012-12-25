@@ -81,7 +81,7 @@ public class ExternalSubprograms {
         // we should load the pair <subprogramName,className>
         // and then load the appropriate class on demand
 
-        File lookupDir = new File("/home/cyberpython/ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
+        File lookupDir = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
         if (lookupDir.isDirectory()) {
 
             File[] jarFiles = lookupDir.listFiles(new FileFilter() {
