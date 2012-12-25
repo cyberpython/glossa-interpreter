@@ -23,6 +23,7 @@
  */
 package glossa.statictypeanalysis;
 
+import glossa.external.*;
 import glossa.messages.MessageLog;
 import glossa.messages.Messages;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
@@ -278,16 +279,28 @@ public class StaticTypeAnalyzerUtils {
             }else if(checkResults.size() > 0) {
                 List<FormalParameter> fparams = fs.getFormalParameters();
                 for (Iterator<Integer> it = checkResults.iterator(); it.hasNext();) {
-                    Integer integer = it.next();
-                    int index = integer.intValue();
+                    int index = it.next();
                     ActualParameter param = params.get(index);
                     FormalParameter fp = fparams.get(index);
-                    Messages.callToFunctionWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), integer.intValue(), functionId, fparams, param, fp);
+                    Messages.callToFunctionWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), index, functionId, fparams, param, fp);
                 }
             }
             return fs.getReturnType();
         }else{
-            Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, params);
+            try{
+                return ExternalSubprograms.getInstance().checkExternalFunctionCall(functionId, params);
+            }catch(ExternalFunctionNotFoundException efnfe){
+                Messages.callToUnknownFunctionError(msgLog, new Point(idLine, idPosition), functionId, params);
+            }catch(WrongParameterTypesForExternalSubprogramException wptfese){
+                List<ParameterTypeMismatchInstance> mismatchedParams = wptfese.getMismatchedParams();
+                for (ParameterTypeMismatchInstance parameterTypeMismatchInstance : mismatchedParams) {
+                    ActualParameter param = parameterTypeMismatchInstance.getFound();
+                    Messages.callToExternalFunctionWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), parameterTypeMismatchInstance.getIndex(), functionId, param, parameterTypeMismatchInstance.getExpected());
+                }
+                
+            }catch(WrongParametersNumberForExternalSubprogramException wpnfese){
+                Messages.callToExternalFunctionWithWrongNumOfParamsError(msgLog, new Point(idLine, idPosition), functionId, wpnfese.getExpected(), wpnfese.getPassed().size());
+            }
             return null;
         }
     }
@@ -309,7 +322,21 @@ public class StaticTypeAnalyzerUtils {
                 }
             }
         }else{
-            Messages.callToUnknownProcedureError(msgLog, new Point(idLine, idPosition), procedureName, params);
+            try{
+                ExternalSubprograms.getInstance().checkExternalProcedureCall(procedureName, params);
+            }catch(ExternalProcedureNotFoundException efnfe){
+                Messages.callToUnknownProcedureError(msgLog, new Point(idLine, idPosition), procedureName, params);
+            }catch(WrongParameterTypesForExternalSubprogramException wptfese){
+                List<ParameterTypeMismatchInstance> mismatchedParams = wptfese.getMismatchedParams();
+                for (ParameterTypeMismatchInstance parameterTypeMismatchInstance : mismatchedParams) {
+                    ActualParameter param = parameterTypeMismatchInstance.getFound();
+                    Messages.callToExternalProcedureWithWrongParamTypeError(msgLog, new Point(param.getLine(), param.getPos()), parameterTypeMismatchInstance.getIndex(), procedureName, param, parameterTypeMismatchInstance.getExpected());
+                }
+
+            }catch(WrongParametersNumberForExternalSubprogramException wpnfese){
+                Messages.callToExternalProcedureWithWrongNumOfParamsError(msgLog, new Point(idLine, idPosition), procedureName, wpnfese.getExpected(), wpnfese.getPassed().size());
+            }
+            
         }
     }
 

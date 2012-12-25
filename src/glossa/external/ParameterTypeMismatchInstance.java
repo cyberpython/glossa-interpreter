@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -22,52 +22,60 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable.symbols;
+package glossa.external;
 
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
+import glossa.statictypeanalysis.ExpressionResultForm;
+import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.types.Type;
-
 
 /**
  *
  * @author cyberpython
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
+public class ParameterTypeMismatchInstance {
+    private int index;
+    private Parameter expected;
+    private ActualParameter found;
 
-    private Object value;
-
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
+    public ParameterTypeMismatchInstance(int index, Parameter expected, ActualParameter found) {
+        this.index = index;
+        this.expected = expected;
+        this.found = found;
     }
 
-    @Override
-    public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
+    
+    public int getIndex() {
+        return index;
     }
 
-
-
-    /**
-     * @return the value
-     */
-    public Object getValue() {
-            return value;
+    public boolean getArrayExpected() {
+        return expected.isArray();
+    }
+    
+    public boolean getArrayFound() {
+        return ExpressionResultForm.ARRAY.equals(found.getForm());
+    }
+    
+    public Type getExpectedType(){
+        return expected.getType();
+    }
+    
+    public Type getFoundType(){
+        return found.getType();
+    }
+    
+    public String getParameterName(){
+        return expected.getName();
     }
 
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
+    public Parameter getExpected() {
+        return expected;
     }
 
+    public ActualParameter getFound() {
+        return found;
+    }
+
+    
+    
 }

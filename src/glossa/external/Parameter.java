@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -21,53 +21,47 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+package glossa.external;
 
-package glossa.interpreter.symboltable.symbols;
-
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
-
 
 /**
  *
- * @author cyberpython
+ * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
+public class Parameter {
+    private String name;
+    private Type type;
+    private boolean isArray;
 
-    private Object value;
-
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
+    public Parameter(String name, Type type, boolean isArray) {
+        this.name = name;
+        this.type = type;
+        this.isArray = isArray;
     }
 
-    @Override
+    public String getName() {
+        return name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public boolean isArray() {
+        return isArray;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
+        this.type = type;
     }
 
-
-
-    /**
-     * @return the value
-     */
-    public Object getValue() {
-            return value;
+    public void setIsArray(boolean isArray) {
+        this.isArray = isArray;
     }
-
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
-    }
-
+    
 }

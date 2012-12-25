@@ -21,16 +21,16 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package glossa.interpreter.symboltable.symbols;
 
+import glossa.types.Type;
 import java.util.List;
 
 /**
  *
  * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public class RuntimeArrayItemWrapper {
+public class RuntimeArrayItemWrapper implements ValueContainer {
 
     private RuntimeArray arr;
     private List<Integer> index;
@@ -56,4 +56,15 @@ public class RuntimeArrayItemWrapper {
         this.index = index;
     }
 
+    public Object getValue() {
+        return arr.get(index);
+    }
+
+    public void setValue(Object value) {
+        arr.set(index, value);
+    }
+
+    public Type getType() {
+        return arr.getType();
+    }
 }

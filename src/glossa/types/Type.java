@@ -61,6 +61,20 @@ public enum Type {
             return Messages.CONSTS_STR_TYPE_UNKNOWN;
         }
     }
+    
+    public String toPluralPossesiveString() {
+        if(this.equals(Type.INTEGER)){
+            return Messages.CONSTS_STR_TYPE_OF_INTEGER;
+        }else if(this.equals(Type.REAL)){
+            return Messages.CONSTS_STR_TYPE_OF_REAL;
+        }else if(this.equals(Type.BOOLEAN)){
+            return Messages.CONSTS_STR_TYPE_OF_BOOLEAN;
+        }else if(this.equals(Type.STRING)){
+            return Messages.CONSTS_STR_TYPE_OF_STRING;
+        }else{
+            return Messages.CONSTS_STR_TYPE_OF_UNKNOWN;
+        }
+    }
 
     public Object getInitializationValue(){
         if(this.equals(Type.INTEGER)){

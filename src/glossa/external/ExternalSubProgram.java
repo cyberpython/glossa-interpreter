@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -22,52 +22,42 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable.symbols;
+package glossa.external;
 
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
-import glossa.types.Type;
-
+import java.util.List;
 
 /**
  *
- * @author cyberpython
+ * @author Georgios Migdos <cyberpython@gmail.com>
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
-
-    private Object value;
-
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
-    }
-
-    @Override
-    public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
-    }
-
-
-
+public interface ExternalSubProgram {
+    
     /**
-     * @return the value
+     * Returns the subprogram's name.
+     * @return The subprogram's name (case insensitive) - must be unique
+     *         for each subprogram.
      */
-    public Object getValue() {
-            return value;
-    }
-
+    public String getName();
+    
     /**
-     * @param value the value to set
+     * Returns the subprogram's package name.
+     * @return The subprogram's package name (case insensitive) - currently not 
+     * used. In the future it could be used to differentiate between 
+     * subprograms with the same name.
      */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
-    }
-
+    public String getPackageName();
+    
+    /**
+     * Returns the subprogram's description.
+     * @return The subprogram's description. This shall be used for documentation purposes;
+     */
+    public String getDescription();
+    
+    /**
+     * Returns the subprogram's parameter list.
+     * @return The subprogram's parameter list.
+     */
+    public List<Parameter> getParametersList();
+    
+    
 }

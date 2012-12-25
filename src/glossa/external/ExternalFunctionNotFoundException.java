@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -22,52 +22,19 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable.symbols;
-
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
-import glossa.types.Type;
-
+package glossa.external;
 
 /**
  *
  * @author cyberpython
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
+public class ExternalFunctionNotFoundException extends Exception{
 
-    private Object value;
+    private final static String MESSAGE = "Η συνάρτηση %1$s δε βρέθηκε.";
 
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
+    public ExternalFunctionNotFoundException(String functionName) {
+        super(String.format(MESSAGE, functionName));
     }
 
-    @Override
-    public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
-    }
-
-
-
-    /**
-     * @return the value
-     */
-    public Object getValue() {
-            return value;
-    }
-
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
-    }
 
 }

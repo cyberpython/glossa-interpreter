@@ -61,6 +61,7 @@ options{
 package glossa.interpreter.core;
 
 import glossa.types.*;
+import glossa.external.*;
 import glossa.messages.RuntimeMessages;
 import glossa.messages.Messages;
 import glossa.builtinfunctions.BuiltinFunctions;
@@ -601,7 +602,11 @@ stm	:	^(  PRINT           {
                                             notifyListeners(STACK_POPPED);
                                             input.seek(resumeAt);
                                         }else{
-                                            throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
+                                            try{
+                                                ExternalSubprograms.getInstance().callProcedure($ID.text, $paramsList.parameters);
+                                            }catch(ExternalProcedureNotFoundException e){
+                                                throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
+                                            }
                                         }
                                         
                                     }
@@ -835,7 +840,11 @@ expr	returns [Object result, Object resultForParam]
                                                                     $result = fst.getReturnValue();
                                                                     input.seek(resumeAt);
                                                                 }else{
-                                                                    throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_FUNCTION, $ID.text));
+                                                                    try{
+                                                                        $result = ExternalSubprograms.getInstance().callFunction($ID.text, $paramsList.parameters);
+                                                                    }catch(ExternalFunctionNotFoundException e){
+                                                                        throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_FUNCTION, $ID.text));
+                                                                    }
                                                                 }
                                                             }
                                                             $resultForParam = $result;

@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -22,52 +22,28 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable.symbols;
+package glossa.external;
 
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
-import glossa.types.Type;
-
+import java.util.List;
 
 /**
  *
  * @author cyberpython
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
-
-    private Object value;
-
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
-    }
-
-    @Override
-    public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
-    }
-
-
-
+public interface ExternalProcedure extends ExternalSubProgram{
     /**
-     * @return the value
+     * Executes the procedure.
+     * @param parameters The list of values to be passed to the procedure as
+     *                   input. Implementations of this method have to check
+     *                   whether the given objects are instances of 
+     *                   {@link glossa.interpreter.symboltable.symbols.ValueContainer}
+     *                   or {@link glossa.interpreter.symboltable.symbols.RuntimeArray}.
+     *                   Also, it is up to the implementation to pass results 
+     *                   back to the caller via calling the 
+     *                   {@link glossa.interpreter.symboltable.symbols.ValueContainer.setValue}
+     *                   and {@link glossa.interpreter.symboltable.symbols.RuntimeArray.set}
+     *                   methods.
+     *
      */
-    public Object getValue() {
-            return value;
-    }
-
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
-    }
-
+    public void execute(List<Object> parameters);
 }

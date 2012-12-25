@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  *
- *  Copyright 2010 Georgios Migdos <cyberpython@gmail.com>.
+ *  Copyright 2012 Georgios Migdos <cyberpython@gmail.com>.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -22,52 +22,34 @@
  *  THE SOFTWARE.
  */
 
-package glossa.interpreter.symboltable.symbols;
+package glossa.external;
 
-import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.types.Type;
-
+import java.util.List;
 
 /**
  *
  * @author cyberpython
  */
-public abstract class RuntimeSimpleSymbol extends RuntimeSymbol implements ValueContainer {
-
-    private Object value;
-
-    public RuntimeSimpleSymbol(Symbol s) {
-        super(s);
-        Type type = super.getType();
-        if(type!=null){
-            this.value = type.getInitializationValue();
-        }
-    }
-
-    @Override
-    public void setType(Type type) {
-        super.setType(type);
-        if(type!=null){
-            this.setValue(type.getInitializationValue());
-        }
-        this.setInitialized(false);
-    }
-
-
+public interface ExternalFunction extends ExternalSubProgram{   
+    
 
     /**
-     * @return the value
+     * Returns the function's return type.
+     * @return The function's return type (real/integer/boolean/string).
      */
-    public Object getValue() {
-            return value;
-    }
-
+    public Type getReturnType();  
+    
     /**
-     * @param value the value to set
+     * Executes the function.
+     * @param parameters The list of values to be passed to the function as
+     *                   input.
+     * @return An object which is the function's return value.
+     *         This object must be:
+     *         BigInteger for integer
+     *         BigDecimal for real
+     *         Boolean    for boolean
+     *         String     for string
      */
-    public void setValue(Object value) {
-        this.value = value;
-        this.setInitialized(true);
-    }
-
+    public Object execute(List<Object> parameters);
 }

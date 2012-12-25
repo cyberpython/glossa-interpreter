@@ -32,7 +32,7 @@ import glossa.statictypeanalysis.scopetable.symbols.Constant;
  *
  * @author cyberpython
  */
-public class RuntimeConstant extends RuntimeSimpleSymbol{
+public class RuntimeConstant extends RuntimeSimpleSymbol implements ValueContainer {
 
     public RuntimeConstant(Constant c) {
         super(c);
@@ -42,5 +42,16 @@ public class RuntimeConstant extends RuntimeSimpleSymbol{
     public String toString() {
         return Messages.CONSTS_STR_CONSTANT+" "+super.toString()+" = "+InterpreterUtils.toPrintableString(super.getValue());
     }
+
+    @Override
+    public void setValue(Object value) {
+        if(isInitialized()){
+            throw new RuntimeException("Η τιμή της σταθεράς "+getName()+" δε μπορεί να αλλάξει!");
+        }else{
+            super.setValue(value);
+        }
+    }
+
+
 
 }

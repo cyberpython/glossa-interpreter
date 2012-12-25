@@ -23,6 +23,7 @@
  */
 package glossa.messages;
 
+import glossa.external.Parameter;
 import glossa.statictypeanalysis.ExpressionResultForm;
 import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.statictypeanalysis.scopetable.parameters.FormalParameter;
@@ -344,18 +345,38 @@ public class Messages {
         msgLog.error(errorPoint, msg);
     }
     
-    public static void callToUnknownProcedureError(MessageLog msgLog, Point errorPoint, String functionName, List<ActualParameter> params) {
-        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_PROCEDURE, functionName, actualParametersTypesToString(params));
+    public static void callToExternalFunctionWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String functionName, List<Parameter> fparams, int numOfParams) {
+        String msg = String.format(STR_ERROR_CALL_TO_FUNCTION_WITH_WRONG_NUMBER_OF_PARAMS, functionName, parametersNamesToString(fparams), numOfParams);
         msgLog.error(errorPoint, msg);
     }
 
-    public static void callToProcedureWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String functionName, List<FormalParameter> fparams, int numOfParams) {
-        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_NUMBER_OF_PARAMS, functionName, formalParametersNamesToString(fparams), numOfParams);
+    public static void callToExternalFunctionWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String functionName, ActualParameter param, Parameter formalParam) {
+        String msg = String.format(STR_ERROR_CALL_TO_FUNCTION_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, functionName, "", actualParameterToString(param), parameterToString(formalParam));
         msgLog.error(errorPoint, msg);
     }
 
-    public static void callToProcedureWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String functionName, List<FormalParameter> fparams, ActualParameter param, FormalParameter formalParam) {
-        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, functionName, formalParametersNamesToString(fparams), actualParameterToString(param), formalParameterToString(formalParam));
+    public static void callToUnknownProcedureError(MessageLog msgLog, Point errorPoint, String procedureName, List<ActualParameter> params) {
+        String msg = String.format(STR_ERROR_CALL_TO_UNKNOWN_PROCEDURE, procedureName, actualParametersTypesToString(params));
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToProcedureWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String procedureName, List<FormalParameter> fparams, int numOfParams) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_NUMBER_OF_PARAMS, procedureName, formalParametersNamesToString(fparams), numOfParams);
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToProcedureWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String procedureName, List<FormalParameter> fparams, ActualParameter param, FormalParameter formalParam) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, procedureName, formalParametersNamesToString(fparams), actualParameterToString(param), formalParameterToString(formalParam));
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToExternalProcedureWithWrongNumOfParamsError(MessageLog msgLog, Point errorPoint, String procedureName, List<Parameter> fparams, int numOfParams) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_NUMBER_OF_PARAMS, procedureName, parametersNamesToString(fparams), numOfParams);
+        msgLog.error(errorPoint, msg);
+    }
+
+    public static void callToExternalProcedureWithWrongParamTypeError(MessageLog msgLog, Point errorPoint, int paramIndex, String procedureName, ActualParameter param, Parameter formalParam) {
+        String msg = String.format(STR_ERROR_CALL_TO_PROCEDURE_WITH_WRONG_TYPE_OF_PARAMETER, paramIndex + 1, procedureName, "", actualParameterToString(param), parameterToString(formalParam));
         msgLog.error(errorPoint, msg);
     }
 
@@ -552,6 +573,20 @@ public class Messages {
         dim.append(")");
         return dim.toString();
     }
+    
+    public static String parametersNamesToString(List<Parameter> params) {
+        StringBuilder dim = new StringBuilder();
+        dim.append("(");
+        for (Iterator<Parameter> it = params.iterator(); it.hasNext();) {
+            Parameter param = it.next();
+            dim.append(param.getName());
+            if (it.hasNext()) {
+                dim.append(", ");
+            }
+        }
+        dim.append(")");
+        return dim.toString();
+    }
 
     public static String formalParametersTypesToString(List<FormalParameter> params) {
         StringBuilder dim = new StringBuilder();
@@ -574,6 +609,13 @@ public class Messages {
         return dim.toString();
     }
 
+    public static String convertFirstLetterToUppercase(String s) {
+        if (s.length() > 0) {
+            return s.substring(0, 1).toUpperCase() + s.substring(1);
+        }
+        return "";
+    }
+
     public static String formalParameterToString(FormalParameter param) {
         StringBuilder dim = new StringBuilder();
         Type type = param.getType();
@@ -581,7 +623,20 @@ public class Messages {
             dim.append(CONSTS_STR_ARRAY);
             dim.append(" ");
             dim.append(typeOfToString(type));
-        }else{
+        } else {
+            dim.append(typeToString(type));
+        }
+        return dim.toString();
+    }
+    
+    public static String parameterToString(Parameter param) {
+        StringBuilder dim = new StringBuilder();
+        Type type = param.getType();
+        if (param.isArray()) {
+            dim.append(CONSTS_STR_ARRAY);
+            dim.append(" ");
+            dim.append(typeOfToString(type));
+        } else {
             dim.append(typeToString(type));
         }
         return dim.toString();
@@ -594,7 +649,7 @@ public class Messages {
             dim.append(CONSTS_STR_ARRAY);
             dim.append(" ");
             dim.append(typeOfToString(type));
-        }else{
+        } else {
             dim.append(typeToString(type));
         }
         return dim.toString();
