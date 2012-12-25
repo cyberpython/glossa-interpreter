@@ -136,7 +136,6 @@ public class RuntimeArray extends RuntimeSymbol {
     }
 
     public void set(List<Integer> indices, Object value) {
-        System.err.println(value.getClass().getName());
         if ((value instanceof BigInteger) && this.getType().equals(Type.INTEGER)) {
             this.values[resolveIndex(indices)] = value;
         } else if ((value instanceof BigInteger) && this.getType().equals(Type.REAL)) {
