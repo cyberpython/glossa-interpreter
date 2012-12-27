@@ -23,6 +23,7 @@
  */
 package glossa.external;
 
+import com.github.rjeschke.txtmark.Processor;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeVariable;
@@ -31,9 +32,7 @@ import glossa.messages.Messages;
 import glossa.statictypeanalysis.ExpressionResultForm;
 import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.types.Type;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
@@ -41,7 +40,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -81,7 +79,7 @@ public class ExternalSubprograms {
         // we should load the pair <subprogramName,className>
         // and then load the appropriate class on demand
 
-        File lookupDir = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
+        File lookupDir = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
         if (lookupDir.isDirectory()) {
 
             File[] jarFiles = lookupDir.listFiles(new FileFilter() {
@@ -207,7 +205,7 @@ public class ExternalSubprograms {
         }
     }
 
-    public Object callFunction(String functionName, List<Object> parameters) throws ExternalFunctionNotFoundException {
+    public Object callFunction(String functionName, List<Object> parameters, PrintStream err) throws ExternalFunctionNotFoundException {
         List<Object> parameterValues = new ArrayList<Object>();
         for (Object object : parameters) {
             if (object instanceof ValueContainer) {
@@ -221,11 +219,11 @@ public class ExternalSubprograms {
         if (f == null) {
             throw new ExternalFunctionNotFoundException(functionName);
         } else {
-            return f.execute(parameterValues);
+            return f.execute(parameterValues, err);
         }
     }
 
-    public void callProcedure(String procedureName, List<Object> parameters) throws ExternalProcedureNotFoundException {
+    public void callProcedure(String procedureName, List<Object> parameters, PrintStream out, PrintStream err, InputStream in) throws ExternalProcedureNotFoundException {
         List<Object> procParameters = new ArrayList<Object>();
         for (Object object : parameters) {
             if (object instanceof ValueContainer) {
@@ -241,7 +239,7 @@ public class ExternalSubprograms {
         if (proc == null) {
             throw new ExternalProcedureNotFoundException(procedureName);
         } else {
-            proc.execute(procParameters);
+            proc.execute(procParameters, out, err, in);
             for (int i = 0; i < parameters.size(); i++) {
                 Object object = parameters.get(i);
                 if ((object instanceof RuntimeVariable) || (object instanceof RuntimeArrayItemWrapper)) {
@@ -270,7 +268,8 @@ public class ExternalSubprograms {
                         }
                     }
                 } else {
-                    if (param.isArray() && (!(ExpressionResultForm.ARRAY.equals(actualParam.getForm())))) {
+                    if (param.isArray() && (!(ExpressionResultForm.ARRAY.equals(actualParam.getForm())))
+                            || ((!param.isArray()) && (ExpressionResultForm.ARRAY.equals(actualParam.getForm())))) {
                         result.add(new ParameterTypeMismatchInstance(i, param, actualParam));
                     }
                 }
@@ -318,26 +317,26 @@ public class ExternalSubprograms {
             f = (ExternalFunction) sp;
             sb.append("Συνάρτηση ");
         }
-        sb.append(sp.getName()).append("</h1>\n");
+        sb.append("<span class='subprogram_name'>").append(sp.getName()).append("</span></h1>\n");
         sb.append("<ul>\n");
         if (f != null) {
-            sb.append("  <li> <strong>Τιμή επιστροφής:</strong> ").append(Messages.convertFirstLetterToUppercase(f.getReturnType().toString())).append("</li>\n");
+            sb.append("  <li> <span class='lbl retval'>Τιμή επιστροφής:</span> ").append(Messages.convertFirstLetterToUppercase(f.getReturnType().toString())).append("</li>\n");
         }
         List<Parameter> params = sp.getParametersList();
         if (params.size() > 0) {
-            sb.append("  <li> <strong>Παράμετροι</strong> ").append("\n    <ul>\n");
+            sb.append("  <li> <span class='lbl params'>Παράμετροι</span> ").append("\n    <ul>\n");
             for (Parameter param : params) {
-                sb.append("      <li> <strong>").append(param.getName()).append(":</strong> ");
+                sb.append("      <li> <span class='param name'>").append(param.getName()).append("</span>: ");
                 if (param.isArray()) {
-                    sb.append("Πίνακας ").append(param.getType().toPluralPossesiveString());
+                    sb.append("<span class='type array'>Πίνακας ").append(param.getType().toPluralPossesiveString()).append("</span>");
                 } else {
-                    sb.append(Messages.convertFirstLetterToUppercase(param.getType().toString()));
+                    sb.append("<span class='type'>").append(Messages.convertFirstLetterToUppercase(param.getType().toString())).append("</span>");
                 }
                 sb.append("</li>\n");
             }
         }
         sb.append("    </ul>\n");
-        sb.append("  <li> <strong>Περιγραφή:</strong> ").append(sp.getDescription()).append("</li>\n");
+        sb.append("  <li> <span class='lbl description'>Περιγραφή:</span> ").append(Processor.process(sp.getDescription())).append("</li>\n");
         sb.append("</ul>");
         return sb.toString();
     }
@@ -360,7 +359,7 @@ public class ExternalSubprograms {
             params.add(randomValues[i]);
 
             try {
-                results[i] = (BigDecimal) xf.callFunction("κυβος", params);
+                results[i] = (BigDecimal) xf.callFunction("κυβος", params, System.err);
             } catch (ExternalFunctionNotFoundException e1) {
                 System.err.println(e1.getMessage());
             }

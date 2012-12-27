@@ -25,6 +25,7 @@
 package glossa.external;
 
 import glossa.types.Type;
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -44,6 +45,7 @@ public interface ExternalFunction extends ExternalSubProgram{
      * Executes the function.
      * @param parameters The list of values to be passed to the function as
      *                   input.
+     * @param err The default error stream (usually System.err)
      * @return An object which is the function's return value.
      *         This object must be:
      *         BigInteger for integer
@@ -51,5 +53,5 @@ public interface ExternalFunction extends ExternalSubProgram{
      *         Boolean    for boolean
      *         String     for string
      */
-    public Object execute(List<Object> parameters);
+    public Object execute(List<Object> parameters, PrintStream err);
 }

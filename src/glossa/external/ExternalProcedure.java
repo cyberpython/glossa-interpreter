@@ -24,6 +24,8 @@
 
 package glossa.external;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -43,7 +45,10 @@ public interface ExternalProcedure extends ExternalSubProgram{
      *                   {@link glossa.interpreter.symboltable.symbols.ValueContainer.setValue}
      *                   and {@link glossa.interpreter.symboltable.symbols.RuntimeArray.set}
      *                   methods.
+     * @param out The default output stream (usually System.out)
+     * @param err The default error stream (usually System.err)
+     * @param in The default input stream (usually System.in)
      *
      */
-    public void execute(List<Object> parameters);
+    public void execute(List<Object> parameters, PrintStream out, PrintStream err, InputStream in);
 }
