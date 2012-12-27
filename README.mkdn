@@ -12,6 +12,8 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 [jOpt Simple](http://jopt-simple.sourceforge.net/) is copyright of Paul R. Holser and it is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
+[TxtMark](https://github.com/rjeschke/txtmark) is copyright of René Jeschke <rene_jeschke@yahoo.de>
+
 ##Status
 
 The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
