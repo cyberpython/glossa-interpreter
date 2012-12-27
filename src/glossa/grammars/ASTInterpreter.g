@@ -603,7 +603,7 @@ stm	:	^(  PRINT           {
                                             input.seek(resumeAt);
                                         }else{
                                             try{
-                                                ExternalSubprograms.getInstance().callProcedure($ID.text, $paramsList.parameters);
+                                                ExternalSubprograms.getInstance().callProcedure($ID.text, $paramsList.parameters, out, err, in);
                                             }catch(ExternalProcedureNotFoundException e){
                                                 throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
                                             }
@@ -797,7 +797,7 @@ expr	returns [Object result, Object resultForParam]
 	|	^(NOT	a=expr)             {   $result = InterpreterUtils.not($a.result);  $resultForParam = $result;}
 	|	CONST_TRUE                  {   $result = Boolean.valueOf(true);    $resultForParam = $result;}
 	|	CONST_FALSE                 {   $result = Boolean.valueOf(false);   $resultForParam = $result;}
-	|	CONST_STR                   {   $result = new String($CONST_STR.text);  $resultForParam = $result;}
+	|	CONST_STR                   {   $result = new String($CONST_STR.text); $result = ((String)$result).substring(1, ((String)$result).length() - 1);  $resultForParam = $result;}
 	|	CONST_INT                   {   $result = new BigInteger($CONST_INT.text);  $resultForParam = $result;}
 	|	CONST_REAL                  {   $result = new BigDecimal($CONST_REAL.text, InterpreterUtils.getMathContext()); $resultForParam = $result;}
 	|	ID                          {
@@ -841,7 +841,7 @@ expr	returns [Object result, Object resultForParam]
                                                                     input.seek(resumeAt);
                                                                 }else{
                                                                     try{
-                                                                        $result = ExternalSubprograms.getInstance().callFunction($ID.text, $paramsList.parameters);
+                                                                        $result = ExternalSubprograms.getInstance().callFunction($ID.text, $paramsList.parameters, err);
                                                                     }catch(ExternalFunctionNotFoundException e){
                                                                         throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_FUNCTION, $ID.text));
                                                                     }
