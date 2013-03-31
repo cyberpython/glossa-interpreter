@@ -457,7 +457,7 @@ is divided into following sections:
         <j2seproject1:jar manifest="${manifest.file}">
             <j2seproject1:manifest>
                 <j2seproject1:attribute name="Main-Class" value="${main.class}"/>
-                <j2seproject1:attribute name="Class-Path" value="${file.reference.antlr3.jar} ${file.reference.joptsimple.jar}"/>
+                <j2seproject1:attribute name="Class-Path" value="${jar.classpath}"/>
             </j2seproject1:manifest>
         </j2seproject1:jar>
         <echo>To run this application from the command line without Ant, try:</echo>
@@ -487,8 +487,7 @@ is divided into following sections:
             <fileset dir="${build.classes.dir}"/>
             <manifest>
                 <attribute name="Main-Class" value="${main.class}"/>
-                <!-- attribute name="Class-Path" value="${jar.classpath}"/ -->
-                <attribute name="Class-Path" value="${file.reference.antlr3.jar} ${file.reference.joptsimple.jar}"/>
+                <attribute name="Class-Path" value="${jar.classpath}"/>
             </manifest>
         </copylibs>
         <echo>To run this application from the command line without Ant, try:</echo>
