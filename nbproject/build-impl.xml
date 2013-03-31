@@ -457,7 +457,7 @@ is divided into following sections:
         <j2seproject1:jar manifest="${manifest.file}">
             <j2seproject1:manifest>
                 <j2seproject1:attribute name="Main-Class" value="${main.class}"/>
-                <j2seproject1:attribute name="Class-Path" value="${run.classpath}"/>
+                <j2seproject1:attribute name="Class-Path" value="${linux.manifest.classpath}"/>
             </j2seproject1:manifest>
         </j2seproject1:jar>
         <echo>To run this application from the command line without Ant, try:</echo>
