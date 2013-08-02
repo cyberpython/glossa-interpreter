@@ -803,7 +803,17 @@ expr	returns [Object result, Object resultForParam]
 	|	ID                          {
                                                 RuntimeSymbol s = (RuntimeSymbol)this.currentSymbolTable.referenceSymbol($ID.text, new Point($ID.line, $ID.pos));
                                                 if(s instanceof RuntimeSimpleSymbol){
-                                                    $result = ((RuntimeSimpleSymbol)s).getValue();
+                                                    Object value = ((RuntimeSimpleSymbol)s).getValue();
+                                                    if(value instanceof String){
+                                                        String val = (String) value;
+                                                        if((val.length()>=2)&&(val.indexOf("'")==0)&&(val.lastIndexOf("'")==(val.length()-1))){
+                                                            $result = val.substring(1, val.length()-1);
+                                                        }else{
+                                                            $result = val;
+                                                        }
+                                                    }else{
+                                                        $result = value;
+                                                    }
                                                 }
                                                 $resultForParam = s;
                                             }
@@ -814,7 +824,17 @@ expr	returns [Object result, Object resultForParam]
                                             }
                     arraySubscript [arr]
                                             {
-                                                $result = arr.get($arraySubscript.value);
+                                                Object value =  arr.get($arraySubscript.value);
+                                                if(value instanceof String){
+                                                    String val = (String) value;
+                                                    if((val.length()>=2)&&(val.indexOf("'")==0)&&(val.lastIndexOf("'")==(val.length()-1))){
+                                                        $result = val.substring(1, val.length()-1);
+                                                    }else{
+                                                        $result = val;
+                                                    }
+                                                }else{
+                                                    $result = value;
+                                                }
                                                 $resultForParam = new RuntimeArrayItemWrapper(arr, $arraySubscript.value);
                                             }
                 )
