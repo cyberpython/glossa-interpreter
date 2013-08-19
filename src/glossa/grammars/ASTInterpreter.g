@@ -162,7 +162,7 @@ import java.util.Iterator;
             notifyListeners(EXECUTION_STARTED);
             try{
                 unit();
-                out.println(RuntimeMessages.STR_RUNTIME_MSG_EXECUTION_FINISHED);
+                err.println(RuntimeMessages.STR_RUNTIME_MSG_EXECUTION_FINISHED);
             }catch(RecognitionException re){
                 err.println(re.getMessage());
                 notifyListeners(RUNTIME_ERROR);
