@@ -69,7 +69,7 @@
         </copy>
     </target>
     
-    <target name="create-tarball" depends="load-properties-common" if="version">
+    <target name="create-tarball" depends="clean" if="version">
       <property name="tarball.target.dir" value="${tarballs.dir}/glossa-interpreter-${version}" />
       <property name="tarball.file" value="${tarballs.dir}/glossa-interpreter-${version}-src.tar" />
       <delete dir="${tarball.target.dir}" />
