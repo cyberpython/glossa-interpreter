@@ -33,7 +33,7 @@
     </target>
     
     <target name="jar" depends="compile">
-        <jar destfile="${dist.dir}/${jar.name}" basedir="${build.dir}">
+        <jar destfile="${dist.dir}/${jar.name}">
           <fileset dir="${build.dir}"/>
           <manifest>
               <attribute name="Manifest-Version" value="1.0"/>
