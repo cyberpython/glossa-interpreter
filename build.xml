@@ -8,19 +8,19 @@
         <mkdir dir="${dist.dir}"/>
     </target>
     
-    <target name="clean-linux" depends="load-properties-common">
-        <delete dir="${build.dir}"/>
-        <delete dir="${dist.dir}"/>
-        <delete>
-          <fileset dir="." includes="*.tokens"/>
-        </delete>
-    </target>
-    
     <target name="clean" depends="load-properties-common">
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
         <delete>
-          <fileset dir="." includes="*.tokens"/>
+            <fileset dir=".">
+                <include name="*.tokens"/>
+                <include name="${src.dir}/glossa/grammars/*.md5"/>
+                <include name="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
+                <include name="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                <include name="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                <include name="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                <include name="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+            </fileset>
         </delete>
     </target>
     
@@ -129,6 +129,7 @@
                     <and>
                         <available file="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
                         <available file="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                        <available file="Glossa.tokens"/>
                     </and>
                 </not>
                 <equals arg1="${parser.modified}" arg2="true" />
@@ -180,7 +181,10 @@
         <condition property="firts-pass-treeparser.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                        <available file="FirstPass.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${firts-pass-treeparser.modified}" arg2="true" />
             </or>
@@ -228,7 +232,10 @@
         <condition property="type-analyzer.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                        <available file="StaticTypeAnalyzer.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${type-analyzer.modified}" arg2="true" />
             </or>
@@ -276,7 +283,10 @@
         <condition property="AST-interpreter.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                        <available file="ASTInterpreter.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${AST-interpreter.modified}" arg2="true" />
             </or>
