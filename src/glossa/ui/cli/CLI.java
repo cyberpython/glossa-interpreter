@@ -183,7 +183,6 @@ public class CLI implements InterpreterListener {
             
         } catch (FileNotFoundException fnfe) {
             err.println(String.format(FILE_NOT_FOUND_ERROR, sourceCodeFile.getAbsolutePath()));
-        } catch (IOException ioe) {
         }
     }
 

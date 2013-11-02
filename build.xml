@@ -1,33 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<!-- By default, only the Clean and Build commands use this build script. -->
-<!-- Commands such as Run, Debug, and Test only use this build script if -->
-<!-- the Compile on Save feature is turned off for the project. -->
-<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
-<!-- in the project's Project Properties dialog box.-->
-<project name="Glossa" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Glossa.</description>
-    <import file="nbproject/build-impl.xml"/>
+<project name="glossa-interpreter" default="dist" basedir=".">
+    
+    <description>Builds glossa-interpreter.</description>
+    
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <target name="clean" depends="load-properties-common">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <delete>
+            <fileset dir=".">
+                <include name="*.tokens"/>
+                <include name="${src.dir}/glossa/grammars/*.md5"/>
+                <include name="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
+                <include name="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                <include name="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                <include name="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                <include name="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <target name="compile" depends="init,pre-compile">
+        <path id="build-classpath" path="${build.classpath}" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build-classpath"/>
+    	<copy todir="${build.dir}/glossa/resources">
+    	    <fileset dir="${src.dir}/glossa/resources"/>
+	    </copy>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/${jar.name}">
+          <fileset dir="${build.dir}"/>
+          <manifest>
+              <attribute name="Manifest-Version" value="1.0"/>
+              <attribute name="Created-By" value="${ant.java.version}"/>
+              <attribute name="Main-Class" value="${main.class}"/>
+              <attribute name="Class-Path" value="${manifest.classpath}"/>
+          </manifest>
+        </jar>
+  </target>
+    
+    <target name="load-properties-common" unless="properties.set">
+        <loadproperties srcfile="build-common.properties" />
+        <property name="properties.set" value="true"/>
+    </target>
+    
+    <target name="load-properties" depends="load-properties-common">
+        <loadproperties srcfile="build.properties" />
+    </target>
+    
+    <target name="load-properties-linux" depends="load-properties-common">
+        <loadproperties srcfile="build-linux.properties" />
+    </target>
+    
+    <target name="dist" depends="load-properties,jar,post-jar" />
+    
+    <target name="linux-dist" depends="load-properties-linux,jar" />
+    
+    <target name="pre-compile" depends="generate-antlr3-recognizers,download-jopt" />
+    
+    <target name="post-jar" if="build.general">
+        <copy todir="${dist.dir}/lib">
+            <fileset dir="${lib.dir}"/>
+        </copy>
+    </target>
+    
+    <target name="set-build-type">
+        <condition property="build.linux">
+            <istrue value="${linux.build}"/>
+        </condition>
+        <condition property="build.general">
+            <isfalse value="${linux.build}"/>
+        </condition>
+    </target>
 
     <target name="check-antlr">
-        <available file="lib/antlr-3.2.jar" property="antlr.present"/>
+        <available file="${antlr3.jar}" property="antlr.present"/>
+        <condition property="antlr.download">
+            <and>
+                <isfalse value="${linux.build}"/>
+                <not>
+                  <isset property="antlr.present"/>
+                </not>
+            </and>
+        </condition>
     </target>
 
     <target name="check-jopt">
-        <available file="lib/jopt-simple-3.2.jar" property="jopt.present"/>
+        <available file="${joptsimple.jar}" property="jopt.present"/>
+        <condition property="jopt.download">
+            <and>
+                <isfalse value="${linux.build}"/>
+                <not>
+                  <isset property="jopt.present"/>
+                </not>
+            </and>
+        </condition>
     </target>
 
-    <target name="download-antlr" depends="check-antlr" unless="antlr.present">
+    <target name="download-antlr" depends="check-antlr" if="antlr.download">
         <mkdir dir="lib"/>
-        <get src="http://www.antlr.org/download/antlr-3.2.jar" dest="lib/antlr-3.2.jar"/>
+        <get src="http://www.antlr3.org/download/antlr-3.2.jar" dest="${antlr3.jar}"/>
     </target>
 
-    <target name="download-jopt" depends="check-jopt" unless="jopt.present">
+    <target name="download-jopt" depends="check-jopt" if="jopt.download">
         <mkdir dir="lib"/>
-        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2.jar" dest="lib/jopt-simple-3.2.jar"/>
-        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2-javadoc.jar" dest="lib/jopt-simple-3.2-javadoc.jar"/>
+        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2.jar" dest="${joptsimple.jar}"/>
+        <get src="http://repo2.maven.org/maven2/net/sf/jopt-simple/jopt-simple/3.2/jopt-simple-3.2-javadoc.jar" dest="${joptsimple.javadoc}"/>
     </target>
     
     <target name="check-parser">
@@ -48,6 +131,7 @@
                     <and>
                         <available file="${src.dir}/glossa/recognizers/GlossaLexer.java"/>
                         <available file="${src.dir}/glossa/recognizers/GlossaParser.java"/>
+                        <available file="Glossa.tokens"/>
                     </and>
                 </not>
                 <equals arg1="${parser.modified}" arg2="true" />
@@ -55,13 +139,24 @@
         </condition>
     </target>
     
+    <target name="generate-parser-linux" if="parser.generate" unless="build.general">
+        <exec executable="antlr3">
+          <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
+        </exec>
+        <move todir="${src.dir}/glossa/recognizers">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="GlossaLexer.java"/>
+                <include name="GlossaParser.java"/>
+            </fileset>
+        </move>
+    </target>
     
-    <target name="generate-parser" depends="download-antlr" if="parser.generate">
+    <target name="generate-parser" depends="download-antlr" if="parser.generate" unless="build.linux">
         <echo message="parser.generate: ${parser.generate}" />
-        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+        <java jar="${antlr3.jar}" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/Glossa.g"/>
             <classpath>
-                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement location="${project.dir}/${antlr3.jar}"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
@@ -88,18 +183,32 @@
         <condition property="firts-pass-treeparser.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/statictypeanalysis/FirstPass.java"/>
+                        <available file="FirstPass.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${firts-pass-treeparser.modified}" arg2="true" />
             </or>
         </condition>
     </target>
+    
+    <target name="generate-firts-pass-treeparser-linux" if="firts-pass-treeparser.generate" unless="build.general">
+        <exec executable="antlr3">
+          <arg value="${src.dir}/glossa/grammars/FirstPass.g"/>
+        </exec>
+        <move todir="${src.dir}/glossa/statictypeanalysis">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="FirstPass.java"/>
+            </fileset>
+        </move>
+    </target>
 
-    <target name="generate-firts-pass-treeparser" depends="download-antlr" if="firts-pass-treeparser.generate">
-        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+    <target name="generate-firts-pass-treeparser" depends="download-antlr" if="firts-pass-treeparser.generate" unless="build.linux">
+        <java jar="${antlr3.jar}" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/FirstPass.g"/>
             <classpath>
-                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement location="${project.dir}/${antlr3.jar}"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
@@ -125,18 +234,32 @@
         <condition property="type-analyzer.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/statictypeanalysis/StaticTypeAnalyzer.java"/>
+                        <available file="StaticTypeAnalyzer.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${type-analyzer.modified}" arg2="true" />
             </or>
         </condition>
     </target>
     
-    <target name="generate-type-analyzer" depends="download-antlr" if="type-analyzer.generate">
-        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+    <target name="generate-type-analyzer-linux" if="type-analyzer.generate" unless="build.general">
+        <exec executable="antlr3">
+          <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
+        </exec>
+        <move todir="${src.dir}/glossa/statictypeanalysis">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="StaticTypeAnalyzer.java"/>
+            </fileset>
+        </move>
+    </target>
+    
+    <target name="generate-type-analyzer" depends="download-antlr" if="type-analyzer.generate"  unless="build.linux">
+        <java jar="${antlr3.jar}" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/StaticTypeAnalyzer.g"/>
             <classpath>
-                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement location="${project.dir}/${antlr3.jar}"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
@@ -162,18 +285,32 @@
         <condition property="AST-interpreter.generate" value="true">
             <or>
                 <not>
-                    <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                    <and>
+                        <available file="${src.dir}/glossa/interpreter/core/ASTInterpreter.java"/>
+                        <available file="ASTInterpreter.tokens"/>
+                    </and>
                 </not>
                 <equals arg1="${AST-interpreter.modified}" arg2="true" />
             </or>
         </condition>
     </target>
     
-    <target name="generate-AST-interpreter" depends="download-antlr" if="AST-interpreter.generate">
-        <java jar="lib/antlr-3.2.jar" fork="true" failonerror="true">
+    <target name="generate-AST-interpreter-linux" if="AST-interpreter.generate" unless="build.general">
+        <exec executable="antlr3">
+          <arg value="${src.dir}/glossa/grammars/ASTInterpreter.g"/>
+        </exec>
+        <move todir="${src.dir}/glossa/interpreter/core">
+            <fileset dir="${src.dir}/glossa/grammars">
+                <include name="ASTInterpreter.java"/>
+            </fileset>
+        </move>
+    </target>
+    
+    <target name="generate-AST-interpreter" depends="download-antlr" if="AST-interpreter.generate" unless="build.linux">
+        <java jar="${antlr3.jar}" fork="true" failonerror="true">
             <arg value="${src.dir}/glossa/grammars/ASTInterpreter.g"/>
             <classpath>
-                <pathelement location="${project.dir}/lib/antlr-3.2.jar"/>
+                <pathelement location="${project.dir}/${antlr3.jar}"/>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </java>
@@ -184,78 +321,7 @@
         </move>
     </target>
 
-    <target name="generate-antlr3-recognizers" depends="check-parser,check-firts-pass-treeparser,check-type-analyzer,check-AST-interpreter,generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter">
-
-    </target>
-
-    <target name="-pre-compile" depends="generate-antlr3-recognizers,download-jopt">
-
-    </target>
+    <target name="generate-antlr3-recognizers" depends="set-build-type,check-parser,check-firts-pass-treeparser,check-type-analyzer,check-AST-interpreter,generate-parser,generate-firts-pass-treeparser,generate-type-analyzer,generate-AST-interpreter,generate-parser-linux,generate-firts-pass-treeparser-linux,generate-type-analyzer-linux,generate-AST-interpreter-linux" />
     
-    <target name="-post-jar">
-        <copy todir="dist/lib">
-            <fileset dir="lib"/>
-        </copy>
-    </target>
-    <!--
-
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
-
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
-
-    (Targets beginning with '-' are not intended to be called on their own.)
-
-    Example of inserting an obfuscator after compilation could look like this:
-
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
-
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
-
-
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
-
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar-with-manifest:    JAR building (if you are using a manifest)
-      -do-jar-without-manifest: JAR building (if you are not using a manifest)
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
-
-    An example of overriding the target for project execution could look like this:
-
-        <target name="run" depends="Glossa-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
-
-    -->
+    
 </project>

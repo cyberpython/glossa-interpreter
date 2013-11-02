@@ -688,7 +688,7 @@ public class InterpreterUtils {
                 throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_REAL_VALUE, s));
             }
         }else if(t.equals(Type.STRING)){
-            return "'"+s+"'";
+            return s;
         }
         throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_VALUE_FOR_ASSIGNMENT, s, t.toString()));
     }
