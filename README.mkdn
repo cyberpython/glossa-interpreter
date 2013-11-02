@@ -61,13 +61,16 @@ You can install it on Ubuntu with:
 
 
 Open a terminal and give:
-    ant clean jar
+    ant clean dist
 
 *On Linux systems you should use the included makefile:*
     make
 
 *and to install the application:*
     sudo make install
+    
+In order to build a tarball for version x.y.z, after building give:
+    ant create-tarball -Dversion=x.y.z
 
 ##How to run the interpreter
 
@@ -98,6 +101,4 @@ For more information give:
 There are some example input files in:
 
     src/glossa/samples/
-
-The project is developed using [Netbeans 6.8](http://netbeans.org/).
 
