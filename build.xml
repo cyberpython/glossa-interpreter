@@ -71,9 +71,9 @@
     
     <target name="create-tarball" depends="clean" if="version">
       <property name="tarball.target.dir" value="${tarballs.dir}/glossa-interpreter-${version}" />
-      <property name="tarball.file" value="${tarballs.dir}/glossa-interpreter-${version}-src.tar" />
+      <property name="tarball.file" value="${tarballs.dir}/glossa-interpreter-${version}.tar.gz" />
       <delete dir="${tarball.target.dir}" />
-      <delete file="${tarball.file}.gz" />
+      <delete file="${tarball.file}" />
       <mkdir dir="${tarball.target.dir}" />
       <copy todir="${tarball.target.dir}/readme">
         <fileset dir="readme"/>
@@ -85,11 +85,13 @@
       <copy file="glossa-interpreter" tofile="${tarball.target.dir}/glossa-interpreter"/>
       <copy file="Makefile" tofile="${tarball.target.dir}/Makefile"/>
       <copy file="README.mkdn" tofile="${tarball.target.dir}/README.mkdn"/>
-      <tar destfile="${tarball.file}" basedir="${tarball.target.dir}"/>
-      <gzip destfile="${tarball.file}.gz" src="${tarball.file}"/>
+      <tar destfile="${tarball.file}" compression="gzip">
+          <tarfileset dir="${tarballs.dir}">
+              <include name="glossa-interpreter-${version}/**" />
+          </tarfileset>
+      </tar>
       <delete dir="${tarball.target.dir}" />
-      <delete file="${tarball.file}" />
-      <copy file="${tarball.file}.gz" tofile="${tarballs.dir}/glossa-interpreter-src.tar.gz"/>
+      <copy file="${tarball.file}" tofile="${tarballs.dir}/glossa-interpreter-src.tar.gz"/>
     </target>
     
     <target name="set-build-type">
