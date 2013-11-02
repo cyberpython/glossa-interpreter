@@ -22,7 +22,7 @@
 #*  THE SOFTWARE.
 #*
 all:
-	./build.sh
+	ant linux-dist
 	
 clean:
 	ant clean
