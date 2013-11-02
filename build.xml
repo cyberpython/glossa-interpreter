@@ -69,6 +69,29 @@
         </copy>
     </target>
     
+    <target name="create-tarball" depends="load-properties-common" if="version">
+      <property name="tarball.target.dir" value="${tarballs.dir}/glossa-interpreter-${version}" />
+      <property name="tarball.file" value="${tarballs.dir}/glossa-interpreter-${version}-src.tar" />
+      <delete dir="${tarball.target.dir}" />
+      <delete file="${tarball.file}.gz" />
+      <mkdir dir="${tarball.target.dir}" />
+      <copy todir="${tarball.target.dir}/readme">
+        <fileset dir="readme"/>
+      </copy>
+      <copy todir="${tarball.target.dir}/src">
+        <fileset dir="src"/>
+      </copy>
+      <copy file="build.xml" tofile="${tarball.target.dir}/build.xml"/>
+      <copy file="glossa-interpreter" tofile="${tarball.target.dir}/glossa-interpreter"/>
+      <copy file="Makefile" tofile="${tarball.target.dir}/Makefile"/>
+      <copy file="README.mkdn" tofile="${tarball.target.dir}/README.mkdn"/>
+      <tar destfile="${tarball.file}" basedir="${tarball.target.dir}"/>
+      <gzip destfile="${tarball.file}.gz" src="${tarball.file}"/>
+      <delete dir="${tarball.target.dir}" />
+      <delete file="${tarball.file}" />
+      <copy file="${tarball.file}.gz" tofile="${tarballs.dir}/glossa-interpreter-src.tar.gz"/>
+    </target>
+    
     <target name="set-build-type">
         <condition property="build.linux">
             <istrue value="${linux.build}"/>
