@@ -27,12 +27,14 @@
     <target name="compile" depends="init,pre-compile">
         <path id="build-classpath" path="${build.classpath}" />
         <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build-classpath"/>
+    	<copy todir="${build.dir}/glossa/resources">
+    	    <fileset dir="${src.dir}/glossa/resources"/>
+	    </copy>
     </target>
     
     <target name="jar" depends="compile">
         <jar destfile="${dist.dir}/${jar.name}" basedir="${build.dir}">
           <fileset dir="${build.dir}"/>
-          <fileset dir="${src.dir}" includes="glossa/resources/*.txt"/>
           <manifest>
               <attribute name="Manifest-Version" value="1.0"/>
               <attribute name="Created-By" value="${ant.java.version}"/>
