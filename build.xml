@@ -26,7 +26,7 @@
     
     <target name="compile" depends="init,pre-compile">
         <path id="build-classpath" path="${build.classpath}" />
-        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build-classpath"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build-classpath" encoding="UTF-8" />
     	<copy todir="${build.dir}/glossa/resources">
     	    <fileset dir="${src.dir}/glossa/resources"/>
 	    </copy>
