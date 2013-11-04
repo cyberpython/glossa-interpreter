@@ -24,13 +24,19 @@
 package glossa;
 
 import glossa.ui.cli.CLI;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
+
 import joptsimple.OptionException;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -42,7 +48,7 @@ import joptsimple.OptionSet;
 public class Main {
 
     private static final String APP_NAME = "Glossa-Interpreter - Διερμηνευτής για τη ΓΛΩΣΣΑ";
-    private static final String VERSION = "Έκδοση: 1.0.4";
+    private static final String VERSION = "Έκδοση: "+readVersion();
     private static final String LICENSE_NAME = "Άδεια χρήσης MIT (MIT LICENSE)";
     private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
     private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
@@ -116,6 +122,26 @@ public class Main {
             }
         } catch (IOException ioe) {
         }
+    }
+    
+    public static String readVersion() {
+        String result="Άγνωστη";
+        try {
+        	  Class clazz = Main.class;
+        	  String className = clazz.getSimpleName() + ".class";
+        	  String classPath = clazz.getResource(className).toString();
+        	  classPath.replace("glossa/Main.class", "META-INF/MANIFEST.MF");
+        	  String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
+        	  Manifest manifest = new Manifest(new URL(manifestPath).openStream());
+              Attributes mainAttribs = manifest.getMainAttributes();
+              String version = mainAttribs.getValue("Implementation-Version");
+              if(version != null) {
+                  result = version;
+              }
+          }
+          catch (Exception e) {
+          }
+        return result;
     }
 
     private static void printVersionInfo(PrintStream out) {
