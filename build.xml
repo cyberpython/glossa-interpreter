@@ -79,6 +79,9 @@
       <copy todir="${tarball.target.dir}/readme">
         <fileset dir="readme"/>
       </copy>
+      <copy todir="${tarball.target.dir}">
+       <fileset dir="." includes="*.properties"/>
+      </copy>
       <copy todir="${tarball.target.dir}/src">
         <fileset dir="src"/>
       </copy>
@@ -86,6 +89,9 @@
       <copy file="glossa-interpreter" tofile="${tarball.target.dir}/glossa-interpreter"/>
       <copy file="Makefile" tofile="${tarball.target.dir}/Makefile"/>
       <copy file="README.mkdn" tofile="${tarball.target.dir}/README.mkdn"/>
+      <propertyfile file="${tarball.target.dir}/build-common.properties">
+        <entry  key="version" value="${version}"/>
+      </propertyfile>
       <tar destfile="${tarball.file}" compression="gzip">
           <tarfileset dir="${tarballs.dir}">
               <include name="glossa-interpreter-${version}/**" />
