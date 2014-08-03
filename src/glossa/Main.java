@@ -73,7 +73,7 @@ public class Main {
                     printHelpMessage(System.out);
                 }
             } else {
-                List<String> remainingArgs = options.nonOptionArguments();
+                List<String> remainingArgs = parser.nonOptions().ofType(String.class).values(options);
                 if (remainingArgs.size() > 0) {
                     boolean interactive = false;
                     File inputFile = null;
