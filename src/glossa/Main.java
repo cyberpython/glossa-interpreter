@@ -40,6 +40,7 @@ import java.util.jar.Manifest;
 import joptsimple.OptionException;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
+import joptsimple.OptionSpec;
 
 /**
  *
@@ -61,6 +62,7 @@ public class Main {
         String[] arguments = args;
 
         OptionParser parser = new OptionParser("hVif:");
+        OptionSpec<String> remainingArgs = parser.nonOptions().ofType( String.class );
 
         try {
             OptionSet options = parser.parse(arguments);
@@ -73,8 +75,7 @@ public class Main {
                     printHelpMessage(System.out);
                 }
             } else {
-                List<String> remainingArgs = parser.nonOptions().ofType(String.class).values(options);
-                if (remainingArgs.size() > 0) {
+                if (options.valuesOf( remainingArgs ).size() > 0) {
                     boolean interactive = false;
                     File inputFile = null;
                     if (options.has("i")) {
@@ -83,7 +84,7 @@ public class Main {
                     if (options.has("f")) {
                         inputFile = new File((String) options.valueOf("f"));
                     }
-                    File sourceCodeFile = new File(remainingArgs.get(0));
+                    File sourceCodeFile = new File(options.valuesOf( remainingArgs ).get(0));
                     CLI cli = new CLI(interactive);
                     if (inputFile != null) {
                         cli.execute(sourceCodeFile, inputFile);
