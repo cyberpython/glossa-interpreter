@@ -136,7 +136,7 @@ public class GlossaHTMLGenerator {
 
         GlossaLexer lexer = new GlossaLexer(new ANTLRStringStream(code));
         Token token;
-        while ((token = lexer.nextToken()) != Token.EOF_TOKEN) {
+        while ((token = lexer.nextToken()) != lexer.getEOFToken()) {
             output.append(process(token));
         }
 
@@ -148,7 +148,7 @@ public class GlossaHTMLGenerator {
 
         GlossaLexer lexer = new GlossaLexer(new ANTLRFileStream(src.getAbsolutePath()));
         Token token;
-        while ((token = lexer.nextToken()) != Token.EOF_TOKEN) {
+        while ((token = lexer.nextToken()) != lexer.getEOFToken()) {
             output.append(process(token));
         }
 

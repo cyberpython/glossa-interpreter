@@ -9,3 +9,9 @@ src/glossa/recognizers/GlossaParser.java
 src/glossa/statictypeanalysis/FirstPass.java
 src/glossa/statictypeanalysis/StaticTypeAnalyzer.java
 src/glossa/interpreter/core/ASTInterpreter.java
+.externalToolBuilders
+.vscode
+
+
+# Ignore Gradle project-specific cache directory
+.gradle
