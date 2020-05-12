@@ -1,20 +1,20 @@
-#Glossa-Interpreter
+# Glossa-Interpreter
 
 An interpreter for the 'ΓΛΩΣΣΑ' programming language developed using [Antlr 3.2](http://www.antlr.org/) and [Java](http://www.java.com/en/).
 
-##License
+## License
 
 Copyright (c) Georgios Migdos
 
 Source code is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
-[Antlr 3](http://www.antlr.org/) is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
+[Antlr 3](https://www.antlr.org/) is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
 
-[jOpt Simple](http://jopt-simple.sourceforge.net/) is copyright of Paul R. Holser and it is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+[jOpt Simple](https://jopt-simple.github.io/jopt-simple/) is copyright of Paul R. Holser and it is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 [TxtMark](https://github.com/rjeschke/txtmark) is copyright of René Jeschke <rene_jeschke@yahoo.de>
 
-##Status
+## Status
 
 The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
@@ -38,43 +38,27 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
 ✔ = completed, ⟳ = in progress, ✘ = not implemented yet
 
-##Build instructions
+## Build instructions
 
 To build the project’s code you will need :
 
-- [JDK (6.x+)](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+- [JDK (8.x+)].
 You can install it on Ubuntu with:
 
-    [sudo apt-get install openjdk-6-jdk](apt://openjdk-6-jdk)
-- [Apache Ant](http://ant.apache.org/) (built-in in Netbeans).
-You can install it on Ubuntu with:
+    [sudo apt-get install openjdk-8-jdk](apt://openjdk-8-jdk)
 
-    [sudo apt-get install ant](apt://ant)
-- [Antlr 3.2](http://www.antlr.org/download/antlr-3.2.jar) (*)
+- [Gradle](https://gradle.org/).
 
-    [sudo apt-get install antlr3](apt://antlr3)
-- [JOpt Simple](http://jopt-simple.sourceforge.net/) (*)
-
-    [sudo apt-get install libjoptsimple-java](apt://libjoptsimple-java)
-
-(*) If you have an active internet connection antlr and jopt-simple will be downloaded automatically to the correct directory during the first build, otherwise you have to copy antlr-3.2.jar and jopt-simple-3.2.jar to glossa-interpreter/lib/ (on Linux systems you can use the make file and use the installed libraries instead).
+All dependencies, including Gradle itself, will be downloaded the first time you
+build the code.
 
 
 Open a terminal and give:
-    ant clean dist
+    ./gradlew clean build
 
-*On Linux systems you should use the included makefile:*
-    make
+## How to run the interpreter
 
-*and to install the application:*
-    sudo make install
-    
-In order to build a tarball for version x.y.z, after building give:
-    ant create-tarball -Dversion=x.y.z
-
-##How to run the interpreter
-
-To run the interpreter you must have a JRE (6.x+) installed. Then you can give:
+To run the interpreter you must have a JRE (8.x+) installed. Then you can give:
 
     ./glossa-interpreter <input_file>
 
@@ -82,21 +66,11 @@ e.g.:
 
     ./glossa-interpreter src/glossa/samples/PrintTest.gls
 
-If you are on a Linux system and have installed the application as per the instructions above, you can use the command:
-
-    glossa-interpreter <input_file>
-
-from any directory.
-
-![Screenshot][screenshot]
-[screenshot]: http://img338.imageshack.us/img338/3604/screenshotme.png  "Screenshot of the interpreter running a sample input file in Ubuntu 10.10"
-
-
 For more information give:
 
     ./glossa-interpreter glossa.Main -h
 
-##Samples
+## Samples
 
 There are some example input files in:
 
