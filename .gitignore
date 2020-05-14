@@ -4,6 +4,7 @@ binaries
 build
 dist
 lib
+bin
 src/glossa/recognizers/GlossaLexer.java
 src/glossa/recognizers/GlossaParser.java
 src/glossa/statictypeanalysis/FirstPass.java
@@ -11,7 +12,9 @@ src/glossa/statictypeanalysis/StaticTypeAnalyzer.java
 src/glossa/interpreter/core/ASTInterpreter.java
 .externalToolBuilders
 .vscode
-
+.settings
+.classpath
+.project
 
 # Ignore Gradle project-specific cache directory
 .gradle

@@ -1,0 +1,6 @@
+{
+  "resources": [
+    {"pattern": ".*/resources/.*txt$"},
+    {"pattern": ".*/version.properties$"}
+  ]
+}

@@ -21,22 +21,21 @@
 #*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #*  THE SOFTWARE.
 #*
+
+#
+# Requires GraalVM with native-image tooling to be installed on the build system
+#
+
 all:
-	ant linux-dist
+	gradlew nativeImage
 	
 clean:
-	ant clean
-	
-distclean:
-	rm -rf dist build
+	gradlew clean
 	
 uninstall: 
-	rm -f $(DESTDIR)/usr/share/java/glossa-interpreter.jar
 	rm -f $(DESTDIR)/usr/bin/glossa-interpreter
 	
 install:
-	mkdir -p $(DESTDIR)/usr/share/java
 	mkdir -p $(DESTDIR)/usr/bin/
-	cp dist/glossa-interpreter.jar $(DESTDIR)/usr/share/java/glossa-interpreter.jar
-	cp glossa-interpreter $(DESTDIR)/usr/bin/glossa-interpreter
+	cp build/native-image/glossa-interpreter $(DESTDIR)/usr/bin/glossa-interpreter
 	chmod ugo+x $(DESTDIR)/usr/bin/glossa-interpreter
