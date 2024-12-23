@@ -1,6 +1,6 @@
 # Glossa-Interpreter
 
-An interpreter for the 'ΓΛΩΣΣΑ' programming language developed using [Antlr 3.2](http://www.antlr.org/) and [Java](http://www.java.com/en/).
+An interpreter for the 'ΓΛΩΣΣΑ' programming language developed using [Antlr 3](http://www.antlr.org/) and [Java](http://www.java.com/en/).
 
 ## License
 
@@ -42,7 +42,7 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
 To build the project’s code you will need :
 
-- JDK (8.x+).
+- JDK (21.x+).
 
 - [Gradle](https://gradle.org/).
 

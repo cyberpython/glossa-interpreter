@@ -154,14 +154,12 @@ public class RuntimeArray extends RuntimeSymbol {
 
 
     private void set(int index, Object value) {
-        if ((value instanceof BigInteger) && this.getType().equals(Type.INTEGER)) {
-            this.values[index] = new BigInteger(((BigInteger)value).toString());
-        } else if ((value instanceof BigDecimal) && this.getType().equals(Type.REAL)) {
-            this.values[index] = new BigDecimal(((BigDecimal)value).toString());
-        } else if ((value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)) {
-            this.values[index] = new Boolean(((Boolean)value).toString());
-        } else if ((value instanceof String) && this.getType().equals(Type.STRING)) {
-            this.values[index] = new String(((String)value).toString());
+        if (
+            ((value instanceof BigInteger) && this.getType().equals(Type.INTEGER)) || 
+            ((value instanceof BigDecimal) && this.getType().equals(Type.REAL)) ||
+            ((value instanceof Boolean) && this.getType().equals(Type.BOOLEAN)) ||
+            ((value instanceof String) && this.getType().equals(Type.STRING)) ){
+            this.values[index] = value;
         } else {
             throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_INVALID_TYPE_FOR_ASSIGNMENT,  InterpreterUtils.toPrintableString(value), this.getType().toString()));
         }

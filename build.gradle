@@ -35,5 +35,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'glossa.Main'
+    mainClass = 'glossa.Main'
 }

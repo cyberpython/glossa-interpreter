@@ -246,7 +246,7 @@ import java.util.Iterator;
             if(stop){
                 killThread();
             }
-            this.notifyListeners(EXECUTION_PAUSED, new Integer(line), Boolean.valueOf(wasPrintStatement));
+            this.notifyListeners(EXECUTION_PAUSED, line, Boolean.valueOf(wasPrintStatement));
             while(halt){
                 if(stop){
                     killThread();
@@ -334,7 +334,7 @@ arrayDimension  returns [List<Integer> value]
                     (expr
                                 {
                                     if(InterpreterUtils.isValidArrayDimension($expr.result)){
-                                        result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
+                                        result.add( ((BigInteger)$expr.result).intValue() );
                                     }else{
                                         throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_DIMENSIONS_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, Integer.MAX_VALUE));
                                     }
@@ -377,7 +377,7 @@ stm	:	^(  PRINT           {
                                         pauseExecution($PRINT.line, true);
                                     }
         |       ^(READ              {
-                                        this.notifyListeners(READ_STM, new Integer($READ.line));
+                                        this.notifyListeners(READ_STM, $READ.line);
                                     }
                   readItem+)        {
                                         pauseExecution($READ.line, false);
@@ -884,7 +884,7 @@ arraySubscript [RuntimeArray arr] returns [List<Integer> value]
                     (expr
                                 {
                                     if(InterpreterUtils.isValidArrayIndex($expr.result, $arr, index)){
-                                        result.add(new Integer(  ((BigInteger)$expr.result).intValue()   ));
+                                        result.add( ((BigInteger)$expr.result).intValue() );
                                     }else{
                                         throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_ARRAY_INDICES_MUST_BE_OF_INTEGER_TYPE_AND_IN_RANGE, (index+1), $arr.getName(), $arr.getDimensions().get(index).intValue()));
                                     }

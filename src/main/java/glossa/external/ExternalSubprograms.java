@@ -67,8 +67,8 @@ public class ExternalSubprograms {
 
     private ExternalSubprograms() {
 
-        functionCache = new HashMap<String, ExternalFunction>();
-        procedureCache = new HashMap<String, ExternalProcedure>();
+        functionCache = new HashMap<>();
+        procedureCache = new HashMap<>();
         loadExternalSubprograms();
     }
 
@@ -82,15 +82,9 @@ public class ExternalSubprograms {
         File lookupDir = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
         if (lookupDir.isDirectory()) {
 
-            File[] jarFiles = lookupDir.listFiles(new FileFilter() {
-
-                public boolean accept(File file) {
-                    if (file.getAbsolutePath().toLowerCase().endsWith(".jar")) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            File[] jarFiles = lookupDir.listFiles(
+                    file -> file.getAbsolutePath().toLowerCase().endsWith(".jar")
+            );
 
             URL[] jarURLs = new URL[jarFiles.length];
 
@@ -106,52 +100,56 @@ public class ExternalSubprograms {
 
             for (File file : jarFiles) {
                 try {
-                    JarFile jf = new JarFile(file);
-                    Enumeration<JarEntry> entries = jf.entries();
-                    while (entries.hasMoreElements()) {
-                        JarEntry entry = entries.nextElement();
-                        String name = entry.getName();
-                        if (name.toLowerCase().endsWith(".class")) {
-                            name = name.replaceAll("\\/", ".").substring(0, name.length() - 6);
-                            try {
-                                Class clazz = loader.loadClass(name);
-                                Class[] ifaces = clazz.getInterfaces();
-                                boolean foundExternalFunc = false;
-                                boolean foundExternalProc = false;
-                                for (int i = 0; i < ifaces.length; i++) {
-                                    Class iface = ifaces[i];
-                                    if (iface.equals(ExternalFunction.class)) {
-                                        foundExternalFunc = true;
-                                        break;
+                    try (JarFile jf = new JarFile(file)) {
+                        Enumeration<JarEntry> entries = jf.entries();
+                        while (entries.hasMoreElements()) {
+                            JarEntry entry = entries.nextElement();
+                            String name = entry.getName();
+                            if (name.toLowerCase().endsWith(".class")) {
+                                name = name.replaceAll("\\/", ".").substring(0, name.length() - 6);
+                                try {
+                                    Class clazz = loader.loadClass(name);
+                                    Class[] ifaces = clazz.getInterfaces();
+                                    boolean foundExternalFunc = false;
+                                    boolean foundExternalProc = false;
+                                    for (int i = 0; i < ifaces.length; i++) {
+                                        Class iface = ifaces[i];
+                                        if (iface.equals(ExternalFunction.class)) {
+                                            foundExternalFunc = true;
+                                            break;
+                                        }
+                                        if (iface.equals(ExternalProcedure.class)) {
+                                            foundExternalProc = true;
+                                            break;
+                                        }
                                     }
-                                    if (iface.equals(ExternalProcedure.class)) {
-                                        foundExternalProc = true;
-                                        break;
+                                    if (foundExternalFunc) {
+                                        Class<? extends ExternalFunction> externalFuncClass = clazz.asSubclass(ExternalFunction.class);
+                                        Constructor<? extends ExternalFunction> ctor = externalFuncClass.getConstructor();
+                                        ExternalFunction f = ctor.newInstance();
+                                        functionCache.put(toCanonicalName(f.getName()), f);
+                                    } else if (foundExternalProc) {
+                                        Class<? extends ExternalProcedure> externalProcClass = clazz.asSubclass(ExternalProcedure.class);
+                                        Constructor<? extends ExternalProcedure> ctor = externalProcClass.getConstructor();
+                                        ExternalProcedure p = ctor.newInstance();
+                                        procedureCache.put(toCanonicalName(p.getName()), p);
                                     }
+                                } catch (ClassNotFoundException cnfe) {
+                                    //ignore
+                                } catch (NoSuchMethodException nsme) {
+                                    //ignore
+                                } catch (InstantiationException ie) {
+                                    //ignore
+                                } catch (IllegalAccessException iae) {
+                                    //ignore
+                                } catch (InvocationTargetException ite) {
+                                    //ignore
                                 }
-                                if (foundExternalFunc) {
-                                    Class<? extends ExternalFunction> externalFuncClass = clazz.asSubclass(ExternalFunction.class);
-                                    Constructor<? extends ExternalFunction> ctor = externalFuncClass.getConstructor();
-                                    ExternalFunction f = ctor.newInstance();
-                                    functionCache.put(toCanonicalName(f.getName()), f);
-                                } else if (foundExternalProc) {
-                                    Class<? extends ExternalProcedure> externalProcClass = clazz.asSubclass(ExternalProcedure.class);
-                                    Constructor<? extends ExternalProcedure> ctor = externalProcClass.getConstructor();
-                                    ExternalProcedure p = ctor.newInstance();
-                                    procedureCache.put(toCanonicalName(p.getName()), p);
-                                }
-                            } catch (ClassNotFoundException cnfe) {
-                                //ignore
-                            } catch (NoSuchMethodException nsme) {
-                                //ignore
-                            } catch (InstantiationException ie) {
-                                //ignore
-                            } catch (IllegalAccessException iae) {
-                                //ignore
-                            } catch (InvocationTargetException ite) {
-                                //ignore
                             }
                         }
+                    } catch (SecurityException | IllegalArgumentException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
                 } catch (IOException ioe) {
                 }

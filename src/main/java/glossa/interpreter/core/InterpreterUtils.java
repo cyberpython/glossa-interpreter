@@ -49,7 +49,7 @@ public class InterpreterUtils {
 
     static {
         maxDecimalDigits = 128;
-        maxInt = new BigInteger(new Integer(Integer.MAX_VALUE).toString());
+        maxInt = BigInteger.valueOf(Integer.MAX_VALUE);
         mc = new MathContext(maxDecimalDigits, RoundingMode.HALF_UP);
         d360 = new BigDecimal("360", mc);
     }

@@ -99,13 +99,13 @@ public class SubProgramScope extends Scope {
                 fp = this.formalParameters.get(i);
                 ap = parameters.get(i);
                 if (StaticTypeAnalyzerUtils.areTypesCompatibleForAssignment(fp.getType(), ap.getType()) < 0) {
-                    result.add(new Integer(i));
+                    result.add(i);
                 } else {
                     if ((fp.getType() != null) && (ap.getType() != null)) {
                         if ((fp.isArrayParamFlagSet()) && (!ap.getForm().equals(ExpressionResultForm.ARRAY))) {
-                            result.add(new Integer(i));
+                            result.add(i);
                         } else if ((!fp.isArrayParamFlagSet()) && (ap.getForm().equals(ExpressionResultForm.ARRAY))) {
-                            result.add(new Integer(i));
+                            result.add(i);
                         }
                     }
                 }
