@@ -23,24 +23,19 @@
  */
 package glossa;
 
-import glossa.ui.cli.CLI;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
+import java.util.Properties;
 
-import joptsimple.OptionException;
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
-import joptsimple.OptionSpec;
+import glossa.ui.cli.CLI;
+import picocli.CommandLine;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.ParameterException;
+import picocli.CommandLine.Parameters;
 
 /**
  *
@@ -54,42 +49,51 @@ public class Main {
     private static final String SOURCE_FILE_NOT_DEFINED = "Δεν καθορίσατε το αρχείο πηγαίου κώδικα.";
     private static final String WRONG_USAGE = "Λάθος τρόπος χρήσης.";
 
+    static class CmdLineOpts {
+        @Option(names = {"-h", "--help"}, usageHelp = true, description = "εμφανίζει αυτό το μήνυμα")
+        private boolean helpRequested = false;
+    
+        @Option(names = { "-f", "--file" }, paramLabel = "INPUTFILE", description = "τοποθεσία_αρχείου_εισόδου\n"
+        + ": Η είσοδος των εντολών ΔΙΑΒΑΣΕ\n"
+        + "  γίνεται από το αρχείο εισόδου,\n"
+        + "  διαβάζοντας μία γραμμή ανά εντολή ΔΙΑΒΑΣΕ")
+        File inputFile;
+    
+        @Parameters(paramLabel = "FILE", description = "τοποθεσία αρχείου πηγαίου κώδικα")
+        File sourceFile;
+    
+        @Option(names = { "-v", "--version" }, versionHelp = true, description = "εμφανίζει την έκδοση του διερμηνευτή")
+        private boolean showVersion = false;
+
+        @Option(names = { "-i", "--interactive" }, description = "εμφανίζει την έκδοση του διερμηνευτή")
+        private boolean interactive = false;
+        
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        String[] arguments = args;
-
-        OptionParser parser = new OptionParser("hVif:");
-        OptionSpec<String> remainingArgs = parser.nonOptions().ofType( String.class );
-
+        CmdLineOpts opts = new CmdLineOpts();
+        
         try {
-            OptionSet options = parser.parse(arguments);
-            if (options.has("h") || options.has("V")) {
-                if (options.has("V")) {
+            new CommandLine(opts).parseArgs(args);
+            if (opts.helpRequested || opts.showVersion) {
+                if (opts.showVersion) {
                     printVersionInfo(System.out);
                     printLicense(System.out);
                 }
-                if (options.has("h")) {
+                if (opts.helpRequested) {
                     printHelpMessage(System.out);
                 }
             } else {
-                if (options.valuesOf( remainingArgs ).size() > 0) {
-                    boolean interactive = false;
-                    File inputFile = null;
-                    if (options.has("i")) {
-                        interactive = true;
-                    }
-                    if (options.has("f")) {
-                        inputFile = new File((String) options.valueOf("f"));
-                    }
-                    File sourceCodeFile = new File(options.valuesOf( remainingArgs ).get(0));
-                    CLI cli = new CLI(interactive);
-                    if (inputFile != null) {
-                        cli.execute(sourceCodeFile, inputFile);
+                if ((opts.sourceFile != null) && opts.sourceFile.isFile()) {
+                    CLI cli = new CLI(opts.interactive);
+                    if (opts.inputFile != null) {
+                        cli.execute(opts.sourceFile, opts.inputFile);
                     } else {
-                        cli.execute(sourceCodeFile);
+                        cli.execute(opts.sourceFile);
                     }
 
                 } else {
@@ -98,11 +102,13 @@ public class Main {
                     printHelpMessage(System.out);
                 }
             }
-        } catch (OptionException uoe) {
+        } catch (ParameterException pe) {
             System.out.println(WRONG_USAGE);
             System.out.println();
             printHelpMessage(System.out);
+            // pe.printStackTrace();
         }
+        
     }
 
     private static void printHelpMessage(PrintStream out) {
@@ -111,7 +117,6 @@ public class Main {
 
     private static void printLicense(PrintStream out) {
         out.println(LICENSE_NAME);
-        //printFile("/glossa/resources/license.txt", out);
     }
 
     private static void printFile(String fileURL, PrintStream out) {
@@ -128,17 +133,9 @@ public class Main {
     public static String readVersion() {
         String result="Άγνωστη";
         try {
-        	  Class clazz = Main.class;
-        	  String className = clazz.getSimpleName() + ".class";
-        	  String classPath = clazz.getResource(className).toString();
-        	  classPath.replace("glossa/Main.class", "META-INF/MANIFEST.MF");
-        	  String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
-        	  Manifest manifest = new Manifest(new URL(manifestPath).openStream());
-              Attributes mainAttribs = manifest.getMainAttributes();
-              String version = mainAttribs.getValue("Implementation-Version");
-              if(version != null) {
-                  result = version;
-              }
+            Properties p = new Properties();
+            p.load(Main.class.getResourceAsStream("/glossa/resources/version.properties"));
+        	result = p.getProperty("version");
           }
           catch (Exception e) {
           }

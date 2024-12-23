@@ -10,9 +10,9 @@ Source code is available under the terms of the [MIT license](http://www.opensou
 
 [Antlr 3](https://www.antlr.org/) is copyright of Terence Parr and it is available under the terms of the [BSD license](http://www.antlr.org/license.html).
 
-[jOpt Simple](https://jopt-simple.github.io/jopt-simple/) is copyright of Paul R. Holser and it is available under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+[PicoCli](https://picocli.info/) is copyright of Remko Popma and it is available under the terms of the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
 
-[TxtMark](https://github.com/rjeschke/txtmark) is copyright of René Jeschke <rene_jeschke@yahoo.de>
+[TxtMark](https://github.com/rjeschke/txtmark) is copyright of René Jeschke <rene_jeschke@yahoo.de> and it is available under the terms of the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
 
 ## Status
 
@@ -42,23 +42,24 @@ The interpreter can now execute all valid ΓΛΩΣΣΑ programs.
 
 To build the project’s code you will need :
 
-- [JDK (8.x+)].
-You can install it on Ubuntu with:
-
-    [sudo apt-get install openjdk-8-jdk](apt://openjdk-8-jdk)
+- JDK (8.x+).
 
 - [Gradle](https://gradle.org/).
 
 All dependencies, including Gradle itself, will be downloaded the first time you
 build the code.
 
-
 Open a terminal and give:
     ./gradlew clean build
 
-## How to run the interpreter
+The command above will result in redistributable ZIP and TAR archives in `build/distributions`.
 
-To run the interpreter you must have a JRE (8.x+) installed. Then you can give:
+
+## How to run the interpreter 
+
+Extract the ZIP / TAR archive, and `cd` into the `bin` directory.
+
+To run the interpreter give:
 
     ./glossa-interpreter <input_file>
 
@@ -68,7 +69,7 @@ e.g.:
 
 For more information give:
 
-    ./glossa-interpreter glossa.Main -h
+    ./glossa-interpreter -h
 
 ## Samples
 

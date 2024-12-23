@@ -18,19 +18,19 @@ plugins {
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
 
-    antlr "org.antlr:antlr:3.5.2" // use ANTLR version 3
-    implementation group: 'com.github.rjeschke', name: 'txtmark', version: '0.13'
-    implementation group: 'net.sf.jopt-simple', name: 'jopt-simple', version: '4.5'
+    antlr "org.antlr:antlr:3.5.3" // use ANTLR version 3
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.github.rjeschke:txtmark:0.13'
+
+    implementation 'info.picocli:picocli:4.7.6'
+
+    annotationProcessor 'info.picocli:picocli-codegen:4.7.6'
+
 }
 
 application {
