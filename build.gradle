@@ -35,10 +35,23 @@ dependencies {
 
 }
 
+group = 'com.gmigdos.glossa'
+version = '1.0.9'
+
 application {
     // Define the main class for the application.
     mainClass = 'glossa.Main'
 }
+
+task writeVersionProperties {
+    doLast {
+        def versionFile = file('src/main/resources/glossa/resources/version.properties')
+        versionFile.parentFile.mkdirs() // Ensure the directory exists
+        versionFile.text = "version: ${version}"
+    }
+}
+
+compileJava.dependsOn writeVersionProperties
 
 publishing {
     repositories {
@@ -54,6 +67,7 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
+            artifactId = 'glossa-interpreter'
         }
     }
 }
