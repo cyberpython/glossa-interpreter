@@ -25,6 +25,10 @@ package glossa.interpreter;
 
 import glossa.interpreter.core.ASTInterpreter;
 import glossa.interpreter.core.ASTInterpreterListener;
+import glossa.interpreter.io.IInputProvider;
+import glossa.interpreter.io.IOutputPrinter;
+import glossa.interpreter.io.OutputPrinter;
+import glossa.interpreter.io.SystemInReader;
 import glossa.interpreter.symboltable.SymbolTable;
 import glossa.messages.MessageLog;
 import glossa.recognizers.GlossaParser;
@@ -33,12 +37,12 @@ import glossa.statictypeanalysis.FirstPass;
 import glossa.statictypeanalysis.StaticTypeAnalyzer;
 import glossa.statictypeanalysis.scopetable.ScopeTable;
 import glossa.utils.Point;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -59,11 +63,11 @@ public class Interpreter implements ASTInterpreterListener {
     private static final String STACK_PUSHED = "__stack_pushed__";
     private static final String STACK_POPPED = "__stack_popped__";
     private static final String RUNTIME_ERROR = "__runtime_error__";
-    private PrintStream out;
-    private PrintStream err;
-    private PrintStream runtimeOut;
-    private PrintStream runtimeErr;
-    private InputStream runtimeIn;
+    private IOutputPrinter out;
+    private IOutputPrinter err;
+    private IOutputPrinter runtimeOut;
+    private IOutputPrinter runtimeErr;
+    private IInputProvider runtimeIn;
     private String sourceCode;
     private List<InterpreterListener> listeners;
     private BufferedTreeNodeStream nodes;
@@ -73,10 +77,10 @@ public class Interpreter implements ASTInterpreterListener {
     private ScopeTable scopeTable;
 
     public Interpreter(String src) {
-        this(src, System.out, System.err, System.out, System.err, System.in);
+        this(src, new OutputPrinter(System.out), new OutputPrinter(System.err), new OutputPrinter(System.out), new OutputPrinter(System.err), new SystemInReader());
     }
 
-    public Interpreter(String src, PrintStream out, PrintStream err, PrintStream runtimeOut, PrintStream runtimeErr, InputStream runtimeIn) {
+    public Interpreter(String src, IOutputPrinter out, IOutputPrinter err, IOutputPrinter runtimeOut, IOutputPrinter runtimeErr, IInputProvider runtimeIn) {
         this.sourceCode = src;
         this.out = out;
         this.err = err;
@@ -122,22 +126,18 @@ public class Interpreter implements ASTInterpreterListener {
     }
 
     public void resume() {
-        if (this.interpreter != null) {
+        if (Objects.nonNull(interpreter)) {
             this.interpreter.resume();
         }
     }
 
     public void stop() {
-        if (this.interpreter != null) {
+        if (Objects.nonNull(interpreter)) {
             if (!interpreter.hasFinished()) {
                 this.interpreter.stop();
-                interpreterThread.interrupt();
-                /*while (interpreterThread.isAlive()) {
-                try {
-                Thread.sleep(200);
-                } catch (InterruptedException ie) {
+                if(Objects.nonNull(interpreterThread)){
+                    interpreterThread.interrupt();
                 }
-                }*/
             }
         }
     }
@@ -237,25 +237,28 @@ public class Interpreter implements ASTInterpreterListener {
 
     public void exec(boolean echoInput) {
         stop();
-        if (this.scopeTable != null) {
-            //scopeTable.printScopes(out);
+        if (Objects.nonNull(this.scopeTable)) {
             this.interpreter = new ASTInterpreter(nodes); // create a tree parser
             interpreter.init(scopeTable, runtimeOut, runtimeErr, runtimeIn, echoInput);
             interpreter.addListener(this);
             Thread thread = new Thread(interpreter);
             this.interpreterThread = thread;
             thread.start();
-            /*while (thread.isAlive()) {
-            try{
-            Thread.sleep(200);
-            }catch(InterruptedException ie){
-            }
-            }*/
+        }
+    }
+
+    public void execSync(boolean echoInput) {
+        stop();
+        if (Objects.nonNull(this.scopeTable)) {
+            this.interpreter = new ASTInterpreter(nodes); // create a tree parser
+            interpreter.init(scopeTable, runtimeOut, runtimeErr, runtimeIn, echoInput);
+            interpreter.addListener(this);
+            interpreter.run();
         }
     }
 
     public void printRuntimeStack() {
-        if (this.interpreter != null) {
+        if (Objects.nonNull(this.interpreter)) {
             out.println();
             Deque<SymbolTable> stack = this.interpreter.getStack();
             for (Iterator<SymbolTable> it = stack.iterator(); it.hasNext();) {

@@ -24,9 +24,9 @@
 
 package glossa.interpreter.symboltable;
 
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.scopes.MainProgramScope;
-import java.io.PrintStream;
 
 /**
  *
@@ -40,7 +40,7 @@ public class MainProgramSymbolTable extends SymbolTable{
     }
 
     @Override
-    public void print(PrintStream out){
+    public void print(IOutputPrinter out){
         out.println(RuntimeMessages.CONST_STR_PROGRAM+": "+this.getName());
         super.print(out);
     }

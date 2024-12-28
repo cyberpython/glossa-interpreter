@@ -23,6 +23,7 @@
  */
 package glossa.interpreter.symboltable;
 
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeConstant;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
@@ -33,7 +34,6 @@ import glossa.statictypeanalysis.scopetable.symbols.Constant;
 import glossa.statictypeanalysis.scopetable.symbols.Symbol;
 import glossa.statictypeanalysis.scopetable.symbols.Variable;
 import glossa.utils.Point;
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -116,7 +116,7 @@ public class SymbolTable {
         this.name = name;
     }
 
-    public void print(PrintStream out){
+    public void print(IOutputPrinter out){
         for (Iterator<String> keys = this.symbols.keySet().iterator(); keys.hasNext();) {
             String key = keys.next();
             RuntimeSymbol s = symbols.get(key);

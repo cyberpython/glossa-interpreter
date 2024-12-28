@@ -67,13 +67,11 @@ import glossa.messages.Messages;
 import glossa.builtinfunctions.BuiltinFunctions;
 import glossa.statictypeanalysis.scopetable.*;
 import glossa.statictypeanalysis.scopetable.scopes.*;
+import glossa.interpreter.io.IInputProvider;
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.interpreter.symboltable.*;
 import glossa.interpreter.symboltable.symbols.*;
 import glossa.utils.Point;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.ArrayDeque;
 import java.math.BigInteger;
 import java.math.BigDecimal;
@@ -99,10 +97,9 @@ import java.util.Iterator;
 
         private SymbolTable currentSymbolTable;
 
-        private PrintStream out;
-        private PrintStream err;
-        private InputStream in;
-        private BufferedReader reader;
+        private IOutputPrinter out;
+        private IOutputPrinter err;
+        private IInputProvider reader;
         private boolean echoInput;
 
         List<ASTInterpreterListener> listeners;
@@ -111,7 +108,7 @@ import java.util.Iterator;
         private boolean stop;
         private boolean finished;
 
-        public void init(ScopeTable s, PrintStream out, PrintStream err, InputStream in, boolean echoInput){
+        public void init(ScopeTable s, IOutputPrinter out, IOutputPrinter err, IInputProvider in, boolean echoInput){
             input.reset();
 
             this.stack = new ArrayDeque<SymbolTable>();
@@ -123,8 +120,7 @@ import java.util.Iterator;
 
             this.out = out;
             this.err = err;
-            this.in = in;
-            this.reader = new BufferedReader(new InputStreamReader(in));
+            this.reader = in;
             this.echoInput = echoInput;
         }
 
@@ -213,31 +209,6 @@ import java.util.Iterator;
 
         public Deque<SymbolTable> getStack(){
             return this.stack;
-        }
-
-        public void setOutputStream(PrintStream out){
-            this.out = out;
-        }
-
-        public PrintStream getOutputStream(){
-            return this.out;
-        }
-
-        public void setErrorStream(PrintStream err){
-            this.err = err;
-        }
-
-        public PrintStream getErrorStream(){
-            return this.err;
-        }
-
-        public void setInputStream(InputStream in){
-            this.in = in;
-            this.reader = new BufferedReader(new InputStreamReader(in));
-        }
-
-        public InputStream getInputStream(){
-            return this.in;
         }
 
 
@@ -603,7 +574,7 @@ stm	:	^(  PRINT           {
                                             input.seek(resumeAt);
                                         }else{
                                             try{
-                                                ExternalSubprograms.getInstance().callProcedure($ID.text, $paramsList.parameters, out, err, in);
+                                                ExternalSubprograms.getInstance().callProcedure($ID.text, $paramsList.parameters, out, err, reader);
                                             }catch(ExternalProcedureNotFoundException e){
                                                 throw new RuntimeException(String.format(RuntimeMessages.STR_RUNTIME_ERROR_CALL_TO_UNNKOWN_PROCEDURE, $ID.text));
                                             }

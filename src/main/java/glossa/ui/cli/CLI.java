@@ -25,6 +25,8 @@ package glossa.ui.cli;
 
 import glossa.interpreter.Interpreter;
 import glossa.interpreter.InterpreterListener;
+import glossa.interpreter.io.OutputPrinter;
+import glossa.interpreter.io.SystemInReader;
 import glossa.interpreter.symboltable.SymbolTable;
 import java.io.BufferedReader;
 import java.io.File;
@@ -171,7 +173,7 @@ public class CLI implements InterpreterListener {
             this.err = err;
             this.in = in;
 
-            Interpreter inter = new Interpreter(sb.toString(), out, err, out, err, in);
+            Interpreter inter = new Interpreter(sb.toString(), new OutputPrinter(out), new OutputPrinter(err), new OutputPrinter(out), new OutputPrinter(err), new SystemInReader());
             inter.addListener(this);
             if (inter.parseAndAnalyzeSemantics(false)) {
                 boolean echo = true;

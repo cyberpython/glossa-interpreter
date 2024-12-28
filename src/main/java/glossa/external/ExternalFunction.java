@@ -24,9 +24,10 @@
 
 package glossa.external;
 
-import glossa.types.Type;
-import java.io.PrintStream;
 import java.util.List;
+
+import glossa.interpreter.io.IOutputPrinter;
+import glossa.types.Type;
 
 /**
  *
@@ -53,5 +54,5 @@ public interface ExternalFunction extends ExternalSubProgram{
      *         Boolean    for boolean
      *         String     for string
      */
-    public Object execute(List<Object> parameters, PrintStream err);
+    public Object execute(List<Object> parameters, IOutputPrinter err);
 }

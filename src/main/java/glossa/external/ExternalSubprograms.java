@@ -23,7 +23,14 @@
  */
 package glossa.external;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.github.rjeschke.txtmark.Processor;
+
+import glossa.interpreter.io.IInputProvider;
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeVariable;
@@ -32,19 +39,6 @@ import glossa.messages.Messages;
 import glossa.statictypeanalysis.ExpressionResultForm;
 import glossa.statictypeanalysis.scopetable.parameters.ActualParameter;
 import glossa.types.Type;
-import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 /**
  *
@@ -52,7 +46,6 @@ import java.util.jar.JarFile;
  */
 public class ExternalSubprograms {
 
-    //TODO: Procedures
     private HashMap<String, ExternalFunction> functionCache;
     private HashMap<String, ExternalProcedure> procedureCache;
 
@@ -69,94 +62,14 @@ public class ExternalSubprograms {
 
         functionCache = new HashMap<>();
         procedureCache = new HashMap<>();
-        loadExternalSubprograms();
     }
 
-    private void loadExternalSubprograms() {
-        //FIXME: external lib lookup directory
+    public void addFunction(ExternalFunction function) {
+        functionCache.put(toCanonicalName(function.getName()), function);
+    }
 
-        //TODO: maybe instead of loading the classes
-        // we should load the pair <subprogramName,className>
-        // and then load the appropriate class on demand
-
-        File lookupDir = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
-        if (lookupDir.isDirectory()) {
-
-            File[] jarFiles = lookupDir.listFiles(
-                    file -> file.getAbsolutePath().toLowerCase().endsWith(".jar")
-            );
-
-            URL[] jarURLs = new URL[jarFiles.length];
-
-            for (int i = 0; i < jarURLs.length; i++) {
-                try {
-                    jarURLs[i] = jarFiles[i].toURI().toURL();
-                } catch (MalformedURLException mue) {
-                    //ignore jarfile
-                }
-            }
-
-            ClassLoader loader = URLClassLoader.newInstance(jarURLs);
-
-            for (File file : jarFiles) {
-                try {
-                    try (JarFile jf = new JarFile(file)) {
-                        Enumeration<JarEntry> entries = jf.entries();
-                        while (entries.hasMoreElements()) {
-                            JarEntry entry = entries.nextElement();
-                            String name = entry.getName();
-                            if (name.toLowerCase().endsWith(".class")) {
-                                name = name.replaceAll("\\/", ".").substring(0, name.length() - 6);
-                                try {
-                                    Class clazz = loader.loadClass(name);
-                                    Class[] ifaces = clazz.getInterfaces();
-                                    boolean foundExternalFunc = false;
-                                    boolean foundExternalProc = false;
-                                    for (int i = 0; i < ifaces.length; i++) {
-                                        Class iface = ifaces[i];
-                                        if (iface.equals(ExternalFunction.class)) {
-                                            foundExternalFunc = true;
-                                            break;
-                                        }
-                                        if (iface.equals(ExternalProcedure.class)) {
-                                            foundExternalProc = true;
-                                            break;
-                                        }
-                                    }
-                                    if (foundExternalFunc) {
-                                        Class<? extends ExternalFunction> externalFuncClass = clazz.asSubclass(ExternalFunction.class);
-                                        Constructor<? extends ExternalFunction> ctor = externalFuncClass.getConstructor();
-                                        ExternalFunction f = ctor.newInstance();
-                                        functionCache.put(toCanonicalName(f.getName()), f);
-                                    } else if (foundExternalProc) {
-                                        Class<? extends ExternalProcedure> externalProcClass = clazz.asSubclass(ExternalProcedure.class);
-                                        Constructor<? extends ExternalProcedure> ctor = externalProcClass.getConstructor();
-                                        ExternalProcedure p = ctor.newInstance();
-                                        procedureCache.put(toCanonicalName(p.getName()), p);
-                                    }
-                                } catch (ClassNotFoundException cnfe) {
-                                    //ignore
-                                } catch (NoSuchMethodException nsme) {
-                                    //ignore
-                                } catch (InstantiationException ie) {
-                                    //ignore
-                                } catch (IllegalAccessException iae) {
-                                    //ignore
-                                } catch (InvocationTargetException ite) {
-                                    //ignore
-                                }
-                            }
-                        }
-                    } catch (SecurityException | IllegalArgumentException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                } catch (IOException ioe) {
-                }
-
-            }
-
-        }
+    public void addProcedure(ExternalProcedure procedure) {
+        procedureCache.put(toCanonicalName(procedure.getName()), procedure);
     }
 
     public Type checkExternalFunctionCall(String functionName, List<ActualParameter> actualParameters) throws ExternalFunctionNotFoundException,
@@ -203,8 +116,8 @@ public class ExternalSubprograms {
         }
     }
 
-    public Object callFunction(String functionName, List<Object> parameters, PrintStream err) throws ExternalFunctionNotFoundException {
-        List<Object> parameterValues = new ArrayList<Object>();
+    public Object callFunction(String functionName, List<Object> parameters, IOutputPrinter err) throws ExternalFunctionNotFoundException {
+        List<Object> parameterValues = new ArrayList<>();
         for (Object object : parameters) {
             if (object instanceof ValueContainer) {
                 parameterValues.add(((ValueContainer) object).getValue());
@@ -221,7 +134,7 @@ public class ExternalSubprograms {
         }
     }
 
-    public void callProcedure(String procedureName, List<Object> parameters, PrintStream out, PrintStream err, InputStream in) throws ExternalProcedureNotFoundException {
+    public void callProcedure(String procedureName, List<Object> parameters, IOutputPrinter out, IOutputPrinter err, IInputProvider in) throws ExternalProcedureNotFoundException {
         List<Object> procParameters = new ArrayList<Object>();
         for (Object object : parameters) {
             if (object instanceof ValueContainer) {
@@ -248,7 +161,7 @@ public class ExternalSubprograms {
     }
 
     private List<ParameterTypeMismatchInstance> checkParameters(ExternalSubProgram sub, List<ActualParameter> actualParams) {
-        List<ParameterTypeMismatchInstance> result = new ArrayList<ParameterTypeMismatchInstance>();
+        List<ParameterTypeMismatchInstance> result = new ArrayList<>();
         List<Parameter> params = sub.getParametersList();
         Parameter param;
         ActualParameter actualParam;
@@ -337,44 +250,5 @@ public class ExternalSubprograms {
         sb.append("  <li> <span class='lbl description'>Περιγραφή:</span> ").append(Processor.process(sp.getDescription())).append("</li>\n");
         sb.append("</ul>");
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-
-        ExternalSubprograms xf = ExternalSubprograms.getInstance();
-        long instantiationTime = System.currentTimeMillis();
-
-        List params = new ArrayList();
-
-        long beforeLoopTime = System.currentTimeMillis();
-        int max = 10;
-        BigDecimal[] results = new BigDecimal[max];
-        BigDecimal[] randomValues = new BigDecimal[max];
-        for (int i = 0; i < max; i++) {
-            params.clear();
-            randomValues[i] = new BigDecimal(Math.random() * 100);
-            params.add(randomValues[i]);
-
-            try {
-                results[i] = (BigDecimal) xf.callFunction("κυβος", params, System.err);
-            } catch (ExternalFunctionNotFoundException e1) {
-                System.err.println(e1.getMessage());
-            }
-        }
-        long afterLoopTime = System.currentTimeMillis();
-
-        for (int i = 0; i < max; i++) {
-            System.out.println(String.format("%1$6.3f^3 = %2$6.3f", randomValues[i].doubleValue(), results[i].doubleValue()));
-        }
-
-        System.out.println();
-        System.out.println("--------------------------------");
-        System.out.println("Total time        : " + (afterLoopTime - startTime) + " msec");
-        System.out.println("Instantiation time: " + (instantiationTime - startTime) + " msec");
-        System.out.println("Loop time         : " + (afterLoopTime - beforeLoopTime) + " msec");
-        System.out.println("Average call time : " + ((afterLoopTime - beforeLoopTime) / ((double) max)) + " msec");
-        System.out.println("--------------------------------");
-
     }
 }

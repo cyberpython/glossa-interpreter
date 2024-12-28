@@ -76,7 +76,7 @@ import glossa.utils.Point;
         private MessageLog msgLog;
 
         private ScopeTable scopeTable;
-	private Scope currentScope;
+	    private Scope currentScope;
         private boolean inConstantDeclaration = false;
         private boolean inVariableDeclaration = false;
         private boolean inSubprogram = false;

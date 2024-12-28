@@ -36,7 +36,7 @@ dependencies {
 }
 
 group = 'com.gmigdos.glossa'
-version = '1.0.9'
+version = '2.0.0'
 
 application {
     // Define the main class for the application.
@@ -55,6 +55,7 @@ compileJava.dependsOn writeVersionProperties
 
 publishing {
     repositories {
+        
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/cyberpython/glossa-interpreter")
@@ -63,9 +64,24 @@ publishing {
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
+
+        maven {
+            name = "Forgejo"
+            allowInsecureProtocol = true
+            url = uri("${project.findProperty("forgejo.base_url")}/api/packages/${project.findProperty("forgejo.user")}/maven")
+
+            credentials(HttpHeaderCredentials) {
+                name = "Authorization"
+                value = "token ${project.findProperty('forgejo.token')}"
+            }
+
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
     }
     publications {
-        gpr(MavenPublication) {
+        glossa(MavenPublication) {
             from(components.java)
             artifactId = 'glossa-interpreter'
         }

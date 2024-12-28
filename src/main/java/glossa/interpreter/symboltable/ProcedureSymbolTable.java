@@ -24,6 +24,9 @@
 
 package glossa.interpreter.symboltable;
 
+import java.util.List;
+
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.interpreter.symboltable.symbols.RuntimeArray;
 import glossa.interpreter.symboltable.symbols.RuntimeArrayItemWrapper;
 import glossa.interpreter.symboltable.symbols.RuntimeSymbol;
@@ -31,8 +34,6 @@ import glossa.interpreter.symboltable.symbols.RuntimeVariable;
 import glossa.messages.Messages;
 import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.scopes.SubProgramScope;
-import java.io.PrintStream;
-import java.util.List;
 
 /**
  *
@@ -65,7 +66,7 @@ public class ProcedureSymbolTable extends SubProgramSymbolTable{
     }
 
     @Override
-    public void print(PrintStream out){
+    public void print(IOutputPrinter out){
         out.println(RuntimeMessages.CONST_STR_PROCEDURE+": "+this.getName());
         out.println(RuntimeMessages.CONST_STR_PARAMETERS+": "+Messages.formalParametersNamesToString(this.getSubprogramScope().getFormalParameters()));
         super.print(out);

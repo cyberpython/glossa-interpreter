@@ -24,13 +24,14 @@
 
 package glossa.interpreter.symboltable;
 
+import java.util.List;
+
 import glossa.interpreter.core.InterpreterUtils;
+import glossa.interpreter.io.IOutputPrinter;
 import glossa.messages.Messages;
 import glossa.messages.RuntimeMessages;
 import glossa.statictypeanalysis.scopetable.scopes.FunctionScope;
 import glossa.statictypeanalysis.scopetable.scopes.SubProgramScope;
-import java.io.PrintStream;
-import java.util.List;
 
 /**
  *
@@ -68,7 +69,7 @@ public class FunctionSymbolTable extends SubProgramSymbolTable{
     }
 
     @Override
-    public void print(PrintStream out){
+    public void print(IOutputPrinter out){
         out.println(RuntimeMessages.CONST_STR_FUNCTION+": "+this.getName()+" : "+Messages.typeToString(((FunctionScope)this.getSubprogramScope()).getReturnType()));
         out.println(RuntimeMessages.CONST_STR_PARAMETERS+": "+Messages.formalParametersNamesToString(this.getSubprogramScope().getFormalParameters()));
         out.println(RuntimeMessages.CONST_STR_RETURN_VALUE+": "+InterpreterUtils.toPrintableString(this.returnValue));

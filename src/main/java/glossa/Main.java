@@ -28,9 +28,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.charset.Charset;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Properties;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
+import glossa.external.ExternalFunction;
+import glossa.external.ExternalProcedure;
+import glossa.external.ExternalSubprograms;
 import glossa.ui.cli.CLI;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
@@ -70,6 +82,87 @@ public class Main {
         
     }
 
+    private static void loadExternalSubprograms() {
+    
+            File lookupDir = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "ΒΙΒΛΙΟΘΗΚΗ_ΓΛΩΣΣΑΣ");
+            if (lookupDir.isDirectory()) {
+    
+                File[] jarFiles = lookupDir.listFiles(
+                        file -> file.getAbsolutePath().toLowerCase().endsWith(".jar")
+                );
+    
+                URL[] jarURLs = new URL[jarFiles.length];
+    
+                for (int i = 0; i < jarURLs.length; i++) {
+                    try {
+                        jarURLs[i] = jarFiles[i].toURI().toURL();
+                    } catch (MalformedURLException mue) {
+                        //ignore jarfile
+                    }
+                }
+    
+                ClassLoader loader = URLClassLoader.newInstance(jarURLs);
+    
+                for (File file : jarFiles) {
+                    try {
+                        try (JarFile jf = new JarFile(file)) {
+                            Enumeration<JarEntry> entries = jf.entries();
+                            while (entries.hasMoreElements()) {
+                                JarEntry entry = entries.nextElement();
+                                String name = entry.getName();
+                                if (name.toLowerCase().endsWith(".class")) {
+                                    name = name.replaceAll("\\/", ".").substring(0, name.length() - 6);
+                                    try {
+                                        Class clazz = loader.loadClass(name);
+                                        Class[] ifaces = clazz.getInterfaces();
+                                        boolean foundExternalFunc = false;
+                                        boolean foundExternalProc = false;
+                                        for (int i = 0; i < ifaces.length; i++) {
+                                            Class iface = ifaces[i];
+                                            if (iface.equals(ExternalFunction.class)) {
+                                                foundExternalFunc = true;
+                                                break;
+                                            }
+                                            if (iface.equals(ExternalProcedure.class)) {
+                                                foundExternalProc = true;
+                                                break;
+                                            }
+                                        }
+                                        if (foundExternalFunc) {
+                                            Class<? extends ExternalFunction> externalFuncClass = clazz.asSubclass(ExternalFunction.class);
+                                            Constructor<? extends ExternalFunction> ctor = externalFuncClass.getConstructor();
+                                            ExternalFunction f = ctor.newInstance();
+                                            ExternalSubprograms.getInstance().addFunction(f);
+                                        } else if (foundExternalProc) {
+                                            Class<? extends ExternalProcedure> externalProcClass = clazz.asSubclass(ExternalProcedure.class);
+                                            Constructor<? extends ExternalProcedure> ctor = externalProcClass.getConstructor();
+                                            ExternalProcedure p = ctor.newInstance();
+                                            ExternalSubprograms.getInstance().addProcedure(p);
+                                        }
+                                    } catch (ClassNotFoundException cnfe) {
+                                        //ignore
+                                    } catch (NoSuchMethodException nsme) {
+                                        //ignore
+                                    } catch (InstantiationException ie) {
+                                        //ignore
+                                    } catch (IllegalAccessException iae) {
+                                        //ignore
+                                    } catch (InvocationTargetException ite) {
+                                        //ignore
+                                    }
+                                }
+                            }
+                        } catch (SecurityException | IllegalArgumentException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (IOException ioe) {
+                    }
+    
+                }
+    
+            }
+        }
+
     /**
      * @param args the command line arguments
      */
@@ -89,6 +182,9 @@ public class Main {
                 }
             } else {
                 if ((opts.sourceFile != null) && opts.sourceFile.isFile()) {
+                    
+                    loadExternalSubprograms();
+
                     CLI cli = new CLI(opts.interactive);
                     if (opts.inputFile != null) {
                         cli.execute(opts.sourceFile, opts.inputFile);
@@ -106,7 +202,6 @@ public class Main {
             System.out.println(WRONG_USAGE);
             System.out.println();
             printHelpMessage(System.out);
-            // pe.printStackTrace();
         }
         
     }

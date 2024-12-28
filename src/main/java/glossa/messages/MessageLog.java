@@ -24,6 +24,8 @@
 
 package glossa.messages;
 
+import glossa.interpreter.io.IOutputPrinter;
+import glossa.interpreter.io.OutputPrinter;
 import glossa.utils.Point;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -36,20 +38,20 @@ import java.util.List;
  */
 public class MessageLog {
 
-    private PrintStream err;
-    private PrintStream warn;
+    private IOutputPrinter err;
+    private IOutputPrinter warn;
 
     private List<ErrorMessage> errorMessages;
     private List<WarningMessage> warningMessages;
 
     public MessageLog() {
-        this.err = System.err;
-        this.warn = System.out;
+        this.err = new OutputPrinter(System.err);
+        this.warn = new OutputPrinter(System.out);
         this.errorMessages = new ArrayList<ErrorMessage>();
         this.warningMessages = new ArrayList<WarningMessage>();
     }
 
-    public MessageLog(PrintStream err, PrintStream warn) {
+    public MessageLog(IOutputPrinter err, IOutputPrinter warn) {
         this.err = err;
         this.warn = warn;
         this.errorMessages = new ArrayList<ErrorMessage>();

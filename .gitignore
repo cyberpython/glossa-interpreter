@@ -18,3 +18,4 @@ devdoc
 git-hooks
 .classpath
 .project
+gradle.properties
